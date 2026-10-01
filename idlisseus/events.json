@@ -1,0 +1,1012 @@
+[
+  {
+    "id": "fine_print",
+    "phase": "capability",
+    "title": "240 pages. Tomorrow morning.",
+    "signal": "Complex rules favour remote reasoning. A dev favour can build a tested tool.",
+    "text": "New support rules arrive across the {place} network: 240 pages, six exceptions, one deadline. Local {people} need a usable answer. A full response will strain the team even if it works.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Launch every exception; work a double shift",
+        "profiles": [
+          {
+            "when": {
+              "brain": "remote"
+            },
+            "help": 6,
+            "why": "Remote reasoning resolves the tangled eligibility rules. The extra shift drains your team.",
+            "harm": 1
+          },
+          {
+            "help": 5,
+            "why": "The small model finds a workable reading. The extra shift drains your team.",
+            "chance": 0.55,
+            "fail_help": 1,
+            "fail_harm": 2,
+            "fail_why": "Your local model merges two exceptions; people receive wrong advice. A few cases get through; recovery consumes the team.",
+            "harm": 1
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Handle only the clear cases",
+        "profiles": [
+          {
+            "when": {
+              "brain": "remote"
+            },
+            "help": 3,
+            "why": "Your remote model handles the clear cases efficiently within a normal shift."
+          },
+          {
+            "help": 2,
+            "why": "A narrow checklist helps fewer people, with no guesswork."
+          }
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Build and test a rules tool",
+        "profiles": [
+          {
+            "help": 4,
+            "why": "Your dev team turns the rules into a tested lookup tool."
+          }
+        ],
+        "require_kit": "dev",
+        "consume_kit": true
+      }
+    ]
+  },
+  {
+    "id": "confident_error",
+    "phase": "capability",
+    "title": "Beautiful answer. Imaginary scheme.",
+    "signal": "Plausible fiction: human review catches it. AI review is a gamble.",
+    "text": "Your assistant invents a convincing solution to {problem}. The screenshot already has a life of its own.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Pull the feature; publish checked basics",
+        "profiles": [
+          {
+            "help": 2,
+            "why": "A small verified guide keeps useful help flowing."
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Audit and correct the whole batch",
+        "profiles": [
+          {
+            "when": {
+              "guard": "human"
+            },
+            "help": 4,
+            "why": "Human reviewers check primary sources and catch the convincing fiction."
+          },
+          {
+            "help": 4,
+            "why": "Your AI judge catches the fiction this time.",
+            "chance": 0.6,
+            "fail_help": 1,
+            "fail_harm": 1,
+            "fail_why": "The judge agrees with the same invented answer. One team still receives useful help."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dialect",
+    "phase": "capability",
+    "title": "The language nobody put in the demo",
+    "signal": "New dialect: shared examples or remote reasoning help. Field support can translate.",
+    "text": "Local {people} describe {problem} in a dialect your demo never heard. Literal translations are wonderfully wrong.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Offer a small translated checklist",
+        "profiles": [
+          {
+            "help": 1,
+            "why": "A checked checklist is useful, but cannot hold a conversation."
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Adapt from partner examples",
+        "profiles": [
+          {
+            "when": {
+              "data": "open"
+            },
+            "help": 4,
+            "why": "Consented examples from partner organisations bridge the dialect gap."
+          },
+          {
+            "when": {
+              "brain": "remote"
+            },
+            "help": 3,
+            "why": "Your remote model transfers enough language knowledge."
+          },
+          {
+            "help": 4,
+            "why": "Your local model manages the unfamiliar dialect.",
+            "chance": 0.5,
+            "fail_help": 1,
+            "fail_harm": 1,
+            "fail_why": "Without examples, your model misses a crucial local meaning. One team still receives useful help."
+          }
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Send local facilitators",
+        "profiles": [
+          {
+            "help": 4,
+            "why": "Your field team translates meaning, not just words."
+          }
+        ],
+        "require_kit": "field",
+        "consume_kit": true
+      }
+    ]
+  },
+  {
+    "id": "messy_records",
+    "phase": "capability",
+    "title": "Seven files, one missing story",
+    "signal": "Long records favour remote reasoning; a smaller job buys rebuild time.",
+    "text": "A pile of scans and contradictory notes hides the next useful step on {problem}. Somebody has labelled every file FINAL. A full response will strain the team even if it works.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Reconstruct everything in one sprint",
+        "profiles": [
+          {
+            "when": {
+              "brain": "remote"
+            },
+            "help": 6,
+            "why": "Your remote model connects the evidence across the long record. The extra shift drains your team.",
+            "harm": 1
+          },
+          {
+            "help": 5,
+            "why": "Your local model pieces the records together. The extra shift drains your team.",
+            "chance": 0.55,
+            "fail_help": 1,
+            "fail_harm": 2,
+            "fail_why": "The short context window drops a key contradiction. A few cases get through; recovery consumes the team.",
+            "harm": 1
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Clean up the records; prepare a rebuild",
+        "profiles": [
+          {
+            "when": {
+              "brain": "remote"
+            },
+            "help": 3,
+            "gain_rebuilds": 1,
+            "why": "Your remote model sorts the clean records quickly; documenting the system gives you one extra rebuild."
+          },
+          {
+            "help": 2,
+            "gain_rebuilds": 1,
+            "why": "You resolve the clean records and document the system, giving you one extra rebuild."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "surge",
+    "phase": "scale",
+    "title": "Your quiet pilot is famous",
+    "signal": "Routine queue: AI review is fast. A field favour can add a desk.",
+    "text": "Requests across the {place} network jump a hundredfold. Your team remains exactly the same size. A full response will strain the team even if it works.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Cap admissions; finish every case",
+        "profiles": [
+          {
+            "when": {
+              "guard": "judge"
+            },
+            "help": 3,
+            "why": "Your AI judge verifies a capped queue without putting the team on overtime."
+          },
+          {
+            "help": 2,
+            "why": "A firm cap protects quality but leaves a long waiting list."
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Clear the full queue; run overtime",
+        "profiles": [
+          {
+            "when": {
+              "guard": "judge"
+            },
+            "help": 6,
+            "why": "Your AI judge checks routine cases fast enough to match demand. The extra shift drains your team.",
+            "harm": 1
+          },
+          {
+            "help": 5,
+            "why": "Your reviewers clear an extraordinary shift. The extra shift drains your team.",
+            "chance": 0.65,
+            "fail_help": 1,
+            "fail_harm": 2,
+            "fail_why": "The human review queue spills past the deadline. A few cases get through; recovery consumes the team.",
+            "harm": 1
+          }
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Open a staffed pop-up desk",
+        "profiles": [
+          {
+            "help": 4,
+            "why": "Your field team absorbs the surge and resolves cases in person."
+          }
+        ],
+        "require_kit": "field",
+        "consume_kit": true
+      }
+    ]
+  },
+  {
+    "id": "vendor_gift",
+    "phase": "scale",
+    "title": "The free lane",
+    "signal": "Cloud subsidy buys reach at a cost. Independence buys rebuild time.",
+    "text": "A vendor offers priority cloud capacity for this surge. Free today; future pricing belongs to them.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Take the vendor deal",
+        "profiles": [
+          {
+            "when": {
+              "brain": "remote"
+            },
+            "help": 5,
+            "why": "The vendor supplies extra capacity without exhausting your team; future pricing and the exit bill belong to them.",
+            "contract": true
+          },
+          {
+            "help": 4,
+            "why": "The vendor migrates your service to remote and supplies capacity; future pricing and the exit bill belong to them.",
+            "contract": true,
+            "set_stack": {
+              "brain": "remote"
+            }
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Serve fewer; prepare an independent fallback",
+        "profiles": [
+          {
+            "help": 2,
+            "gain_rebuilds": 1,
+            "why": "You ration today\u2019s service and prepare one extra rebuild for whatever comes next."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "deadline",
+    "phase": "scale",
+    "title": "The portal closes at sunset",
+    "signal": "Hard deadline: AI review handles the batch. A full push costs a life.",
+    "text": "A short application window opens for {people}. Every answer must be checked before sunset. A full response will strain the team even if it works.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Push the whole batch through tonight",
+        "profiles": [
+          {
+            "when": {
+              "guard": "judge"
+            },
+            "help": 6,
+            "why": "Your AI judge handles repeated checks at machine speed. The extra shift drains your team.",
+            "harm": 1
+          },
+          {
+            "help": 5,
+            "why": "Your reviewers complete the batch in a frantic sprint. The extra shift drains your team.",
+            "chance": 0.6,
+            "fail_help": 1,
+            "fail_harm": 2,
+            "fail_why": "Manual checking misses the deadline for many applications. A few cases get through; recovery consumes the team.",
+            "harm": 1
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Prioritise the ready applications",
+        "profiles": [
+          {
+            "when": {
+              "guard": "judge"
+            },
+            "help": 3,
+            "why": "Your AI judge gets the ready applications checked within a normal shift."
+          },
+          {
+            "help": 2,
+            "why": "A smaller complete batch reaches the portal on time."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "referral_queue",
+    "phase": "scale",
+    "title": "Advice is instant. The queue is not.",
+    "signal": "Appointments are scarce. Human coordination helps; field support adds capacity.",
+    "text": "Your assistant identifies the right next steps for {people}. The actual service desks across the {place} network have run out of appointments.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Coordinate scarce appointments",
+        "profiles": [
+          {
+            "when": {
+              "guard": "human"
+            },
+            "help": 3,
+            "why": "Your reviewers call service providers and reserve real appointments for urgent cases."
+          },
+          {
+            "help": 3,
+            "chance": 0.65,
+            "fail_help": 1,
+            "fail_harm": 1,
+            "why": "Automated scheduling finds and fills the remaining real slots.",
+            "fail_why": "The automated schedule sends people to appointments that no longer exist. One team still receives useful help."
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Stop new referrals; resolve easy cases",
+        "profiles": [
+          {
+            "help": 2,
+            "why": "A smaller service respects the actual capacity on the ground."
+          }
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Add a staffed field service",
+        "require_kit": "field",
+        "consume_kit": true,
+        "profiles": [
+          {
+            "help": 4,
+            "why": "Your field team adds real service capacity; faster answers alone could not."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "blackout",
+    "phase": "shock",
+    "title": "The cloud has left the chat",
+    "signal": "Internet trouble favours local models. Field support can carry checked guidance.",
+    "text": "Floodwater cuts internet access across the {place} network. Local {people} still need help with {problem}. A full response will strain the team even if it works.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Run a full emergency shift",
+        "profiles": [
+          {
+            "when": {
+              "brain": "local"
+            },
+            "help": 6,
+            "why": "Your local model runs offline; the work continues. The extra shift drains your team.",
+            "harm": 1
+          },
+          {
+            "help": 5,
+            "why": "A fragile connection holds long enough to help. The extra shift drains your team.",
+            "chance": 0.45,
+            "fail_help": 1,
+            "fail_harm": 2,
+            "fail_why": "The remote model disappears with the last signal bar. A few cases get through; recovery consumes the team.",
+            "harm": 1
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Run a limited fallback service",
+        "profiles": [
+          {
+            "when": {
+              "brain": "local"
+            },
+            "help": 3,
+            "why": "Your local model supports a reduced offline service within a normal shift."
+          },
+          {
+            "help": 1,
+            "why": "The paper fallback handles the simplest cases."
+          }
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Send the field team door to door",
+        "profiles": [
+          {
+            "help": 4,
+            "why": "Your field team carries checked guidance into disconnected communities."
+          }
+        ],
+        "require_kit": "field",
+        "consume_kit": true
+      }
+    ]
+  },
+  {
+    "id": "endpoint",
+    "phase": "shock",
+    "title": "503: service temporarily elsewhere",
+    "signal": "Cloud outage: local models keep working. A smaller service lets the team recover.",
+    "text": "Your model provider schedules emergency maintenance during the busiest day across the {place} network. The status page is very reassuring.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Run a tiny desk; rest the main team",
+        "profiles": [
+          {
+            "help": 1,
+            "heal": 1,
+            "why": "A tiny manual desk helps one team while the main crew recovers a life."
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Run through the interruption",
+        "profiles": [
+          {
+            "when": {
+              "brain": "local"
+            },
+            "help": 4,
+            "why": "Your local model does not depend on that endpoint."
+          },
+          {
+            "help": 4,
+            "why": "Your remote requests squeeze through between outages.",
+            "chance": 0.5,
+            "fail_help": 1,
+            "fail_harm": 1,
+            "fail_why": "Repeated cloud failures interrupt active cases. One team still receives useful help."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "consent_attack",
+    "phase": "shock",
+    "title": "Someone knows too much",
+    "signal": "Linked records threaten privacy. Private data limits exposure; a pause restores trust.",
+    "text": "A partner flags a linkage attack before your next aggregate upload. New examples could identify people, even without names.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Contain the attack and keep helping",
+        "profiles": [
+          {
+            "when": {
+              "data": "private"
+            },
+            "help": 4,
+            "why": "Keeping the new records private blocks fresh exposure; your team continues helping."
+          },
+          {
+            "help": 4,
+            "why": "Your shared-data safeguards withstand the linkage attempt.",
+            "chance": 0.6,
+            "fail_help": 0,
+            "fail_harm": 2,
+            "fail_why": "A small group is reidentified through linked aggregates."
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Freeze sharing; support affected people",
+        "profiles": [
+          {
+            "help": 1,
+            "heal": 1,
+            "why": "You limit service and rebuild trust through direct support, restoring one life."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "viral_claim",
+    "phase": "shock",
+    "title": "Forwarded many, many times",
+    "signal": "A viral falsehood needs context. Human review or trusted field messengers can help.",
+    "text": "A viral message offers a dangerously wrong shortcut for {problem}. It quotes your organisation. You did not write it.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Check and rebut every variation",
+        "profiles": [
+          {
+            "when": {
+              "guard": "human"
+            },
+            "help": 4,
+            "why": "Human reviewers spot the changing context and publish credible corrections."
+          },
+          {
+            "help": 4,
+            "why": "Your judge identifies the misleading variations.",
+            "chance": 0.65,
+            "fail_help": 0,
+            "fail_harm": 1,
+            "fail_why": "The automated rebuttal accidentally repeats the false claim."
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Publish one short, verified warning",
+        "profiles": [
+          {
+            "help": 2,
+            "why": "A clear warning travels safely, though many questions remain unanswered."
+          }
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Mobilise trusted local messengers",
+        "profiles": [
+          {
+            "help": 4,
+            "why": "Your field team reaches people through voices they already trust."
+          }
+        ],
+        "require_kit": "field",
+        "consume_kit": true
+      }
+    ]
+  },
+  {
+    "id": "weak_signals",
+    "phase": "collective",
+    "title": "Nobody has enough examples",
+    "signal": "Shared evidence reveals a pattern. Join the network or pay for a bigger response.",
+    "text": "Three organisations notice different fragments of {problem}. Alone, each fragment looks like noise. A full response will strain the team even if it works.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Share consented aggregates and join",
+        "profiles": [
+          {
+            "when": {
+              "data": "open"
+            },
+            "help": 3,
+            "why": "Your shared evidence is ready; you can help a smaller group without launching an emergency response.",
+            "set_stack": {
+              "data": "open"
+            }
+          },
+          {
+            "help": 2,
+            "why": "You switch to shared data using consented aggregates; preparing them limits help today.",
+            "set_stack": {
+              "data": "open"
+            }
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Launch a network-wide response",
+        "profiles": [
+          {
+            "when": {
+              "data": "open"
+            },
+            "help": 6,
+            "why": "Your shared, consented examples reveal the pattern across organisations. The extra shift drains your team.",
+            "harm": 1
+          },
+          {
+            "help": 5,
+            "why": "Public summaries happen to contain the missing clue. The extra shift drains your team.",
+            "chance": 0.55,
+            "fail_help": 1,
+            "fail_harm": 2,
+            "fail_why": "Your isolated evidence supports the wrong explanation. A few cases get through; recovery consumes the team.",
+            "harm": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "local_discovery",
+    "phase": "collective",
+    "title": "The answer is one district over",
+    "signal": "Shared examples help copy a success. A dev favour can bridge private records.",
+    "text": "A neighbouring organisation found a useful approach to {problem}. Their evidence could save your team weeks.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Put the shared discovery to work",
+        "profiles": [
+          {
+            "when": {
+              "data": "open"
+            },
+            "help": 4,
+            "why": "Compatible shared evidence lets you validate and adapt the approach."
+          },
+          {
+            "help": 4,
+            "why": "The public description transfers to your setting.",
+            "chance": 0.6,
+            "fail_help": 1,
+            "fail_harm": 1,
+            "fail_why": "Without the supporting examples, your team copies the wrong part. One team still receives useful help."
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Run a small independent trial",
+        "profiles": [
+          {
+            "help": 2,
+            "why": "A careful trial produces local evidence at a slower pace."
+          }
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Build a privacy-preserving bridge",
+        "profiles": [
+          {
+            "help": 4,
+            "why": "Your dev team compares aggregate results without exporting personal records."
+          }
+        ],
+        "require_kit": "dev",
+        "consume_kit": true
+      }
+    ]
+  },
+  {
+    "id": "sensitive_cohort",
+    "phase": "collective",
+    "title": "The group small enough to name",
+    "signal": "Small groups are easy to identify. Private workflows protect sensitive cases.",
+    "text": "A partner wants detailed examples to improve help for a tiny group across the {place} network. Even removing names may not hide who they are.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Continue work behind a secure boundary",
+        "profiles": [
+          {
+            "when": {
+              "data": "private"
+            },
+            "help": 4,
+            "why": "Your private workflow keeps sensitive case records within the organisation."
+          },
+          {
+            "help": 4,
+            "why": "Your disclosure checks find and close every small-cohort leak.",
+            "chance": 0.55,
+            "fail_help": 1,
+            "fail_harm": 2,
+            "fail_why": "One tiny shared cohort remains identifiable. One team still receives useful help."
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Restrict future sharing; give broad guidance",
+        "profiles": [
+          {
+            "help": 2,
+            "why": "You switch future evidence to private storage; earlier releases cannot be recalled.",
+            "set_stack": {
+              "data": "private"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "last_mile",
+    "phase": "collective",
+    "title": "The answer cannot drive a van",
+    "signal": "Actual transport is scarce. Shared capacity records or human coordination help.",
+    "text": "The plan for {problem} is clear. Reaching {people} still needs transport, local staff and hours in the day. A full response will strain the team even if it works.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Run partner deliveries through the night",
+        "profiles": [
+          {
+            "when": {
+              "data": "open"
+            },
+            "help": 6,
+            "why": "Shared aggregate capacity records reveal spare transport and staff nearby. The extra shift drains your team.",
+            "harm": 1
+          },
+          {
+            "when": {
+              "guard": "human"
+            },
+            "help": 5,
+            "why": "Human coordinators call around and arrange a smaller set of real deliveries. The extra shift drains your team.",
+            "harm": 1
+          },
+          {
+            "help": 5,
+            "chance": 0.55,
+            "fail_help": 1,
+            "fail_harm": 2,
+            "why": "Your estimates locate spare partner capacity. The extra shift drains your team.",
+            "fail_why": "The plan assumes transport that is already committed elsewhere. A few cases get through; recovery consumes the team.",
+            "harm": 1
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Fund a few direct field visits",
+        "profiles": [
+          {
+            "when": {
+              "data": "open"
+            },
+            "help": 3,
+            "why": "Shared capacity records help you target a few direct visits efficiently."
+          },
+          {
+            "help": 2,
+            "why": "You redirect effort from AI expansion to actual visits; fewer people get tangible help."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "price_squeeze",
+    "phase": "market",
+    "title": "Friday, 6:47 PM. New terms.",
+    "signal": "Cloud prices may rise. Subsidy contracts carry the largest exit bill.",
+    "text": "Priority cloud access now carries a steep fee. Teams that accepted the free lane face the largest exit bill.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Keep serving through the price shift",
+        "profiles": [
+          {
+            "when": {
+              "contract": true
+            },
+            "help": 4,
+            "why": "You negotiate enough emergency capacity to keep helping despite the contract bill.",
+            "chance": 0.45,
+            "fail_help": 0,
+            "fail_harm": 2,
+            "fail_why": "The subsidised contract becomes a bill your organisation cannot absorb."
+          },
+          {
+            "when": {
+              "brain": "local"
+            },
+            "help": 4,
+            "why": "Your local service keeps its costs under your control."
+          },
+          {
+            "help": 3,
+            "why": "Without the special contract, your remote service absorbs the smaller increase."
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Cut scope; negotiate an exit",
+        "profiles": [
+          {
+            "help": 1,
+            "why": "A smaller service survives while you settle and close the vendor contract.",
+            "contract": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gpu_shortage",
+    "phase": "market",
+    "title": "Everybody wants the same chips",
+    "signal": "Hardware trouble favours managed remote capacity. Full service costs extra.",
+    "text": "Local compute rentals jump in price. Your tiny server has picked an excellent week to break. A full response will strain the team even if it works.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Operate at reduced capacity",
+        "profiles": [
+          {
+            "when": {
+              "brain": "remote"
+            },
+            "help": 3,
+            "why": "Your remote provider can maintain a reduced service without emergency spending."
+          },
+          {
+            "help": 2,
+            "why": "Borrowed capacity keeps a reduced service alive."
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Keep full capacity at emergency cost",
+        "profiles": [
+          {
+            "when": {
+              "brain": "remote"
+            },
+            "help": 6,
+            "why": "Managed remote infrastructure absorbs the hardware shortage. The extra shift drains your team.",
+            "harm": 1
+          },
+          {
+            "help": 5,
+            "why": "Your local machine survives one more improvised repair. The extra shift drains your team.",
+            "chance": 0.5,
+            "fail_help": 1,
+            "fail_harm": 2,
+            "fail_why": "Local hardware fails before replacement parts arrive. A few cases get through; recovery consumes the team.",
+            "harm": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "open_release",
+    "phase": "market",
+    "title": "A new model, a very long README",
+    "signal": "A promising open model. Local deployment helps; a dev favour can unlock migration.",
+    "text": "A strong open model ships at a fraction of the running cost. Someone still has to make it work for {people}.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Keep the proven setup; learn from the release",
+        "profiles": [
+          {
+            "help": 2,
+            "why": "You adopt a few tested improvements without a full migration."
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Upgrade the live system",
+        "profiles": [
+          {
+            "when": {
+              "brain": "local"
+            },
+            "help": 3,
+            "why": "Your local deployment path makes the upgrade manageable."
+          },
+          {
+            "help": 4,
+            "why": "Your remote workflow ports successfully to the open release.",
+            "chance": 0.65,
+            "fail_help": 1,
+            "fail_harm": 1,
+            "fail_why": "An untested integration breaks the live service. One team still receives useful help."
+          }
+        ]
+      },
+      {
+        "key": "c",
+        "label": "Have your dev team deploy it",
+        "profiles": [
+          {
+            "help": 4,
+            "why": "Your dev team validates the release, switches your brain to local, and closes any vendor contract.",
+            "set_stack": {
+              "brain": "local"
+            },
+            "contract": false
+          }
+        ],
+        "require_kit": "dev",
+        "consume_kit": true
+      }
+    ]
+  },
+  {
+    "id": "procurement",
+    "phase": "market",
+    "title": "The buyer wants proof",
+    "signal": "A funder wants accountable decisions. Human review is already prepared.",
+    "text": "A new funder will expand your work on {problem}, if every disputed decision has an accountable reviewer.",
+    "options": [
+      {
+        "key": "a",
+        "label": "Take the larger accountable-service contract",
+        "profiles": [
+          {
+            "when": {
+              "guard": "human"
+            },
+            "help": 4,
+            "why": "Human reviewers already own disputed decisions; the expansion is ready."
+          },
+          {
+            "help": 4,
+            "why": "Your automated audit trail satisfies the funder.",
+            "chance": 0.65,
+            "fail_help": 1,
+            "fail_harm": 1,
+            "fail_why": "A disputed decision has no accountable reviewer; the expansion stalls. One team still receives useful help."
+          }
+        ]
+      },
+      {
+        "key": "b",
+        "label": "Accept a smaller, tightly scoped grant",
+        "profiles": [
+          {
+            "help": 2,
+            "why": "A narrow grant fits your current accountability capacity."
+          }
+        ]
+      }
+    ]
+  }
+]

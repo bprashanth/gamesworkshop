@@ -1,5 +1,62 @@
 # gamesworkshop
 
+## Play Idlisseus
+
+A small terminal expedition about building AI for social-sector organisations.
+Python 3.10+; no packages, accounts, API keys, or network connection needed.
+Run from this directory:
+
+```bash
+python3 -m idlisseus
+```
+
+Five stops. Three lives. Two rebuilds. Equip **20 local teams** and finish alive.
+Your mission and AI stack are assigned at the start; choose one favour from a
+dev crew or field network. At each fork, follow one call for help, then choose
+how much to attempt. Big pushes can exhaust your organisation; smaller jobs can
+restore capacity. Future events stay hidden. The final market change reaches
+everyone, including anyone who took the tempting vendor subsidy.
+
+Use **A/B + Enter** to choose, **C** when a useful favour is available, **R** to
+inspect and rebuild your stack, **?** for the reason behind the current odds,
+and **Q** to quit. Inspecting a rebuild is free; selecting a component spends
+the shown cost. Enter alone returns from the workbench without spending.
+Exact consequences appear before a choice; the next screen explains what
+happened. Zero lives ends the run, even if you met the reach target.
+
+```bash
+# A repeatable expedition; the ending offers the same weather with a new build
+python3 -m idlisseus --seed 7
+
+# Pick a starting build; --plain keeps SSH logs free of terminal escapes
+python3 -m idlisseus --seed 19 --stack local,private,human --plain
+
+# Watch a completed run, or record your own decisions
+python3 -m idlisseus --demo --seed 7
+python3 -m idlisseus --log run.json
+
+# Tests and a balance check over all eight builds (JSON output)
+python3 -m unittest discover -s tests -v
+python3 -m idlisseus --simulate 1000 --policy adaptive
+```
+
+Other flags: `--domain education|agriculture|water|livelihoods|health`,
+`--kit dev|field` (skips the opening kit choice), and `--help`.
+`NO_COLOR=1` disables colour. Narrow terminals wrap; EOF/Ctrl-C exits cleanly.
+Logs record the latest expedition, including partial runs; they are records,
+not resume files. Seeds reproduce weather and risk rolls with the same deck
+and rules, even when you change the starting stack.
+
+The game uses illustrative capabilities and odds, not measured model performance
+or a ranking of real social priorities. Its five missions share a 20-event deck;
+appointments and transport create limits that faster AI cannot simply remove.
+
+- [Editable event deck](idlisseus/events.json) and [editing guide](idlisseus/EVENTS.md)
+- [Playtest findings and balance results](benchmarks/IDLISSEUS_PLAYTEST.md)
+- [Original first-cut brief](.prompt/v0_first_cut.md)
+
+## Workshop method
+
 A method for turning field knowledge into a game a room can play.
 
 ## What this is for
