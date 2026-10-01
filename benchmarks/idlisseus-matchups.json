@@ -1,0 +1,242 @@
+{
+  "remote/private/human": {
+    "remote/private/judge": {
+      "wins_when_other_loses": 106,
+      "example_seed": 9
+    },
+    "remote/open/human": {
+      "wins_when_other_loses": 55,
+      "example_seed": 2
+    },
+    "remote/open/judge": {
+      "wins_when_other_loses": 101,
+      "example_seed": 9
+    },
+    "local/private/human": {
+      "wins_when_other_loses": 162,
+      "example_seed": 5
+    },
+    "local/private/judge": {
+      "wins_when_other_loses": 119,
+      "example_seed": 9
+    },
+    "local/open/human": {
+      "wins_when_other_loses": 118,
+      "example_seed": 9
+    },
+    "local/open/judge": {
+      "wins_when_other_loses": 180,
+      "example_seed": 9
+    }
+  },
+  "remote/private/judge": {
+    "remote/private/human": {
+      "wins_when_other_loses": 61,
+      "example_seed": 49
+    },
+    "remote/open/human": {
+      "wins_when_other_loses": 41,
+      "example_seed": 2
+    },
+    "remote/open/judge": {
+      "wins_when_other_loses": 56,
+      "example_seed": 13
+    },
+    "local/private/human": {
+      "wins_when_other_loses": 158,
+      "example_seed": 5
+    },
+    "local/private/judge": {
+      "wins_when_other_loses": 92,
+      "example_seed": 39
+    },
+    "local/open/human": {
+      "wins_when_other_loses": 106,
+      "example_seed": 48
+    },
+    "local/open/judge": {
+      "wins_when_other_loses": 147,
+      "example_seed": 10
+    }
+  },
+  "remote/open/human": {
+    "remote/private/human": {
+      "wins_when_other_loses": 98,
+      "example_seed": 7
+    },
+    "remote/private/judge": {
+      "wins_when_other_loses": 129,
+      "example_seed": 7
+    },
+    "remote/open/judge": {
+      "wins_when_other_loses": 93,
+      "example_seed": 13
+    },
+    "local/private/human": {
+      "wins_when_other_loses": 184,
+      "example_seed": 5
+    },
+    "local/private/judge": {
+      "wins_when_other_loses": 152,
+      "example_seed": 7
+    },
+    "local/open/human": {
+      "wins_when_other_loses": 117,
+      "example_seed": 7
+    },
+    "local/open/judge": {
+      "wins_when_other_loses": 165,
+      "example_seed": 7
+    }
+  },
+  "remote/open/judge": {
+    "remote/private/human": {
+      "wins_when_other_loses": 93,
+      "example_seed": 7
+    },
+    "remote/private/judge": {
+      "wins_when_other_loses": 93,
+      "example_seed": 7
+    },
+    "remote/open/human": {
+      "wins_when_other_loses": 42,
+      "example_seed": 2
+    },
+    "local/private/human": {
+      "wins_when_other_loses": 182,
+      "example_seed": 5
+    },
+    "local/private/judge": {
+      "wins_when_other_loses": 118,
+      "example_seed": 7
+    },
+    "local/open/human": {
+      "wins_when_other_loses": 111,
+      "example_seed": 7
+    },
+    "local/open/judge": {
+      "wins_when_other_loses": 135,
+      "example_seed": 7
+    }
+  },
+  "local/private/human": {
+    "remote/private/human": {
+      "wins_when_other_loses": 58,
+      "example_seed": 28
+    },
+    "remote/private/judge": {
+      "wins_when_other_loses": 99,
+      "example_seed": 22
+    },
+    "remote/open/human": {
+      "wins_when_other_loses": 37,
+      "example_seed": 2
+    },
+    "remote/open/judge": {
+      "wins_when_other_loses": 86,
+      "example_seed": 13
+    },
+    "local/private/judge": {
+      "wins_when_other_loses": 81,
+      "example_seed": 39
+    },
+    "local/open/human": {
+      "wins_when_other_loses": 55,
+      "example_seed": 48
+    },
+    "local/open/judge": {
+      "wins_when_other_loses": 130,
+      "example_seed": 10
+    }
+  },
+  "local/private/judge": {
+    "remote/private/human": {
+      "wins_when_other_loses": 60,
+      "example_seed": 28
+    },
+    "remote/private/judge": {
+      "wins_when_other_loses": 78,
+      "example_seed": 22
+    },
+    "remote/open/human": {
+      "wins_when_other_loses": 50,
+      "example_seed": 2
+    },
+    "remote/open/judge": {
+      "wins_when_other_loses": 67,
+      "example_seed": 13
+    },
+    "local/private/human": {
+      "wins_when_other_loses": 126,
+      "example_seed": 5
+    },
+    "local/open/human": {
+      "wins_when_other_loses": 72,
+      "example_seed": 48
+    },
+    "local/open/judge": {
+      "wins_when_other_loses": 119,
+      "example_seed": 10
+    }
+  },
+  "local/open/human": {
+    "remote/private/human": {
+      "wins_when_other_loses": 77,
+      "example_seed": 28
+    },
+    "remote/private/judge": {
+      "wins_when_other_loses": 110,
+      "example_seed": 22
+    },
+    "remote/open/human": {
+      "wins_when_other_loses": 33,
+      "example_seed": 2
+    },
+    "remote/open/judge": {
+      "wins_when_other_loses": 78,
+      "example_seed": 13
+    },
+    "local/private/human": {
+      "wins_when_other_loses": 118,
+      "example_seed": 5
+    },
+    "local/private/judge": {
+      "wins_when_other_loses": 90,
+      "example_seed": 39
+    },
+    "local/open/judge": {
+      "wins_when_other_loses": 113,
+      "example_seed": 10
+    }
+  },
+  "local/open/judge": {
+    "remote/private/human": {
+      "wins_when_other_loses": 85,
+      "example_seed": 28
+    },
+    "remote/private/judge": {
+      "wins_when_other_loses": 97,
+      "example_seed": 22
+    },
+    "remote/open/human": {
+      "wins_when_other_loses": 27,
+      "example_seed": 2
+    },
+    "remote/open/judge": {
+      "wins_when_other_loses": 48,
+      "example_seed": 26
+    },
+    "local/private/human": {
+      "wins_when_other_loses": 139,
+      "example_seed": 5
+    },
+    "local/private/judge": {
+      "wins_when_other_loses": 83,
+      "example_seed": 39
+    },
+    "local/open/human": {
+      "wins_when_other_loses": 59,
+      "example_seed": 48
+    }
+  }
+}

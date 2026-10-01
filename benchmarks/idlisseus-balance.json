@@ -1,0 +1,686 @@
+[
+  {
+    "policy": "random",
+    "seeds_per_build": 1000,
+    "start_seed": 0,
+    "builds": [
+      {
+        "stack": "remote/private/human",
+        "runs": 1000,
+        "win_pct": 6.5,
+        "short_pct": 78.6,
+        "collapse_pct": 14.9,
+        "mean_reach": 14.54,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 27.6
+      },
+      {
+        "stack": "remote/private/judge",
+        "runs": 1000,
+        "win_pct": 7.4,
+        "short_pct": 74.8,
+        "collapse_pct": 17.8,
+        "mean_reach": 14.76,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 31.6
+      },
+      {
+        "stack": "remote/open/human",
+        "runs": 1000,
+        "win_pct": 10.1,
+        "short_pct": 72.6,
+        "collapse_pct": 17.3,
+        "mean_reach": 14.72,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 21.2
+      },
+      {
+        "stack": "remote/open/judge",
+        "runs": 1000,
+        "win_pct": 11.7,
+        "short_pct": 70.3,
+        "collapse_pct": 18.0,
+        "mean_reach": 15.24,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 25.6
+      },
+      {
+        "stack": "local/private/human",
+        "runs": 1000,
+        "win_pct": 3.5,
+        "short_pct": 80.9,
+        "collapse_pct": 15.6,
+        "mean_reach": 13.83,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 27.1
+      },
+      {
+        "stack": "local/private/judge",
+        "runs": 1000,
+        "win_pct": 5.1,
+        "short_pct": 77.1,
+        "collapse_pct": 17.8,
+        "mean_reach": 14.09,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 31.3
+      },
+      {
+        "stack": "local/open/human",
+        "runs": 1000,
+        "win_pct": 6.1,
+        "short_pct": 76.0,
+        "collapse_pct": 17.9,
+        "mean_reach": 14.13,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 21.0
+      },
+      {
+        "stack": "local/open/judge",
+        "runs": 1000,
+        "win_pct": 7.5,
+        "short_pct": 74.1,
+        "collapse_pct": 18.4,
+        "mean_reach": 14.65,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 25.5
+      }
+    ],
+    "event_choices": {
+      "messy_records": {
+        "b": 968,
+        "a": 920
+      },
+      "deadline": {
+        "b": 1028,
+        "a": 1092
+      },
+      "consent_attack": {
+        "a": 1033,
+        "b": 959
+      },
+      "local_discovery": {
+        "b": 786,
+        "a": 944,
+        "c": 111
+      },
+      "gpu_shortage": {
+        "b": 948,
+        "a": 909
+      },
+      "confident_error": {
+        "b": 960,
+        "a": 1024
+      },
+      "referral_queue": {
+        "a": 692,
+        "b": 768,
+        "c": 268
+      },
+      "viral_claim": {
+        "a": 974,
+        "b": 974,
+        "c": 172
+      },
+      "price_squeeze": {
+        "b": 816,
+        "a": 932
+      },
+      "dialect": {
+        "c": 192,
+        "a": 968,
+        "b": 976
+      },
+      "endpoint": {
+        "b": 873,
+        "a": 1004
+      },
+      "sensitive_cohort": {
+        "a": 999,
+        "b": 1008
+      },
+      "surge": {
+        "a": 880,
+        "b": 812,
+        "c": 380
+      },
+      "weak_signals": {
+        "b": 848,
+        "a": 829
+      },
+      "procurement": {
+        "b": 884,
+        "a": 779
+      },
+      "blackout": {
+        "c": 320,
+        "b": 668,
+        "a": 894
+      },
+      "last_mile": {
+        "a": 1091,
+        "b": 929
+      },
+      "fine_print": {
+        "a": 856,
+        "b": 720,
+        "c": 416
+      },
+      "vendor_gift": {
+        "b": 1056,
+        "a": 1024
+      },
+      "open_release": {
+        "b": 807,
+        "a": 709,
+        "c": 250
+      }
+    }
+  },
+  {
+    "policy": "cautious",
+    "seeds_per_build": 1000,
+    "start_seed": 0,
+    "builds": [
+      {
+        "stack": "remote/private/human",
+        "runs": 1000,
+        "win_pct": 2.7,
+        "short_pct": 97.3,
+        "collapse_pct": 0.0,
+        "mean_reach": 15.22,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 65.7
+      },
+      {
+        "stack": "remote/private/judge",
+        "runs": 1000,
+        "win_pct": 0.1,
+        "short_pct": 99.9,
+        "collapse_pct": 0.0,
+        "mean_reach": 14.1,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 70.6
+      },
+      {
+        "stack": "remote/open/human",
+        "runs": 1000,
+        "win_pct": 1.9,
+        "short_pct": 98.1,
+        "collapse_pct": 0.0,
+        "mean_reach": 15.03,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 53.1
+      },
+      {
+        "stack": "remote/open/judge",
+        "runs": 1000,
+        "win_pct": 0.2,
+        "short_pct": 99.8,
+        "collapse_pct": 0.0,
+        "mean_reach": 13.95,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 60.0
+      },
+      {
+        "stack": "local/private/human",
+        "runs": 1000,
+        "win_pct": 1.4,
+        "short_pct": 98.6,
+        "collapse_pct": 0.0,
+        "mean_reach": 15.3,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 65.7
+      },
+      {
+        "stack": "local/private/judge",
+        "runs": 1000,
+        "win_pct": 0.0,
+        "short_pct": 100.0,
+        "collapse_pct": 0.0,
+        "mean_reach": 14.18,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 70.6
+      },
+      {
+        "stack": "local/open/human",
+        "runs": 1000,
+        "win_pct": 0.7,
+        "short_pct": 99.3,
+        "collapse_pct": 0.0,
+        "mean_reach": 15.35,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 53.1
+      },
+      {
+        "stack": "local/open/judge",
+        "runs": 1000,
+        "win_pct": 0.2,
+        "short_pct": 99.8,
+        "collapse_pct": 0.0,
+        "mean_reach": 14.28,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 60.0
+      }
+    ],
+    "event_choices": {
+      "messy_records": {
+        "b": 1888
+      },
+      "deadline": {
+        "b": 2120
+      },
+      "consent_attack": {
+        "a": 1020,
+        "b": 1020
+      },
+      "local_discovery": {
+        "b": 584,
+        "c": 392,
+        "a": 976
+      },
+      "gpu_shortage": {
+        "a": 2088
+      },
+      "confident_error": {
+        "b": 992,
+        "a": 992
+      },
+      "referral_queue": {
+        "a": 442,
+        "c": 844,
+        "b": 442
+      },
+      "viral_claim": {
+        "a": 1072,
+        "b": 836,
+        "c": 236
+      },
+      "price_squeeze": {
+        "a": 1472,
+        "b": 512
+      },
+      "dialect": {
+        "c": 520,
+        "b": 1342,
+        "a": 274
+      },
+      "endpoint": {
+        "a": 1212,
+        "b": 700
+      },
+      "sensitive_cohort": {
+        "a": 1072,
+        "b": 1072
+      },
+      "surge": {
+        "a": 1148,
+        "c": 924
+      },
+      "weak_signals": {
+        "a": 1792
+      },
+      "procurement": {
+        "a": 956,
+        "b": 956
+      },
+      "blackout": {
+        "b": 1464,
+        "c": 440
+      },
+      "last_mile": {
+        "b": 2112
+      },
+      "fine_print": {
+        "b": 952,
+        "c": 1040
+      },
+      "vendor_gift": {
+        "a": 2080
+      },
+      "open_release": {
+        "a": 882,
+        "c": 592,
+        "b": 542
+      }
+    }
+  },
+  {
+    "policy": "bold",
+    "seeds_per_build": 1000,
+    "start_seed": 0,
+    "builds": [
+      {
+        "stack": "remote/private/human",
+        "runs": 1000,
+        "win_pct": 47.7,
+        "short_pct": 52.3,
+        "collapse_pct": 0.0,
+        "mean_reach": 18.51,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 54.1
+      },
+      {
+        "stack": "remote/private/judge",
+        "runs": 1000,
+        "win_pct": 45.5,
+        "short_pct": 54.5,
+        "collapse_pct": 0.0,
+        "mean_reach": 18.36,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 57.3
+      },
+      {
+        "stack": "remote/open/human",
+        "runs": 1000,
+        "win_pct": 47.3,
+        "short_pct": 52.7,
+        "collapse_pct": 0.0,
+        "mean_reach": 18.79,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 36.5
+      },
+      {
+        "stack": "remote/open/judge",
+        "runs": 1000,
+        "win_pct": 54.6,
+        "short_pct": 45.4,
+        "collapse_pct": 0.0,
+        "mean_reach": 19.05,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 42.3
+      },
+      {
+        "stack": "local/private/human",
+        "runs": 1000,
+        "win_pct": 34.3,
+        "short_pct": 65.7,
+        "collapse_pct": 0.0,
+        "mean_reach": 17.55,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 59.1
+      },
+      {
+        "stack": "local/private/judge",
+        "runs": 1000,
+        "win_pct": 34.4,
+        "short_pct": 65.6,
+        "collapse_pct": 0.0,
+        "mean_reach": 17.35,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 64.9
+      },
+      {
+        "stack": "local/open/human",
+        "runs": 1000,
+        "win_pct": 39.4,
+        "short_pct": 60.6,
+        "collapse_pct": 0.0,
+        "mean_reach": 17.82,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 42.9
+      },
+      {
+        "stack": "local/open/judge",
+        "runs": 1000,
+        "win_pct": 45.8,
+        "short_pct": 54.2,
+        "collapse_pct": 0.0,
+        "mean_reach": 17.98,
+        "mean_rebuilds": 0.0,
+        "kit_used_pct": 49.0
+      }
+    ],
+    "event_choices": {
+      "messy_records": {
+        "a": 1888
+      },
+      "deadline": {
+        "b": 532,
+        "a": 1588
+      },
+      "consent_attack": {
+        "a": 1281,
+        "b": 759
+      },
+      "local_discovery": {
+        "a": 1313,
+        "c": 448,
+        "b": 191
+      },
+      "gpu_shortage": {
+        "b": 509,
+        "a": 1579
+      },
+      "confident_error": {
+        "b": 1984
+      },
+      "referral_queue": {
+        "a": 862,
+        "c": 844,
+        "b": 22
+      },
+      "viral_claim": {
+        "a": 1617,
+        "c": 362,
+        "b": 165
+      },
+      "price_squeeze": {
+        "a": 1567,
+        "b": 417
+      },
+      "dialect": {
+        "c": 520,
+        "b": 1616
+      },
+      "endpoint": {
+        "b": 1672,
+        "a": 240
+      },
+      "sensitive_cohort": {
+        "a": 1385,
+        "b": 759
+      },
+      "surge": {
+        "b": 1530,
+        "a": 238,
+        "c": 304
+      },
+      "weak_signals": {
+        "a": 1022,
+        "b": 770
+      },
+      "procurement": {
+        "a": 1329,
+        "b": 583
+      },
+      "blackout": {
+        "b": 724,
+        "a": 698,
+        "c": 482
+      },
+      "last_mile": {
+        "a": 1180,
+        "b": 932
+      },
+      "fine_print": {
+        "a": 1472,
+        "c": 520
+      },
+      "vendor_gift": {
+        "a": 2080
+      },
+      "open_release": {
+        "b": 751,
+        "c": 581,
+        "a": 684
+      }
+    }
+  },
+  {
+    "policy": "adaptive",
+    "seeds_per_build": 1000,
+    "start_seed": 0,
+    "builds": [
+      {
+        "stack": "remote/private/human",
+        "runs": 1000,
+        "win_pct": 86.6,
+        "short_pct": 13.4,
+        "collapse_pct": 0.0,
+        "mean_reach": 20.95,
+        "mean_rebuilds": 1.58,
+        "kit_used_pct": 44.8
+      },
+      {
+        "stack": "remote/private/judge",
+        "runs": 1000,
+        "win_pct": 82.1,
+        "short_pct": 17.9,
+        "collapse_pct": 0.0,
+        "mean_reach": 20.69,
+        "mean_rebuilds": 1.54,
+        "kit_used_pct": 48.7
+      },
+      {
+        "stack": "remote/open/human",
+        "runs": 1000,
+        "win_pct": 90.9,
+        "short_pct": 9.1,
+        "collapse_pct": 0.0,
+        "mean_reach": 21.28,
+        "mean_rebuilds": 1.5,
+        "kit_used_pct": 29.6
+      },
+      {
+        "stack": "remote/open/judge",
+        "runs": 1000,
+        "win_pct": 85.8,
+        "short_pct": 14.2,
+        "collapse_pct": 0.0,
+        "mean_reach": 21.04,
+        "mean_rebuilds": 1.35,
+        "kit_used_pct": 35.0
+      },
+      {
+        "stack": "local/private/human",
+        "runs": 1000,
+        "win_pct": 76.2,
+        "short_pct": 23.8,
+        "collapse_pct": 0.0,
+        "mean_reach": 20.51,
+        "mean_rebuilds": 1.71,
+        "kit_used_pct": 47.1
+      },
+      {
+        "stack": "local/private/judge",
+        "runs": 1000,
+        "win_pct": 80.7,
+        "short_pct": 19.3,
+        "collapse_pct": 0.0,
+        "mean_reach": 20.5,
+        "mean_rebuilds": 1.81,
+        "kit_used_pct": 48.3
+      },
+      {
+        "stack": "local/open/human",
+        "runs": 1000,
+        "win_pct": 82.5,
+        "short_pct": 17.5,
+        "collapse_pct": 0.0,
+        "mean_reach": 20.81,
+        "mean_rebuilds": 1.59,
+        "kit_used_pct": 35.6
+      },
+      {
+        "stack": "local/open/judge",
+        "runs": 1000,
+        "win_pct": 77.1,
+        "short_pct": 22.9,
+        "collapse_pct": 0.0,
+        "mean_reach": 20.59,
+        "mean_rebuilds": 1.55,
+        "kit_used_pct": 35.3
+      }
+    ],
+    "event_choices": {
+      "messy_records": {
+        "a": 1888
+      },
+      "deadline": {
+        "a": 2120
+      },
+      "consent_attack": {
+        "b": 625,
+        "a": 1415
+      },
+      "local_discovery": {
+        "a": 1407,
+        "c": 502,
+        "b": 43
+      },
+      "gpu_shortage": {
+        "a": 1883,
+        "b": 205
+      },
+      "confident_error": {
+        "b": 1984
+      },
+      "referral_queue": {
+        "a": 884,
+        "c": 844
+      },
+      "viral_claim": {
+        "a": 1482,
+        "c": 594,
+        "b": 68
+      },
+      "price_squeeze": {
+        "a": 1577,
+        "b": 407
+      },
+      "dialect": {
+        "c": 520,
+        "b": 1616
+      },
+      "endpoint": {
+        "b": 1408,
+        "a": 504
+      },
+      "sensitive_cohort": {
+        "a": 1678,
+        "b": 466
+      },
+      "surge": {
+        "b": 2072
+      },
+      "weak_signals": {
+        "b": 1051,
+        "a": 741
+      },
+      "procurement": {
+        "b": 917,
+        "a": 995
+      },
+      "blackout": {
+        "a": 1136,
+        "c": 418,
+        "b": 350
+      },
+      "last_mile": {
+        "a": 1380,
+        "b": 732
+      },
+      "fine_print": {
+        "a": 1992
+      },
+      "vendor_gift": {
+        "a": 2080
+      },
+      "open_release": {
+        "a": 1348,
+        "c": 366,
+        "b": 302
+      }
+    }
+  }
+]
