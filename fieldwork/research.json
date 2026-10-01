@@ -1,0 +1,131 @@
+{
+  "checked_on": "2026-10-02",
+  "purpose": "Evidence behind fictional service-delivery puzzles. Research findings describe their study populations; the game does not estimate local causal effects of AI.",
+  "scope_rules": [
+    "Show the original study place, dates and sample alongside every research claim.",
+    "District or state statistics describe that administrative area, never the exact selected street, village or household.",
+    "A source from another place can motivate a mechanism, but cannot establish the selected place's current bottleneck.",
+    "Cases, scene details, counts, deadlines, AI capabilities and game outcomes are invented simulations, not reported interviews or forecasts.",
+    "None of these studies establishes the effectiveness of the game's AI stacks.",
+    "Do not rank local priorities causally from prevalence alone; higher prevalence is a prompt for investigation, not proof of the best intervention."
+  ],
+  "sources": [
+    {
+      "id": "payment_logistics",
+      "title": "Improving Governance Through Biometric Authentication and Secure Payments in India",
+      "publisher": "J-PAL; research by Karthik Muralidharan, Paul Niehaus and Sandip Sukhtankar",
+      "url": "https://www.povertyactionlab.org/evaluation/improving-governance-through-biometric-authentication-and-secure-payments-india",
+      "kind": "research-team evaluation summary",
+      "location": "Eight districts in undivided Andhra Pradesh, India",
+      "period": "2010-2014",
+      "sample": "8,000 households; randomized phased rollout",
+      "claim": "A reform combining biometric cards with village payment providers improved payment delivery despite incomplete adoption. Beneficiaries collected employment payments faster; improvements also reached people without cards, suggesting payment organization mattered alongside technology.",
+      "scope": "A bundled payment-system reform, not a trial of document AI or a finding that biometric requirements always help.",
+      "game_inference": "Separate a prepared claim from money actually received. A document assistant can organize evidence; a payment hold still needs a real administrative handoff."
+    },
+    {
+      "id": "reliable_clinic",
+      "title": "Improving Immunization Rates Through Regular Camps and Incentives in India",
+      "publisher": "J-PAL; research by Abhijit Banerjee, Esther Duflo, Rachel Glennerster and Dhruva Kothari",
+      "url": "https://www.povertyactionlab.org/evaluation/improving-immunization-rates-through-regular-camps-and-incentives-india",
+      "kind": "research-team evaluation summary",
+      "location": "Rural Udaipur district, Rajasthan, India",
+      "period": "2004-2007; paper published 2010",
+      "sample": "134 villages; almost 2,000 children",
+      "claim": "Regular immunization camps increased full immunization. Adding small non-cash incentives increased it further and improved cost effectiveness through greater use of the camps.",
+      "scope": "Historical randomized study in the sampled rural villages; not a measurement of present-day Udaipur or a trial of AI reminders.",
+      "game_inference": "A reminder helps a family reach an available appointment; it cannot make an absent team appear. Announce clinic capacity before the player spends scarce effort."
+    },
+    {
+      "id": "learning_level",
+      "title": "Using Learning Camps to Improve Basic Learning Outcomes of Primary School Children in India",
+      "publisher": "J-PAL; Pratham and Government of Uttar Pradesh evaluation",
+      "url": "https://www.povertyactionlab.org/evaluation/using-learning-camps-improve-basic-learning-outcomes-primary-school-children-india",
+      "kind": "research-team evaluation summary",
+      "location": "Sitapur and Unnao districts, Uttar Pradesh, India",
+      "period": "2013-2016 evaluation timeline; camps in 2013-2014",
+      "sample": "17,266 students; schools randomized across four groups",
+      "claim": "Pratham-led camps grouped children by assessed learning level and improved reading and mathematics. Providing learning materials alone had no measured language benefit and only a small mathematics effect.",
+      "scope": "A supported teaching intervention in sampled schools. It does not show that AI-generated worksheets alone cause learning gains.",
+      "game_inference": "Let the player discover that a fluent worksheet can miss a child's current reading level. Assessment and protected instructor time are separate requirements."
+    },
+    {
+      "id": "worker_capacity",
+      "title": "Hiring Additional Instructors in Childcare Centers in India Improved Learning and Nutrition",
+      "publisher": "J-PAL; research by Alejandro Ganimian, Karthik Muralidharan and Christopher Walters",
+      "url": "https://www.povertyactionlab.org/evaluation/hiring-additional-instructors-childcare-centers-india-improved-learning-and-nutrition",
+      "kind": "research-team evaluation summary",
+      "location": "Four districts in Tamil Nadu, India",
+      "period": "2016-2018",
+      "sample": "4,675 children in 320 anganwadi centres",
+      "claim": "Adding an education-focused worker increased instructional time and improved learning. The main worker could spend more time on health and nutrition; the study also found reductions in stunting and severe malnutrition.",
+      "scope": "Evidence for additional human staffing in this programme, not evidence that software substitutes for staff or that nutrition changes within a game's short run.",
+      "game_inference": "One worker cannot attend two places simultaneously. Score completed support visits rather than instant nutritional recovery; scheduling tools can conserve capacity but not create unlimited care."
+    },
+    {
+      "id": "trusted_outreach",
+      "title": "Improving Immunization Coverage Through Incentives, Reminders, and Social Networks in India",
+      "publisher": "J-PAL; Haryana government research partnership",
+      "url": "https://www.povertyactionlab.org/evaluation/improving-immunization-coverage-through-incentives-reminders-and-social-networks-india",
+      "kind": "research-team evaluation summary",
+      "location": "Haryana, India",
+      "period": "2016-2019 evaluation timeline",
+      "sample": "140 primary health centres and 755 subcentres",
+      "claim": "Researchers compared reminders, community-nominated immunization ambassadors and incentive designs. The strongest tested combination paired ambassadors, increasing incentives and reminders; reminders with ambassadors were also economical relative to the existing programme.",
+      "scope": "A comparison of specified intervention packages, not proof that more messages always help or that an AI voice creates trust.",
+      "game_inference": "Distinguish contact from successful attendance. A trusted local handoff can unlock a case that a repeated automated message cannot."
+    },
+    {
+      "id": "sanitation_delivery",
+      "title": "Promoting latrine construction and use in rural villages practicing open defecation: process evaluation in connection with a randomised controlled trial in Orissa, India",
+      "publisher": "Boisson and colleagues; BMC Research Notes, 2014",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4236737/",
+      "kind": "original process-evaluation paper",
+      "location": "Rural coastal Odisha, India",
+      "period": "Observations March 2011-March 2012; published 2014",
+      "sample": "Process evaluation within a 100-village trial; repeated construction observations in 50 intervention villages",
+      "claim": "Researchers observed construction progress, interviewed implementation teams and surveyed households to examine how the sanitation programme was actually delivered. The intervention combined construction support and community mobilisation.",
+      "scope": "Implementation research on the historical programme. A recorded facility or information campaign alone does not establish actual service availability or use at a selected place.",
+      "game_inference": "A photo or report can flag a blocked service; a repair still needs a worker and materials. End the case on verified working access rather than the number of reports filed."
+    },
+    {
+      "id": "nfhs5_districts",
+      "title": "National Family Health Survey-5: India Districts Factsheet Data (Provisional)",
+      "publisher": "Ministry of Health and Family Welfare / International Institute for Population Sciences; data.gov.in",
+      "url": "https://www.data.gov.in/catalog/national-family-health-survey-5-nfhs-5-india-districts-factsheet-data-provisional",
+      "kind": "official public survey data catalogue",
+      "location": "India; district estimates for many indicators",
+      "period": "Survey 2019-2021",
+      "sample": "NFHS-5 district factsheets; denominator and precision differ by indicator",
+      "claim": "The official catalogue provides district estimates for many population, health and nutrition indicators. Parenthesized percentages use 25-49 unweighted cases; an asterisk suppresses estimates based on fewer than 25 cases.",
+      "scope": "Historical survey estimates, not current village observations, a diagnosis of causes, or a ranking of problems by AI suitability. Preserve missing values and small-sample flags.",
+      "game_inference": "Use a clearly dated district fact to open a local scenario, then explicitly label its household story and operational obstacles as fictional."
+    },
+    {
+      "id": "into_the_breach",
+      "title": "Into the Breach",
+      "publisher": "Subset Games",
+      "url": "https://subsetgames.com/itb.html",
+      "kind": "official game description",
+      "claim": "The game's turn-based combat shows impending attacks in advance so the player can choose a counter.",
+      "game_inference": "Borrow advance warning and small consequential turns: show what tomorrow's closure or capacity cut will strand, then let the player save one route."
+    }
+  ],
+  "fictional_scene_notes": [
+    "A passbook stays inside a folded plastic bag. The bus fare has already been spent once. Today the missing reference number is on your screen.",
+    "The message reached the phone. It did not reach the grandmother carrying it. The visiting worker has one stop left before the bus returns.",
+    "The worksheet is full of paragraphs. The child is still sounding out single words. The teacher turns the sheet over and starts again.",
+    "The repair request has a photograph and a tracking number. At the tap there is still a queue of empty pots. The mechanic is waiting for the part.",
+    "These are original fictional scenes. They are not quotations, reporting, portraits of actual residents or imitations of a particular writer."
+  ],
+  "implemented_loop": {
+    "name": "Fieldwork",
+    "duration": "Seven short shifts; target eight of twelve cases reaching a service",
+    "setup": "Choose a place, one narrowly defined service segment, and one of two AI kits with a clearly different strength and weakness.",
+    "turn": "Three queues are visible: explanations, records and field visits. Press A for the AI desk, B for the worker, or R to move the AI once. Exact outcome previews and a next-shift forecast support planning.",
+    "progress": "Show waiting -> ready -> reached, with a concrete cause for every stalled or completed case.",
+    "tension": "Batch cheap preparation today or spend the scarce human visit to complete an urgent case before tomorrow's closure. Neither the flashiest AI nor always taking the nearest deadline should dominate.",
+    "information": "Hide future cases, never hide the immediate price of the action. Reveal a future constraint early enough to respond.",
+    "ending": "One short before/after scene and the number of completed handoffs; distinguish service completion from poverty, disease or learning outcomes. Offer the same seed with the other kit."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "tag": "idlisseus-v0-first-cut",
+  "commit": "f9d35d298fdca0994e654c0436ca1c3d94e92eb0",
+  "files": {
+    "idlisseus/__init__.py": "e63b0fa53f3c66fbc0375a00cecb0df86dd1b43a036baf80c831592370cb54ed",
+    "idlisseus/__main__.py": "53d11c2bfd354d19093d26d17bdd81baf7ed91a8fefc339abe0de39a9e11bbf2",
+    "idlisseus/engine.py": "6d9aeb0eda8fe1d18d9c330cde37d54c10c1b77c3b9b8393cb64f5596bd26d48",
+    "idlisseus/events.json": "be174215db22a72c59e2fd4d3c537a74fe0a1bb87181abbb376a5058e1708cff",
+    "idlisseus/simulate.py": "7dd79c61f1af73af6bd1f56f5f123fdb99ddf1548fc52eaac783f058b04d19a8",
+    "idlisseus/EVENTS.md": "e226a325aca60655b0124da36ad3576b259f894eb8e004b9ca18a3de65be041d",
+    "tests/test_cli.py": "82d456a91149d6380663bcf964348a6b6a3f0266ff2162b49b3c32d94df6e26c",
+    "tests/test_engine.py": "edab4c2494fd46d30532b028087c92ff52167487885f0a071bac6f07a46cc556",
+    "benchmarks/idlisseus-balance.json": "0d6a3f701cdfde9f464967c07db963788ee4158d5a6520b3f24519e8d7548241",
+    "benchmarks/idlisseus-matchups.json": "24da69b4c1c6ff84d86dae109dc8755342b782cf3a768ef463cb993663a6b1ca",
+    "benchmarks/IDLISSEUS_PLAYTEST.md": "1559677f702cb560bd70e7b59355fb88c5282b0e3095a48b6644ab7e70da59d2"
+  }
+}

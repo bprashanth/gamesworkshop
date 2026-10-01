@@ -1,0 +1,219 @@
+{
+  "schema": 1,
+  "seeds_per_world": 500,
+  "worlds": [
+    [
+      "rajasthan-udaipur",
+      "vaccination"
+    ],
+    [
+      "tamil-nadu-chennai",
+      "antenatal_visits"
+    ],
+    [
+      "odisha-puri",
+      "sanitation"
+    ],
+    [
+      "uttar-pradesh-sitapur",
+      "birth_registration"
+    ]
+  ],
+  "target": 8,
+  "case_count": 12,
+  "shifts": 7,
+  "policy_information": "human/AI/greedy/planning use observe only; oracle knows the entire world",
+  "results": {
+    "guide": {
+      "human_only": {
+        "runs": 2000,
+        "mean_reached": 7,
+        "win_rate": 0.0,
+        "min_reached": 7,
+        "max_reached": 7,
+        "distribution": {
+          "7": 2000
+        }
+      },
+      "ai_only": {
+        "runs": 2000,
+        "mean_reached": 4.016,
+        "win_rate": 0.0,
+        "min_reached": 3,
+        "max_reached": 6,
+        "distribution": {
+          "3": 985,
+          "4": 507,
+          "6": 508
+        }
+      },
+      "greedy_public": {
+        "runs": 2000,
+        "mean_reached": 8.496,
+        "win_rate": 0.87,
+        "min_reached": 7,
+        "max_reached": 11,
+        "distribution": {
+          "7": 260,
+          "8": 934,
+          "9": 387,
+          "10": 391,
+          "11": 28
+        }
+      },
+      "planning_public": {
+        "runs": 2000,
+        "mean_reached": 8.961,
+        "win_rate": 0.973,
+        "min_reached": 7,
+        "max_reached": 12,
+        "distribution": {
+          "7": 54,
+          "8": 689,
+          "9": 634,
+          "10": 530,
+          "11": 90,
+          "12": 3
+        }
+      },
+      "oracle_full_world": {
+        "runs": 2000,
+        "mean_reached": 9.533,
+        "win_rate": 1.0,
+        "min_reached": 8,
+        "max_reached": 12,
+        "distribution": {
+          "8": 210,
+          "9": 823,
+          "10": 673,
+          "11": 279,
+          "12": 15
+        }
+      }
+    },
+    "reader": {
+      "human_only": {
+        "runs": 2000,
+        "mean_reached": 7,
+        "win_rate": 0.0,
+        "min_reached": 7,
+        "max_reached": 7,
+        "distribution": {
+          "7": 2000
+        }
+      },
+      "ai_only": {
+        "runs": 2000,
+        "mean_reached": 4.008,
+        "win_rate": 0.0,
+        "min_reached": 3,
+        "max_reached": 6,
+        "distribution": {
+          "3": 1015,
+          "4": 470,
+          "6": 515
+        }
+      },
+      "greedy_public": {
+        "runs": 2000,
+        "mean_reached": 8.517,
+        "win_rate": 0.879,
+        "min_reached": 7,
+        "max_reached": 11,
+        "distribution": {
+          "7": 242,
+          "8": 965,
+          "9": 348,
+          "10": 407,
+          "11": 38
+        }
+      },
+      "planning_public": {
+        "runs": 2000,
+        "mean_reached": 8.961,
+        "win_rate": 0.977,
+        "min_reached": 7,
+        "max_reached": 12,
+        "distribution": {
+          "7": 46,
+          "8": 711,
+          "9": 617,
+          "10": 529,
+          "11": 94,
+          "12": 3
+        }
+      },
+      "oracle_full_world": {
+        "runs": 2000,
+        "mean_reached": 9.533,
+        "win_rate": 1.0,
+        "min_reached": 8,
+        "max_reached": 12,
+        "distribution": {
+          "8": 233,
+          "9": 780,
+          "10": 687,
+          "11": 289,
+          "12": 11
+        }
+      }
+    }
+  },
+  "actions": {
+    "guide": {
+      "human_only": {
+        "b": 14000
+      },
+      "ai_only": {
+        "a": 13985
+      },
+      "greedy_public": {
+        "a": 4977,
+        "b": 8993
+      },
+      "planning_public": {
+        "a": 4983,
+        "b": 8451,
+        "r": 547
+      }
+    },
+    "reader": {
+      "human_only": {
+        "b": 14000
+      },
+      "ai_only": {
+        "a": 13983
+      },
+      "greedy_public": {
+        "a": 4907,
+        "b": 9069
+      },
+      "planning_public": {
+        "a": 4969,
+        "b": 8390,
+        "r": 614
+      }
+    }
+  },
+  "oracle_tool_comparison": {
+    "guide_better": 629,
+    "reader_better": 614,
+    "tie": 757
+  },
+  "example_switch_plan_privileged": {
+    "place": "rajasthan-udaipur",
+    "problem": "vaccination",
+    "seed": 1,
+    "tool": "guide",
+    "score": 9,
+    "actions": [
+      "a",
+      "b",
+      "r",
+      "a",
+      "a",
+      "b",
+      "b"
+    ]
+  }
+}

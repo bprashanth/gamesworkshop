@@ -1,5 +1,41 @@
 # gamesworkshop
 
+## Two games for the next field test
+
+```bash
+python3 play.py
+```
+
+Choose **1** for the frozen Idlisseus expedition or **2** for the separate
+Fieldwork prototype. Both work entirely in the terminal, with Python 3.10+
+and no runtime dependencies. The original loop is preserved in Git at
+`idlisseus-v0-first-cut`; its code, deck, tests and balance notes are unchanged.
+
+**Fieldwork** lets you type a place in India, coordinates, or a map link
+containing coordinates. It has an offline gazetteer of 549,021 settlements and
+historical public evidence for 707 survey districts. Pick a service segment,
+put a small AI stack at one bottleneck, then get eight of twelve simulated
+cases through seven shifts. A/B chooses AI work or a human visit; R moves the
+AI once. Tomorrow's service capacity and connection are visible. Preparing a
+file does not count as reaching a service.
+
+```bash
+python3 -m fieldwork
+python3 -m fieldwork --place '13.08,80.27' --seed 9
+python3 -m fieldwork --place 'Udaipur, Rajasthan' --problem vaccination --seed 7
+```
+
+This loop borrows visible threats and deterministic turns from *Into the
+Breach*. Its original reportage-style scenes are explicitly fictional.
+Historical NFHS-5 district estimates and economics research are attributed
+separately; the game does not claim street-level statistics or measured AI
+effects. See [Fieldwork's guide](fieldwork/README.md),
+[data provenance](fieldwork/data/README.md), and the
+[first-loop freeze record](chronology/2026-10-02-idlisseus-frozen.md).
+The [second-loop chronology](chronology/2026-10-02-fieldwork.md) records the
+design decisions and data corrections;
+[Fieldwork playtests](benchmarks/FIELDWORK_PLAYTEST.md) record the results.
+
 ## Play Idlisseus
 
 A small terminal expedition about building AI for social-sector organisations.

@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "seed": 9,
+  "place_id": "tamil-nadu-chennai",
+  "problem": "sanitation",
+  "initial_tool": "reader",
+  "score": 9,
+  "status": "won",
+  "history": [
+    {
+      "day": 1,
+      "action": "a",
+      "tool": "reader",
+      "prepared": [
+        2,
+        4
+      ],
+      "served": [
+        2,
+        4
+      ],
+      "expired": [],
+      "waiting_ready": 0,
+      "score_before": 0,
+      "score_after": 2,
+      "reason": "Records desk clears 2 forms case(s).",
+      "slots": 2,
+      "online": true
+    },
+    {
+      "day": 2,
+      "action": "b",
+      "tool": "reader",
+      "prepared": [
+        1
+      ],
+      "served": [
+        1
+      ],
+      "expired": [],
+      "waiting_ready": 0,
+      "score_before": 2,
+      "score_after": 3,
+      "reason": "The worker resolves case 2 in person.",
+      "slots": 2,
+      "online": false
+    },
+    {
+      "day": 3,
+      "action": "b",
+      "tool": "reader",
+      "prepared": [
+        3
+      ],
+      "served": [
+        3
+      ],
+      "expired": [],
+      "waiting_ready": 0,
+      "score_before": 3,
+      "score_after": 4,
+      "reason": "The worker resolves case 4 in person.",
+      "slots": 3,
+      "online": true
+    },
+    {
+      "day": 4,
+      "action": "b",
+      "tool": "reader",
+      "prepared": [
+        0
+      ],
+      "served": [
+        0
+      ],
+      "expired": [],
+      "waiting_ready": 0,
+      "score_before": 4,
+      "score_after": 5,
+      "reason": "The worker resolves case 1 in person.",
+      "slots": 2,
+      "online": true
+    },
+    {
+      "day": 5,
+      "action": "r",
+      "tool": "reader",
+      "prepared": [],
+      "served": [],
+      "expired": [
+        6,
+        8
+      ],
+      "waiting_ready": 0,
+      "score_before": 5,
+      "score_after": 5,
+      "reason": "Moved the AI to the pocket guide. No new cases prepared this shift.",
+      "slots": 0,
+      "online": true
+    },
+    {
+      "day": 6,
+      "action": "a",
+      "tool": "guide",
+      "prepared": [
+        5,
+        10,
+        11
+      ],
+      "served": [
+        5,
+        10
+      ],
+      "expired": [],
+      "waiting_ready": 1,
+      "score_before": 5,
+      "score_after": 7,
+      "reason": "Pocket guide clears 3 voice case(s).",
+      "slots": 2,
+      "online": true
+    },
+    {
+      "day": 7,
+      "action": "b",
+      "tool": "guide",
+      "prepared": [
+        7
+      ],
+      "served": [
+        7,
+        11
+      ],
+      "expired": [
+        9
+      ],
+      "waiting_ready": 0,
+      "score_before": 7,
+      "score_after": 9,
+      "reason": "The worker resolves case 8 in person.",
+      "slots": 2,
+      "online": true
+    }
+  ],
+  "place": {
+    "name": "13.08000, 80.27000",
+    "lat": 13.08,
+    "lon": 80.27,
+    "state": "Tamil Nadu",
+    "district": "Chennai",
+    "country_code": "in",
+    "source_url": "https://www.geoboundaries.org/api/current/gbOpen/IND/ADM2/",
+    "method": "polygon",
+    "note": "District located using approximate 2021 boundaries; survey areas may differ.",
+    "district_candidates": [
+      "Chennai"
+    ],
+    "state_candidates": [
+      "Tamil Nadu"
+    ]
+  },
+  "evidence": {
+    "value": 90.43,
+    "label": "Population using improved sanitation",
+    "full_label": "Population living in households that use an improved sanitation facility2 (%)",
+    "flag": null,
+    "source_url": "https://www.data.gov.in/resource/india-districts-factsheets-national-family-health-survey-nfhs-5-2019-2021-provisional",
+    "scope": "Chennai district, Tamil Nadu",
+    "period": "2019\u20132021",
+    "text": "Population using improved sanitation: 90.4%"
+  }
+}

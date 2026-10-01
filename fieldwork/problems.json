@@ -1,0 +1,54 @@
+{
+  "vaccination": {
+    "title": "The camp is not the last mile",
+    "indicator": "vaccination",
+    "service": "camp",
+    "outcome": "children reached the scheduled service",
+    "opening": "A date on a notice is not a visit completed. Between the two sit an explanation, a record, and a journey someone has to make.",
+    "segment": "Work on getting families to an existing service. You are not diagnosing or prescribing.",
+    "research": [
+      "reliable_clinic",
+      "trusted_outreach"
+    ],
+    "limit": "Reaching a camp is not a measured change in district vaccination coverage."
+  },
+  "antenatal_visits": {
+    "title": "A morning away from work",
+    "indicator": "antenatal_visits",
+    "service": "clinic",
+    "outcome": "routine visits attended",
+    "opening": "The appointment takes a line in the register. Making it can take a morning: finding the record, understanding the instructions, getting to the clinic.",
+    "segment": "Work on routine visit coordination. Medical decisions remain with qualified staff.",
+    "research": [
+      "reliable_clinic",
+      "worker_capacity"
+    ],
+    "limit": "An attended visit is not a measured health outcome or a district coverage forecast."
+  },
+  "sanitation": {
+    "title": "A ticket does not repair a toilet",
+    "indicator": "sanitation",
+    "service": "repair visit",
+    "outcome": "households reached a repair visit",
+    "opening": "The complaint has a number now. At the other end of it, a repair still needs a person, materials, and enough hours in the day.",
+    "segment": "Work on the repair-request segment. New construction and water supply are outside this small intervention.",
+    "research": [
+      "sanitation_delivery",
+      "worker_capacity"
+    ],
+    "limit": "A repair visit is not proof that a household has gained improved sanitation."
+  },
+  "birth_registration": {
+    "title": "The name in the register",
+    "indicator": "birth_registration",
+    "service": "registration counter",
+    "outcome": "families reached the registration counter",
+    "opening": "There is a child, a name, and a bundle of papers. The task is to get the family through an existing process without another wasted journey.",
+    "segment": "Work on explanations, document preparation and a real counter visit. This is a simulated process, not legal guidance.",
+    "research": [
+      "payment_logistics",
+      "trusted_outreach"
+    ],
+    "limit": "Reaching the counter is not the same as a certificate being issued."
+  }
+}
