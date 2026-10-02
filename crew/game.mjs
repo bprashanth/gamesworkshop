@@ -49,9 +49,9 @@ export function seededRng(seed = 1) {
   let a = typeof seed === 'number' ? seed >>> 0 : [...String(seed)].reduce((h,c) => Math.imul(h ^ c.charCodeAt(0), 16777619) >>> 0, 2166136261);
   return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t ^= t + Math.imul(t ^ t >>> 7, 61 | t); return ((t ^ t >>> 14) >>> 0) / 4294967296; };
 }
-export function createGame(seed = 1, {winner = 'highest', signalMode = 'classic'} = {}) {
+export function createGame(seed = 1, {winner = 'lowest', signalMode = 'none'} = {}) {
   requireMove(['highest','lowest'].includes(winner), 'Unknown winner rule.');
-  requireMove(['single','classic'].includes(signalMode), 'Unknown signal mode.');
+  requireMove(['none','single','classic'].includes(signalMode), 'Unknown signal mode.');
   const deck = createDeck(), rng = seededRng(seed);
   for (let i = deck.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i+1)); [deck[i],deck[j]] = [deck[j],deck[i]]; }
   const players = ['You', 'Nova', 'Pip', 'Orbit', 'Echo'].map((name,id) => ({id,name, hand:[],signal:null,signalUsed:false}));
@@ -104,6 +104,7 @@ export function resolveTrick(state) {
   return state;
 }
 export function signalOptions(state, seat, cardId) {
+  if (state.rules.signalMode === 'none') return [];
   const player = state.players[seat];
   if (!player || player.signalUsed || !['call','play'].includes(state.phase)) return [];
   const card = player.hand.find(card=>card.id===cardId); if (!card) return [];
@@ -116,6 +117,7 @@ export function signalOptions(state, seat, cardId) {
   return options;
 }
 export function signalCard(state, seat, cardId, kind = 'LOWEST') {
+  requireMove(state.rules.signalMode !== 'none', 'Signals are disabled in this game.');
   requireMove(signalOptions(state,seat,cardId).includes(kind), 'That signal must truthfully describe a card in your hand.');
   const player = state.players[seat];
   player.signal = {card:{...player.hand.find(card=>card.id===cardId)},kind,round:state.round}; player.signalUsed = true; return state;
@@ -130,10 +132,12 @@ export function publicView(state, seat) {
 }
 const pick = (list,rng) => list[Math.floor(rng()*list.length)];
 function activeSignals(view) {
+  if (view.rules.signalMode === 'none') return [];
   const out = new Set([...view.discard,...view.stack.map(e=>e.card),...view.trick.map(e=>e.card)].map(c=>c.id));
   return view.players.filter(p=>p.signal&&!out.has(p.signal.card.id)&&p.handCount>0).map(p=>({...p.signal,player:p.id,handCount:p.handCount}));
 }
 export function botSignal(view) {
+  if (view.rules.signalMode === 'none') return null;
   if (view.players[view.seat].signalUsed) return null;
   const unbuilt = remainingSuits(view);
   const ranked = view.hand.filter(c=>unbuilt.includes(c.suit)).sort((a,b)=>a.rank-b.rank || view.hand.filter(c=>c.suit===a.suit).length-view.hand.filter(c=>c.suit===b.suit).length);
@@ -183,7 +187,7 @@ export function botPlay(view, rng = Math.random, strategy = 'strategic') {
   };
   return legal.map(card=>({card,value:utility(card),tie:rng()})).sort((a,b)=>a.value-b.value||a.tie-b.tie)[0].card.id;
 }
-export function simulateGame(seed=1, {strategy='strategic',signals=true,order='strategic',firstSuit=null,winner='highest',signalMode='classic'}={}) {
+export function simulateGame(seed=1, {strategy='strategic',signals=true,order='strategic',firstSuit=null,winner='lowest',signalMode='none'}={}) {
   const state = createGame(seed,{winner,signalMode}), rng = seededRng(`${seed}:decisions`), decisions = [];
   while (state.phase !== 'finished') {
     if (state.phase === 'call') {

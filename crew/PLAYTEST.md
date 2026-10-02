@@ -93,3 +93,13 @@ Following room-readability feedback, the live game restores suit colors, large-r
 The winner remains the highest card **in the called suit**; lowest total is still the cooperative goal. This retains the order/discard decisions established by the earlier experiments. The interface explicitly marks off-suit cards as Discard, and the card to install as Install.
 
 The browser test exercised each of LOWEST, HIGHEST and ONLY, verified false labels are disabled and a used signal cannot be repeated, completed five rounds at cost 16, tested reset during bot action, replayed the deal, and handled the impossible seed without a score. Seventeen engine/qualification tests pass. Projector hand bounds are 717px within 768px; phone rows scroll without page overflow. See [reports/browser-gameboy-qa.json](reports/browser-gameboy-qa.json).
+
+## Current experiment: lowest wins, no signals
+
+At the user's request, normal play now uses the lowest card in the called suit and no communication mechanic. MODEL 1 beats MODEL 5 when MODEL is called; discarded MODEL 1 cannot beat TOOLS 3 when TOOLS is called. Commander calls and plays first, then the winner inherits Commander. The existing five rounds and once-only suit calls are retained for this pass.
+
+Removed all signal UI and human/bot signal actions. Removed every UI box shadow, including inset table shadows; retained suit colors and flat borders. Historical highest-wins and signal variants remain explicit engine options only.
+
+Twenty engine/qualification checks pass. The browser completed all five rounds at cost 8, verified the minimum of called-suit cards on every trick, tested reset/replay and no-score failure, and checked that no signal UI or computed box/text/filter shadows remained. Inspected screenshots at projector size. Current evidence: [reports/browser-lowest-qa.json](reports/browser-lowest-qa.json) and `screenshots/lowest-*.png`.
+
+On 2,500 seeded deals, the default strategic policy completed 2,494 at mean cost 6.5397. Random legal play completed 2,423 at 8.7866. The prior finding that a careful preservation policy makes call order irrelevant still holds; this iteration intentionally tests the simpler deal/call/play experience requested by the user. Results are archived separately in [reports/lowest-no-signals.json](reports/lowest-no-signals.json).

@@ -22,8 +22,8 @@ test('follow suit, turns, commander inheritance, tied lowest chooses first clock
   assert.equal(s.phase,'resolve');resolveTrick(s);assert.equal(s.stack[0].card.rank,2);assert.equal(s.commander,2);assert.equal(s.discard.length,4);
   assert.equal(s.history.length,1);assert.throws(()=>callSuit(s,'data'),/unbuilt/);assert.equal(totalCost(s),2);
 });
-test('classic default signals remain factual, once only, support equal-rank duplicates, and reject middle ranks',()=>{
-  assert.equal(createGame(1).rules.signalMode,'classic');
+test('explicit classic signals remain factual, once only, support equal-rank duplicates, and reject middle ranks',()=>{
+  assert.equal(createGame(1,{signalMode:'classic'}).rules.signalMode,'classic');
   const s=fixture([[card('model',1),card('model',3),card('model',5),card('data',2)],[],[],[],[]]);s.rules.signalMode='classic';
   assert.deepEqual(signalOptions(s,0,'model-3-0'),[]);assert.deepEqual(signalOptions(s,0,'model-1-0'),['LOWEST']);
   assert.deepEqual(signalOptions(s,0,'model-5-0'),['HIGHEST']);assert.deepEqual(signalOptions(s,0,'data-2-0'),['ONLY']);
@@ -50,7 +50,7 @@ test('200 seeded games preserve card identity, legal play, five distinct install
     assert.equal(visible.length,25);assert.equal(new Set(visible.map(c=>c.id)).size,25);
     assert.equal(state.history.length,state.failed?state.stack.length+1:5);
     if(result.complete){assert.equal(state.stack.length,5);assert.equal(new Set(state.stack.map(e=>e.suit)).size,5);assert.ok(result.cost>=5&&result.cost<=25);assert.equal(state.players.flatMap(p=>p.hand).length,0);}
-    for(const trick of state.history){const relevant=trick.plays.filter(p=>p.card.suit===trick.suit);if(trick.winner)assert.equal(trick.winner.card.rank,Math.max(...relevant.map(p=>p.card.rank)));}
+    for(const trick of state.history){const relevant=trick.plays.filter(p=>p.card.suit===trick.suit);if(trick.winner)assert.equal(trick.winner.card.rank,Math.min(...relevant.map(p=>p.card.rank)));}
   }
 });
 test('legal random baseline and no-signal/fixed-order modes run reproducibly',()=>{
@@ -109,8 +109,32 @@ test('single-signal bots always signal LOWEST and highest-wins action histories 
   for(let seed=1;seed<=100;seed++){
     const state=createGame(seed,{signalMode:'single'});
     for(let seat=0;seat<5;seat++){const choice=botSignal(publicView(state,seat));assert.equal(choice.kind,'LOWEST');assert.ok(signalOptions(state,seat,choice.cardId).includes(choice.kind));}
-    const single=simulateGame(seed,{signalMode:'single'}),classic=simulateGame(seed);
+    const single=simulateGame(seed,{winner:'highest',signalMode:'single'}),classic=simulateGame(seed,{winner:'highest',signalMode:'classic'});
     assert.equal(single.cost,classic.cost);assert.deepEqual(single.state.history,classic.state.history);
     assert.ok(single.state.players.every(p=>p.signal.kind==='LOWEST'));
   }
+});
+
+test('default rules install the lowest called card and disable all signals',()=>{
+  const s=createGame(1);assert.deepEqual(s.rules,{winner:'lowest',signalMode:'none'});
+  for(let seat=0;seat<5;seat++){
+    assert.equal(botSignal(publicView(s,seat)),null);
+    for(const c of s.players[seat].hand){assert.deepEqual(signalOptions(s,seat,c.id),[]);assert.throws(()=>signalCard(s,seat,c.id),/disabled/);}
+  }
+  const result=simulateGame(42);assert.ok(result.state.players.every(p=>p.signal===null&&!p.signalUsed));
+});
+test('MODEL 1 installs over MODEL 5 under the default lowest rule',()=>{
+  const s=createGame(1);
+  const hands=[[card('model',5)],[card('model',1)],[card('data',2)],[card('tools',3)],[card('compute',4)]];
+  s.players.forEach((p,i)=>p.hand=hands[i]);callSuit(s,'model');
+  while(s.phase==='play')playCard(s,s.turn,legalCards(s,s.turn)[0].id);resolveTrick(s);
+  assert.equal(s.stack[0].suit,'model');assert.equal(s.stack[0].card.rank,1);assert.equal(s.commander,1);
+});
+test('off-suit MODEL 1 discard cannot beat called TOOLS 3',()=>{
+  const s=createGame(1);
+  const hands=[[card('tools',3)],[card('model',1)],[card('data',1)],[card('verification',1)],[card('compute',1)]];
+  s.players.forEach((p,i)=>p.hand=hands[i]);callSuit(s,'tools');
+  while(s.phase==='play')playCard(s,s.turn,legalCards(s,s.turn)[0].id);resolveTrick(s);
+  assert.equal(s.stack[0].suit,'tools');assert.equal(s.stack[0].card.rank,3);assert.equal(s.commander,0);
+  assert.ok(s.discard.some(c=>c.suit==='model'&&c.rank===1));
 });

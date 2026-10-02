@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-02T18:02:34.087Z",
+  "result": "COST 8",
+  "bounds": {
+    "bottom": 671,
+    "viewport": 768
+  },
+  "errors": [],
+  "checks": [
+    "no signal UI",
+    "no box/text/filter shadows",
+    "lowest called-suit winner verified every round",
+    "off-suit cards discarded",
+    "complete five-round human game",
+    "legal follow suit",
+    "reset cancels timers",
+    "same-deal replay",
+    "projector fit",
+    "no score for incomplete deal",
+    "mobile no page overflow"
+  ]
+}

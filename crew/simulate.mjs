@@ -124,7 +124,7 @@ function protectedOriginal(seed, order = 'fixed') {
   }
   return { state, complete: !state.failed && state.stack.length === 5, cost: state.failed ? null : game.totalCost(state), decisions };
 }
-export async function runExperiments({ count = 2500, firstSeed = 1 } = {}) {
+export async function runExperiments({ count = 2500, firstSeed = 1, winner = 'lowest', signalMode = 'none' } = {}) {
   const configs = {
     strategic: { strategy: 'strategic', signals: true, order: 'strategic' },
     noSignals: { strategy: 'strategic', signals: false, order: 'strategic' },
@@ -132,6 +132,7 @@ export async function runExperiments({ count = 2500, firstSeed = 1 } = {}) {
     fixedOrder: { strategy: 'strategic', signals: true, order: 'fixed' },
     randomLegal: { strategy: 'random', signals: true, order: 'random' },
   };
+  for (const config of Object.values(configs)) Object.assign(config, {winner, signalMode});
   const rows = Object.fromEntries(Object.keys(configs).map(key => [key, []]));
   for (let index = 0; index < count; index++) {
     const seed = firstSeed + index;
@@ -164,7 +165,7 @@ export async function runExperiments({ count = 2500, firstSeed = 1 } = {}) {
   };
   const report = {
     generatedAt: new Date().toISOString(), seeds: { first: firstSeed, last: firstSeed + count - 1, count },
-    rules: { installedCard: 'highest called-suit rank; first played breaks equal ranks', baseline: 'original lowest called-suit rank' },
+    rules: { installedCard: `${winner} called-suit rank; first played breaks equal ranks`, signalMode, baseline: 'lowest called-suit rank' },
     methodology: 'Paired deals for all policies. Failed stacks never receive a score or qualify. Complete-only averages can hide completion failures; read paired results alongside them. Bots receive public views only. Deal minimum is a retrospective lower bound, not bot knowledge.',
     variants: Object.fromEntries(Object.entries(rows).map(([name, rows]) => [name, summarize(rows)])),
     paired: {
@@ -188,8 +189,8 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const report = await runExperiments({ count });
   const outDir = new URL('./reports/', import.meta.url);
   await mkdir(outDir, { recursive: true });
-  await writeFile(new URL('simulation.json', outDir), `${JSON.stringify(report, null, 2)}\n`);
+  await writeFile(new URL('lowest-no-signals.json', outDir), `${JSON.stringify(report, null, 2)}\n`);
   console.table(Object.entries(report.variants).map(([policy, result]) => ({ policy, complete: `${result.completed}/${result.games}`, meanCompleteCost: result.averageCompleteCost })));
   console.log('Paired comparisons:', JSON.stringify(report.paired, null, 2));
-  console.log('Full report: crew/reports/simulation.json');
+  console.log('Full report: crew/reports/lowest-no-signals.json');
 }
