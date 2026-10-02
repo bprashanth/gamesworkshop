@@ -49,7 +49,7 @@ export function seededRng(seed = 1) {
   let a = typeof seed === 'number' ? seed >>> 0 : [...String(seed)].reduce((h,c) => Math.imul(h ^ c.charCodeAt(0), 16777619) >>> 0, 2166136261);
   return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t ^= t + Math.imul(t ^ t >>> 7, 61 | t); return ((t ^ t >>> 14) >>> 0) / 4294967296; };
 }
-export function createGame(seed = 1, {winner = 'highest', signalMode = 'single'} = {}) {
+export function createGame(seed = 1, {winner = 'highest', signalMode = 'classic'} = {}) {
   requireMove(['highest','lowest'].includes(winner), 'Unknown winner rule.');
   requireMove(['single','classic'].includes(signalMode), 'Unknown signal mode.');
   const deck = createDeck(), rng = seededRng(seed);
@@ -183,7 +183,7 @@ export function botPlay(view, rng = Math.random, strategy = 'strategic') {
   };
   return legal.map(card=>({card,value:utility(card),tie:rng()})).sort((a,b)=>a.value-b.value||a.tie-b.tie)[0].card.id;
 }
-export function simulateGame(seed=1, {strategy='strategic',signals=true,order='strategic',firstSuit=null,winner='highest',signalMode='single'}={}) {
+export function simulateGame(seed=1, {strategy='strategic',signals=true,order='strategic',firstSuit=null,winner='highest',signalMode='classic'}={}) {
   const state = createGame(seed,{winner,signalMode}), rng = seededRng(`${seed}:decisions`), decisions = [];
   while (state.phase !== 'finished') {
     if (state.phase === 'call') {

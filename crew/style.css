@@ -1,58 +1,152 @@
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   font-family: "Courier New", Courier, monospace;
-  font-size: 16px;
-  line-height: 1.25;
-  color: #fff;
-  background: #000;
+  font-size: 14px;
+  color: #263728;
+  background: #c7cdb8;
+  --ink: #263728;
+  --paper: #f4f1d9;
+  --table: #6f8566;
 }
 * { box-sizing: border-box; }
 body { margin: 0; }
-#app { max-width: 1280px; margin: 0 auto; padding: 28px 30px; }
-button { font: inherit; color: inherit; background: #000; border: 0; padding: 0; cursor: pointer; }
+#app { max-width: 1260px; margin: 0 auto; padding: 22px 28px; }
+button { font: inherit; font-weight: bold; color: var(--ink); background: var(--paper); border: 2px solid var(--ink); padding: 9px 14px; cursor: pointer; box-shadow: 2px 2px 0 var(--ink); }
 button:disabled { cursor: default; }
-button:enabled:hover, button:focus-visible { color: #000; background: #fff; outline: 0; }
-pre { font: inherit; margin: 0; white-space: pre; text-align: left; }
-header { display: flex; align-items: center; gap: 32px; margin-bottom: 16px; }
-.total { margin-left: auto; }
-.installed, .players, .hand-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-.stack-slot, .card, .empty-card { width: fit-content; text-align: left; }
-.players { margin-top: 38px; }
-.seat-name { margin-bottom: 10px; font-weight: bold; white-space: nowrap; }
-.signal { min-height: 36px; margin-top: 8px; font-size: 14px; }
-.spent { text-decoration: line-through; }
-.controls { min-height: 52px; display: flex; align-items: center; justify-content: center; gap: 32px; padding: 8px 0; }
-.hand-label { display: flex; align-items: center; justify-content: space-between; margin: 14px 0; }
-.hand-cards button:disabled { color: #fff; }
-.hand-cards button:enabled { color: #000; background: #fff; }
-.hand-cards button:enabled:hover, button:focus-visible { outline: 1px solid #fff; outline-offset: 3px; }
+button:enabled:hover { background: #fffce5; }
+button:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+.model { --suit: #6a98bd; --light: #d5e5ed; --dark: #284c68; }
+.data { --suit: #d9ac57; --light: #f0dfb2; --dark: #674819; }
+.tools { --suit: #81a873; --light: #dce8c9; --dark: #354f2b; }
+.verification { --suit: #af91b6; --light: #e7d7e7; --dark: #654269; }
+.compute { --suit: #cc8c72; --light: #f1d6c2; --dark: #773e29; }
+header { display: flex; align-items: center; gap: 22px; min-height: 38px; margin-bottom: 16px; }
+.ship-label { display: flex; align-items: baseline; gap: 10px; white-space: nowrap; }
+.ship-label>b { font-size: 19px; letter-spacing: 2px; }
+.ship-label>span { font-size: 12px; }
+.rule { font-size: 11px; line-height: 1.5; }
+.total { margin-left: auto; white-space: nowrap; font-size: 11px; }
+.total strong { font-size: 28px; vertical-align: middle; margin-left: 5px; }
+header>button { padding: 7px 12px; font-size: 12px; }
+.installed { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.stack-slot { display: grid; grid-template-columns: 1fr auto; align-items: center; min-height: 71px; padding: 10px 12px; background: #d9dec9; border: 2px solid #74816b; border-top: 6px solid var(--suit); }
+.stack-slot>span { color: var(--dark); font-size: 12px; font-weight: bold; }
+.stack-slot>strong { font-size: 26px; grid-column: 2; grid-row: 1 / 3; padding-left: 5px; }
+.stack-slot>small { font-size: 10px; padding-top: 4px; }
+.stack-slot.built { background: var(--paper); border-color: var(--dark); border-top-color: var(--suit); }
+.table { margin-top: 21px; padding: 12px 20px 15px; background: var(--table); border: 3px solid #3e503c; box-shadow: inset 0 0 0 3px #93a384; }
+.table-label { text-align: center; letter-spacing: 2px; color: #e8ecd9; font-size: 10px; margin-bottom: 12px; }
+.players { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 25px; }
+.seat { min-width: 0; }
+.seat-name { display: flex; justify-content: space-between; align-items: center; min-height: 25px; margin-bottom: 8px; color: #fffbe6; }
+.seat-name>b { font-size: 15px; }
+.seat-name>span { font-size: 9px; padding: 3px 4px; border: 1px solid #dde6c6; }
+.empty-card { height: 148px; border: 2px dashed #adc09b; display: grid; place-items: center; color: #e5ecd8; font-size: 12px; text-align: center; }
+.active-seat .empty-card { border: 2px solid #faf2bf; color: #fffbcf; }
+.signal { height: 35px; display: flex; justify-content: space-between; gap: 6px; align-items: center; background: var(--light); border-left: 4px solid var(--suit); padding: 5px 7px; margin-top: 11px; color: var(--dark); }
+.signal>b { font-size: 10px; }
+.signal>span { font-size: 9px; font-weight: bold; }
+.signal.empty-signal { border: none; background: transparent; justify-content: center; color: #dee6cf; font-size: 10px; }
+.signal.spent { opacity: .6; }
+.signal.spent b { text-decoration: line-through; }
+.card { position: relative; display: flex; flex-direction: column; width: 170px; height: 207px; color: var(--ink); background: var(--paper); border: 2px solid var(--ink); padding: 0 13px 12px; box-shadow: 3px 3px 0 #32402f; text-align: left; }
+.card-suit { display: block; background: var(--suit); color: #172719; font-size: 11px; font-weight: bold; letter-spacing: .4px; padding: 8px 7px; margin: 0 -13px 8px; border-bottom: 2px solid var(--ink); text-align: center; }
+.card-rank { display: block; font-size: 50px; font-weight: bold; line-height: 1; letter-spacing: -3px; }
+.card-name { font-family: Arial, sans-serif; font-size: 15px; line-height: 1.15; font-weight: bold; margin-top: auto; }
+.card-detail { font-size: 10px; margin-top: 6px; min-height: 11px; }
+.card.small { width: 100%; height: 148px; padding: 0 10px 9px; box-shadow: 2px 2px 0 #32402f; }
+.card.small .card-suit { font-size: 10px; margin: 0 -10px 5px; padding: 5px; }
+.card.small .card-rank { font-size: 32px; letter-spacing: -1px; }
+.card.small .card-name { font-size: 12px; }
+.card.small .card-detail { font-size: 9px; min-height: 0; margin-top: 3px; }
+.card:has(.card-status) { padding-bottom: 24px; }
+.card-status { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 9px; text-transform: uppercase; letter-spacing: 1px; background: #d2d4bd; border-top: 1px solid #79806c; padding: 3px; }
+.card.winner { outline: 3px solid #f5e594; outline-offset: 2px; }
+.card.winner .card-status { background: #f5e594; font-weight: bold; }
+.controls { min-height: 75px; margin-top: 15px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 16px; background: #e2e7cb; border: 2px solid var(--ink); }
+.prompt strong { font-size: 16px; }
+.prompt small { display: block; font-size: 11px; margin-top: 5px; }
+.call-choices, .signal-choices { display: flex; gap: 7px; }
+.call-choices button { background: var(--light); border-color: var(--dark); color: var(--dark); padding: 10px 11px; font-size: 11px; box-shadow: 2px 2px 0 var(--dark); }
+.call-choices button:disabled, .signal-choices button:disabled { opacity: .32; box-shadow: none; }
+.primary { background: #354f35; color: #fff6d4; box-shadow: 2px 2px 0 #203321; }
+.primary:enabled:hover { background: #466540; }
+.called-suit { background: var(--light); color: var(--dark); border: 2px solid var(--dark); padding: 8px 14px; font-size: 12px; font-weight: bold; }
+.signal-choices button { font-size: 11px; padding: 10px 13px; }
+.signal-choices .quiet { background: transparent; box-shadow: none; }
+.hand-label { display: flex; align-items: center; justify-content: space-between; min-height: 44px; margin: 8px 0 12px; }
+.hand-label>b { font-size: 14px; }
+.hand-label>button { font-size: 11px; padding: 7px 12px; }
+.hand-label>span { font-size: 11px; }
+.hand-cards { display: flex; justify-content: center; gap: 18px; padding-bottom: 5px; }
+.hand-cards .card:disabled { opacity: .42; box-shadow: none; }
+.hand-cards .card.selected { outline: 3px solid #233d25; outline-offset: 3px; transform: translateY(-4px); }
+.hand-cards .card:enabled:hover { transform: translateY(-4px); }
+.hand-cards .card:disabled { cursor: default; }
+body:has([data-call]) .hand-cards .card:disabled { opacity: 1; box-shadow: 3px 3px 0 #32402f; }
+body:has([data-action="bot-call"]) .hand-cards .card:disabled, body:has([data-action="install"]) .hand-cards .card:disabled { opacity: 1; box-shadow: 3px 3px 0 #32402f; }
 [role="alert"] { text-align: center; }
-@media (min-width: 1600px) {
-  :root { font-size: 18px; }
-  #app { max-width: 1440px; padding-top: 40px; }
-  .players { margin-top: 48px; }
-  .signal { font-size: 16px; }
+@media (min-width: 1500px) {
+  #app { padding-top: 30px; max-width: 1370px; }
+  .table { padding: 17px 30px 21px; }
+  .players { gap: 36px; }
+  .empty-card, .card.small { height: 167px; }
+  .card { height: 225px; width: 183px; }
 }
-@media (max-width: 1250px) {
-  :root { font-size: 14px; }
-  #app { padding: 20px; max-width: 1120px; }
-  .signal { font-size: 12px; }
+@media (min-width: 901px) and (max-height: 800px) {
+  #app { padding-top: 14px; padding-bottom: 12px; }
+  header { margin-bottom: 10px; }
+  .table { margin-top: 14px; padding-top: 9px; padding-bottom: 10px; }
+  .table-label { margin-bottom: 8px; }
+  .empty-card, .card.small { height: 131px; }
+  .card.small .card-rank { font-size: 29px; }
+  .card.small .card-suit { padding: 4px; }
+  .controls { min-height: 64px; margin-top: 12px; padding: 10px 14px; }
+  .hand-label { margin: 5px 0 9px; min-height: 39px; }
+  .card { height: 182px; width: 164px; }
+  .card-rank { font-size: 44px; }
+  .card-name { font-size: 14px; }
 }
-@media (max-width: 1050px) {
-  :root { font-size: 12px; }
-  #app { padding: 16px; max-width: 950px; }
-  .signal { font-size: 10px; }
+@media (max-width: 1000px) {
+  #app { padding-left: 16px; padding-right: 16px; }
+  header { gap: 12px; }
+  .rule { max-width: 290px; font-size: 10px; }
+  .players { gap: 12px; }
+  .table { padding-left: 12px; padding-right: 12px; }
+  .signal { flex-direction: column; justify-content: center; gap: 3px; height: 40px; }
+  .card { width: 150px; }
+  .hand-cards { gap: 14px; }
+  .call-choices button { padding: 10px 7px; font-size: 10px; }
+  .seat-name>span { font-size: 8px; padding: 3px; }
 }
-@media (max-width: 800px) {
-  #app { padding: 16px 12px; }
-  .installed, .players, .hand-cards { overflow-x: auto; grid-template-columns: repeat(5, max-content); gap: 10px; }
-  .players { margin-top: 26px; }
-  header { gap: 16px; }
-  .controls { justify-content: flex-start; gap: 20px; }
-}
-@media (min-width: 1051px) and (max-height: 780px) {
-  #app { padding-top: 16px; padding-bottom: 16px; }
-  .players { margin-top: 24px; }
-  .signal { min-height: 28px; }
-  .controls { min-height: 40px; }
+@media (max-width: 720px) {
+  #app { padding: 14px 12px; }
+  header { flex-wrap: wrap; gap: 9px 12px; }
+  .rule { order: 5; max-width: none; width: 100%; font-size: 10px; }
+  .ship-label>span { font-size: 10px; }
+  .ship-label>b { font-size: 16px; }
+  .total strong { font-size: 23px; }
+  .installed { gap: 5px; }
+  .stack-slot { padding: 7px 5px; grid-template-columns: 1fr; min-height: 87px; border-top-width: 4px; }
+  .stack-slot>span { font-size: 7px; letter-spacing: -.3px; }
+  .stack-slot>strong { grid-column: 1; grid-row: 2; font-size: 22px; padding: 3px 0; }
+  .stack-slot>small { font-size: 7px; }
+  .table { padding: 10px; margin-top: 13px; }
+  .players { grid-template-columns: repeat(5, 140px); overflow-x: auto; padding: 3px 3px 6px; gap: 14px; }
+  .seat-name>b { font-size: 13px; }
+  .empty-card, .card.small { height: 145px; }
+  .signal { flex-direction: row; justify-content: space-between; height: 34px; }
+  .signal>b, .signal>span { font-size: 8px; }
+  .controls { flex-wrap: wrap; min-height: 81px; gap: 10px; padding: 12px; }
+  .prompt strong { font-size: 14px; }
+  .prompt small { font-size: 10px; }
+  .call-choices { width: 100%; gap: 4px; }
+  .call-choices button { padding: 9px 5px; font-size: 8px; flex: 1; }
+  .signal-choices { width: 100%; gap: 6px; }
+  .signal-choices button { padding: 9px 8px; font-size: 9px; }
+  .hand-cards { justify-content: flex-start; overflow-x: auto; padding: 6px 5px 9px; gap: 13px; }
+  .hand-cards .card { flex-shrink: 0; width: 140px; height: 188px; }
+  .card-suit { font-size: 10px; }
+  .card-rank { font-size: 42px; }
+  .card-name { font-size: 13px; }
 }

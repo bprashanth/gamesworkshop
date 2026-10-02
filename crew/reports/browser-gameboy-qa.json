@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-02T17:47:14.659Z",
+  "result": "COST 16",
+  "bounds": {
+    "bottom": 717,
+    "viewport": 768
+  },
+  "errors": [],
+  "checks": [
+    "no special glyphs",
+    "no hidden hands or extra menus",
+    "all three truthful signal types",
+    "single-click legal play",
+    "complete five-round human game",
+    "reset cancels timers",
+    "same-deal replay",
+    "projector hand and signal mode fit",
+    "incomplete deal has no score",
+    "mobile no page overflow"
+  ]
+}

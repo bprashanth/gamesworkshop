@@ -1,6 +1,6 @@
 # Crew
 
-A local, black-and-white ASCII-style card table in the browser. One human, four bots, five tricks. No artwork, hidden-hand graphics, help screens or demo controls.
+A minimal Game Boy-style card table in the browser. One human, four bots, five tricks. A muted green table, five suit colors, large ranks and clearly marked discards. No hidden-hand graphics, tutorial screens or demo controls.
 
 ## Run
 
@@ -12,19 +12,19 @@ Open http://localhost:4173. The server listens on `0.0.0.0:4173`, so the same po
 
 ## Controls
 
-- Click an empty installed slot marked `[Call]` to call that suit.
-- Click a white card in your hand to play it. Black cards cannot be played on that turn.
-- `[Signal lowest]`, then one white card, reveals your lowest card in that suit. One signal per game. There is no signal-type choice.
-- `[Install ...]` advances after everyone has seen the trick.
-- `[Reset]` starts a new deal. `[Same deal]` appears when finished.
+- Choose a suit in the action strip when you are Commander. The installed stack above the table is read-only.
+- Click a bright card in your hand to play it. Dimmed cards cannot be played on that turn.
+- **Signal a card**, choose a card, then choose **LOWEST**, **HIGHEST** or **ONLY** in its suit. Only truthful labels are enabled. One signal per game.
+- **Install** advances after everyone has seen the trick.
+- **Reset** starts a new deal. **Same deal** appears when finished.
 
 The screen contains only installed parts and total, each player's played card or waiting slot, public signals, your hand, and these controls. Signals are crossed out once the revealed card has been played. The room facilitator explains the rules.
 
 The highest card in the called suit installs. Its player becomes Commander. Follow suit if possible; otherwise discard any card. The goal is the lowest total for a complete five-suit ship. Equal ranks go to the first played, clockwise from Commander. A missing called suit ends incomplete with no score. Other players' hands remain private.
 
-A signal means only **"this is my lowest card in this suit"**. A single card is also its suit's lowest, and equal lowest copies qualify. Cheap public coverage lets teammates shed more expensive cards before that suit is called.
+Signals describe a card as your **LOWEST**, **HIGHEST** or **ONLY** in its suit. The revealed card and label remain beside your seat; played signals are marked and dimmed. Cheap public coverage lets teammates shed more expensive cards before that suit is called.
 
-Projection target: 1366x768 or larger. A narrow phone scrolls each row horizontally. Repeatable deal: `http://localhost:4173/?seed=1`.
+Projection target: 1366x768 or larger. A narrow phone scrolls the player row and hand horizontally. Repeatable deal: `http://localhost:4173/?seed=1`.
 
 ## Verification
 
@@ -44,8 +44,8 @@ npm run test:browser
 
 Set `CHROMIUM_PATH=/path/to/chrome` to use an existing browser installation.
 
-[PLAYTEST.md](PLAYTEST.md) records the rule iterations. [reports/single-signal.json](reports/single-signal.json) compares the single signal with the previous three choices on 2,500 paired deals. Highest-wins play histories and scores were identical; signals still saved 3.25 cost versus no signals. This preserves the useful coordination while removing a choice from the interface.
+[PLAYTEST.md](PLAYTEST.md) records the rule iterations. [reports/single-signal.json](reports/single-signal.json) compares the single signal with the previous three choices on 2,500 paired deals. Highest-wins play histories and scores were identical; signals still saved 3.25 cost versus no signals. That simpler variant remains available for experiments; the live interface restores all three types at the user's request.
 
-The original lowest-installs and three-label rules remain available to experiments with `createGame(seed, {winner:'lowest', signalMode:'classic'})` or the same options to `simulateGame`. Default play is highest-installs with the single LOWEST signal. Card definitions and 50-card deck remain unchanged. No Phase 2 is implemented.
+Default play uses **highest-installs** and all three signal labels. Lowest-installs remains available with `{winner:'lowest'}`, and the one-label experiment with `{signalMode:'single'}`; pass these options to `createGame` or `simulateGame`. Card definitions and 50-card deck remain unchanged. No Phase 2 is implemented.
 
-[chronology/2026-10-02.md](chronology/2026-10-02.md) and git preserve previous versions. Current screenshots use the `ascii-` prefix in [screenshots/](screenshots/); older screenshots are historical checkpoints.
+[chronology/2026-10-02.md](chronology/2026-10-02.md) and git preserve previous versions. Current screenshots use the `gameboy-` prefix in [screenshots/](screenshots/); older screenshots are historical checkpoints.
