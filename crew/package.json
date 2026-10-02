@@ -7,7 +7,10 @@
     "start": "node server.mjs",
     "dev": "node server.mjs",
     "test": "node --test *.test.mjs",
-    "simulate": "node simulate.mjs"
+    "simulate": "node simulate.mjs",
+    "test:browser": "node browser-qa.mjs"
   },
-  "devDependencies": {"@playwright/test": "1.61.1"}
+  "devDependencies": {
+    "@playwright/test": "1.61.1"
+  }
 }

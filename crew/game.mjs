@@ -1,10 +1,10 @@
 /** Phase 1 rules. Game mutations validate moves; bots receive publicView only. */
 export const SUITS = [
-  { id: 'model', name: 'MODEL', color: '#bba7ff' },
-  { id: 'data', name: 'DATA', color: '#71d7c4' },
-  { id: 'tools', name: 'TOOLS', color: '#ffc075' },
-  { id: 'verification', name: 'VERIFICATION', color: '#ff98ae' },
-  { id: 'compute', name: 'COMPUTE', color: '#84baff' },
+  { id: 'model', name: 'MODEL', color: '#7da5e6' },
+  { id: 'data', name: 'DATA', color: '#eab565' },
+  { id: 'tools', name: 'TOOLS', color: '#95c99b' },
+  { id: 'verification', name: 'VERIFICATION', color: '#cba0d7' },
+  { id: 'compute', name: 'COMPUTE', color: '#ec8e7b' },
 ];
 const definitions = {
   model: [

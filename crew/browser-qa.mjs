@@ -1,0 +1,67 @@
+import { chromium } from '@playwright/test';
+import {mkdir, writeFile, access} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import assert from 'node:assert/strict';
+const root=fileURLToPath(new URL('.',import.meta.url));
+const opts={headless:true,args:['--no-sandbox']};
+if(process.env.CHROMIUM_PATH)opts.executablePath=process.env.CHROMIUM_PATH;
+const browser=await chromium.launch(opts);
+const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+const errors=[]; page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+await mkdir(`${root}screenshots`,{recursive:true});
+const screenshot=async name=>page.screenshot({path:`${root}screenshots/${name}.png`,fullPage:true});
+await page.goto('http://localhost:4173/?seed=1');
+assert.equal(await page.locator('.hand-cards .card').count(),5);
+assert.equal(await page.locator('.card-back').count(),20);
+await screenshot('01-first-deal');
+await page.getByRole('button',{name:'How to play',exact:true}).click();
+assert.match(await page.locator('.rules-panel').innerText(),/Highest card/);
+await screenshot('02-rules');
+await page.getByRole('button',{name:'Got it. Let’s play →'}).click();
+await page.locator('[data-action="signal"]').click();
+await page.locator('.hand-cards [data-card="data-1-0"]').count().then(async n=>{if(n)await page.locator('[data-card="data-1-0"]').click();else await page.locator('.hand-cards .card').first().click();});
+await screenshot('03-signal-choice');
+await page.locator('[data-signal]').first().click();
+assert.equal(await page.locator('.hand-toolbar .signal').count(),1);
+assert.equal(await page.locator('[data-action="signal"]').isDisabled(),true);
+await page.locator('[data-call="data"]').click();
+assert.equal(await page.locator('.hand-cards button:disabled').count(),3);
+await page.locator('.hand-cards button:not(:disabled)').first().click();
+await screenshot('04-your-turn');
+await page.locator('[data-action="play"]').click();
+await page.locator('[data-action="install"]').waitFor();
+await screenshot('05-round-result');
+let rounds=1;
+while(!await page.locator('.final-result').count()){
+  if(await page.locator('[data-action="install"]').count()){await page.locator('[data-action="install"]').click();rounds++;}
+  else if(await page.locator('[data-call]:not(:disabled)').count()){await page.locator('[data-call]:not(:disabled)').first().click();}
+  else if(await page.locator('[data-action="bot-call"]').count()){await page.locator('[data-action="bot-call"]').click();}
+  else if((await page.locator('.command-bar').innerText()).includes('Your turn.')||(await page.locator('.command-bar').innerText()).includes('Discard any card.')){
+    await page.locator('.hand-cards button:not(:disabled)').first().click();await page.locator('[data-action="play"]').click();
+  }else await page.waitForTimeout(100);
+  if(rounds>7)throw Error('Too many rounds');
+}
+assert.equal(await page.locator('.result-cards .card').count(),5);
+await screenshot('06-complete-ship');
+const result=await page.locator('.final-sum').innerText();
+await page.locator('[data-action="replay"]').click();
+assert.match(await page.locator('footer').innerText(),/Deal 1 /);
+assert.equal(await page.locator('.hand-cards .card').count(),5);
+await page.setViewportSize({width:1366,height:768});await screenshot('07-projector');
+const desktop=await page.evaluate(()=>({viewport:innerHeight,scroll:document.documentElement.scrollHeight,handBottom:document.querySelector('.hand-cards').getBoundingClientRect().bottom}));
+assert.ok(desktop.handBottom<=768,'Full hand visible on 1366x768 projector');
+await page.setViewportSize({width:390,height:844});await screenshot('08-mobile');
+assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'No page horizontal overflow at 390px');
+await page.setViewportSize({width:1440,height:900});
+await page.locator('[data-action="watch"]').click();
+assert.match(await page.locator('.watch-label').innerText(),/AI DEMO/);
+await page.locator('.card.small').first().waitFor();
+await screenshot('09-ai-demo');
+await page.locator('[data-action="new"]').click();
+assert.equal(await page.locator('.hand-cards .card').count(),5);
+await page.locator('[data-action="watch"]').click();
+assert.match(await page.locator('.instruction h2').innerText(),/You’re Commander/);
+assert.deepEqual(errors,[]);
+await writeFile(`${root}reports/browser-qa.json`,JSON.stringify({checkedAt:new Date().toISOString(),result,desktop,errors,checks:['human complete game','signal truthful choice and once only','forced follow suit','round pause','five-card final stack','same-deal replay','projector hand visible','mobile no page overflow','watch AI','reset during AI timers']},null,2)+'\n');
+console.log('Browser QA passed',result,desktop);
+await browser.close();
