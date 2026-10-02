@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "checked": "2026-10-02",
+    "purpose": "Verified single-parent historical context for newer districts, not estimates for those newer districts.",
+    "method": "Only official district/state sources explicitly describing a split from one parent are included. No nearest-area, fuzzy-name, or multi-parent substitution. These relationships do not reconstruct exact NFHS survey polygons.",
+    "source_edition": "Bundled 2021 district names; NFHS-5 survey districts use 2017 administrative geography."
+  },
+  "relationships": [
+    {"state": "Madhya Pradesh", "district": "Niwari", "parent_id": "madhya-pradesh-tikamgarh", "year": 2018, "source_url": "https://niwari.nic.in/en/about-district/", "source_claim": "District administration says Niwari separated from Tikamgarh on 1 October 2018."},
+    {"state": "Tamil Nadu", "district": "Tenkasi", "parent_id": "tamil-nadu-tirunelveli", "year": 2019, "source_url": "https://tenkasi.nic.in/", "source_claim": "District administration identifies Tenkasi as part of erstwhile Tirunelveli, formed in 2019."},
+    {"state": "Tamil Nadu", "district": "Chengalputtu", "parent_id": "tamil-nadu-kancheepuram", "year": 2019, "source_url": "https://chengalpattu.nic.in/about-district/", "source_claim": "District administration says Chengalpattu was carved out of Kancheepuram on 29 November 2019."},
+    {"state": "Tamil Nadu", "district": "Tirupathur", "parent_id": "tamil-nadu-vellore", "year": 2019, "source_url": "https://tirupathur.nic.in/about-district/", "source_claim": "District administration describes the 2019 division of Vellore into Vellore, Tirupathur and Ranipet."},
+    {"state": "Tamil Nadu", "district": "Ranipet", "parent_id": "tamil-nadu-vellore", "year": 2019, "source_url": "https://ranipet.nic.in/about-district/", "source_claim": "District administration says Ranipet was separated from Vellore and began functioning on 28 November 2019."},
+    {"state": "Tamil Nadu", "district": "Kallakurichi", "parent_id": "tamil-nadu-viluppuram", "year": 2019, "source_url": "https://kallakurichi.nic.in/about-district/history/", "source_claim": "District administration describes the 2019 bifurcation of Viluppuram that created Kallakurichi."},
+    {"state": "Tamil Nadu", "district": "Mayiladuthurai", "parent_id": "tamil-nadu-nagapattinam", "year": 2020, "source_url": "https://mayiladuthurai.nic.in/", "source_claim": "District administration cites the 28 December 2020 order separating Mayiladuthurai from Nagapattinam."},
+    {"state": "Telangana", "district": "Mulugu", "parent_id": "telangana-jayashankar-bhupalapally", "year": 2019, "source_url": "https://mulugu.telangana.gov.in/about-district/", "source_claim": "District administration says Mulugu was formed by bifurcating Jayashankar Bhupalpally on 17 February 2019."},
+    {"state": "Telangana", "district": "Narayanpet", "parent_id": "telangana-mahabubnagar", "year": 2019, "source_url": "https://informatics.nic.in/files/websites/oct-2023/mahbubnagar-telangana.php", "additional_source_url": "https://narayanpet.telangana.gov.in/notice/notification-of-narayanpet-new-district/", "source_claim": "NIC describes the 2019 bifurcation into Narayanpet and Mahabubnagar; the district's formation notification confirms February 2019. Its separate history page has a conflicting 2016 date, which is not used."},
+    {"state": "Chhattisgarh", "district": "Gaurella Pendra Marwahi", "parent_id": "chhattisgarh-bilaspur", "year": 2020, "source_url": "https://tourism.cgstate.gov.in/destinations/Gaurela-Pendra-Marwahi", "source_claim": "The state tourism board says Gaurela-Pendra-Marwahi was carved out of Bilaspur and inaugurated in February 2020."}
+  ]
+}

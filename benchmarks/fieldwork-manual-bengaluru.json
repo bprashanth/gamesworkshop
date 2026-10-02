@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "seed": 11,
+  "place_id": "karnataka-bangalore",
+  "problem": "birth_registration",
+  "initial_tool": "reader",
+  "score": 9,
+  "status": "won",
+  "history": [
+    {
+      "day": 1,
+      "action": "r",
+      "tool": "reader",
+      "prepared": [],
+      "served": [],
+      "expired": [],
+      "waiting_ready": 0,
+      "expired_ready": [],
+      "expired_unprepared": [],
+      "score_before": 0,
+      "score_after": 0,
+      "reason": "Moved the AI to the pocket guide. No new cases prepared this shift.",
+      "slots": 2,
+      "online": true
+    },
+    {
+      "day": 2,
+      "action": "a",
+      "tool": "guide",
+      "prepared": [
+        0,
+        1,
+        4
+      ],
+      "served": [
+        0,
+        1,
+        4
+      ],
+      "expired": [],
+      "waiting_ready": 0,
+      "expired_ready": [],
+      "expired_unprepared": [],
+      "score_before": 0,
+      "score_after": 3,
+      "reason": "Pocket guide clears 3 voice case(s).",
+      "slots": 3,
+      "online": true
+    },
+    {
+      "day": 3,
+      "action": "a",
+      "tool": "guide",
+      "prepared": [
+        2,
+        7
+      ],
+      "served": [
+        2,
+        7
+      ],
+      "expired": [],
+      "waiting_ready": 0,
+      "expired_ready": [],
+      "expired_unprepared": [],
+      "score_before": 3,
+      "score_after": 5,
+      "reason": "Pocket guide clears 2 voice case(s).",
+      "slots": 2,
+      "online": false
+    },
+    {
+      "day": 4,
+      "action": "b",
+      "tool": "guide",
+      "prepared": [
+        3
+      ],
+      "served": [
+        3
+      ],
+      "expired": [],
+      "waiting_ready": 0,
+      "expired_ready": [],
+      "expired_unprepared": [],
+      "score_before": 5,
+      "score_after": 6,
+      "reason": "The worker resolves case 4 in person.",
+      "slots": 2,
+      "online": true
+    },
+    {
+      "day": 5,
+      "action": "a",
+      "tool": "guide",
+      "prepared": [
+        9
+      ],
+      "served": [],
+      "expired": [
+        6,
+        8
+      ],
+      "waiting_ready": 1,
+      "expired_ready": [],
+      "expired_unprepared": [
+        6,
+        8
+      ],
+      "score_before": 6,
+      "score_after": 6,
+      "reason": "Pocket guide clears 1 voice case(s).",
+      "slots": 0,
+      "online": true
+    },
+    {
+      "day": 6,
+      "action": "b",
+      "tool": "guide",
+      "prepared": [
+        5
+      ],
+      "served": [
+        5,
+        9
+      ],
+      "expired": [],
+      "waiting_ready": 0,
+      "expired_ready": [],
+      "expired_unprepared": [],
+      "score_before": 6,
+      "score_after": 8,
+      "reason": "The worker resolves case 6 in person.",
+      "slots": 3,
+      "online": true
+    },
+    {
+      "day": 7,
+      "action": "b",
+      "tool": "guide",
+      "prepared": [
+        10
+      ],
+      "served": [
+        10
+      ],
+      "expired": [
+        11
+      ],
+      "waiting_ready": 0,
+      "expired_ready": [],
+      "expired_unprepared": [
+        11
+      ],
+      "score_before": 8,
+      "score_after": 9,
+      "reason": "The worker resolves case 11 in person.",
+      "slots": 2,
+      "online": true
+    }
+  ],
+  "place": {
+    "name": "Bangalore district, Karnataka",
+    "lat": null,
+    "lon": null,
+    "state": "Karnataka",
+    "district": "Bangalore",
+    "country_code": "in",
+    "source_url": "https://rchiips.org/nfhs/districtfactsheet_NFHS-5.shtml",
+    "method": "district_name",
+    "district_id": "karnataka-bangalore",
+    "note": "Selected the survey district, not a particular village or point."
+  },
+  "evidence": {
+    "value": 99.33,
+    "label": "Children under 5 with registered births",
+    "full_label": "Children under age 5 years whose birth was registered with the civil authority (%)",
+    "flag": null,
+    "source_url": "https://www.data.gov.in/resource/india-districts-factsheets-national-family-health-survey-nfhs-5-2019-2021-provisional",
+    "scope": "Bangalore district, Karnataka",
+    "period": "2019\u20132021",
+    "text": "Children under 5 with registered births: 99.3%"
+  }
+}
