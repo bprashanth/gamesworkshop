@@ -1,150 +1,141 @@
-import {SUITS, createGame, callSuit, legalCards, playCard, resolveTrick, signalOptions, signalCard, publicView, botCall, botPlay, botSignal, seededRng} from './game.mjs';
+import {
+  SUITS, createGame, callSuit, legalCards, playCard, resolveTrick,
+  signalOptions, signalCard, publicView, botCall, botPlay, botSignal, seededRng,
+} from './game.mjs';
 
-const $ = document.querySelector('#app');
+const app = document.querySelector('#app');
 const names = ['You', 'Mika', 'Sol', 'Vega', 'Nova'];
-const marks = {model:'●',data:'◆',tools:'✚',verification:'✓',compute:'▣'};
-const art = {
-  model:['00111100','01111110','11011011','11111111','10100101','10111101','01111110','00100100'],
-  data:['00011000','00111100','01111110','11111111','01111110','00111100','00011000','00000000'],
-  tools:['01100110','01100110','01111110','00111100','00011000','00011000','00011000','00011000'],
-  verification:['00000000','00000011','00000110','11001100','01111000','00110000','00000000','00000000'],
-  compute:['00000000','01111110','01000010','01011010','01000010','01111110','11111111','00000000']
-};
-const suit = id => SUITS.find(s => s.id === id);
-const label = id => suit(id)?.name || id;
-const esc = str => String(str ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let state, selected = null, signaling = false, timer = null, watching = false, help = false, notice = '', gameId=0;
-let rng;
-const freshSeed = () => Math.floor(Math.random()*999999)+1;
-function start(seed=freshSeed(), watch=watching) {
-  clearTimeout(timer); gameId++; watching=watch; state=createGame(seed); rng=seededRng(seed+10091);
-  state.players.forEach((p,i)=>p.name=names[i]);
-  selected=null; signaling=false; notice=''; help=false;
-  botsSignal(); render(); advance();
-}
-function botsSignal() {
-  state.players.forEach((p,i)=>{
-    if ((!watching && i===0) || p.signalUsed) return;
-    const choice=botSignal(publicView(state,i));
-    if(choice) signalCard(state,i,choice.cardId,choice.kind);
-  });
-}
-function pixels(id) {return `<span class="pixel-art ${id}" aria-hidden="true">${art[id].flatMap(row=>[...row].map(bit=>`<i class="${bit==='1'?'ink':''}"></i>`)).join('')}</span>`;}
-function face(card, opts={}) {
-  const tag=opts.button?'button':'div';
-  return `<${tag} class="card ${card.suit} ${opts.small?'small':''} ${opts.selected?'selected':''} ${opts.disabled?'illegal':''} ${opts.winner?'winner':''}" title="${esc(card.description)}" ${opts.button?`data-card="${card.id}" aria-label="${esc(label(card.suit))} ${card.rank}, ${esc(card.name)}${opts.disabled?', cannot play this suit':''}" aria-pressed="${!!opts.selected}" ${opts.disabled?'disabled':''}`:''}>
-    <span class="card-top"><b class="rank">${card.rank}</b><span class="suit-name">${label(card.suit)} <span aria-hidden="true">${marks[card.suit]}</span></span></span>
-    ${pixels(card.suit)}<span class="card-name">${esc(card.name)}</span>${card.detail?`<span class="card-detail">${esc(card.detail)}</span>`:''}
-    <span class="card-foot"><span>${marks[card.suit]}</span><b>${card.rank}</b></span>
-  </${tag}>`;
-}
-function signal(p) {
-  if(!p.signal) return `<div class="signal empty"><span class="signal-dot"></span> Signal available</div>`;
-  const c=p.signal.card || p.hand.find(c=>c.id===p.signal.cardId);
-  if(!c)return '<div class="signal empty">Signal used</div>';
-  const kind=p.signal.kind.toLowerCase();
-  const gone=!p.hand.some(x=>x.id===c.id);
-  return `<div class="signal ${c.suit} ${gone?'spent':''}" title="${esc(c.name)} · ${kind==='only'?'Their only card':`Their ${kind} card`} in ${label(c.suit)}${gone?' · Already played':''}"><span class="signal-icon">${marks[c.suit]}</span><b>${label(c.suit)} ${c.rank}</b><span>${kind.toUpperCase()}${gone?' · played':''}</span></div>`;
-}
-function seat(i) {
-  const p=state.players[i], played=state.trick.find(t=>t.player===i), cmd=state.commander===i;
-  return `<section class="seat seat-${i} ${state.turn===i&&state.phase==='play'?'active-seat':''}" aria-label="${names[i]}'s seat">
-    <div class="seat-label"><span class="avatar avatar-${i}" aria-hidden="true">${['','◕','◒','◉','◑'][i]}</span><b>${names[i]}</b>${cmd?'<span class="commander">COMMANDER</span>':''}<span class="hand-count">${p.hand.length} left</span></div>
-    <div class="seat-cards"><div class="backs" aria-label="${p.hand.length} hidden cards">${p.hand.map((_,j)=>`<span class="card-back" style="--j:${j}"><i>✦</i></span>`).join('')}</div><div class="played-slot ${played&&played.card.suit!==state.calledSuit?'discarded':''}">${played?face(played.card,{small:true,winner:isWinner(played)})+`<span class="play-kind">${played.card.suit!==state.calledSuit?'DISCARD':isWinner(played)?'INSTALL THIS':'CALLED SUIT'}</span>`:'<span class="slot-label">'+(state.phase==='call'?'Waiting for call':state.turn===i?'Choosing…':'Not played')+'</span>'}</div></div>
-    ${signal(p)}
-  </section>`;
-}
-function winning() {
-  return state.trick.filter(t=>t.card.suit===state.calledSuit).sort((a,b)=>b.card.rank-a.card.rank)[0];
-}
-function isWinner(t) {return state.phase==='resolve'&&winning()===t;}
-function total() {return state.stack.reduce((n,x)=>n+(x.card?.rank??x.rank??0),0);}
-function installed(id) {const x=state.stack.find(x=>(x.suit||x.card?.suit)===id);return x?.card||x;}
-function stack() {
-  return `<section class="ship" aria-label="Spaceship stack"><div class="ship-caption"><span class="eyebrow">OUR SHIP</span><strong>${state.stack.length}<span>/5 built</span></strong></div><div class="stack-slots">${SUITS.map(s=>{
-    const c=installed(s.id);return `<div class="stack-slot ${s.id} ${c?'built':''}"><span class="stack-symbol">${marks[s.id]}</span><span><b>${s.name}</b><small>${c?esc(c.name):'Not built'}</small></span><strong>${c?c.rank:'—'}</strong></div>`;
-  }).join('')}</div><div class="score"><span class="eyebrow">TOTAL COST</span><strong>${state.failed?'—':total()}</strong><small>${state.failed?'Incomplete':'Lower is better'}</small></div></section>`;
-}
-function center() {
-  const mine=state.trick.find(t=>t.player===0);
-  return `<div class="table-center"><div class="orbit" aria-hidden="true"></div><div class="round-label">ROUND ${Math.min(state.round,5)} OF 5</div>${state.calledSuit?`<div class="called ${state.calledSuit}"><span>CALLED SUIT</span><b>${marks[state.calledSuit]} ${label(state.calledSuit)}</b></div>`:'<div class="table-title">ONE CREW.<br>ONE CHEAP SHIP.</div>'}${mine?`<div class="your-play">${face(mine.card,{small:true,winner:isWinner(mine)})}<span>${mine.card.suit!==state.calledSuit?'You discarded':isWinner(mine)?'Install your card':'You played'}</span></div>`:'<p class="table-note">Follow the suit.<br>Highest card sets the cost.</p>'}</div>`;
-}
-function command() {
-  if(state.phase==='finished')return '';
-  if(signaling) {
-    const chosen=state.players[0].hand.find(c=>c.id===selected);
-    const options=chosen?signalOptions(state,0,chosen.id):[];
-    return `<div class="instruction"><span class="step-dot">↗</span><div><h2>${chosen?`Reveal ${label(chosen.suit)} ${chosen.rank}. What is true?`:'One signal. Choose a card to reveal.'}</h2><p>${chosen?'Your crew sees the card and the label you choose.':'Pick a card below. Say whether it’s your lowest, highest or only card in that suit.'}</p></div></div>${chosen?`<span class="signal-options">${options.map(k=>`<button data-signal="${k}" class="outline">${k}<small>${k==='ONLY'?'card in this suit':'in this suit'}</small></button>`).join('')}${!options.length?'<span class="invalid-signal">Choose a different card: this is a middle card.</span>':''}</span>`:''}`;
+const label = id => SUITS.find(s => s.id === id)?.name || '';
+const ascii = value => String(value ?? '').replace(/[\u2010-\u2015]/g, '-').replace(/[\u2018\u2019]/g, "'").replace(/[^\x20-\x7e\n]/g, '');
+const escape = value => ascii(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const width = 20;
+let state, rng, timer, generation = 0, signaling = false, error = '';
+
+function wrap(value) {
+  const words = ascii(value).split(/\s+/), lines = [''];
+  for (const word of words) {
+    const last = lines.length - 1;
+    if ((lines[last] + ' ' + word).trim().length > width) lines.push(word);
+    else lines[last] = (lines[last] + ' ' + word).trim();
   }
-  const p=state.players[state.commander];
-  if(state.phase==='call') {
-    if(watching)return `<div class="instruction"><span class="step-dot">${state.round}</span><div><h2>${names[state.commander]} is choosing a suit…</h2><p>Cheap signals let teammates shed expensive cards before their suit is called.</p></div></div>`;
-    return `<div class="instruction"><span class="step-dot">${state.round}</span><div><h2>${state.commander===0?'You’re Commander. Call a suit.':`${p.name} is Commander.`}</h2><p>${state.commander===0?'Everyone plays one card. The highest in your called suit gets installed.':'Send a signal now, or let the Commander choose the next suit.'}</p></div></div>${state.commander===0?`<div class="suit-choices">${SUITS.map(s=>`<button class="suit-choice ${s.id}" data-call="${s.id}" ${installed(s.id)?'disabled':''}>${marks[s.id]} ${s.name}${installed(s.id)?' ✓':''}</button>`).join('')}</div>`:`<button class="primary" data-action="bot-call">Let ${p.name} call <span>→</span></button>`}`;
+  return lines;
+}
+function box(lines) {
+  const edge = '+' + '-'.repeat(width + 2) + '+';
+  return `<pre>${escape([edge, ...lines.map(line => '| ' + ascii(line).padEnd(width) + ' |'), edge].join('\n'))}</pre>`;
+}
+function card(card, {action = '', disabled = false, foot = ''} = {}) {
+  const heading = `${card.rank}${' '.repeat(width - label(card.suit).length - 1)}${label(card.suit)}`;
+  const title = wrap(card.name), detail = card.detail ? wrap(card.detail) : [];
+  const lines = [heading, '', ...title, ...detail];
+  while (lines.length < 7) lines.push('');
+  lines.push(foot);
+  const content = box(lines);
+  if (!action) return `<div class="card" aria-label="${escape(label(card.suit))} ${card.rank}, ${escape(card.name)}">${content}</div>`;
+  return `<button class="card" data-card="${card.id}" ${disabled ? 'disabled' : ''} aria-label="${action} ${label(card.suit)} ${card.rank}, ${escape(card.name)}">${content}</button>`;
+}
+function winner() {
+  return state.trick.filter(t => t.card.suit === state.calledSuit).sort((a, b) => b.card.rank - a.card.rank)[0];
+}
+function signal(player) {
+  if (!player.signal) return '<div class="signal"></div>';
+  const c = player.signal.card;
+  const played = !player.hand.some(card => card.id === c.id);
+  return `<div class="signal ${played ? 'spent' : ''}" aria-label="Lowest ${label(c.suit)} ${c.rank}${played ? ', played' : ''}">Signal: ${label(c.suit)} ${c.rank}</div>`;
+}
+function installed() {
+  return `<section class="installed" aria-label="Installed cards">${SUITS.map(suit => {
+    const entry = state.stack.find(x => x.suit === suit.id);
+    const canCall = !entry && state.phase === 'call' && state.commander === 0 && !signaling;
+    const lines = entry
+      ? [`${suit.name}${' '.repeat(width - suit.name.length - 1)}${entry.card.rank}`, ...wrap(entry.card.name)]
+      : [suit.name, '', canCall ? '[Call]' : ''];
+    while (lines.length < 3) lines.push('');
+    return canCall
+      ? `<button class="stack-slot" data-call="${suit.id}" aria-label="Call ${suit.name}">${box(lines)}</button>`
+      : `<div class="stack-slot ${entry ? 'built' : ''}">${box(lines)}</div>`;
+  }).join('')}</section>`;
+}
+function seat(id) {
+  const player = state.players[id], play = state.trick.find(t => t.player === id);
+  const heading = names[id] + (state.commander === id ? ' (Commander)' : '');
+  const status = state.phase === 'call' ? 'Waiting for call' : state.turn === id ? id === 0 ? 'Your turn' : 'Playing' : 'Waiting';
+  let content;
+  if (play) {
+    const foot = play.card.suit !== state.calledSuit ? 'Discard' : state.phase === 'resolve' && winner() === play ? 'Install' : '';
+    content = card(play.card, {foot});
+  } else content = `<div class="empty-card">${box(['', '', '', status, '', '', '', ''])}</div>`;
+  return `<section class="seat" aria-label="${names[id]}'s play"><div class="seat-name">${heading}</div>${content}${signal(player)}</section>`;
+}
+function controls() {
+  if (state.phase === 'finished') {
+    return `<span>${state.failed ? 'Incomplete' : 'Complete'}</span><button data-action="replay">[Same deal]</button>`;
   }
-  if(state.phase==='resolve') {
-    const win=winning();
-    return `<div class="instruction"><span class="step-dot result-dot">${win?'✓':'!'}</span><div><h2>${win?`${names[win.player]} played the highest ${label(state.calledSuit)}: ${win.card.rank}.`:`No one had ${label(state.calledSuit)}.`}</h2><p>${win?`${win.card.name} joins our ship. ${win.player===0?'You’re':`${names[win.player]} is`} the next Commander.`:'That part cannot be built. This ship is incomplete.'}</p></div></div><button class="primary" data-action="install">${win?state.round===5?'Finish ship':'Install & continue':'See result'} <span>→</span></button>`;
+  if (signaling) return '<span>Signal lowest</span><button data-action="cancel">[Cancel]</button>';
+  if (state.phase === 'resolve') {
+    const win = winner();
+    return `<span>Call: ${label(state.calledSuit)}</span><button data-action="install">[${win ? 'Install ' + label(state.calledSuit) + ' ' + win.card.rank : 'Finish'}]</button>`;
   }
-  if(state.turn===0&&!watching) {
-    const legal=legalCards(state,0), follow=legal.some(c=>c.suit===state.calledSuit);
-    return `<div class="instruction"><span class="step-dot">↓</span><div><h2>${follow?`Your turn. Play ${label(state.calledSuit)}.`:`No ${label(state.calledSuit)}? Discard any card.`}</h2><p>${follow?'Choose a bright card. The highest played sets the cost.':'A cheap crew signal lets you safely shed expensive cards.'}</p></div></div><span class="turn-chip">YOUR TURN</span>`;
+  if (state.phase === 'call') {
+    return state.commander === 0 ? '<span>Call a suit</span>' : `<button data-action="bot-call">[${names[state.commander]}: Call]</button>`;
   }
-  return `<div class="instruction"><span class="step-dot">···</span><div><h2>${names[state.turn]||'The crew'} is playing…</h2><p>Must follow ${label(state.calledSuit)} if they have it. Otherwise, discard.</p></div></div>`;
+  return `<span>Call: ${label(state.calledSuit)}</span><span>${state.turn === 0 ? legalCards(state, 0).some(c => c.suit === state.calledSuit) ? 'Play' : 'Discard' : names[state.turn] + ' playing'}</span>`;
 }
 function hand() {
-  const p=state.players[0], legal=state.phase==='play'&&state.turn===0?legalCards(state,0):[];
-  const chosen=p.hand.find(c=>c.id===selected);
-  const canSignal=p.hand.length>0&&!p.signalUsed&&['call','play'].includes(state.phase);
-  return `<section class="hand-area" aria-label="Your hand"><div class="hand-toolbar"><div class="your-label"><strong>${watching?'SEAT 1':'YOUR HAND'}</strong>${state.commander===0?'<span class="commander">COMMANDER</span>':''}<span>${p.hand.length} cards</span></div>${p.signal?signal(p):''}${!watching?`<button class="signal-button ${signaling?'on':''}" data-action="signal" ${!canSignal&&!signaling?'disabled':''}>${signaling?'Cancel signal':p.signalUsed?'✓ Signal used':'↗ Signal a card · 1 left'}</button>`:'<span class="watch-label">AI DEMO · All five seats automated</span>'}</div>
-    <div class="hand-cards">${p.hand.map(c=>face(c,{button:!watching,selected:c.id===selected,disabled:!signaling&&state.phase==='play'&&state.turn===0&&!legal.some(x=>x.id===c.id)})).join('')}${!p.hand.length?'<div class="empty-hand">All five cards played. Nice work, crew.</div>':''}</div>
-    <div class="selection-bar">${chosen?`<p><b>${esc(chosen.name)}</b> <span>${esc(chosen.description)}</span></p>${!signaling&&state.phase==='play'&&state.turn===0&&legal.some(c=>c.id===chosen.id)?`<button class="primary play-button" data-action="play">${chosen.suit===state.calledSuit?'Play':'Discard'} ${label(chosen.suit)} ${chosen.rank} →</button>`:''}`:`<p class="hand-hint">${notice||'Select a card to inspect it. Your crew can only see cards you signal or play.'}</p>`}</div>
-  </section>`;
-}
-function result() {
-  if(state.phase!=='finished')return '';
-  const good=!state.failed&&state.stack.length===5;
-  return `<section class="final-result"><span class="eyebrow">${good?'SHIP COMPLETE':'SHIP INCOMPLETE'}</span><h1>${good?'Five parts. Ready for launch.':'This ship couldn’t be completed.'}</h1><p>${good?'You built an AI system together. Can your crew make it cheaper?':'No card was available in the called suit. Some deals can be impossible; discarding a suit’s last card can also leave the ship incomplete.'}</p><div class="result-cards">${SUITS.map(s=>{const c=installed(s.id);return c?face(c):`<div class="missing-card ${s.id}">${s.name}<b>Missing</b></div>`;}).join('')}</div>${good?`<div class="final-sum">${SUITS.map(s=>installed(s.id).rank).join(' + ')} <span>=</span> <strong>${total()}</strong><span>total cost · lower is better</span></div>`:'<p class="no-score">Incomplete ships do not receive a qualifying score.</p>'}<div class="result-actions"><button class="primary" data-action="new">Deal again →</button><button class="outline" data-action="replay">Try the same deal</button></div><p class="result-note">Room play: the five cheapest completed ships qualify. Ties at the cutoff are drawn at random.</p><details class="round-history"><summary>See each round</summary>${(state.history||[]).map(h=>`<div class="history-row"><b>${h.round}. ${label(h.suit)}</b><span>${h.plays.map(t=>`${names[t.player]}: ${label(t.card.suit)} ${t.card.rank}${t.card.suit!==h.suit?' (discard)':''}`).join(' · ')}</span><strong>${h.winner?`${names[h.winner.player]} installed ${h.winner.card.rank}`:'No card to install'}</strong></div>`).join('')}</details></section>`;
-}
-function rules() {
-  return `<div class="modal-backdrop" data-action="close-help"><section class="rules-panel" role="dialog" aria-modal="true" aria-label="How to play"><button class="close" data-action="close-help" aria-label="Close rules">×</button><span class="eyebrow">LEARN IN 20 SECONDS</span><h2>Build the cheapest ship.</h2><p>Five players. Five rounds. One card from each suit.</p><ol><li><b>Commander calls an unbuilt suit.</b></li><li><b>Everyone plays one card.</b> Follow the called suit if you can. Otherwise, discard anything.</li><li><b>Highest card in the called suit is installed.</b> Its player becomes Commander.</li></ol><div class="rule-signal"><b>One signal per player, for the whole game.</b><p>Reveal a card as your LOWEST, HIGHEST or ONLY card in that suit. Other hands stay secret.</p></div><p class="rule-small">Lower numbers cost less. Discard expensive cards before their suit is called. Equal highest cards: the first played wins, starting with Commander. No cards in a called suit: incomplete ship.</p><button class="primary" data-action="close-help">Got it. Let’s play →</button></section></div>`;
+  if (state.phase === 'finished') return '';
+  const player = state.players[0], legal = legalCards(state, 0);
+  const canSignal = !player.signalUsed && player.hand.length && ['call', 'play'].includes(state.phase);
+  return `<section class="hand" aria-label="Your hand"><div class="hand-label"><span>Your hand</span>${canSignal && !signaling ? '<button data-action="signal">[Signal lowest]</button>' : ''}</div><div class="hand-cards">${player.hand.map(c => {
+    const allowed = signaling ? signalOptions(state, 0, c.id).length > 0 : legal.some(x => x.id === c.id);
+    return card(c, {action: signaling ? 'Signal' : 'Play', disabled: !allowed});
+  }).join('')}</div></section>`;
 }
 function render() {
-  $.innerHTML=`<header><a class="brand" href="./" aria-label="Crew home"><span class="brand-star">✦</span> CREW <small>01</small></a><span class="tagline">Build the cheapest AI ship.</span><nav><button class="quiet" data-action="help">How to play</button><button class="quiet" data-action="watch">${watching?'Play yourself':'Watch AI'}</button><button class="reset" data-action="new">↻ New deal</button></nav></header>${stack()}${state.phase==='finished'?result():`<section class="table" aria-label="Five player card table"><div class="table-border" aria-hidden="true"></div>${[1,2,3,4].map(seat).join('')}${center()}</section><section class="command-bar" aria-live="polite">${command()}</section>${hand()}`}<footer><span>PHASE 1 · FIVE PARTS, ONE SHIP</span><span>Deal ${state.seed} · 25 of 50 cards dealt · Other hands stay secret</span></footer>${help?rules():''}`;
-  bind();
+  const total = state.stack.reduce((sum, entry) => sum + entry.card.rank, 0);
+  app.innerHTML = `<header><span>Installed</span><span class="total">Total: ${state.failed ? '-' : total}</span><button data-action="reset">[Reset]</button></header>${installed()}<section class="players" aria-label="Played cards">${[1, 2, 3, 4, 0].map(seat).join('')}</section><section class="controls" aria-live="polite">${controls()}</section>${hand()}${error ? `<p role="alert">${escape(error)}</p>` : ''}`;
+  app.querySelectorAll('[data-call]').forEach(button => button.onclick = () => act(() => callSuit(state, button.dataset.call)));
+  app.querySelectorAll('[data-card]').forEach(button => button.onclick = () => act(() => {
+    if (signaling) { signalCard(state, 0, button.dataset.card); signaling = false; }
+    else playCard(state, 0, button.dataset.card);
+  }));
+  app.querySelectorAll('[data-action]').forEach(button => button.onclick = () => {
+    switch (button.dataset.action) {
+      case 'reset': start(); break;
+      case 'replay': start(state.seed); break;
+      case 'signal': signaling = true; clearTimeout(timer); render(); break;
+      case 'cancel': signaling = false; render(); advance(); break;
+      case 'bot-call': act(() => callSuit(state, botCall(publicView(state, state.commander), rng))); break;
+      case 'install': act(() => resolveTrick(state)); break;
+    }
+  });
 }
-function act(fn) {
-  try {notice='';fn();}catch(err){notice=err.message;console.error(err);}
-  render();advance();
+function act(action) {
+  error = '';
+  try { action(); } catch (err) { error = err.message; }
+  render(); advance();
 }
 function advance() {
   clearTimeout(timer);
-  if(help||signaling||state.phase==='finished')return;
-  const id=gameId;
-  if(state.phase==='play'&&(state.turn!==0||watching)) {
-    timer=setTimeout(()=>{if(id!==gameId)return;act(()=>{const i=state.turn;const choice=botPlay(publicView(state,i),rng);playCard(state,i,typeof choice==='string'?choice:choice.id);});},watching?800:550);
-  } else if(watching&&state.phase==='call') {
-    timer=setTimeout(()=>{if(id===gameId)act(()=>{botsSignal();callSuit(state,botCall(publicView(state,state.commander),rng));});},1300);
-  } else if(watching&&state.phase==='resolve') {
-    timer=setTimeout(()=>{if(id===gameId)act(()=>{resolveTrick(state);botsSignal();});},2000);
-  }
+  if (signaling || state.phase !== 'play' || state.turn === 0) return;
+  const current = generation;
+  timer = setTimeout(() => {
+    if (current !== generation) return;
+    act(() => playCard(state, state.turn, botPlay(publicView(state, state.turn), rng)));
+  }, 450);
 }
-function bind() {
-  $.querySelectorAll('[data-call]').forEach(el=>el.onclick=()=>act(()=>{selected=null;signaling=false;callSuit(state,el.dataset.call);}));
-  $.querySelectorAll('[data-card]').forEach(el=>el.onclick=()=>{selected=selected===el.dataset.card?null:el.dataset.card;render();});
-  $.querySelectorAll('[data-signal]').forEach(el=>el.onclick=()=>act(()=>{signalCard(state,0,selected,el.dataset.signal);signaling=false;selected=null;notice='Signal sent. Your crew can now see that card.';}));
-  $.querySelectorAll('[data-action]').forEach(el=>el.onclick=e=>{
-    const a=el.dataset.action;
-    if(a==='close-help'&&el.classList.contains('modal-backdrop')&&e.target!==el)return;
-    if(a==='new')start();
-    if(a==='replay')start(state.seed,false);
-    if(a==='watch')start(freshSeed(),!watching);
-    if(a==='help'){help=true;clearTimeout(timer);render();$.querySelector('.close')?.focus();}
-    if(a==='close-help'){help=false;render();advance();}
-    if(a==='signal'){signaling=!signaling;selected=null;clearTimeout(timer);render();advance();}
-    if(a==='bot-call')act(()=>{botsSignal();callSuit(state,botCall(publicView(state,state.commander),rng));});
-    if(a==='play')act(()=>{playCard(state,0,selected);selected=null;});
-    if(a==='install')act(()=>{resolveTrick(state);selected=null;signaling=false;botsSignal();});
+function start(seed = Math.floor(Math.random() * 999999) + 1) {
+  clearTimeout(timer); generation++; signaling = false; error = '';
+  state = createGame(seed); rng = seededRng(seed + 10091);
+  state.players.forEach((player, id) => {
+    player.name = names[id];
+    if (id) {
+      const choice = botSignal(publicView(state, id));
+      if (choice) signalCard(state, id, choice.cardId);
+    }
   });
+  render(); advance();
 }
-document.addEventListener('keydown',e=>{if(help&&e.key==='Tab'){const controls=[...$.querySelectorAll('.rules-panel button')];const first=controls[0],last=controls.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}if(e.key==='Escape'){help=false;signaling=false;selected=null;render();advance();}});
-start(Number(new URLSearchParams(location.search).get('seed'))||freshSeed(),new URLSearchParams(location.search).has('watch'));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && signaling) { signaling = false; render(); advance(); }
+});
+start(Number(new URLSearchParams(location.search).get('seed')) || undefined);

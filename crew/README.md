@@ -1,53 +1,39 @@
-# CREW · Phase 1
+# Crew
 
-A local, offline, five-player cooperative card game. You play one seat; four simple bots play the others. Build one **MODEL, DATA, TOOLS, VERIFICATION and COMPUTE** into the cheapest complete AI spaceship.
+A local, black-and-white ASCII-style card table in the browser. One human, four bots, five tricks. No artwork, hidden-hand graphics, help screens or demo controls.
 
-## Play
-
-From the repository root:
+## Run
 
 ```sh
 node crew/server.mjs
 ```
 
-Open **http://localhost:4173**. No install, API key, network connection or build step is needed to play. Use a modern browser and Node.js 20+ for the server. Alternatively: `python3 -m http.server 4173 --directory crew`.
+Open http://localhost:4173. The server listens on `0.0.0.0:4173`, so the same port works through the machine's LAN or Tailscale address. No install, build, API key or internet access is needed to play. Node.js 20+ is enough. Alternatively: `python3 -m http.server 4173 --bind 0.0.0.0 --directory crew`.
 
-- **Call a suit** when you are Commander.
-- **Choose a card, then Play**. You must follow suit if possible; otherwise discard anything.
-- **The highest card in the called suit installs.** Its player becomes Commander. Discards never win.
-- Use **Signal a card** once per game: reveal your LOWEST, HIGHEST or ONLY card in its suit.
-- **Install & continue** keeps round results visible until the room is ready.
-- **New deal** resets everything. **Try the same deal** on the result screen lets you change decisions with the same cards.
-- **Watch AI** demonstrates the whole game. **Play yourself** returns to human mode.
+## Controls
 
-A cheap crew signal lets you safely discard an expensive card in that suit. Delay calling a well-covered suit to give your partners time to shed expensive cards. Five tricks; add the installed ranks; lower is better. Exactly equal winning ranks go to the first card played, starting clockwise from Commander. If nobody can play the called suit, the ship is incomplete and has no qualifying score.
+- Click an empty installed slot marked `[Call]` to call that suit.
+- Click a white card in your hand to play it. Black cards cannot be played on that turn.
+- `[Signal lowest]`, then one white card, reveals your lowest card in that suit. One signal per game. There is no signal-type choice.
+- `[Install ...]` advances after everyone has seen the trick.
+- `[Reset]` starts a new deal. `[Same deal]` appears when finished.
 
-The computer keeps other players’ cards face down. You see their hand counts, public signals, played cards and discards. No Phase 2 consequences are implemented.
+The screen contains only installed parts and total, each player's played card or waiting slot, public signals, your hand, and these controls. Signals are crossed out once the revealed card has been played. The room facilitator explains the rules.
 
-## Projection
+The highest card in the called suit installs. Its player becomes Commander. Follow suit if possible; otherwise discard any card. The goal is the lowest total for a complete five-suit ship. Equal ranks go to the first played, clockwise from Commander. A missing called suit ends incomplete with no score. Other players' hands remain private.
 
-The complete hand and controls fit on a 1366×768 desktop viewport; 1440×900 or larger gives more breathing room. Browser fullscreen is useful for a group. Narrow phones use a horizontally scrollable hand. Instructions stay on the table, and there is a short “How to play” overlay.
+A signal means only **"this is my lowest card in this suit"**. A single card is also its suit's lowest, and equal lowest copies qualify. Cheap public coverage lets teammates shed more expensive cards before that suit is called.
 
-A replayable deal: `http://localhost:4173/?seed=1`. An automated demonstration: `http://localhost:4173/?seed=1&watch`.
+Projection target: 1366x768 or larger. A narrow phone scrolls each row horizontally. Repeatable deal: `http://localhost:4173/?seed=1`.
 
-## The one deliberate rule change
-
-The brief initially specified **lowest** card installs. Playtesting proved that five-card hands can always preserve their cheapest card in each unbuilt suit; neither call order nor communication can improve the result. The prototype therefore changes **only lowest → highest**. The goal, costs, deck, suits, five tricks, free off-suit discards, Commander succession and signals remain as described.
-
-This iteration makes expensive cards a shared problem to remove before calling their suit. Both original and revised results, the mathematical explanation, limitations and room-scale qualification statistics are recorded in [PLAYTEST.md](PLAYTEST.md). The original rule is still available in the engine with `createGame(seed, { winner: 'lowest' })` or `simulateGame(seed, { winner: 'lowest' })`.
-
-## Test and simulate
-
-No package install is needed for engine tests or simulations:
+## Verification
 
 ```sh
 node --test crew/game.test.mjs crew/simulation.test.mjs
 node crew/simulate.mjs --games 2500
 ```
 
-The experiment writes [reports/simulation.json](reports/simulation.json). It compares random legal play, strategy, no signals, random/fixed call order, forced first-suit forks, installed ranks and room qualification. Only completed ships score. The cheapest five tables qualify; tied tables at the boundary are chosen randomly.
-
-Browser tests need development dependencies, with the local server running:
+AI-only simulation remains available through the command above. Browser checks, with the server running:
 
 ```sh
 cd crew
@@ -56,8 +42,10 @@ npx playwright install chromium
 npm run test:browser
 ```
 
-If using an existing Chromium installation, set `CHROMIUM_PATH=/path/to/chrome`. Browser checks save screenshots and results inside `crew/`. They exercise a complete human game, legal moves, a one-use signal, replay, AI demo, reset and viewport behavior. [screenshots/](screenshots/) contains the inspected visual evidence.
+Set `CHROMIUM_PATH=/path/to/chrome` to use an existing browser installation.
 
-## Checkpoints
+[PLAYTEST.md](PLAYTEST.md) records the rule iterations. [reports/single-signal.json](reports/single-signal.json) compares the single signal with the previous three choices on 2,500 paired deals. Highest-wins play histories and scores were identical; signals still saved 3.25 cost versus no signals. This preserves the useful coordination while removing a choice from the interface.
 
-[chronology/2026-10-02.md](chronology/2026-10-02.md) records decisions and verification checkpoints. All code, references, screenshots and reports are self-contained in this directory. The game uses no external fonts or runtime dependencies.
+The original lowest-installs and three-label rules remain available to experiments with `createGame(seed, {winner:'lowest', signalMode:'classic'})` or the same options to `simulateGame`. Default play is highest-installs with the single LOWEST signal. Card definitions and 50-card deck remain unchanged. No Phase 2 is implemented.
+
+[chronology/2026-10-02.md](chronology/2026-10-02.md) and git preserve previous versions. Current screenshots use the `ascii-` prefix in [screenshots/](screenshots/); older screenshots are historical checkpoints.

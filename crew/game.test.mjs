@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {SUITS,CARD_TYPES,createDeck,createGame,callSuit,legalCards,playCard,resolveTrick,signalOptions,signalCard,publicView,botCall,botPlay,simulateGame,totalCost} from './game.mjs';
+import {SUITS,CARD_TYPES,createDeck,createGame,callSuit,legalCards,playCard,resolveTrick,signalOptions,signalCard,publicView,botCall,botPlay,botSignal,simulateGame,totalCost} from './game.mjs';
 const card = (suit,rank,copy=0) => createDeck().find(c=>c.suit===suit&&c.rank===rank&&c.copy===copy);
 function fixture(hands,commander=0) {
   const state=createGame(1,{winner:'lowest'}); state.players.forEach((p,i)=>p.hand=hands[i]); state.commander=commander;return state;
@@ -22,13 +22,13 @@ test('follow suit, turns, commander inheritance, tied lowest chooses first clock
   assert.equal(s.phase,'resolve');resolveTrick(s);assert.equal(s.stack[0].card.rank,2);assert.equal(s.commander,2);assert.equal(s.discard.length,4);
   assert.equal(s.history.length,1);assert.throws(()=>callSuit(s,'data'),/unbuilt/);assert.equal(totalCost(s),2);
 });
-test('signals are factual, once only, support equal-rank duplicates, and reject middle ranks',()=>{
-  const s=fixture([[card('model',1),card('model',3),card('model',5),card('data',2)],[],[],[],[]]);
+test('classic signals remain factual, once only, support equal-rank duplicates, and reject middle ranks',()=>{
+  const s=fixture([[card('model',1),card('model',3),card('model',5),card('data',2)],[],[],[],[]]);s.rules.signalMode='classic';
   assert.deepEqual(signalOptions(s,0,'model-3-0'),[]);assert.deepEqual(signalOptions(s,0,'model-1-0'),['LOWEST']);
   assert.deepEqual(signalOptions(s,0,'model-5-0'),['HIGHEST']);assert.deepEqual(signalOptions(s,0,'data-2-0'),['ONLY']);
   assert.throws(()=>signalCard(s,0,'model-3-0','LOWEST'));
   signalCard(s,0,'model-1-0','LOWEST');assert.equal(s.players[0].signal.card.rank,1);assert.throws(()=>signalCard(s,0,'data-2-0','ONLY'));
-  const duplicates=fixture([[card('tools',2),card('tools',2,1)],[],[],[],[]]);assert.deepEqual(signalOptions(duplicates,0,'tools-2-0'),['LOWEST','HIGHEST']);
+  const duplicates=fixture([[card('tools',2),card('tools',2,1)],[],[],[],[]]);duplicates.rules.signalMode='classic';assert.deepEqual(signalOptions(duplicates,0,'tools-2-0'),['LOWEST','HIGHEST']);
 });
 test('bots only receive copied public information and own hand',()=>{
   const s=createGame(17),view=publicView(s,0);assert.equal(view.hand.length,5);
@@ -69,19 +69,19 @@ test('revised highest installs, exact ties still go clockwise, original lowest r
 });
 test('revised bot uses a live partner signal to discard an expensive singleton, not a vanished signal',()=>{
   const s=fixture([[card('data',5),card('tools',1),card('tools',2)],[card('data',1)],[],[],[]]);s.rules.winner='highest';
-  signalCard(s,1,'data-1-0','ONLY');callSuit(s,'model');
+  signalCard(s,1,'data-1-0');callSuit(s,'model');
   assert.equal(botPlay(publicView(s,0),()=>.5),'data-5-0');
   s.discard.push(card('data',1));assert.equal(botPlay(publicView(s,0),()=>.5),'tools-2-0');
 });
 test('Commander delays a cheaply covered suit so teammates have time to shed expensive cards',()=>{
   const s=fixture([[card('data',5),card('model',2)],[card('data',1)],[],[],[]]);s.rules.winner='highest';
-  signalCard(s,1,'data-1-0','ONLY');assert.notEqual(botCall(publicView(s,0),()=>.5),'data');
+  signalCard(s,1,'data-1-0');assert.notEqual(botCall(publicView(s,0),()=>.5),'data');
   s.stack=['model','tools','verification','compute'].map(suit=>({suit,card:card(suit,1)}));
   assert.equal(botCall(publicView(s,0),()=>.5),'data');
 });
 test('a costly covered card goes before a dead built card, which can buffer future discards',()=>{
   const s=fixture([[card('data',5),card('tools',2)],[card('data',1)],[],[],[]]);s.rules.winner='highest';
-  s.stack=[{suit:'tools',card:card('tools',1)}];signalCard(s,1,'data-1-0','ONLY');callSuit(s,'model');
+  s.stack=[{suit:'tools',card:card('tools',1)}];signalCard(s,1,'data-1-0');callSuit(s,'model');
   assert.equal(botPlay(publicView(s,0),()=>.5),'data-5-0');
 });
 test('original lowest-wins conservation baseline is order-invariant on seeded deals',()=>{
@@ -90,5 +90,26 @@ test('original lowest-wins conservation baseline is order-invariant on seeded de
     if(SUITS.some(s=>!all.some(c=>c.suit===s.id)))continue;
     const ideal=SUITS.reduce((sum,s)=>sum+Math.min(...all.filter(c=>c.suit===s.id).map(c=>c.rank)),0);
     for(const order of ['strategic','random','fixed'])assert.equal(simulateGame(seed,{winner:'lowest',order}).cost,ideal);
+  }
+});
+
+test('default signal has one meaning: lowest in its suit, including singleton and tied minima',()=>{
+  const s=fixture([[card('model',1),card('model',3),card('data',5),card('tools',2),card('tools',2,1)],[],[],[],[]]);
+  assert.equal(s.rules.signalMode,'single');
+  assert.deepEqual(signalOptions(s,0,'model-1-0'),['LOWEST']);assert.deepEqual(signalOptions(s,0,'model-3-0'),[]);
+  assert.deepEqual(signalOptions(s,0,'data-5-0'),['LOWEST']);assert.deepEqual(signalOptions(s,0,'tools-2-0'),['LOWEST']);
+  assert.deepEqual(signalOptions(s,0,'tools-2-1'),['LOWEST']);
+  assert.throws(()=>signalCard(s,0,'data-5-0','ONLY'));assert.throws(()=>signalCard(s,0,'model-3-0','HIGHEST'));
+  signalCard(s,0,'data-5-0');assert.equal(s.players[0].signal.kind,'LOWEST');
+  assert.throws(()=>signalCard(s,0,'model-1-0'));assert.deepEqual(signalOptions(s,0,'model-1-0'),[]);
+  const view=publicView(s,1);assert.equal(view.players[0].signal.kind,'LOWEST');assert.ok(view.players.every(p=>!('hand' in p)));
+});
+test('default bots always signal LOWEST and highest-wins action histories match classic mode',()=>{
+  for(let seed=1;seed<=100;seed++){
+    const state=createGame(seed);
+    for(let seat=0;seat<5;seat++){const choice=botSignal(publicView(state,seat));assert.equal(choice.kind,'LOWEST');assert.ok(signalOptions(state,seat,choice.cardId).includes(choice.kind));}
+    const single=simulateGame(seed),classic=simulateGame(seed,{signalMode:'classic'});
+    assert.equal(single.cost,classic.cost);assert.deepEqual(single.state.history,classic.state.history);
+    assert.ok(single.state.players.every(p=>p.signal.kind==='LOWEST'));
   }
 });

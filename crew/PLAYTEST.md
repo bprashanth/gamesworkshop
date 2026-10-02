@@ -75,3 +75,13 @@ Screenshots were captured and visually inspected at desktop, **1366×768 project
 Fifteen engine/qualification tests pass. The final browser run records no JavaScript or console errors; machine-readable checks are in [reports/browser-qa.json](reports/browser-qa.json). Screenshots 01–12 in [screenshots/](screenshots/) cover the first deal, rules, signal, legal play, trick result, complete stack, projection, mobile, AI demo and incomplete stack.
 
 The game now offers observable tradeoffs and a short, inspectable loop. These are agent-operated browser playtests, not a claim of enjoyment measured with a human group. The next useful event observation is whether players want to replay the same deal after seeing where expensive cards survived.
+
+## Latest iteration: monochrome ASCII and one signal
+
+The room-test UI has been deliberately reduced to ASCII card borders, installed parts, five play slots, the human hand, signals and necessary actions. It has no artwork, colored suits, hidden-hand graphics, tutorial, demo button, slogan or decorative text. A legal hand card is played with one click. Old screenshots and sections above describe the previous checkpoint; current evidence uses `screenshots/ascii-*.png`.
+
+The only communication is now **LOWEST in this suit**. Selecting a singleton or either copy of equal minima is truthful. No separate ONLY or HIGHEST option exists in normal play. `signalMode:'classic'` remains for historical comparisons, while human play and simulations default to the single meaning.
+
+This is enough for the current objective: a cheap signal reveals a replacement for an expensive card a partner might discard. The highest-wins bot policy never needed the extra ONLY/HIGHEST label. On 2,500 paired seeds, **all complete play histories and scores matched exactly** between single and classic signals. Both completed 2,494 deals at mean 16.9214, versus 20.1740 without signals. See [reports/single-signal.json](reports/single-signal.json). This is evidence for simplifying this mission's communication, not a claim that LOWEST is universally optimal for every future mission.
+
+The ASCII browser pass completed the five-round human-seat game at cost 16, exercised the single signal, legal-card restrictions, same-deal replay, reset during bot timers and seed 175's missing suit. All visible text was ASCII; no graphics or card-back elements remained. Screenshots were inspected at 1366x768 and 390px. Cards fit the projector viewport in both normal and signal modes. Seventeen engine/qualification tests pass and the browser report records no console/page errors: [reports/browser-ascii-qa.json](reports/browser-ascii-qa.json).

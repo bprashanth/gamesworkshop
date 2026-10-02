@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-02T17:28:18.821Z",
+  "result": "Total: 16",
+  "bounds": {
+    "bottom": 730,
+    "viewport": 768
+  },
+  "errors": [],
+  "checks": [
+    "ASCII-only rendered text",
+    "no artwork or hidden hands",
+    "one lowest signal",
+    "single-click legal play",
+    "complete five-round human game",
+    "reset cancels timers",
+    "same-deal replay",
+    "projector hand and signal mode fit",
+    "incomplete deal has no score",
+    "mobile no page overflow"
+  ]
+}
