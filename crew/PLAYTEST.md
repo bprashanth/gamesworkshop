@@ -63,3 +63,15 @@ Scores are recorded **only for complete five-part stacks**. Failure counts and p
 Five tricks keep sessions short. Bot experiments can demonstrate decision consequences and catch broken mechanics, but cannot establish that a group of humans finds the game fun. The browser's clarity and pacing require direct visual/manual testing; human group replay interest remains an event test.
 
 Reproduce: `node crew/simulate.mjs --games 2500`. Final machine-readable results: [reports/simulation.json](reports/simulation.json). Qualification checks: `node --test crew/simulation.test.mjs`.
+
+## Browser playtests and visual iteration
+
+The final browser pass used real clicks on visible controls, not injected game-state changes. A complete human-seat game on seed 1 finished at **16** (MODEL 4 + DATA 1 + TOOLS 4 + VERIFICATION 5 + COMPUTE 2). It used a truthful DATA 1 LOWEST signal, followed suit, discarded when void, reviewed each trick, and reached all five installed parts. The same-deal replay restored all five cards and the signal token.
+
+An automated five-seat demonstration also completed all five rounds. Reset was exercised while bot timers were active. The impossible seed 175 was tested by calling VERIFICATION, which was absent from the deal: all five cards were marked as discards, the ship ended incomplete, and neither a total nor a qualifying score was invented. The final round history remained readable.
+
+Screenshots were captured and visually inspected at desktop, **1366×768 projector**, and **390px phone** sizes. Iterations fixed overlapping seats that obscured signals, enlarged suit labels, explicitly labelled off-suit DISCARD cards, showed the human signal persistently, and moved signal selection into the command strip so the hand remains visible on a projector. Both ordinary and signal-mode hands fit at projector size. The phone hand scrolls horizontally; the page itself does not overflow horizontally. A phone needs vertical scrolling, while desktop is the intended table experience.
+
+Fifteen engine/qualification tests pass. The final browser run records no JavaScript or console errors; machine-readable checks are in [reports/browser-qa.json](reports/browser-qa.json). Screenshots 01–12 in [screenshots/](screenshots/) cover the first deal, rules, signal, legal play, trick result, complete stack, projection, mobile, AI demo and incomplete stack.
+
+The game now offers observable tradeoffs and a short, inspectable loop. These are agent-operated browser playtests, not a claim of enjoyment measured with a human group. The next useful event observation is whether players want to replay the same deal after seeing where expensive cards survived.

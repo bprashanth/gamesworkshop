@@ -63,7 +63,7 @@ function installed(id) {const x=state.stack.find(x=>(x.suit||x.card?.suit)===id)
 function stack() {
   return `<section class="ship" aria-label="Spaceship stack"><div class="ship-caption"><span class="eyebrow">OUR SHIP</span><strong>${state.stack.length}<span>/5 built</span></strong></div><div class="stack-slots">${SUITS.map(s=>{
     const c=installed(s.id);return `<div class="stack-slot ${s.id} ${c?'built':''}"><span class="stack-symbol">${marks[s.id]}</span><span><b>${s.name}</b><small>${c?esc(c.name):'Not built'}</small></span><strong>${c?c.rank:'—'}</strong></div>`;
-  }).join('')}</div><div class="score"><span class="eyebrow">TOTAL COST</span><strong>${total()}</strong><small>Lower is better</small></div></section>`;
+  }).join('')}</div><div class="score"><span class="eyebrow">TOTAL COST</span><strong>${state.failed?'—':total()}</strong><small>${state.failed?'Incomplete':'Lower is better'}</small></div></section>`;
 }
 function center() {
   const mine=state.trick.find(t=>t.player===0);
@@ -95,7 +95,7 @@ function hand() {
   const p=state.players[0], legal=state.phase==='play'&&state.turn===0?legalCards(state,0):[];
   const chosen=p.hand.find(c=>c.id===selected);
   const canSignal=p.hand.length>0&&!p.signalUsed&&['call','play'].includes(state.phase);
-  return `<section class="hand-area" aria-label="Your hand"><div class="hand-toolbar"><div class="your-label"><strong>${watching?'SEAT 1':'YOUR HAND'}</strong>${state.commander===0?'<span class="commander">COMMANDER</span>':''}<span>${p.hand.length} cards</span></div>${!watching&&p.signal?signal(p):''}${!watching?`<button class="signal-button ${signaling?'on':''}" data-action="signal" ${!canSignal&&!signaling?'disabled':''}>${signaling?'Cancel signal':p.signalUsed?'✓ Signal used':'↗ Signal a card · 1 left'}</button>`:'<span class="watch-label">AI DEMO · All five seats automated</span>'}</div>
+  return `<section class="hand-area" aria-label="Your hand"><div class="hand-toolbar"><div class="your-label"><strong>${watching?'SEAT 1':'YOUR HAND'}</strong>${state.commander===0?'<span class="commander">COMMANDER</span>':''}<span>${p.hand.length} cards</span></div>${p.signal?signal(p):''}${!watching?`<button class="signal-button ${signaling?'on':''}" data-action="signal" ${!canSignal&&!signaling?'disabled':''}>${signaling?'Cancel signal':p.signalUsed?'✓ Signal used':'↗ Signal a card · 1 left'}</button>`:'<span class="watch-label">AI DEMO · All five seats automated</span>'}</div>
     <div class="hand-cards">${p.hand.map(c=>face(c,{button:!watching,selected:c.id===selected,disabled:!signaling&&state.phase==='play'&&state.turn===0&&!legal.some(x=>x.id===c.id)})).join('')}${!p.hand.length?'<div class="empty-hand">All five cards played. Nice work, crew.</div>':''}</div>
     <div class="selection-bar">${chosen?`<p><b>${esc(chosen.name)}</b> <span>${esc(chosen.description)}</span></p>${!signaling&&state.phase==='play'&&state.turn===0&&legal.some(c=>c.id===chosen.id)?`<button class="primary play-button" data-action="play">${chosen.suit===state.calledSuit?'Play':'Discard'} ${label(chosen.suit)} ${chosen.rank} →</button>`:''}`:`<p class="hand-hint">${notice||'Select a card to inspect it. Your crew can only see cards you signal or play.'}</p>`}</div>
   </section>`;
