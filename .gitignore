@@ -242,3 +242,18 @@ tokens.json
 *.pfx
 id_rsa
 id_ed25519
+
+# Local prompts
+/.prompt/
+
+# JavaScript dependencies and generated test output (all projects)
+node_modules/
+.npm/
+coverage/
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db

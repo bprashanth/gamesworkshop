@@ -1,0 +1,757 @@
+{
+  "generatedAt": "2026-10-02T16:23:05.426Z",
+  "seeds": {
+    "first": 1,
+    "last": 2500,
+    "count": 2500
+  },
+  "methodology": "Paired deals for all policies. Failed stacks never receive a score or qualify. Complete-only averages can hide completion failures; read paired results alongside them. Bots receive public views only. Deal minimum is a retrospective lower bound, not bot knowledge.",
+  "variants": {
+    "strategic": {
+      "games": 2500,
+      "completed": 2494,
+      "completionRate": 0.9976,
+      "averageCompleteCost": 6.5397,
+      "completeCostDistribution": {
+        "5": 579,
+        "6": 767,
+        "7": 639,
+        "8": 322,
+        "9": 126,
+        "10": 45,
+        "11": 13,
+        "12": 2,
+        "13": 1
+      },
+      "installedRankDistribution": {
+        "1": 9400,
+        "2": 2439,
+        "3": 503,
+        "4": 117,
+        "5": 11
+      },
+      "bySuit": {
+        "tools": {
+          "averageRank": 1.314,
+          "ranks": {
+            "1": 1874,
+            "2": 486,
+            "3": 107,
+            "4": 25,
+            "5": 2
+          }
+        },
+        "data": {
+          "averageRank": 1.2915,
+          "ranks": {
+            "1": 1910,
+            "2": 466,
+            "3": 97,
+            "4": 17,
+            "5": 4
+          }
+        },
+        "compute": {
+          "averageRank": 1.3176,
+          "ranks": {
+            "1": 1856,
+            "2": 515,
+            "3": 94,
+            "4": 27,
+            "5": 2
+          }
+        },
+        "model": {
+          "averageRank": 1.3067,
+          "ranks": {
+            "1": 1882,
+            "2": 487,
+            "3": 100,
+            "4": 22,
+            "5": 3
+          }
+        },
+        "verification": {
+          "averageRank": 1.3099,
+          "ranks": {
+            "1": 1878,
+            "2": 485,
+            "3": 105,
+            "4": 26
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 2642,
+        "1": 2590,
+        "2": 2512,
+        "3": 2423,
+        "4": 2327
+      },
+      "meanCompleteExcessAboveDealMinimum": 0,
+      "dealMinimumVsCostCorrelation": 1,
+      "completeAtDealMinimum": 2494,
+      "impossibleDealsMissingSuit": 6
+    },
+    "noSignals": {
+      "games": 2500,
+      "completed": 2494,
+      "completionRate": 0.9976,
+      "averageCompleteCost": 6.5397,
+      "completeCostDistribution": {
+        "5": 579,
+        "6": 767,
+        "7": 639,
+        "8": 322,
+        "9": 126,
+        "10": 45,
+        "11": 13,
+        "12": 2,
+        "13": 1
+      },
+      "installedRankDistribution": {
+        "1": 9400,
+        "2": 2439,
+        "3": 503,
+        "4": 117,
+        "5": 11
+      },
+      "bySuit": {
+        "compute": {
+          "averageRank": 1.3176,
+          "ranks": {
+            "1": 1856,
+            "2": 515,
+            "3": 94,
+            "4": 27,
+            "5": 2
+          }
+        },
+        "data": {
+          "averageRank": 1.2915,
+          "ranks": {
+            "1": 1910,
+            "2": 466,
+            "3": 97,
+            "4": 17,
+            "5": 4
+          }
+        },
+        "tools": {
+          "averageRank": 1.314,
+          "ranks": {
+            "1": 1874,
+            "2": 486,
+            "3": 107,
+            "4": 25,
+            "5": 2
+          }
+        },
+        "model": {
+          "averageRank": 1.3067,
+          "ranks": {
+            "1": 1882,
+            "2": 487,
+            "3": 100,
+            "4": 22,
+            "5": 3
+          }
+        },
+        "verification": {
+          "averageRank": 1.3099,
+          "ranks": {
+            "1": 1878,
+            "2": 485,
+            "3": 105,
+            "4": 26
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 3167,
+        "1": 2510,
+        "2": 2369,
+        "3": 2285,
+        "4": 2163
+      },
+      "meanCompleteExcessAboveDealMinimum": 0,
+      "dealMinimumVsCostCorrelation": 1,
+      "completeAtDealMinimum": 2494,
+      "impossibleDealsMissingSuit": 6
+    },
+    "randomOrder": {
+      "games": 2500,
+      "completed": 2494,
+      "completionRate": 0.9976,
+      "averageCompleteCost": 6.5397,
+      "completeCostDistribution": {
+        "5": 579,
+        "6": 767,
+        "7": 639,
+        "8": 322,
+        "9": 126,
+        "10": 45,
+        "11": 13,
+        "12": 2,
+        "13": 1
+      },
+      "installedRankDistribution": {
+        "1": 9400,
+        "2": 2439,
+        "3": 503,
+        "4": 117,
+        "5": 11
+      },
+      "bySuit": {
+        "data": {
+          "averageRank": 1.2915,
+          "ranks": {
+            "1": 1910,
+            "2": 466,
+            "3": 97,
+            "4": 17,
+            "5": 4
+          }
+        },
+        "model": {
+          "averageRank": 1.3067,
+          "ranks": {
+            "1": 1882,
+            "2": 487,
+            "3": 100,
+            "4": 22,
+            "5": 3
+          }
+        },
+        "compute": {
+          "averageRank": 1.3176,
+          "ranks": {
+            "1": 1856,
+            "2": 515,
+            "3": 94,
+            "4": 27,
+            "5": 2
+          }
+        },
+        "verification": {
+          "averageRank": 1.3099,
+          "ranks": {
+            "1": 1878,
+            "2": 485,
+            "3": 105,
+            "4": 26
+          }
+        },
+        "tools": {
+          "averageRank": 1.314,
+          "ranks": {
+            "1": 1874,
+            "2": 486,
+            "3": 107,
+            "4": 25,
+            "5": 2
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 2675,
+        "1": 2562,
+        "2": 2491,
+        "3": 2442,
+        "4": 2319
+      },
+      "meanCompleteExcessAboveDealMinimum": 0,
+      "dealMinimumVsCostCorrelation": 1,
+      "completeAtDealMinimum": 2494,
+      "impossibleDealsMissingSuit": 6
+    },
+    "fixedOrder": {
+      "games": 2500,
+      "completed": 2494,
+      "completionRate": 0.9976,
+      "averageCompleteCost": 6.5397,
+      "completeCostDistribution": {
+        "5": 579,
+        "6": 767,
+        "7": 639,
+        "8": 322,
+        "9": 126,
+        "10": 45,
+        "11": 13,
+        "12": 2,
+        "13": 1
+      },
+      "installedRankDistribution": {
+        "1": 9400,
+        "2": 2439,
+        "3": 503,
+        "4": 117,
+        "5": 11
+      },
+      "bySuit": {
+        "model": {
+          "averageRank": 1.3067,
+          "ranks": {
+            "1": 1882,
+            "2": 487,
+            "3": 100,
+            "4": 22,
+            "5": 3
+          }
+        },
+        "data": {
+          "averageRank": 1.2915,
+          "ranks": {
+            "1": 1910,
+            "2": 466,
+            "3": 97,
+            "4": 17,
+            "5": 4
+          }
+        },
+        "tools": {
+          "averageRank": 1.314,
+          "ranks": {
+            "1": 1874,
+            "2": 486,
+            "3": 107,
+            "4": 25,
+            "5": 2
+          }
+        },
+        "verification": {
+          "averageRank": 1.3099,
+          "ranks": {
+            "1": 1878,
+            "2": 485,
+            "3": 105,
+            "4": 26
+          }
+        },
+        "compute": {
+          "averageRank": 1.3176,
+          "ranks": {
+            "1": 1856,
+            "2": 515,
+            "3": 94,
+            "4": 27,
+            "5": 2
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 2691,
+        "1": 2550,
+        "2": 2491,
+        "3": 2421,
+        "4": 2330
+      },
+      "meanCompleteExcessAboveDealMinimum": 0,
+      "dealMinimumVsCostCorrelation": 1,
+      "completeAtDealMinimum": 2494,
+      "impossibleDealsMissingSuit": 6
+    },
+    "randomLegal": {
+      "games": 2500,
+      "completed": 2423,
+      "completionRate": 0.9692,
+      "averageCompleteCost": 8.7866,
+      "completeCostDistribution": {
+        "5": 109,
+        "6": 212,
+        "7": 410,
+        "8": 472,
+        "9": 392,
+        "10": 311,
+        "11": 249,
+        "12": 138,
+        "13": 70,
+        "14": 31,
+        "15": 16,
+        "16": 11,
+        "17": 2
+      },
+      "installedRankDistribution": {
+        "1": 6361,
+        "2": 3394,
+        "3": 1509,
+        "4": 641,
+        "5": 210
+      },
+      "bySuit": {
+        "data": {
+          "averageRank": 1.7487,
+          "ranks": {
+            "1": 1289,
+            "2": 672,
+            "3": 288,
+            "4": 130,
+            "5": 44
+          }
+        },
+        "compute": {
+          "averageRank": 1.7726,
+          "ranks": {
+            "1": 1252,
+            "2": 690,
+            "3": 309,
+            "4": 124,
+            "5": 48
+          }
+        },
+        "verification": {
+          "averageRank": 1.7639,
+          "ranks": {
+            "1": 1263,
+            "2": 682,
+            "3": 308,
+            "4": 127,
+            "5": 43
+          }
+        },
+        "tools": {
+          "averageRank": 1.7416,
+          "ranks": {
+            "1": 1276,
+            "2": 697,
+            "3": 284,
+            "4": 132,
+            "5": 34
+          }
+        },
+        "model": {
+          "averageRank": 1.7598,
+          "ranks": {
+            "1": 1281,
+            "2": 653,
+            "3": 320,
+            "4": 128,
+            "5": 41
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 2586,
+        "1": 2485,
+        "2": 2605,
+        "3": 2380,
+        "4": 2340
+      },
+      "meanCompleteExcessAboveDealMinimum": 2.26,
+      "dealMinimumVsCostCorrelation": 0.5011,
+      "completeAtDealMinimum": 446,
+      "impossibleDealsMissingSuit": 6
+    }
+  },
+  "paired": {
+    "strategicVsNoSignals": {
+      "matchedDeals": 2500,
+      "bothComplete": 2494,
+      "aOnlyComplete": 0,
+      "bOnlyComplete": 0,
+      "bothIncomplete": 6,
+      "aCheaper": 0,
+      "tiedCost": 2494,
+      "bCheaper": 0,
+      "meanAMinusBCompleteCost": 0
+    },
+    "strategicVsRandomOrder": {
+      "matchedDeals": 2500,
+      "bothComplete": 2494,
+      "aOnlyComplete": 0,
+      "bOnlyComplete": 0,
+      "bothIncomplete": 6,
+      "aCheaper": 0,
+      "tiedCost": 2494,
+      "bCheaper": 0,
+      "meanAMinusBCompleteCost": 0
+    },
+    "strategicVsFixedOrder": {
+      "matchedDeals": 2500,
+      "bothComplete": 2494,
+      "aOnlyComplete": 0,
+      "bOnlyComplete": 0,
+      "bothIncomplete": 6,
+      "aCheaper": 0,
+      "tiedCost": 2494,
+      "bCheaper": 0,
+      "meanAMinusBCompleteCost": 0
+    },
+    "strategicVsRandomLegal": {
+      "matchedDeals": 2500,
+      "bothComplete": 2423,
+      "aOnlyComplete": 71,
+      "bOnlyComplete": 0,
+      "bothIncomplete": 6,
+      "aCheaper": 1977,
+      "tiedCost": 446,
+      "bCheaper": 0,
+      "meanAMinusBCompleteCost": -2.26
+    }
+  },
+  "originalRulesPreservationControl": {
+    "fixed": {
+      "games": 2500,
+      "completed": 2494,
+      "completionRate": 0.9976,
+      "averageCompleteCost": 6.5397,
+      "completeCostDistribution": {
+        "5": 579,
+        "6": 767,
+        "7": 639,
+        "8": 322,
+        "9": 126,
+        "10": 45,
+        "11": 13,
+        "12": 2,
+        "13": 1
+      },
+      "installedRankDistribution": {
+        "1": 9400,
+        "2": 2439,
+        "3": 503,
+        "4": 117,
+        "5": 11
+      },
+      "bySuit": {
+        "model": {
+          "averageRank": 1.3067,
+          "ranks": {
+            "1": 1882,
+            "2": 487,
+            "3": 100,
+            "4": 22,
+            "5": 3
+          }
+        },
+        "data": {
+          "averageRank": 1.2915,
+          "ranks": {
+            "1": 1910,
+            "2": 466,
+            "3": 97,
+            "4": 17,
+            "5": 4
+          }
+        },
+        "tools": {
+          "averageRank": 1.314,
+          "ranks": {
+            "1": 1874,
+            "2": 486,
+            "3": 107,
+            "4": 25,
+            "5": 2
+          }
+        },
+        "verification": {
+          "averageRank": 1.3099,
+          "ranks": {
+            "1": 1878,
+            "2": 485,
+            "3": 105,
+            "4": 26
+          }
+        },
+        "compute": {
+          "averageRank": 1.3176,
+          "ranks": {
+            "1": 1856,
+            "2": 515,
+            "3": 94,
+            "4": 27,
+            "5": 2
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 2691,
+        "1": 2550,
+        "2": 2491,
+        "3": 2421,
+        "4": 2330
+      },
+      "meanCompleteExcessAboveDealMinimum": 0,
+      "dealMinimumVsCostCorrelation": 1,
+      "completeAtDealMinimum": 2494,
+      "impossibleDealsMissingSuit": 6
+    },
+    "random": {
+      "games": 2500,
+      "completed": 2494,
+      "completionRate": 0.9976,
+      "averageCompleteCost": 6.5397,
+      "completeCostDistribution": {
+        "5": 579,
+        "6": 767,
+        "7": 639,
+        "8": 322,
+        "9": 126,
+        "10": 45,
+        "11": 13,
+        "12": 2,
+        "13": 1
+      },
+      "installedRankDistribution": {
+        "1": 9400,
+        "2": 2439,
+        "3": 503,
+        "4": 117,
+        "5": 11
+      },
+      "bySuit": {
+        "compute": {
+          "averageRank": 1.3176,
+          "ranks": {
+            "1": 1856,
+            "2": 515,
+            "3": 94,
+            "4": 27,
+            "5": 2
+          }
+        },
+        "model": {
+          "averageRank": 1.3067,
+          "ranks": {
+            "1": 1882,
+            "2": 487,
+            "3": 100,
+            "4": 22,
+            "5": 3
+          }
+        },
+        "data": {
+          "averageRank": 1.2915,
+          "ranks": {
+            "1": 1910,
+            "2": 466,
+            "3": 97,
+            "4": 17,
+            "5": 4
+          }
+        },
+        "tools": {
+          "averageRank": 1.314,
+          "ranks": {
+            "1": 1874,
+            "2": 486,
+            "3": 107,
+            "4": 25,
+            "5": 2
+          }
+        },
+        "verification": {
+          "averageRank": 1.3099,
+          "ranks": {
+            "1": 1878,
+            "2": 485,
+            "3": 105,
+            "4": 26
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 2659,
+        "1": 2577,
+        "2": 2491,
+        "3": 2428,
+        "4": 2327
+      },
+      "meanCompleteExcessAboveDealMinimum": 0,
+      "dealMinimumVsCostCorrelation": 1,
+      "completeAtDealMinimum": 2494,
+      "impossibleDealsMissingSuit": 6
+    },
+    "paired": {
+      "matchedDeals": 2500,
+      "bothComplete": 2494,
+      "aOnlyComplete": 0,
+      "bOnlyComplete": 0,
+      "bothIncomplete": 6,
+      "aCheaper": 0,
+      "tiedCost": 2494,
+      "bCheaper": 0,
+      "meanAMinusBCompleteCost": 0
+    },
+    "explanation": "If void, discard a built-suit card or a redundant card from another suit, preserving its cheapest. Such a card must exist by the pigeonhole principle: hand size equals unbuilt suit count. With lowest follow-suit play, every original suit minimum survives irrespective of order. Thus the original rules have a simple order-independent optimum."
+  },
+  "firstCallForks": {
+    "testedDeals": 500,
+    "dealsWithDifferentOutcome": 0,
+    "examples": []
+  },
+  "roomQualification": {
+    "tablesPerRoom": 50,
+    "rooms": 50,
+    "qualifierCostDistribution": {
+      "5": 250
+    },
+    "boundaryCostDistribution": {
+      "5": 50
+    },
+    "roomsWithBoundaryDraw": 49,
+    "insufficientCompleteTables": 0,
+    "examples": [
+      {
+        "boundary": 5,
+        "costs": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "drawRequired": true,
+        "qualifiedSeeds": [
+          20,
+          43,
+          49,
+          47,
+          30
+        ]
+      },
+      {
+        "boundary": 5,
+        "costs": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "drawRequired": true,
+        "qualifiedSeeds": [
+          65,
+          74,
+          85,
+          54,
+          96
+        ]
+      },
+      {
+        "boundary": 5,
+        "costs": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "drawRequired": true,
+        "qualifiedSeeds": [
+          138,
+          131,
+          129,
+          128,
+          136
+        ]
+      }
+    ]
+  },
+  "limits": [
+    "Bot results demonstrate policy differences, not human enjoyment or optimal play.",
+    "The deal lower bound ignores information and timing; it is used only to estimate luck.",
+    "All seats and suits share mechanical rules; finite-sample differences are not special suit powers.",
+    "Five tricks is deliberately brief. Human group testing is still required to assess replay appeal."
+  ]
+}

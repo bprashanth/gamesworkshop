@@ -1,0 +1,34 @@
+{
+  "samples": 2500,
+  "seeds": {
+    "from": 1,
+    "to": 2500
+  },
+  "winner": "highest",
+  "single": {
+    "games": 2500,
+    "complete": 2494,
+    "failed": 6,
+    "meanCompletedCost": 16.921411
+  },
+  "classic": {
+    "games": 2500,
+    "complete": 2494,
+    "failed": 6,
+    "meanCompletedCost": 16.921411
+  },
+  "noSignals": {
+    "games": 2500,
+    "complete": 2494,
+    "failed": 6,
+    "meanCompletedCost": 20.174018
+  },
+  "paired": {
+    "identicalSingleClassicHistories": 2500,
+    "singleCheaperThanNoSignals": 2096,
+    "tiedWithNoSignals": 398,
+    "singleDearerThanNoSignals": 0
+  },
+  "conclusion": "One truthful signal: this is my lowest card in this suit. Once per game. Singleton and tied minimum cards qualify.",
+  "signalSavings": 3.252607
+}

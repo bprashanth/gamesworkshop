@@ -1,0 +1,4445 @@
+{
+  "generatedAt": "2026-10-02T16:28:18.805Z",
+  "seeds": {
+    "first": 1,
+    "last": 2500,
+    "count": 2500
+  },
+  "rules": {
+    "installedCard": "highest called-suit rank; first played breaks equal ranks",
+    "baseline": "original lowest called-suit rank"
+  },
+  "methodology": "Paired deals for all policies. Failed stacks never receive a score or qualify. Complete-only averages can hide completion failures; read paired results alongside them. Bots receive public views only. Deal minimum is a retrospective lower bound, not bot knowledge.",
+  "variants": {
+    "strategic": {
+      "games": 2500,
+      "completed": 2494,
+      "completionRate": 0.9976,
+      "averageCompleteCost": 16.9214,
+      "completeCostDistribution": {
+        "7": 1,
+        "8": 2,
+        "9": 12,
+        "10": 26,
+        "11": 45,
+        "12": 93,
+        "13": 158,
+        "14": 208,
+        "15": 265,
+        "16": 329,
+        "17": 284,
+        "18": 293,
+        "19": 255,
+        "20": 215,
+        "21": 140,
+        "22": 86,
+        "23": 57,
+        "24": 20,
+        "25": 5
+      },
+      "installedRankDistribution": {
+        "1": 1339,
+        "2": 1960,
+        "3": 2865,
+        "4": 3182,
+        "5": 3124
+      },
+      "bySuit": {
+        "verification": {
+          "averageRank": 3.4358,
+          "ranks": {
+            "1": 244,
+            "2": 383,
+            "3": 582,
+            "4": 612,
+            "5": 673
+          }
+        },
+        "model": {
+          "averageRank": 3.2843,
+          "ranks": {
+            "1": 307,
+            "2": 438,
+            "3": 570,
+            "4": 597,
+            "5": 582
+          }
+        },
+        "compute": {
+          "averageRank": 3.4783,
+          "ranks": {
+            "1": 248,
+            "2": 332,
+            "3": 570,
+            "4": 667,
+            "5": 677
+          }
+        },
+        "tools": {
+          "averageRank": 3.3957,
+          "ranks": {
+            "1": 261,
+            "2": 384,
+            "3": 572,
+            "4": 661,
+            "5": 616
+          }
+        },
+        "data": {
+          "averageRank": 3.3272,
+          "ranks": {
+            "1": 279,
+            "2": 423,
+            "3": 571,
+            "4": 645,
+            "5": 576
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 2626,
+        "1": 2578,
+        "2": 2489,
+        "3": 2438,
+        "4": 2340
+      },
+      "meanCompleteExcessAboveDealMinimum": 10.3817,
+      "dealMinimumVsCostCorrelation": 0.202,
+      "completeAtDealMinimum": 0,
+      "conservativeDealCostVsFinalCorrelation": 0.6052,
+      "meanSavingAgainstConservativeDealCost": 3.2526,
+      "impossibleDealsMissingSuit": 6
+    },
+    "noSignals": {
+      "games": 2500,
+      "completed": 2494,
+      "completionRate": 0.9976,
+      "averageCompleteCost": 20.174,
+      "completeCostDistribution": {
+        "12": 3,
+        "13": 5,
+        "14": 26,
+        "15": 32,
+        "16": 92,
+        "17": 163,
+        "18": 253,
+        "19": 320,
+        "20": 452,
+        "21": 406,
+        "22": 333,
+        "23": 249,
+        "24": 127,
+        "25": 33
+      },
+      "installedRankDistribution": {
+        "1": 164,
+        "2": 937,
+        "3": 2341,
+        "4": 3887,
+        "5": 5141
+      },
+      "bySuit": {
+        "compute": {
+          "averageRank": 4.0481,
+          "ranks": {
+            "1": 43,
+            "2": 164,
+            "3": 472,
+            "4": 766,
+            "5": 1049
+          }
+        },
+        "tools": {
+          "averageRank": 4.0409,
+          "ranks": {
+            "1": 33,
+            "2": 188,
+            "3": 448,
+            "4": 800,
+            "5": 1025
+          }
+        },
+        "data": {
+          "averageRank": 4.0229,
+          "ranks": {
+            "1": 25,
+            "2": 197,
+            "3": 468,
+            "4": 810,
+            "5": 994
+          }
+        },
+        "model": {
+          "averageRank": 4.0124,
+          "ranks": {
+            "1": 30,
+            "2": 199,
+            "3": 489,
+            "4": 768,
+            "5": 1008
+          }
+        },
+        "verification": {
+          "averageRank": 4.0497,
+          "ranks": {
+            "1": 33,
+            "2": 189,
+            "3": 464,
+            "4": 743,
+            "5": 1065
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 2592,
+        "1": 2590,
+        "2": 2518,
+        "3": 2463,
+        "4": 2330
+      },
+      "meanCompleteExcessAboveDealMinimum": 13.6343,
+      "dealMinimumVsCostCorrelation": 0.2079,
+      "completeAtDealMinimum": 0,
+      "conservativeDealCostVsFinalCorrelation": 1,
+      "meanSavingAgainstConservativeDealCost": 0,
+      "impossibleDealsMissingSuit": 6
+    },
+    "randomOrder": {
+      "games": 2500,
+      "completed": 2494,
+      "completionRate": 0.9976,
+      "averageCompleteCost": 17.7069,
+      "completeCostDistribution": {
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "10": 12,
+        "11": 27,
+        "12": 48,
+        "13": 106,
+        "14": 161,
+        "15": 199,
+        "16": 271,
+        "17": 344,
+        "18": 312,
+        "19": 314,
+        "20": 255,
+        "21": 203,
+        "22": 125,
+        "23": 79,
+        "24": 28,
+        "25": 6
+      },
+      "installedRankDistribution": {
+        "1": 1097,
+        "2": 1765,
+        "3": 2594,
+        "4": 3318,
+        "5": 3696
+      },
+      "bySuit": {
+        "data": {
+          "averageRank": 3.5088,
+          "ranks": {
+            "1": 235,
+            "2": 359,
+            "3": 510,
+            "4": 682,
+            "5": 708
+          }
+        },
+        "model": {
+          "averageRank": 3.4936,
+          "ranks": {
+            "1": 237,
+            "2": 360,
+            "3": 537,
+            "4": 655,
+            "5": 705
+          }
+        },
+        "compute": {
+          "averageRank": 3.5958,
+          "ranks": {
+            "1": 205,
+            "2": 319,
+            "3": 529,
+            "4": 667,
+            "5": 774
+          }
+        },
+        "tools": {
+          "averageRank": 3.5497,
+          "ranks": {
+            "1": 218,
+            "2": 359,
+            "3": 488,
+            "4": 692,
+            "5": 737
+          }
+        },
+        "verification": {
+          "averageRank": 3.5589,
+          "ranks": {
+            "1": 202,
+            "2": 368,
+            "3": 530,
+            "4": 622,
+            "5": 772
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 2601,
+        "1": 2582,
+        "2": 2477,
+        "3": 2489,
+        "4": 2340
+      },
+      "meanCompleteExcessAboveDealMinimum": 11.1672,
+      "dealMinimumVsCostCorrelation": 0.2397,
+      "completeAtDealMinimum": 0,
+      "conservativeDealCostVsFinalCorrelation": 0.6712,
+      "meanSavingAgainstConservativeDealCost": 2.4671,
+      "impossibleDealsMissingSuit": 6
+    },
+    "fixedOrder": {
+      "games": 2500,
+      "completed": 2494,
+      "completionRate": 0.9976,
+      "averageCompleteCost": 17.8236,
+      "completeCostDistribution": {
+        "7": 1,
+        "8": 2,
+        "9": 4,
+        "10": 9,
+        "11": 25,
+        "12": 42,
+        "13": 89,
+        "14": 171,
+        "15": 197,
+        "16": 260,
+        "17": 318,
+        "18": 335,
+        "19": 299,
+        "20": 275,
+        "21": 196,
+        "22": 153,
+        "23": 82,
+        "24": 27,
+        "25": 9
+      },
+      "installedRankDistribution": {
+        "1": 1013,
+        "2": 1741,
+        "3": 2613,
+        "4": 3397,
+        "5": 3706
+      },
+      "bySuit": {
+        "model": {
+          "averageRank": 4.0124,
+          "ranks": {
+            "1": 30,
+            "2": 199,
+            "3": 489,
+            "4": 768,
+            "5": 1008
+          }
+        },
+        "data": {
+          "averageRank": 3.846,
+          "ranks": {
+            "1": 47,
+            "2": 266,
+            "3": 544,
+            "4": 804,
+            "5": 833
+          }
+        },
+        "tools": {
+          "averageRank": 3.6512,
+          "ranks": {
+            "1": 108,
+            "2": 349,
+            "3": 569,
+            "4": 747,
+            "5": 721
+          }
+        },
+        "verification": {
+          "averageRank": 3.3569,
+          "ranks": {
+            "1": 254,
+            "2": 471,
+            "3": 541,
+            "4": 587,
+            "5": 641
+          }
+        },
+        "compute": {
+          "averageRank": 2.9571,
+          "ranks": {
+            "1": 574,
+            "2": 456,
+            "3": 470,
+            "4": 491,
+            "5": 503
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 2595,
+        "1": 2507,
+        "2": 2554,
+        "3": 2450,
+        "4": 2377
+      },
+      "meanCompleteExcessAboveDealMinimum": 11.2839,
+      "dealMinimumVsCostCorrelation": 0.2245,
+      "completeAtDealMinimum": 0,
+      "conservativeDealCostVsFinalCorrelation": 0.6863,
+      "meanSavingAgainstConservativeDealCost": 2.3504,
+      "impossibleDealsMissingSuit": 6
+    },
+    "randomLegal": {
+      "games": 2500,
+      "completed": 2439,
+      "completionRate": 0.9756,
+      "averageCompleteCost": 21.1751,
+      "completeCostDistribution": {
+        "9": 1,
+        "11": 1,
+        "13": 1,
+        "14": 7,
+        "15": 18,
+        "16": 35,
+        "17": 92,
+        "18": 149,
+        "19": 219,
+        "20": 342,
+        "21": 395,
+        "22": 442,
+        "23": 366,
+        "24": 274,
+        "25": 97
+      },
+      "installedRankDistribution": {
+        "1": 223,
+        "2": 677,
+        "3": 1556,
+        "4": 3294,
+        "5": 6445
+      },
+      "bySuit": {
+        "data": {
+          "averageRank": 4.2276,
+          "ranks": {
+            "1": 42,
+            "2": 145,
+            "3": 299,
+            "4": 683,
+            "5": 1270
+          }
+        },
+        "compute": {
+          "averageRank": 4.2312,
+          "ranks": {
+            "1": 49,
+            "2": 129,
+            "3": 316,
+            "4": 660,
+            "5": 1285
+          }
+        },
+        "verification": {
+          "averageRank": 4.2534,
+          "ranks": {
+            "1": 43,
+            "2": 140,
+            "3": 308,
+            "4": 613,
+            "5": 1335
+          }
+        },
+        "tools": {
+          "averageRank": 4.2419,
+          "ranks": {
+            "1": 49,
+            "2": 128,
+            "3": 291,
+            "4": 687,
+            "5": 1284
+          }
+        },
+        "model": {
+          "averageRank": 4.221,
+          "ranks": {
+            "1": 40,
+            "2": 135,
+            "3": 342,
+            "4": 651,
+            "5": 1271
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 2581,
+        "1": 2582,
+        "2": 2440,
+        "3": 2475,
+        "4": 2340
+      },
+      "meanCompleteExcessAboveDealMinimum": 14.6355,
+      "dealMinimumVsCostCorrelation": 0.1893,
+      "completeAtDealMinimum": 0,
+      "conservativeDealCostVsFinalCorrelation": 0.5832,
+      "meanSavingAgainstConservativeDealCost": -0.975,
+      "impossibleDealsMissingSuit": 6
+    }
+  },
+  "paired": {
+    "strategicVsNoSignals": {
+      "matchedDeals": 2500,
+      "bothComplete": 2494,
+      "aOnlyComplete": 0,
+      "bOnlyComplete": 0,
+      "bothIncomplete": 6,
+      "aCheaper": 2096,
+      "tiedCost": 398,
+      "bCheaper": 0,
+      "meanAMinusBCompleteCost": -3.2526
+    },
+    "strategicVsRandomOrder": {
+      "matchedDeals": 2500,
+      "bothComplete": 2494,
+      "aOnlyComplete": 0,
+      "bOnlyComplete": 0,
+      "bothIncomplete": 6,
+      "aCheaper": 1215,
+      "tiedCost": 683,
+      "bCheaper": 596,
+      "meanAMinusBCompleteCost": -0.7855
+    },
+    "strategicVsFixedOrder": {
+      "matchedDeals": 2500,
+      "bothComplete": 2494,
+      "aOnlyComplete": 0,
+      "bOnlyComplete": 0,
+      "bothIncomplete": 6,
+      "aCheaper": 1257,
+      "tiedCost": 668,
+      "bCheaper": 569,
+      "meanAMinusBCompleteCost": -0.9022
+    },
+    "strategicVsRandomLegal": {
+      "matchedDeals": 2500,
+      "bothComplete": 2439,
+      "aOnlyComplete": 55,
+      "bOnlyComplete": 0,
+      "bothIncomplete": 6,
+      "aCheaper": 2195,
+      "tiedCost": 149,
+      "bCheaper": 95,
+      "meanAMinusBCompleteCost": -4.2218
+    }
+  },
+  "originalRulesPreservationControl": {
+    "fixed": {
+      "games": 2500,
+      "completed": 2494,
+      "completionRate": 0.9976,
+      "averageCompleteCost": 6.5397,
+      "completeCostDistribution": {
+        "5": 579,
+        "6": 767,
+        "7": 639,
+        "8": 322,
+        "9": 126,
+        "10": 45,
+        "11": 13,
+        "12": 2,
+        "13": 1
+      },
+      "installedRankDistribution": {
+        "1": 9400,
+        "2": 2439,
+        "3": 503,
+        "4": 117,
+        "5": 11
+      },
+      "bySuit": {
+        "model": {
+          "averageRank": 1.3067,
+          "ranks": {
+            "1": 1882,
+            "2": 487,
+            "3": 100,
+            "4": 22,
+            "5": 3
+          }
+        },
+        "data": {
+          "averageRank": 1.2915,
+          "ranks": {
+            "1": 1910,
+            "2": 466,
+            "3": 97,
+            "4": 17,
+            "5": 4
+          }
+        },
+        "tools": {
+          "averageRank": 1.314,
+          "ranks": {
+            "1": 1874,
+            "2": 486,
+            "3": 107,
+            "4": 25,
+            "5": 2
+          }
+        },
+        "verification": {
+          "averageRank": 1.3099,
+          "ranks": {
+            "1": 1878,
+            "2": 485,
+            "3": 105,
+            "4": 26
+          }
+        },
+        "compute": {
+          "averageRank": 1.3176,
+          "ranks": {
+            "1": 1856,
+            "2": 515,
+            "3": 94,
+            "4": 27,
+            "5": 2
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 2691,
+        "1": 2550,
+        "2": 2491,
+        "3": 2421,
+        "4": 2330
+      },
+      "meanCompleteExcessAboveDealMinimum": 0,
+      "dealMinimumVsCostCorrelation": 1,
+      "completeAtDealMinimum": 2494,
+      "conservativeDealCostVsFinalCorrelation": 0.2079,
+      "meanSavingAgainstConservativeDealCost": 13.6343,
+      "impossibleDealsMissingSuit": 6
+    },
+    "random": {
+      "games": 2500,
+      "completed": 2494,
+      "completionRate": 0.9976,
+      "averageCompleteCost": 6.5397,
+      "completeCostDistribution": {
+        "5": 579,
+        "6": 767,
+        "7": 639,
+        "8": 322,
+        "9": 126,
+        "10": 45,
+        "11": 13,
+        "12": 2,
+        "13": 1
+      },
+      "installedRankDistribution": {
+        "1": 9400,
+        "2": 2439,
+        "3": 503,
+        "4": 117,
+        "5": 11
+      },
+      "bySuit": {
+        "compute": {
+          "averageRank": 1.3176,
+          "ranks": {
+            "1": 1856,
+            "2": 515,
+            "3": 94,
+            "4": 27,
+            "5": 2
+          }
+        },
+        "model": {
+          "averageRank": 1.3067,
+          "ranks": {
+            "1": 1882,
+            "2": 487,
+            "3": 100,
+            "4": 22,
+            "5": 3
+          }
+        },
+        "data": {
+          "averageRank": 1.2915,
+          "ranks": {
+            "1": 1910,
+            "2": 466,
+            "3": 97,
+            "4": 17,
+            "5": 4
+          }
+        },
+        "tools": {
+          "averageRank": 1.314,
+          "ranks": {
+            "1": 1874,
+            "2": 486,
+            "3": 107,
+            "4": 25,
+            "5": 2
+          }
+        },
+        "verification": {
+          "averageRank": 1.3099,
+          "ranks": {
+            "1": 1878,
+            "2": 485,
+            "3": 105,
+            "4": 26
+          }
+        }
+      },
+      "installWinsBySeat": {
+        "0": 2659,
+        "1": 2577,
+        "2": 2491,
+        "3": 2428,
+        "4": 2327
+      },
+      "meanCompleteExcessAboveDealMinimum": 0,
+      "dealMinimumVsCostCorrelation": 1,
+      "completeAtDealMinimum": 2494,
+      "conservativeDealCostVsFinalCorrelation": 0.2079,
+      "meanSavingAgainstConservativeDealCost": 13.6343,
+      "impossibleDealsMissingSuit": 6
+    },
+    "paired": {
+      "matchedDeals": 2500,
+      "bothComplete": 2494,
+      "aOnlyComplete": 0,
+      "bOnlyComplete": 0,
+      "bothIncomplete": 6,
+      "aCheaper": 0,
+      "tiedCost": 2494,
+      "bCheaper": 0,
+      "meanAMinusBCompleteCost": 0
+    },
+    "explanation": "If void, discard a built-suit card or a redundant card from another suit, preserving its cheapest. Such a card must exist by the pigeonhole principle: hand size equals unbuilt suit count. With lowest follow-suit play, every original suit minimum survives irrespective of order. Thus the original rules have a simple order-independent optimum."
+  },
+  "firstCallForks": {
+    "testedDeals": 500,
+    "dealsWithDifferentOutcome": 477,
+    "meanBestWorstCostSpreadForAllCompleteBranches": 3.3587,
+    "costSpreadDistribution": {
+      "0": 22,
+      "1": 54,
+      "2": 82,
+      "3": 120,
+      "4": 111,
+      "5": 54,
+      "6": 27,
+      "7": 16,
+      "8": 11,
+      "9": 1,
+      "13": 1
+    },
+    "examples": [
+      {
+        "seed": 1,
+        "variants": [
+          {
+            "firstSuit": "model",
+            "complete": true,
+            "cost": 18,
+            "calls": [
+              "model",
+              "verification",
+              "compute",
+              "tools",
+              "data"
+            ],
+            "stack": [
+              {
+                "suit": "model",
+                "rank": 4
+              },
+              {
+                "suit": "verification",
+                "rank": 5
+              },
+              {
+                "suit": "compute",
+                "rank": 4
+              },
+              {
+                "suit": "tools",
+                "rank": 4
+              },
+              {
+                "suit": "data",
+                "rank": 1
+              }
+            ]
+          },
+          {
+            "firstSuit": "data",
+            "complete": true,
+            "cost": 16,
+            "calls": [
+              "data",
+              "verification",
+              "model",
+              "compute",
+              "tools"
+            ],
+            "stack": [
+              {
+                "suit": "data",
+                "rank": 1
+              },
+              {
+                "suit": "verification",
+                "rank": 5
+              },
+              {
+                "suit": "model",
+                "rank": 4
+              },
+              {
+                "suit": "compute",
+                "rank": 2
+              },
+              {
+                "suit": "tools",
+                "rank": 4
+              }
+            ]
+          },
+          {
+            "firstSuit": "tools",
+            "complete": true,
+            "cost": 20,
+            "calls": [
+              "tools",
+              "verification",
+              "model",
+              "compute",
+              "data"
+            ],
+            "stack": [
+              {
+                "suit": "tools",
+                "rank": 5
+              },
+              {
+                "suit": "verification",
+                "rank": 5
+              },
+              {
+                "suit": "model",
+                "rank": 4
+              },
+              {
+                "suit": "compute",
+                "rank": 5
+              },
+              {
+                "suit": "data",
+                "rank": 1
+              }
+            ]
+          },
+          {
+            "firstSuit": "verification",
+            "complete": true,
+            "cost": 18,
+            "calls": [
+              "verification",
+              "model",
+              "compute",
+              "tools",
+              "data"
+            ],
+            "stack": [
+              {
+                "suit": "verification",
+                "rank": 5
+              },
+              {
+                "suit": "model",
+                "rank": 4
+              },
+              {
+                "suit": "compute",
+                "rank": 4
+              },
+              {
+                "suit": "tools",
+                "rank": 4
+              },
+              {
+                "suit": "data",
+                "rank": 1
+              }
+            ]
+          },
+          {
+            "firstSuit": "compute",
+            "complete": true,
+            "cost": 19,
+            "calls": [
+              "compute",
+              "verification",
+              "model",
+              "data",
+              "tools"
+            ],
+            "stack": [
+              {
+                "suit": "compute",
+                "rank": 5
+              },
+              {
+                "suit": "verification",
+                "rank": 5
+              },
+              {
+                "suit": "model",
+                "rank": 4
+              },
+              {
+                "suit": "data",
+                "rank": 1
+              },
+              {
+                "suit": "tools",
+                "rank": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "seed": 2,
+        "variants": [
+          {
+            "firstSuit": "model",
+            "complete": true,
+            "cost": 21,
+            "calls": [
+              "model",
+              "tools",
+              "verification",
+              "data",
+              "compute"
+            ],
+            "stack": [
+              {
+                "suit": "model",
+                "rank": 5
+              },
+              {
+                "suit": "tools",
+                "rank": 5
+              },
+              {
+                "suit": "verification",
+                "rank": 4
+              },
+              {
+                "suit": "data",
+                "rank": 3
+              },
+              {
+                "suit": "compute",
+                "rank": 4
+              }
+            ]
+          },
+          {
+            "firstSuit": "data",
+            "complete": true,
+            "cost": 22,
+            "calls": [
+              "data",
+              "tools",
+              "verification",
+              "model",
+              "compute"
+            ],
+            "stack": [
+              {
+                "suit": "data",
+                "rank": 5
+              },
+              {
+                "suit": "tools",
+                "rank": 5
+              },
+              {
+                "suit": "verification",
+                "rank": 4
+              },
+              {
+                "suit": "model",
+                "rank": 4
+              },
+              {
+                "suit": "compute",
+                "rank": 4
+              }
+            ]
+          },
+          {
+            "firstSuit": "tools",
+            "complete": true,
+            "cost": 21,
+            "calls": [
+              "tools",
+              "model",
+              "verification",
+              "data",
+              "compute"
+            ],
+            "stack": [
+              {
+                "suit": "tools",
+                "rank": 5
+              },
+              {
+                "suit": "model",
+                "rank": 5
+              },
+              {
+                "suit": "verification",
+                "rank": 4
+              },
+              {
+                "suit": "data",
+                "rank": 3
+              },
+              {
+                "suit": "compute",
+                "rank": 4
+              }
+            ]
+          },
+          {
+            "firstSuit": "verification",
+            "complete": true,
+            "cost": 21,
+            "calls": [
+              "verification",
+              "tools",
+              "model",
+              "compute",
+              "data"
+            ],
+            "stack": [
+              {
+                "suit": "verification",
+                "rank": 4
+              },
+              {
+                "suit": "tools",
+                "rank": 5
+              },
+              {
+                "suit": "model",
+                "rank": 5
+              },
+              {
+                "suit": "compute",
+                "rank": 4
+              },
+              {
+                "suit": "data",
+                "rank": 3
+              }
+            ]
+          },
+          {
+            "firstSuit": "compute",
+            "complete": true,
+            "cost": 21,
+            "calls": [
+              "compute",
+              "tools",
+              "verification",
+              "model",
+              "data"
+            ],
+            "stack": [
+              {
+                "suit": "compute",
+                "rank": 4
+              },
+              {
+                "suit": "tools",
+                "rank": 5
+              },
+              {
+                "suit": "verification",
+                "rank": 4
+              },
+              {
+                "suit": "model",
+                "rank": 5
+              },
+              {
+                "suit": "data",
+                "rank": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "seed": 3,
+        "variants": [
+          {
+            "firstSuit": "model",
+            "complete": true,
+            "cost": 13,
+            "calls": [
+              "model",
+              "tools",
+              "compute",
+              "data",
+              "verification"
+            ],
+            "stack": [
+              {
+                "suit": "model",
+                "rank": 3
+              },
+              {
+                "suit": "tools",
+                "rank": 3
+              },
+              {
+                "suit": "compute",
+                "rank": 3
+              },
+              {
+                "suit": "data",
+                "rank": 2
+              },
+              {
+                "suit": "verification",
+                "rank": 2
+              }
+            ]
+          },
+          {
+            "firstSuit": "data",
+            "complete": true,
+            "cost": 14,
+            "calls": [
+              "data",
+              "tools",
+              "model",
+              "compute",
+              "verification"
+            ],
+            "stack": [
+              {
+                "suit": "data",
+                "rank": 4
+              },
+              {
+                "suit": "tools",
+                "rank": 3
+              },
+              {
+                "suit": "model",
+                "rank": 3
+              },
+              {
+                "suit": "compute",
+                "rank": 3
+              },
+              {
+                "suit": "verification",
+                "rank": 1
+              }
+            ]
+          },
+          {
+            "firstSuit": "tools",
+            "complete": true,
+            "cost": 13,
+            "calls": [
+              "tools",
+              "model",
+              "compute",
+              "data",
+              "verification"
+            ],
+            "stack": [
+              {
+                "suit": "tools",
+                "rank": 3
+              },
+              {
+                "suit": "model",
+                "rank": 3
+              },
+              {
+                "suit": "compute",
+                "rank": 3
+              },
+              {
+                "suit": "data",
+                "rank": 2
+              },
+              {
+                "suit": "verification",
+                "rank": 2
+              }
+            ]
+          },
+          {
+            "firstSuit": "verification",
+            "complete": true,
+            "cost": 15,
+            "calls": [
+              "verification",
+              "model",
+              "tools",
+              "compute",
+              "data"
+            ],
+            "stack": [
+              {
+                "suit": "verification",
+                "rank": 5
+              },
+              {
+                "suit": "model",
+                "rank": 3
+              },
+              {
+                "suit": "tools",
+                "rank": 3
+              },
+              {
+                "suit": "compute",
+                "rank": 3
+              },
+              {
+                "suit": "data",
+                "rank": 1
+              }
+            ]
+          },
+          {
+            "firstSuit": "compute",
+            "complete": true,
+            "cost": 17,
+            "calls": [
+              "compute",
+              "tools",
+              "model",
+              "data",
+              "verification"
+            ],
+            "stack": [
+              {
+                "suit": "compute",
+                "rank": 5
+              },
+              {
+                "suit": "tools",
+                "rank": 3
+              },
+              {
+                "suit": "model",
+                "rank": 3
+              },
+              {
+                "suit": "data",
+                "rank": 4
+              },
+              {
+                "suit": "verification",
+                "rank": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "seed": 4,
+        "variants": [
+          {
+            "firstSuit": "model",
+            "complete": true,
+            "cost": 14,
+            "calls": [
+              "model",
+              "verification",
+              "tools",
+              "compute",
+              "data"
+            ],
+            "stack": [
+              {
+                "suit": "model",
+                "rank": 3
+              },
+              {
+                "suit": "verification",
+                "rank": 4
+              },
+              {
+                "suit": "tools",
+                "rank": 3
+              },
+              {
+                "suit": "compute",
+                "rank": 3
+              },
+              {
+                "suit": "data",
+                "rank": 1
+              }
+            ]
+          },
+          {
+            "firstSuit": "data",
+            "complete": true,
+            "cost": 15,
+            "calls": [
+              "data",
+              "verification",
+              "tools",
+              "compute",
+              "model"
+            ],
+            "stack": [
+              {
+                "suit": "data",
+                "rank": 4
+              },
+              {
+                "suit": "verification",
+                "rank": 4
+              },
+              {
+                "suit": "tools",
+                "rank": 3
+              },
+              {
+                "suit": "compute",
+                "rank": 3
+              },
+              {
+                "suit": "model",
+                "rank": 1
+              }
+            ]
+          },
+          {
+            "firstSuit": "tools",
+            "complete": true,
+            "cost": 16,
+            "calls": [
+              "tools",
+              "compute",
+              "verification",
+              "data",
+              "model"
+            ],
+            "stack": [
+              {
+                "suit": "tools",
+                "rank": 3
+              },
+              {
+                "suit": "compute",
+                "rank": 3
+              },
+              {
+                "suit": "verification",
+                "rank": 4
+              },
+              {
+                "suit": "data",
+                "rank": 4
+              },
+              {
+                "suit": "model",
+                "rank": 2
+              }
+            ]
+          },
+          {
+            "firstSuit": "verification",
+            "complete": true,
+            "cost": 17,
+            "calls": [
+              "verification",
+              "tools",
+              "compute",
+              "data",
+              "model"
+            ],
+            "stack": [
+              {
+                "suit": "verification",
+                "rank": 4
+              },
+              {
+                "suit": "tools",
+                "rank": 3
+              },
+              {
+                "suit": "compute",
+                "rank": 3
+              },
+              {
+                "suit": "data",
+                "rank": 4
+              },
+              {
+                "suit": "model",
+                "rank": 3
+              }
+            ]
+          },
+          {
+            "firstSuit": "compute",
+            "complete": true,
+            "cost": 16,
+            "calls": [
+              "compute",
+              "tools",
+              "verification",
+              "data",
+              "model"
+            ],
+            "stack": [
+              {
+                "suit": "compute",
+                "rank": 3
+              },
+              {
+                "suit": "tools",
+                "rank": 3
+              },
+              {
+                "suit": "verification",
+                "rank": 4
+              },
+              {
+                "suit": "data",
+                "rank": 4
+              },
+              {
+                "suit": "model",
+                "rank": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "seed": 5,
+        "variants": [
+          {
+            "firstSuit": "model",
+            "complete": true,
+            "cost": 18,
+            "calls": [
+              "model",
+              "data",
+              "verification",
+              "tools",
+              "compute"
+            ],
+            "stack": [
+              {
+                "suit": "model",
+                "rank": 5
+              },
+              {
+                "suit": "data",
+                "rank": 3
+              },
+              {
+                "suit": "verification",
+                "rank": 5
+              },
+              {
+                "suit": "tools",
+                "rank": 2
+              },
+              {
+                "suit": "compute",
+                "rank": 3
+              }
+            ]
+          },
+          {
+            "firstSuit": "data",
+            "complete": true,
+            "cost": 17,
+            "calls": [
+              "data",
+              "verification",
+              "tools",
+              "model",
+              "compute"
+            ],
+            "stack": [
+              {
+                "suit": "data",
+                "rank": 3
+              },
+              {
+                "suit": "verification",
+                "rank": 5
+              },
+              {
+                "suit": "tools",
+                "rank": 2
+              },
+              {
+                "suit": "model",
+                "rank": 4
+              },
+              {
+                "suit": "compute",
+                "rank": 3
+              }
+            ]
+          },
+          {
+            "firstSuit": "tools",
+            "complete": true,
+            "cost": 17,
+            "calls": [
+              "tools",
+              "data",
+              "verification",
+              "compute",
+              "model"
+            ],
+            "stack": [
+              {
+                "suit": "tools",
+                "rank": 2
+              },
+              {
+                "suit": "data",
+                "rank": 3
+              },
+              {
+                "suit": "verification",
+                "rank": 5
+              },
+              {
+                "suit": "compute",
+                "rank": 5
+              },
+              {
+                "suit": "model",
+                "rank": 2
+              }
+            ]
+          },
+          {
+            "firstSuit": "verification",
+            "complete": true,
+            "cost": 17,
+            "calls": [
+              "verification",
+              "data",
+              "tools",
+              "model",
+              "compute"
+            ],
+            "stack": [
+              {
+                "suit": "verification",
+                "rank": 5
+              },
+              {
+                "suit": "data",
+                "rank": 3
+              },
+              {
+                "suit": "tools",
+                "rank": 2
+              },
+              {
+                "suit": "model",
+                "rank": 4
+              },
+              {
+                "suit": "compute",
+                "rank": 3
+              }
+            ]
+          },
+          {
+            "firstSuit": "compute",
+            "complete": true,
+            "cost": 17,
+            "calls": [
+              "compute",
+              "data",
+              "verification",
+              "tools",
+              "model"
+            ],
+            "stack": [
+              {
+                "suit": "compute",
+                "rank": 5
+              },
+              {
+                "suit": "data",
+                "rank": 3
+              },
+              {
+                "suit": "verification",
+                "rank": 5
+              },
+              {
+                "suit": "tools",
+                "rank": 2
+              },
+              {
+                "suit": "model",
+                "rank": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "roomQualification": {
+    "tablesPerRoom": 50,
+    "rooms": 50,
+    "qualifierCostDistribution": {
+      "7": 1,
+      "8": 2,
+      "9": 12,
+      "10": 25,
+      "11": 42,
+      "12": 80,
+      "13": 73,
+      "14": 15
+    },
+    "boundaryCostDistribution": {
+      "10": 1,
+      "11": 2,
+      "12": 13,
+      "13": 26,
+      "14": 8
+    },
+    "roomsWithBoundaryDraw": 33,
+    "insufficientCompleteTables": 0,
+    "examples": [
+      {
+        "boundary": 12,
+        "costs": [
+          11,
+          11,
+          11,
+          12,
+          12
+        ],
+        "drawRequired": false,
+        "qualifiedSeeds": [
+          49,
+          11,
+          28,
+          18,
+          50
+        ]
+      },
+      {
+        "boundary": 13,
+        "costs": [
+          12,
+          12,
+          12,
+          13,
+          13
+        ],
+        "drawRequired": true,
+        "qualifiedSeeds": [
+          76,
+          61,
+          79,
+          72,
+          56
+        ]
+      },
+      {
+        "boundary": 12,
+        "costs": [
+          10,
+          11,
+          12,
+          12,
+          12
+        ],
+        "drawRequired": true,
+        "qualifiedSeeds": [
+          132,
+          128,
+          133,
+          106,
+          139
+        ]
+      }
+    ]
+  },
+  "sameDealExample": {
+    "seed": 1,
+    "note": "Full initial deal is shown for retrospective human audit only; no bot receives it.",
+    "initialHands": [
+      {
+        "seat": 0,
+        "cards": [
+          {
+            "suit": "data",
+            "rank": 1,
+            "id": "data-1-0"
+          },
+          {
+            "suit": "data",
+            "rank": 2,
+            "id": "data-2-1"
+          },
+          {
+            "suit": "tools",
+            "rank": 5,
+            "id": "tools-5-1"
+          },
+          {
+            "suit": "compute",
+            "rank": 1,
+            "id": "compute-1-1"
+          },
+          {
+            "suit": "compute",
+            "rank": 2,
+            "id": "compute-2-1"
+          }
+        ]
+      },
+      {
+        "seat": 1,
+        "cards": [
+          {
+            "suit": "model",
+            "rank": 4,
+            "id": "model-4-0"
+          },
+          {
+            "suit": "tools",
+            "rank": 4,
+            "id": "tools-4-1"
+          },
+          {
+            "suit": "tools",
+            "rank": 5,
+            "id": "tools-5-0"
+          },
+          {
+            "suit": "verification",
+            "rank": 4,
+            "id": "verification-4-0"
+          },
+          {
+            "suit": "compute",
+            "rank": 2,
+            "id": "compute-2-0"
+          }
+        ]
+      },
+      {
+        "seat": 2,
+        "cards": [
+          {
+            "suit": "model",
+            "rank": 3,
+            "id": "model-3-0"
+          },
+          {
+            "suit": "model",
+            "rank": 5,
+            "id": "model-5-1"
+          },
+          {
+            "suit": "tools",
+            "rank": 1,
+            "id": "tools-1-0"
+          },
+          {
+            "suit": "tools",
+            "rank": 3,
+            "id": "tools-3-0"
+          },
+          {
+            "suit": "compute",
+            "rank": 5,
+            "id": "compute-5-1"
+          }
+        ]
+      },
+      {
+        "seat": 3,
+        "cards": [
+          {
+            "suit": "model",
+            "rank": 2,
+            "id": "model-2-1"
+          },
+          {
+            "suit": "model",
+            "rank": 4,
+            "id": "model-4-1"
+          },
+          {
+            "suit": "verification",
+            "rank": 2,
+            "id": "verification-2-1"
+          },
+          {
+            "suit": "verification",
+            "rank": 2,
+            "id": "verification-2-0"
+          },
+          {
+            "suit": "verification",
+            "rank": 5,
+            "id": "verification-5-1"
+          }
+        ]
+      },
+      {
+        "seat": 4,
+        "cards": [
+          {
+            "suit": "tools",
+            "rank": 1,
+            "id": "tools-1-1"
+          },
+          {
+            "suit": "tools",
+            "rank": 2,
+            "id": "tools-2-0"
+          },
+          {
+            "suit": "verification",
+            "rank": 5,
+            "id": "verification-5-0"
+          },
+          {
+            "suit": "compute",
+            "rank": 4,
+            "id": "compute-4-1"
+          },
+          {
+            "suit": "compute",
+            "rank": 5,
+            "id": "compute-5-0"
+          }
+        ]
+      }
+    ],
+    "branches": [
+      {
+        "firstSuit": "model",
+        "complete": true,
+        "cost": 18,
+        "signals": [
+          {
+            "seat": 0,
+            "signal": {
+              "card": {
+                "id": "data-1-0",
+                "suit": "data",
+                "rank": 1,
+                "name": "Human report",
+                "detail": "",
+                "description": "An astronaut examines the surface.",
+                "typeId": "data-1",
+                "copy": 0
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 1,
+            "signal": {
+              "card": {
+                "id": "compute-2-0",
+                "suit": "compute",
+                "rank": 2,
+                "name": "Crew laptop",
+                "detail": "",
+                "description": "Run on a normal onboard computer.",
+                "typeId": "compute-2",
+                "copy": 0
+              },
+              "kind": "ONLY",
+              "round": 1
+            }
+          },
+          {
+            "seat": 2,
+            "signal": {
+              "card": {
+                "id": "tools-1-0",
+                "suit": "tools",
+                "rank": 1,
+                "name": "Read files",
+                "detail": "",
+                "description": "The model may open files.",
+                "typeId": "tools-1",
+                "copy": 0
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 3,
+            "signal": {
+              "card": {
+                "id": "model-2-1",
+                "suit": "model",
+                "rank": 2,
+                "name": "Laptop-size model",
+                "detail": "27B",
+                "description": "A larger model for relatively small hardware.",
+                "typeId": "model-2",
+                "copy": 1
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 4,
+            "signal": {
+              "card": {
+                "id": "tools-1-1",
+                "suit": "tools",
+                "rank": 1,
+                "name": "Read files",
+                "detail": "",
+                "description": "The model may open files.",
+                "typeId": "tools-1",
+                "copy": 1
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          }
+        ],
+        "tricks": [
+          {
+            "round": 1,
+            "suit": "model",
+            "plays": [
+              {
+                "player": 0,
+                "card": {
+                  "id": "tools-5-1",
+                  "suit": "tools",
+                  "rank": 5,
+                  "name": "Control robot / ship",
+                  "detail": "",
+                  "description": "The model may take real actions on its own.",
+                  "typeId": "tools-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "model-4-0",
+                  "suit": "model",
+                  "rank": 4,
+                  "name": "Frontier open model",
+                  "detail": "GLM-5.3 class",
+                  "description": "Frontier-scale weights we can run ourselves.",
+                  "typeId": "model-4",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "model-3-0",
+                  "suit": "model",
+                  "rank": 3,
+                  "name": "Large model",
+                  "detail": "70\u2013120B",
+                  "description": "A powerful large open model.",
+                  "typeId": "model-3",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "model-2-1",
+                  "suit": "model",
+                  "rank": 2,
+                  "name": "Laptop-size model",
+                  "detail": "27B",
+                  "description": "A larger model for relatively small hardware.",
+                  "typeId": "model-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "compute-5-0",
+                  "suit": "compute",
+                  "rank": 5,
+                  "name": "Station cloud",
+                  "detail": "",
+                  "description": "Use the largest remote compute available.",
+                  "typeId": "compute-5",
+                  "copy": 0
+                }
+              }
+            ],
+            "winner": {
+              "player": 1,
+              "card": {
+                "id": "model-4-0",
+                "suit": "model",
+                "rank": 4,
+                "name": "Frontier open model",
+                "detail": "GLM-5.3 class",
+                "description": "Frontier-scale weights we can run ourselves.",
+                "typeId": "model-4",
+                "copy": 0
+              }
+            }
+          },
+          {
+            "round": 2,
+            "suit": "verification",
+            "plays": [
+              {
+                "player": 1,
+                "card": {
+                  "id": "verification-4-0",
+                  "suit": "verification",
+                  "rank": 4,
+                  "name": "Human review",
+                  "detail": "",
+                  "description": "A crew member checks the answer.",
+                  "typeId": "verification-4",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "compute-5-1",
+                  "suit": "compute",
+                  "rank": 5,
+                  "name": "Station cloud",
+                  "detail": "",
+                  "description": "Use the largest remote compute available.",
+                  "typeId": "compute-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-2-1",
+                  "suit": "verification",
+                  "rank": 2,
+                  "name": "Second sensor",
+                  "detail": "",
+                  "description": "Check whether another sensor agrees.",
+                  "typeId": "verification-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "verification-5-0",
+                  "suit": "verification",
+                  "rank": 5,
+                  "name": "Expert review",
+                  "detail": "",
+                  "description": "A specialist checks the answer.",
+                  "typeId": "verification-5",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "compute-2-1",
+                  "suit": "compute",
+                  "rank": 2,
+                  "name": "Crew laptop",
+                  "detail": "",
+                  "description": "Run on a normal onboard computer.",
+                  "typeId": "compute-2",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 4,
+              "card": {
+                "id": "verification-5-0",
+                "suit": "verification",
+                "rank": 5,
+                "name": "Expert review",
+                "detail": "",
+                "description": "A specialist checks the answer.",
+                "typeId": "verification-5",
+                "copy": 0
+              }
+            }
+          },
+          {
+            "round": 3,
+            "suit": "compute",
+            "plays": [
+              {
+                "player": 4,
+                "card": {
+                  "id": "compute-4-1",
+                  "suit": "compute",
+                  "rank": 4,
+                  "name": "Station mainframe",
+                  "detail": "",
+                  "description": "Run on powerful space station hardware.",
+                  "typeId": "compute-4",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "compute-1-1",
+                  "suit": "compute",
+                  "rank": 1,
+                  "name": "Suit chip / phone",
+                  "detail": "",
+                  "description": "Run on a tiny computer carried by the astronaut.",
+                  "typeId": "compute-1",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "compute-2-0",
+                  "suit": "compute",
+                  "rank": 2,
+                  "name": "Crew laptop",
+                  "detail": "",
+                  "description": "Run on a normal onboard computer.",
+                  "typeId": "compute-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "tools-3-0",
+                  "suit": "tools",
+                  "rank": 3,
+                  "name": "Search network",
+                  "detail": "Ships + station web",
+                  "description": "Search other ships and the station network.",
+                  "typeId": "tools-3",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "model-4-1",
+                  "suit": "model",
+                  "rank": 4,
+                  "name": "Frontier open model",
+                  "detail": "GLM-5.3 class",
+                  "description": "Frontier-scale weights we can run ourselves.",
+                  "typeId": "model-4",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 4,
+              "card": {
+                "id": "compute-4-1",
+                "suit": "compute",
+                "rank": 4,
+                "name": "Station mainframe",
+                "detail": "",
+                "description": "Run on powerful space station hardware.",
+                "typeId": "compute-4",
+                "copy": 1
+              }
+            }
+          },
+          {
+            "round": 4,
+            "suit": "tools",
+            "plays": [
+              {
+                "player": 4,
+                "card": {
+                  "id": "tools-1-1",
+                  "suit": "tools",
+                  "rank": 1,
+                  "name": "Read files",
+                  "detail": "",
+                  "description": "The model may open files.",
+                  "typeId": "tools-1",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "data-2-1",
+                  "suit": "data",
+                  "rank": 2,
+                  "name": "Local database",
+                  "detail": "",
+                  "description": "Rely on old recorded data.",
+                  "typeId": "data-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "tools-4-1",
+                  "suit": "tools",
+                  "rank": 4,
+                  "name": "Run code",
+                  "detail": "",
+                  "description": "Run simulations before answering.",
+                  "typeId": "tools-4",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "tools-1-0",
+                  "suit": "tools",
+                  "rank": 1,
+                  "name": "Read files",
+                  "detail": "",
+                  "description": "The model may open files.",
+                  "typeId": "tools-1",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-5-1",
+                  "suit": "verification",
+                  "rank": 5,
+                  "name": "Expert review",
+                  "detail": "",
+                  "description": "A specialist checks the answer.",
+                  "typeId": "verification-5",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 1,
+              "card": {
+                "id": "tools-4-1",
+                "suit": "tools",
+                "rank": 4,
+                "name": "Run code",
+                "detail": "",
+                "description": "Run simulations before answering.",
+                "typeId": "tools-4",
+                "copy": 1
+              }
+            }
+          },
+          {
+            "round": 5,
+            "suit": "data",
+            "plays": [
+              {
+                "player": 1,
+                "card": {
+                  "id": "tools-5-0",
+                  "suit": "tools",
+                  "rank": 5,
+                  "name": "Control robot / ship",
+                  "detail": "",
+                  "description": "The model may take real actions on its own.",
+                  "typeId": "tools-5",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "model-5-1",
+                  "suit": "model",
+                  "rank": 5,
+                  "name": "Frontier closed model",
+                  "detail": "OpenAI / Claude class",
+                  "description": "A frontier model from an external provider.",
+                  "typeId": "model-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-2-0",
+                  "suit": "verification",
+                  "rank": 2,
+                  "name": "Second sensor",
+                  "detail": "",
+                  "description": "Check whether another sensor agrees.",
+                  "typeId": "verification-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "tools-2-0",
+                  "suit": "tools",
+                  "rank": 2,
+                  "name": "Query database",
+                  "detail": "",
+                  "description": "The model may query the ship database.",
+                  "typeId": "tools-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "data-1-0",
+                  "suit": "data",
+                  "rank": 1,
+                  "name": "Human report",
+                  "detail": "",
+                  "description": "An astronaut examines the surface.",
+                  "typeId": "data-1",
+                  "copy": 0
+                }
+              }
+            ],
+            "winner": {
+              "player": 0,
+              "card": {
+                "id": "data-1-0",
+                "suit": "data",
+                "rank": 1,
+                "name": "Human report",
+                "detail": "",
+                "description": "An astronaut examines the surface.",
+                "typeId": "data-1",
+                "copy": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "firstSuit": "data",
+        "complete": true,
+        "cost": 16,
+        "signals": [
+          {
+            "seat": 0,
+            "signal": {
+              "card": {
+                "id": "data-1-0",
+                "suit": "data",
+                "rank": 1,
+                "name": "Human report",
+                "detail": "",
+                "description": "An astronaut examines the surface.",
+                "typeId": "data-1",
+                "copy": 0
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 1,
+            "signal": {
+              "card": {
+                "id": "compute-2-0",
+                "suit": "compute",
+                "rank": 2,
+                "name": "Crew laptop",
+                "detail": "",
+                "description": "Run on a normal onboard computer.",
+                "typeId": "compute-2",
+                "copy": 0
+              },
+              "kind": "ONLY",
+              "round": 1
+            }
+          },
+          {
+            "seat": 2,
+            "signal": {
+              "card": {
+                "id": "tools-1-0",
+                "suit": "tools",
+                "rank": 1,
+                "name": "Read files",
+                "detail": "",
+                "description": "The model may open files.",
+                "typeId": "tools-1",
+                "copy": 0
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 3,
+            "signal": {
+              "card": {
+                "id": "model-2-1",
+                "suit": "model",
+                "rank": 2,
+                "name": "Laptop-size model",
+                "detail": "27B",
+                "description": "A larger model for relatively small hardware.",
+                "typeId": "model-2",
+                "copy": 1
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 4,
+            "signal": {
+              "card": {
+                "id": "tools-1-1",
+                "suit": "tools",
+                "rank": 1,
+                "name": "Read files",
+                "detail": "",
+                "description": "The model may open files.",
+                "typeId": "tools-1",
+                "copy": 1
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          }
+        ],
+        "tricks": [
+          {
+            "round": 1,
+            "suit": "data",
+            "plays": [
+              {
+                "player": 0,
+                "card": {
+                  "id": "data-1-0",
+                  "suit": "data",
+                  "rank": 1,
+                  "name": "Human report",
+                  "detail": "",
+                  "description": "An astronaut examines the surface.",
+                  "typeId": "data-1",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "tools-5-0",
+                  "suit": "tools",
+                  "rank": 5,
+                  "name": "Control robot / ship",
+                  "detail": "",
+                  "description": "The model may take real actions on its own.",
+                  "typeId": "tools-5",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "compute-5-1",
+                  "suit": "compute",
+                  "rank": 5,
+                  "name": "Station cloud",
+                  "detail": "",
+                  "description": "Use the largest remote compute available.",
+                  "typeId": "compute-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-5-1",
+                  "suit": "verification",
+                  "rank": 5,
+                  "name": "Expert review",
+                  "detail": "",
+                  "description": "A specialist checks the answer.",
+                  "typeId": "verification-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "compute-5-0",
+                  "suit": "compute",
+                  "rank": 5,
+                  "name": "Station cloud",
+                  "detail": "",
+                  "description": "Use the largest remote compute available.",
+                  "typeId": "compute-5",
+                  "copy": 0
+                }
+              }
+            ],
+            "winner": {
+              "player": 0,
+              "card": {
+                "id": "data-1-0",
+                "suit": "data",
+                "rank": 1,
+                "name": "Human report",
+                "detail": "",
+                "description": "An astronaut examines the surface.",
+                "typeId": "data-1",
+                "copy": 0
+              }
+            }
+          },
+          {
+            "round": 2,
+            "suit": "verification",
+            "plays": [
+              {
+                "player": 0,
+                "card": {
+                  "id": "tools-5-1",
+                  "suit": "tools",
+                  "rank": 5,
+                  "name": "Control robot / ship",
+                  "detail": "",
+                  "description": "The model may take real actions on its own.",
+                  "typeId": "tools-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "verification-4-0",
+                  "suit": "verification",
+                  "rank": 4,
+                  "name": "Human review",
+                  "detail": "",
+                  "description": "A crew member checks the answer.",
+                  "typeId": "verification-4",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "model-5-1",
+                  "suit": "model",
+                  "rank": 5,
+                  "name": "Frontier closed model",
+                  "detail": "OpenAI / Claude class",
+                  "description": "A frontier model from an external provider.",
+                  "typeId": "model-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-2-1",
+                  "suit": "verification",
+                  "rank": 2,
+                  "name": "Second sensor",
+                  "detail": "",
+                  "description": "Check whether another sensor agrees.",
+                  "typeId": "verification-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "verification-5-0",
+                  "suit": "verification",
+                  "rank": 5,
+                  "name": "Expert review",
+                  "detail": "",
+                  "description": "A specialist checks the answer.",
+                  "typeId": "verification-5",
+                  "copy": 0
+                }
+              }
+            ],
+            "winner": {
+              "player": 4,
+              "card": {
+                "id": "verification-5-0",
+                "suit": "verification",
+                "rank": 5,
+                "name": "Expert review",
+                "detail": "",
+                "description": "A specialist checks the answer.",
+                "typeId": "verification-5",
+                "copy": 0
+              }
+            }
+          },
+          {
+            "round": 3,
+            "suit": "model",
+            "plays": [
+              {
+                "player": 4,
+                "card": {
+                  "id": "compute-4-1",
+                  "suit": "compute",
+                  "rank": 4,
+                  "name": "Station mainframe",
+                  "detail": "",
+                  "description": "Run on powerful space station hardware.",
+                  "typeId": "compute-4",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "data-2-1",
+                  "suit": "data",
+                  "rank": 2,
+                  "name": "Local database",
+                  "detail": "",
+                  "description": "Rely on old recorded data.",
+                  "typeId": "data-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "model-4-0",
+                  "suit": "model",
+                  "rank": 4,
+                  "name": "Frontier open model",
+                  "detail": "GLM-5.3 class",
+                  "description": "Frontier-scale weights we can run ourselves.",
+                  "typeId": "model-4",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "model-3-0",
+                  "suit": "model",
+                  "rank": 3,
+                  "name": "Large model",
+                  "detail": "70\u2013120B",
+                  "description": "A powerful large open model.",
+                  "typeId": "model-3",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "model-2-1",
+                  "suit": "model",
+                  "rank": 2,
+                  "name": "Laptop-size model",
+                  "detail": "27B",
+                  "description": "A larger model for relatively small hardware.",
+                  "typeId": "model-2",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 1,
+              "card": {
+                "id": "model-4-0",
+                "suit": "model",
+                "rank": 4,
+                "name": "Frontier open model",
+                "detail": "GLM-5.3 class",
+                "description": "Frontier-scale weights we can run ourselves.",
+                "typeId": "model-4",
+                "copy": 0
+              }
+            }
+          },
+          {
+            "round": 4,
+            "suit": "compute",
+            "plays": [
+              {
+                "player": 1,
+                "card": {
+                  "id": "compute-2-0",
+                  "suit": "compute",
+                  "rank": 2,
+                  "name": "Crew laptop",
+                  "detail": "",
+                  "description": "Run on a normal onboard computer.",
+                  "typeId": "compute-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "tools-3-0",
+                  "suit": "tools",
+                  "rank": 3,
+                  "name": "Search network",
+                  "detail": "Ships + station web",
+                  "description": "Search other ships and the station network.",
+                  "typeId": "tools-3",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-2-0",
+                  "suit": "verification",
+                  "rank": 2,
+                  "name": "Second sensor",
+                  "detail": "",
+                  "description": "Check whether another sensor agrees.",
+                  "typeId": "verification-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "tools-2-0",
+                  "suit": "tools",
+                  "rank": 2,
+                  "name": "Query database",
+                  "detail": "",
+                  "description": "The model may query the ship database.",
+                  "typeId": "tools-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "compute-1-1",
+                  "suit": "compute",
+                  "rank": 1,
+                  "name": "Suit chip / phone",
+                  "detail": "",
+                  "description": "Run on a tiny computer carried by the astronaut.",
+                  "typeId": "compute-1",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 1,
+              "card": {
+                "id": "compute-2-0",
+                "suit": "compute",
+                "rank": 2,
+                "name": "Crew laptop",
+                "detail": "",
+                "description": "Run on a normal onboard computer.",
+                "typeId": "compute-2",
+                "copy": 0
+              }
+            }
+          },
+          {
+            "round": 5,
+            "suit": "tools",
+            "plays": [
+              {
+                "player": 1,
+                "card": {
+                  "id": "tools-4-1",
+                  "suit": "tools",
+                  "rank": 4,
+                  "name": "Run code",
+                  "detail": "",
+                  "description": "Run simulations before answering.",
+                  "typeId": "tools-4",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "tools-1-0",
+                  "suit": "tools",
+                  "rank": 1,
+                  "name": "Read files",
+                  "detail": "",
+                  "description": "The model may open files.",
+                  "typeId": "tools-1",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "model-4-1",
+                  "suit": "model",
+                  "rank": 4,
+                  "name": "Frontier open model",
+                  "detail": "GLM-5.3 class",
+                  "description": "Frontier-scale weights we can run ourselves.",
+                  "typeId": "model-4",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "tools-1-1",
+                  "suit": "tools",
+                  "rank": 1,
+                  "name": "Read files",
+                  "detail": "",
+                  "description": "The model may open files.",
+                  "typeId": "tools-1",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "compute-2-1",
+                  "suit": "compute",
+                  "rank": 2,
+                  "name": "Crew laptop",
+                  "detail": "",
+                  "description": "Run on a normal onboard computer.",
+                  "typeId": "compute-2",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 1,
+              "card": {
+                "id": "tools-4-1",
+                "suit": "tools",
+                "rank": 4,
+                "name": "Run code",
+                "detail": "",
+                "description": "Run simulations before answering.",
+                "typeId": "tools-4",
+                "copy": 1
+              }
+            }
+          }
+        ]
+      },
+      {
+        "firstSuit": "tools",
+        "complete": true,
+        "cost": 20,
+        "signals": [
+          {
+            "seat": 0,
+            "signal": {
+              "card": {
+                "id": "data-1-0",
+                "suit": "data",
+                "rank": 1,
+                "name": "Human report",
+                "detail": "",
+                "description": "An astronaut examines the surface.",
+                "typeId": "data-1",
+                "copy": 0
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 1,
+            "signal": {
+              "card": {
+                "id": "compute-2-0",
+                "suit": "compute",
+                "rank": 2,
+                "name": "Crew laptop",
+                "detail": "",
+                "description": "Run on a normal onboard computer.",
+                "typeId": "compute-2",
+                "copy": 0
+              },
+              "kind": "ONLY",
+              "round": 1
+            }
+          },
+          {
+            "seat": 2,
+            "signal": {
+              "card": {
+                "id": "tools-1-0",
+                "suit": "tools",
+                "rank": 1,
+                "name": "Read files",
+                "detail": "",
+                "description": "The model may open files.",
+                "typeId": "tools-1",
+                "copy": 0
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 3,
+            "signal": {
+              "card": {
+                "id": "model-2-1",
+                "suit": "model",
+                "rank": 2,
+                "name": "Laptop-size model",
+                "detail": "27B",
+                "description": "A larger model for relatively small hardware.",
+                "typeId": "model-2",
+                "copy": 1
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 4,
+            "signal": {
+              "card": {
+                "id": "tools-1-1",
+                "suit": "tools",
+                "rank": 1,
+                "name": "Read files",
+                "detail": "",
+                "description": "The model may open files.",
+                "typeId": "tools-1",
+                "copy": 1
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          }
+        ],
+        "tricks": [
+          {
+            "round": 1,
+            "suit": "tools",
+            "plays": [
+              {
+                "player": 0,
+                "card": {
+                  "id": "tools-5-1",
+                  "suit": "tools",
+                  "rank": 5,
+                  "name": "Control robot / ship",
+                  "detail": "",
+                  "description": "The model may take real actions on its own.",
+                  "typeId": "tools-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "tools-4-1",
+                  "suit": "tools",
+                  "rank": 4,
+                  "name": "Run code",
+                  "detail": "",
+                  "description": "Run simulations before answering.",
+                  "typeId": "tools-4",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "tools-1-0",
+                  "suit": "tools",
+                  "rank": 1,
+                  "name": "Read files",
+                  "detail": "",
+                  "description": "The model may open files.",
+                  "typeId": "tools-1",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-5-1",
+                  "suit": "verification",
+                  "rank": 5,
+                  "name": "Expert review",
+                  "detail": "",
+                  "description": "A specialist checks the answer.",
+                  "typeId": "verification-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "tools-1-1",
+                  "suit": "tools",
+                  "rank": 1,
+                  "name": "Read files",
+                  "detail": "",
+                  "description": "The model may open files.",
+                  "typeId": "tools-1",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 0,
+              "card": {
+                "id": "tools-5-1",
+                "suit": "tools",
+                "rank": 5,
+                "name": "Control robot / ship",
+                "detail": "",
+                "description": "The model may take real actions on its own.",
+                "typeId": "tools-5",
+                "copy": 1
+              }
+            }
+          },
+          {
+            "round": 2,
+            "suit": "verification",
+            "plays": [
+              {
+                "player": 0,
+                "card": {
+                  "id": "compute-2-1",
+                  "suit": "compute",
+                  "rank": 2,
+                  "name": "Crew laptop",
+                  "detail": "",
+                  "description": "Run on a normal onboard computer.",
+                  "typeId": "compute-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "verification-4-0",
+                  "suit": "verification",
+                  "rank": 4,
+                  "name": "Human review",
+                  "detail": "",
+                  "description": "A crew member checks the answer.",
+                  "typeId": "verification-4",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "model-5-1",
+                  "suit": "model",
+                  "rank": 5,
+                  "name": "Frontier closed model",
+                  "detail": "OpenAI / Claude class",
+                  "description": "A frontier model from an external provider.",
+                  "typeId": "model-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-2-1",
+                  "suit": "verification",
+                  "rank": 2,
+                  "name": "Second sensor",
+                  "detail": "",
+                  "description": "Check whether another sensor agrees.",
+                  "typeId": "verification-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "verification-5-0",
+                  "suit": "verification",
+                  "rank": 5,
+                  "name": "Expert review",
+                  "detail": "",
+                  "description": "A specialist checks the answer.",
+                  "typeId": "verification-5",
+                  "copy": 0
+                }
+              }
+            ],
+            "winner": {
+              "player": 4,
+              "card": {
+                "id": "verification-5-0",
+                "suit": "verification",
+                "rank": 5,
+                "name": "Expert review",
+                "detail": "",
+                "description": "A specialist checks the answer.",
+                "typeId": "verification-5",
+                "copy": 0
+              }
+            }
+          },
+          {
+            "round": 3,
+            "suit": "model",
+            "plays": [
+              {
+                "player": 4,
+                "card": {
+                  "id": "compute-5-0",
+                  "suit": "compute",
+                  "rank": 5,
+                  "name": "Station cloud",
+                  "detail": "",
+                  "description": "Use the largest remote compute available.",
+                  "typeId": "compute-5",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "data-2-1",
+                  "suit": "data",
+                  "rank": 2,
+                  "name": "Local database",
+                  "detail": "",
+                  "description": "Rely on old recorded data.",
+                  "typeId": "data-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "model-4-0",
+                  "suit": "model",
+                  "rank": 4,
+                  "name": "Frontier open model",
+                  "detail": "GLM-5.3 class",
+                  "description": "Frontier-scale weights we can run ourselves.",
+                  "typeId": "model-4",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "model-3-0",
+                  "suit": "model",
+                  "rank": 3,
+                  "name": "Large model",
+                  "detail": "70\u2013120B",
+                  "description": "A powerful large open model.",
+                  "typeId": "model-3",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "model-2-1",
+                  "suit": "model",
+                  "rank": 2,
+                  "name": "Laptop-size model",
+                  "detail": "27B",
+                  "description": "A larger model for relatively small hardware.",
+                  "typeId": "model-2",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 1,
+              "card": {
+                "id": "model-4-0",
+                "suit": "model",
+                "rank": 4,
+                "name": "Frontier open model",
+                "detail": "GLM-5.3 class",
+                "description": "Frontier-scale weights we can run ourselves.",
+                "typeId": "model-4",
+                "copy": 0
+              }
+            }
+          },
+          {
+            "round": 4,
+            "suit": "compute",
+            "plays": [
+              {
+                "player": 1,
+                "card": {
+                  "id": "compute-2-0",
+                  "suit": "compute",
+                  "rank": 2,
+                  "name": "Crew laptop",
+                  "detail": "",
+                  "description": "Run on a normal onboard computer.",
+                  "typeId": "compute-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "compute-5-1",
+                  "suit": "compute",
+                  "rank": 5,
+                  "name": "Station cloud",
+                  "detail": "",
+                  "description": "Use the largest remote compute available.",
+                  "typeId": "compute-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "model-4-1",
+                  "suit": "model",
+                  "rank": 4,
+                  "name": "Frontier open model",
+                  "detail": "GLM-5.3 class",
+                  "description": "Frontier-scale weights we can run ourselves.",
+                  "typeId": "model-4",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "compute-4-1",
+                  "suit": "compute",
+                  "rank": 4,
+                  "name": "Station mainframe",
+                  "detail": "",
+                  "description": "Run on powerful space station hardware.",
+                  "typeId": "compute-4",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "compute-1-1",
+                  "suit": "compute",
+                  "rank": 1,
+                  "name": "Suit chip / phone",
+                  "detail": "",
+                  "description": "Run on a tiny computer carried by the astronaut.",
+                  "typeId": "compute-1",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 2,
+              "card": {
+                "id": "compute-5-1",
+                "suit": "compute",
+                "rank": 5,
+                "name": "Station cloud",
+                "detail": "",
+                "description": "Use the largest remote compute available.",
+                "typeId": "compute-5",
+                "copy": 1
+              }
+            }
+          },
+          {
+            "round": 5,
+            "suit": "data",
+            "plays": [
+              {
+                "player": 2,
+                "card": {
+                  "id": "tools-3-0",
+                  "suit": "tools",
+                  "rank": 3,
+                  "name": "Search network",
+                  "detail": "Ships + station web",
+                  "description": "Search other ships and the station network.",
+                  "typeId": "tools-3",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-2-0",
+                  "suit": "verification",
+                  "rank": 2,
+                  "name": "Second sensor",
+                  "detail": "",
+                  "description": "Check whether another sensor agrees.",
+                  "typeId": "verification-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "tools-2-0",
+                  "suit": "tools",
+                  "rank": 2,
+                  "name": "Query database",
+                  "detail": "",
+                  "description": "The model may query the ship database.",
+                  "typeId": "tools-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "data-1-0",
+                  "suit": "data",
+                  "rank": 1,
+                  "name": "Human report",
+                  "detail": "",
+                  "description": "An astronaut examines the surface.",
+                  "typeId": "data-1",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "tools-5-0",
+                  "suit": "tools",
+                  "rank": 5,
+                  "name": "Control robot / ship",
+                  "detail": "",
+                  "description": "The model may take real actions on its own.",
+                  "typeId": "tools-5",
+                  "copy": 0
+                }
+              }
+            ],
+            "winner": {
+              "player": 0,
+              "card": {
+                "id": "data-1-0",
+                "suit": "data",
+                "rank": 1,
+                "name": "Human report",
+                "detail": "",
+                "description": "An astronaut examines the surface.",
+                "typeId": "data-1",
+                "copy": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "firstSuit": "verification",
+        "complete": true,
+        "cost": 18,
+        "signals": [
+          {
+            "seat": 0,
+            "signal": {
+              "card": {
+                "id": "data-1-0",
+                "suit": "data",
+                "rank": 1,
+                "name": "Human report",
+                "detail": "",
+                "description": "An astronaut examines the surface.",
+                "typeId": "data-1",
+                "copy": 0
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 1,
+            "signal": {
+              "card": {
+                "id": "compute-2-0",
+                "suit": "compute",
+                "rank": 2,
+                "name": "Crew laptop",
+                "detail": "",
+                "description": "Run on a normal onboard computer.",
+                "typeId": "compute-2",
+                "copy": 0
+              },
+              "kind": "ONLY",
+              "round": 1
+            }
+          },
+          {
+            "seat": 2,
+            "signal": {
+              "card": {
+                "id": "tools-1-0",
+                "suit": "tools",
+                "rank": 1,
+                "name": "Read files",
+                "detail": "",
+                "description": "The model may open files.",
+                "typeId": "tools-1",
+                "copy": 0
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 3,
+            "signal": {
+              "card": {
+                "id": "model-2-1",
+                "suit": "model",
+                "rank": 2,
+                "name": "Laptop-size model",
+                "detail": "27B",
+                "description": "A larger model for relatively small hardware.",
+                "typeId": "model-2",
+                "copy": 1
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 4,
+            "signal": {
+              "card": {
+                "id": "tools-1-1",
+                "suit": "tools",
+                "rank": 1,
+                "name": "Read files",
+                "detail": "",
+                "description": "The model may open files.",
+                "typeId": "tools-1",
+                "copy": 1
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          }
+        ],
+        "tricks": [
+          {
+            "round": 1,
+            "suit": "verification",
+            "plays": [
+              {
+                "player": 0,
+                "card": {
+                  "id": "tools-5-1",
+                  "suit": "tools",
+                  "rank": 5,
+                  "name": "Control robot / ship",
+                  "detail": "",
+                  "description": "The model may take real actions on its own.",
+                  "typeId": "tools-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "verification-4-0",
+                  "suit": "verification",
+                  "rank": 4,
+                  "name": "Human review",
+                  "detail": "",
+                  "description": "A crew member checks the answer.",
+                  "typeId": "verification-4",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "compute-5-1",
+                  "suit": "compute",
+                  "rank": 5,
+                  "name": "Station cloud",
+                  "detail": "",
+                  "description": "Use the largest remote compute available.",
+                  "typeId": "compute-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-2-1",
+                  "suit": "verification",
+                  "rank": 2,
+                  "name": "Second sensor",
+                  "detail": "",
+                  "description": "Check whether another sensor agrees.",
+                  "typeId": "verification-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "verification-5-0",
+                  "suit": "verification",
+                  "rank": 5,
+                  "name": "Expert review",
+                  "detail": "",
+                  "description": "A specialist checks the answer.",
+                  "typeId": "verification-5",
+                  "copy": 0
+                }
+              }
+            ],
+            "winner": {
+              "player": 4,
+              "card": {
+                "id": "verification-5-0",
+                "suit": "verification",
+                "rank": 5,
+                "name": "Expert review",
+                "detail": "",
+                "description": "A specialist checks the answer.",
+                "typeId": "verification-5",
+                "copy": 0
+              }
+            }
+          },
+          {
+            "round": 2,
+            "suit": "model",
+            "plays": [
+              {
+                "player": 4,
+                "card": {
+                  "id": "compute-5-0",
+                  "suit": "compute",
+                  "rank": 5,
+                  "name": "Station cloud",
+                  "detail": "",
+                  "description": "Use the largest remote compute available.",
+                  "typeId": "compute-5",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "compute-2-1",
+                  "suit": "compute",
+                  "rank": 2,
+                  "name": "Crew laptop",
+                  "detail": "",
+                  "description": "Run on a normal onboard computer.",
+                  "typeId": "compute-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "model-4-0",
+                  "suit": "model",
+                  "rank": 4,
+                  "name": "Frontier open model",
+                  "detail": "GLM-5.3 class",
+                  "description": "Frontier-scale weights we can run ourselves.",
+                  "typeId": "model-4",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "model-3-0",
+                  "suit": "model",
+                  "rank": 3,
+                  "name": "Large model",
+                  "detail": "70\u2013120B",
+                  "description": "A powerful large open model.",
+                  "typeId": "model-3",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "model-2-1",
+                  "suit": "model",
+                  "rank": 2,
+                  "name": "Laptop-size model",
+                  "detail": "27B",
+                  "description": "A larger model for relatively small hardware.",
+                  "typeId": "model-2",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 1,
+              "card": {
+                "id": "model-4-0",
+                "suit": "model",
+                "rank": 4,
+                "name": "Frontier open model",
+                "detail": "GLM-5.3 class",
+                "description": "Frontier-scale weights we can run ourselves.",
+                "typeId": "model-4",
+                "copy": 0
+              }
+            }
+          },
+          {
+            "round": 3,
+            "suit": "compute",
+            "plays": [
+              {
+                "player": 1,
+                "card": {
+                  "id": "compute-2-0",
+                  "suit": "compute",
+                  "rank": 2,
+                  "name": "Crew laptop",
+                  "detail": "",
+                  "description": "Run on a normal onboard computer.",
+                  "typeId": "compute-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "tools-3-0",
+                  "suit": "tools",
+                  "rank": 3,
+                  "name": "Search network",
+                  "detail": "Ships + station web",
+                  "description": "Search other ships and the station network.",
+                  "typeId": "tools-3",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "model-4-1",
+                  "suit": "model",
+                  "rank": 4,
+                  "name": "Frontier open model",
+                  "detail": "GLM-5.3 class",
+                  "description": "Frontier-scale weights we can run ourselves.",
+                  "typeId": "model-4",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "compute-4-1",
+                  "suit": "compute",
+                  "rank": 4,
+                  "name": "Station mainframe",
+                  "detail": "",
+                  "description": "Run on powerful space station hardware.",
+                  "typeId": "compute-4",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "compute-1-1",
+                  "suit": "compute",
+                  "rank": 1,
+                  "name": "Suit chip / phone",
+                  "detail": "",
+                  "description": "Run on a tiny computer carried by the astronaut.",
+                  "typeId": "compute-1",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 4,
+              "card": {
+                "id": "compute-4-1",
+                "suit": "compute",
+                "rank": 4,
+                "name": "Station mainframe",
+                "detail": "",
+                "description": "Run on powerful space station hardware.",
+                "typeId": "compute-4",
+                "copy": 1
+              }
+            }
+          },
+          {
+            "round": 4,
+            "suit": "tools",
+            "plays": [
+              {
+                "player": 4,
+                "card": {
+                  "id": "tools-1-1",
+                  "suit": "tools",
+                  "rank": 1,
+                  "name": "Read files",
+                  "detail": "",
+                  "description": "The model may open files.",
+                  "typeId": "tools-1",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "data-2-1",
+                  "suit": "data",
+                  "rank": 2,
+                  "name": "Local database",
+                  "detail": "",
+                  "description": "Rely on old recorded data.",
+                  "typeId": "data-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "tools-4-1",
+                  "suit": "tools",
+                  "rank": 4,
+                  "name": "Run code",
+                  "detail": "",
+                  "description": "Run simulations before answering.",
+                  "typeId": "tools-4",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "tools-1-0",
+                  "suit": "tools",
+                  "rank": 1,
+                  "name": "Read files",
+                  "detail": "",
+                  "description": "The model may open files.",
+                  "typeId": "tools-1",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-5-1",
+                  "suit": "verification",
+                  "rank": 5,
+                  "name": "Expert review",
+                  "detail": "",
+                  "description": "A specialist checks the answer.",
+                  "typeId": "verification-5",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 1,
+              "card": {
+                "id": "tools-4-1",
+                "suit": "tools",
+                "rank": 4,
+                "name": "Run code",
+                "detail": "",
+                "description": "Run simulations before answering.",
+                "typeId": "tools-4",
+                "copy": 1
+              }
+            }
+          },
+          {
+            "round": 5,
+            "suit": "data",
+            "plays": [
+              {
+                "player": 1,
+                "card": {
+                  "id": "tools-5-0",
+                  "suit": "tools",
+                  "rank": 5,
+                  "name": "Control robot / ship",
+                  "detail": "",
+                  "description": "The model may take real actions on its own.",
+                  "typeId": "tools-5",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "model-5-1",
+                  "suit": "model",
+                  "rank": 5,
+                  "name": "Frontier closed model",
+                  "detail": "OpenAI / Claude class",
+                  "description": "A frontier model from an external provider.",
+                  "typeId": "model-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-2-0",
+                  "suit": "verification",
+                  "rank": 2,
+                  "name": "Second sensor",
+                  "detail": "",
+                  "description": "Check whether another sensor agrees.",
+                  "typeId": "verification-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "tools-2-0",
+                  "suit": "tools",
+                  "rank": 2,
+                  "name": "Query database",
+                  "detail": "",
+                  "description": "The model may query the ship database.",
+                  "typeId": "tools-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "data-1-0",
+                  "suit": "data",
+                  "rank": 1,
+                  "name": "Human report",
+                  "detail": "",
+                  "description": "An astronaut examines the surface.",
+                  "typeId": "data-1",
+                  "copy": 0
+                }
+              }
+            ],
+            "winner": {
+              "player": 0,
+              "card": {
+                "id": "data-1-0",
+                "suit": "data",
+                "rank": 1,
+                "name": "Human report",
+                "detail": "",
+                "description": "An astronaut examines the surface.",
+                "typeId": "data-1",
+                "copy": 0
+              }
+            }
+          }
+        ]
+      },
+      {
+        "firstSuit": "compute",
+        "complete": true,
+        "cost": 19,
+        "signals": [
+          {
+            "seat": 0,
+            "signal": {
+              "card": {
+                "id": "data-1-0",
+                "suit": "data",
+                "rank": 1,
+                "name": "Human report",
+                "detail": "",
+                "description": "An astronaut examines the surface.",
+                "typeId": "data-1",
+                "copy": 0
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 1,
+            "signal": {
+              "card": {
+                "id": "compute-2-0",
+                "suit": "compute",
+                "rank": 2,
+                "name": "Crew laptop",
+                "detail": "",
+                "description": "Run on a normal onboard computer.",
+                "typeId": "compute-2",
+                "copy": 0
+              },
+              "kind": "ONLY",
+              "round": 1
+            }
+          },
+          {
+            "seat": 2,
+            "signal": {
+              "card": {
+                "id": "tools-1-0",
+                "suit": "tools",
+                "rank": 1,
+                "name": "Read files",
+                "detail": "",
+                "description": "The model may open files.",
+                "typeId": "tools-1",
+                "copy": 0
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 3,
+            "signal": {
+              "card": {
+                "id": "model-2-1",
+                "suit": "model",
+                "rank": 2,
+                "name": "Laptop-size model",
+                "detail": "27B",
+                "description": "A larger model for relatively small hardware.",
+                "typeId": "model-2",
+                "copy": 1
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          },
+          {
+            "seat": 4,
+            "signal": {
+              "card": {
+                "id": "tools-1-1",
+                "suit": "tools",
+                "rank": 1,
+                "name": "Read files",
+                "detail": "",
+                "description": "The model may open files.",
+                "typeId": "tools-1",
+                "copy": 1
+              },
+              "kind": "LOWEST",
+              "round": 1
+            }
+          }
+        ],
+        "tricks": [
+          {
+            "round": 1,
+            "suit": "compute",
+            "plays": [
+              {
+                "player": 0,
+                "card": {
+                  "id": "compute-1-1",
+                  "suit": "compute",
+                  "rank": 1,
+                  "name": "Suit chip / phone",
+                  "detail": "",
+                  "description": "Run on a tiny computer carried by the astronaut.",
+                  "typeId": "compute-1",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "compute-2-0",
+                  "suit": "compute",
+                  "rank": 2,
+                  "name": "Crew laptop",
+                  "detail": "",
+                  "description": "Run on a normal onboard computer.",
+                  "typeId": "compute-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "compute-5-1",
+                  "suit": "compute",
+                  "rank": 5,
+                  "name": "Station cloud",
+                  "detail": "",
+                  "description": "Use the largest remote compute available.",
+                  "typeId": "compute-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-5-1",
+                  "suit": "verification",
+                  "rank": 5,
+                  "name": "Expert review",
+                  "detail": "",
+                  "description": "A specialist checks the answer.",
+                  "typeId": "verification-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "compute-4-1",
+                  "suit": "compute",
+                  "rank": 4,
+                  "name": "Station mainframe",
+                  "detail": "",
+                  "description": "Run on powerful space station hardware.",
+                  "typeId": "compute-4",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 2,
+              "card": {
+                "id": "compute-5-1",
+                "suit": "compute",
+                "rank": 5,
+                "name": "Station cloud",
+                "detail": "",
+                "description": "Use the largest remote compute available.",
+                "typeId": "compute-5",
+                "copy": 1
+              }
+            }
+          },
+          {
+            "round": 2,
+            "suit": "verification",
+            "plays": [
+              {
+                "player": 2,
+                "card": {
+                  "id": "model-5-1",
+                  "suit": "model",
+                  "rank": 5,
+                  "name": "Frontier closed model",
+                  "detail": "OpenAI / Claude class",
+                  "description": "A frontier model from an external provider.",
+                  "typeId": "model-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-2-1",
+                  "suit": "verification",
+                  "rank": 2,
+                  "name": "Second sensor",
+                  "detail": "",
+                  "description": "Check whether another sensor agrees.",
+                  "typeId": "verification-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "verification-5-0",
+                  "suit": "verification",
+                  "rank": 5,
+                  "name": "Expert review",
+                  "detail": "",
+                  "description": "A specialist checks the answer.",
+                  "typeId": "verification-5",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "tools-5-1",
+                  "suit": "tools",
+                  "rank": 5,
+                  "name": "Control robot / ship",
+                  "detail": "",
+                  "description": "The model may take real actions on its own.",
+                  "typeId": "tools-5",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "verification-4-0",
+                  "suit": "verification",
+                  "rank": 4,
+                  "name": "Human review",
+                  "detail": "",
+                  "description": "A crew member checks the answer.",
+                  "typeId": "verification-4",
+                  "copy": 0
+                }
+              }
+            ],
+            "winner": {
+              "player": 4,
+              "card": {
+                "id": "verification-5-0",
+                "suit": "verification",
+                "rank": 5,
+                "name": "Expert review",
+                "detail": "",
+                "description": "A specialist checks the answer.",
+                "typeId": "verification-5",
+                "copy": 0
+              }
+            }
+          },
+          {
+            "round": 3,
+            "suit": "model",
+            "plays": [
+              {
+                "player": 4,
+                "card": {
+                  "id": "tools-2-0",
+                  "suit": "tools",
+                  "rank": 2,
+                  "name": "Query database",
+                  "detail": "",
+                  "description": "The model may query the ship database.",
+                  "typeId": "tools-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "compute-2-1",
+                  "suit": "compute",
+                  "rank": 2,
+                  "name": "Crew laptop",
+                  "detail": "",
+                  "description": "Run on a normal onboard computer.",
+                  "typeId": "compute-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "model-4-0",
+                  "suit": "model",
+                  "rank": 4,
+                  "name": "Frontier open model",
+                  "detail": "GLM-5.3 class",
+                  "description": "Frontier-scale weights we can run ourselves.",
+                  "typeId": "model-4",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "model-3-0",
+                  "suit": "model",
+                  "rank": 3,
+                  "name": "Large model",
+                  "detail": "70\u2013120B",
+                  "description": "A powerful large open model.",
+                  "typeId": "model-3",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "model-2-1",
+                  "suit": "model",
+                  "rank": 2,
+                  "name": "Laptop-size model",
+                  "detail": "27B",
+                  "description": "A larger model for relatively small hardware.",
+                  "typeId": "model-2",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 1,
+              "card": {
+                "id": "model-4-0",
+                "suit": "model",
+                "rank": 4,
+                "name": "Frontier open model",
+                "detail": "GLM-5.3 class",
+                "description": "Frontier-scale weights we can run ourselves.",
+                "typeId": "model-4",
+                "copy": 0
+              }
+            }
+          },
+          {
+            "round": 4,
+            "suit": "data",
+            "plays": [
+              {
+                "player": 1,
+                "card": {
+                  "id": "tools-5-0",
+                  "suit": "tools",
+                  "rank": 5,
+                  "name": "Control robot / ship",
+                  "detail": "",
+                  "description": "The model may take real actions on its own.",
+                  "typeId": "tools-5",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "tools-3-0",
+                  "suit": "tools",
+                  "rank": 3,
+                  "name": "Search network",
+                  "detail": "Ships + station web",
+                  "description": "Search other ships and the station network.",
+                  "typeId": "tools-3",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "model-4-1",
+                  "suit": "model",
+                  "rank": 4,
+                  "name": "Frontier open model",
+                  "detail": "GLM-5.3 class",
+                  "description": "Frontier-scale weights we can run ourselves.",
+                  "typeId": "model-4",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "compute-5-0",
+                  "suit": "compute",
+                  "rank": 5,
+                  "name": "Station cloud",
+                  "detail": "",
+                  "description": "Use the largest remote compute available.",
+                  "typeId": "compute-5",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 0,
+                "card": {
+                  "id": "data-1-0",
+                  "suit": "data",
+                  "rank": 1,
+                  "name": "Human report",
+                  "detail": "",
+                  "description": "An astronaut examines the surface.",
+                  "typeId": "data-1",
+                  "copy": 0
+                }
+              }
+            ],
+            "winner": {
+              "player": 0,
+              "card": {
+                "id": "data-1-0",
+                "suit": "data",
+                "rank": 1,
+                "name": "Human report",
+                "detail": "",
+                "description": "An astronaut examines the surface.",
+                "typeId": "data-1",
+                "copy": 0
+              }
+            }
+          },
+          {
+            "round": 5,
+            "suit": "tools",
+            "plays": [
+              {
+                "player": 0,
+                "card": {
+                  "id": "data-2-1",
+                  "suit": "data",
+                  "rank": 2,
+                  "name": "Local database",
+                  "detail": "",
+                  "description": "Rely on old recorded data.",
+                  "typeId": "data-2",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 1,
+                "card": {
+                  "id": "tools-4-1",
+                  "suit": "tools",
+                  "rank": 4,
+                  "name": "Run code",
+                  "detail": "",
+                  "description": "Run simulations before answering.",
+                  "typeId": "tools-4",
+                  "copy": 1
+                }
+              },
+              {
+                "player": 2,
+                "card": {
+                  "id": "tools-1-0",
+                  "suit": "tools",
+                  "rank": 1,
+                  "name": "Read files",
+                  "detail": "",
+                  "description": "The model may open files.",
+                  "typeId": "tools-1",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 3,
+                "card": {
+                  "id": "verification-2-0",
+                  "suit": "verification",
+                  "rank": 2,
+                  "name": "Second sensor",
+                  "detail": "",
+                  "description": "Check whether another sensor agrees.",
+                  "typeId": "verification-2",
+                  "copy": 0
+                }
+              },
+              {
+                "player": 4,
+                "card": {
+                  "id": "tools-1-1",
+                  "suit": "tools",
+                  "rank": 1,
+                  "name": "Read files",
+                  "detail": "",
+                  "description": "The model may open files.",
+                  "typeId": "tools-1",
+                  "copy": 1
+                }
+              }
+            ],
+            "winner": {
+              "player": 1,
+              "card": {
+                "id": "tools-4-1",
+                "suit": "tools",
+                "rank": 4,
+                "name": "Run code",
+                "detail": "",
+                "description": "Run simulations before answering.",
+                "typeId": "tools-4",
+                "copy": 1
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "limits": [
+    "Bot results demonstrate policy differences, not human enjoyment or optimal play.",
+    "The deal lower bound ignores information and timing; it is used only to estimate luck.",
+    "Suits share mechanical rules; observed differences include finite-sample noise and fixed signal tie preference. Seat win rates also reflect starting Commander and first-played rank ties.",
+    "Five tricks is deliberately brief. Human group testing is still required to assess replay appeal."
+  ]
+}

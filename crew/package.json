@@ -1,0 +1,16 @@
+{
+  "name": "crew-phase-one",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node server.mjs",
+    "test": "node --test *.test.mjs",
+    "simulate": "node simulate.mjs",
+    "test:browser": "node browser-qa.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.1"
+  }
+}

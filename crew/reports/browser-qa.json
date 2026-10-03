@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-02T16:40:45.667Z",
+  "result": "4 + 1 + 4 + 5 + 2\n=\n16\ntotal cost · lower is better",
+  "desktop": {
+    "viewport": 768,
+    "scroll": 779,
+    "handBottom": 707
+  },
+  "errors": [],
+  "checks": [
+    "human complete game",
+    "signal truthful choice and once only",
+    "forced follow suit",
+    "round pause",
+    "five-card final stack",
+    "same-deal replay",
+    "projector hand visible",
+    "mobile no page overflow",
+    "watch AI",
+    "reset during AI timers",
+    "signal mode fits projector",
+    "readable round history",
+    "absent suit failure has no score",
+    "entire AI demonstration completes"
+  ]
+}
