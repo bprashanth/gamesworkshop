@@ -1,0 +1,222 @@
+{
+ "thresholds_deg": {
+  "flat_below": 2.0,
+  "steep_from": 8.0
+ },
+ "rows": [
+  {
+   "row": 1,
+   "slope_deg": 1.0,
+   "slope": "flat",
+   "km": [
+    0.0,
+    3.2
+   ],
+   "sols": [
+    14,
+    343
+   ],
+   "tau_median": 0.338,
+   "elev_m": -2574
+  },
+  {
+   "row": 2,
+   "slope_deg": 0.7,
+   "slope": "flat",
+   "km": [
+    3.2,
+    6.5
+   ],
+   "sols": [
+    343,
+    381
+   ],
+   "tau_median": 0.291,
+   "elev_m": -2575
+  },
+  {
+   "row": 3,
+   "slope_deg": 0.9,
+   "slope": "flat",
+   "km": [
+    6.5,
+    9.7
+   ],
+   "sols": [
+    381,
+    402
+   ],
+   "tau_median": 0.282,
+   "elev_m": -2563
+  },
+  {
+   "row": 4,
+   "slope_deg": 3.0,
+   "slope": "tilted",
+   "km": [
+    9.7,
+    12.9
+   ],
+   "sols": [
+    402,
+    460
+   ],
+   "tau_median": 0.46,
+   "elev_m": -2543
+  },
+  {
+   "row": 5,
+   "slope_deg": 3.5,
+   "slope": "tilted",
+   "km": [
+    12.9,
+    16.1
+   ],
+   "sols": [
+    460,
+    714
+   ],
+   "tau_median": 0.336,
+   "elev_m": -2525
+  },
+  {
+   "row": 6,
+   "slope_deg": 2.3,
+   "slope": "tilted",
+   "km": [
+    16.1,
+    19.4
+   ],
+   "sols": [
+    714,
+    766
+   ],
+   "tau_median": 0.245,
+   "elev_m": -2450
+  },
+  {
+   "row": 7,
+   "slope_deg": 0.6,
+   "slope": "flat",
+   "km": [
+    19.4,
+    22.6
+   ],
+   "sols": [
+    766,
+    957
+   ],
+   "tau_median": 0.365,
+   "elev_m": -2416
+  },
+  {
+   "row": 8,
+   "slope_deg": 1.5,
+   "slope": "flat",
+   "km": [
+    22.6,
+    25.8
+   ],
+   "sols": [
+    957,
+    1109
+   ],
+   "tau_median": 0.227,
+   "elev_m": -2404
+  },
+  {
+   "row": 9,
+   "slope_deg": 5.0,
+   "slope": "tilted",
+   "km": [
+    25.8,
+    29.0
+   ],
+   "sols": [
+    1109,
+    1266
+   ],
+   "tau_median": 0.327,
+   "elev_m": -2350
+  },
+  {
+   "row": 10,
+   "slope_deg": 11.0,
+   "slope": "steep",
+   "km": [
+    29.0,
+    32.3
+   ],
+   "sols": [
+    1266,
+    1351
+   ],
+   "tau_median": 0.324,
+   "elev_m": -2060
+  },
+  {
+   "row": 11,
+   "slope_deg": 11.8,
+   "slope": "steep",
+   "km": [
+    32.3,
+    35.5
+   ],
+   "sols": [
+    1351,
+    1540
+   ],
+   "tau_median": 0.262,
+   "elev_m": -1887
+  },
+  {
+   "row": 12,
+   "slope_deg": 11.3,
+   "slope": "steep",
+   "km": [
+    35.5,
+    38.7
+   ],
+   "sols": [
+    1540,
+    1687
+   ],
+   "tau_median": 0.309,
+   "elev_m": -1920
+  },
+  {
+   "row": 13,
+   "slope_deg": 3.5,
+   "slope": "tilted",
+   "km": [
+    38.7,
+    42.0
+   ],
+   "sols": [
+    1687,
+    1859
+   ],
+   "tau_median": 0.144,
+   "elev_m": -1945
+  },
+  {
+   "row": 14,
+   "slope_deg": 3.0,
+   "slope": "tilted",
+   "km": [
+    42.0,
+    45.2
+   ],
+   "sols": [
+    1863,
+    1980
+   ],
+   "tau_median": null,
+   "elev_m": -1962
+  }
+ ],
+ "sha256": {
+  "M20_traverse.json": "1150b546662e97125b94db5c590e4aac152ee879a76e4c88927f885c814ecad6",
+  "TIRS_Aerosol_tau.csv": "b9f7d2294526ac7895f07e9877176e2ffad7165764c407f965fb5f4c0c027263"
+ }
+}
