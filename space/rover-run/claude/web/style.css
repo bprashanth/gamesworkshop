@@ -18,8 +18,17 @@ canvas { display: block; width: 100%; cursor: default; touch-action: manipulatio
 .card.hazard { background: var(--ink); color: #000; border-color: var(--ink); }
 .card.ghost { color: #6a6a67; border-style: dashed; }
 .card.ghost.hazard { background: #3a3a38; color: #c9c9c4; border-color: #6a6a67; }
+/* Pick 2 of 4: the row's cards wait face down, bright, to be chosen. */
+.card.pick { border-color: var(--ink); color: var(--ink); cursor: pointer; animation: pick 0.9s ease-in-out infinite alternate; }
+.card.pick:hover { background: #1c1c1b; }
+@keyframes pick { from { border-color: #5a5a58; } to { border-color: #fff; } }
+.card.unseen { color: #2a2a29; border-color: #1a1a19; }
+.legend { margin-top: 12px; color: var(--dim); font-size: 11.5px; line-height: 1.55; }
+.legend p { margin: 0 0 6px; }
+.legend b { color: var(--ink); font-weight: 400; }
 @media (max-width: 700px) {
   main { padding: 8px; }
+  .legend { font-size: 10.5px; }
   .cards { grid-template-columns: 3.4em repeat(14, minmax(0, 1fr)); gap: 2px; }
   .card i { display: none; }
   .card b { font-size: 11px; }

@@ -9,17 +9,18 @@ const screen = new Screen(document.getElementById('screen'));
 const contours = contourDots(map), route = routeDots(map);
 const first = Array.from({ length: N + 1 }, (_, r) => r < N ? route.findIndex(d => d.row === r) : route.length - 1);
 
-// ---------- memory: past runs and every card ever flipped ----------
+// ---------- memory: past runs and every card ever looked at ----------
 const KEY = 'rover-run.claude.v1';
 let memory = { runs: [], seen: {} };
 try { memory = { ...memory, ...JSON.parse(localStorage.getItem(KEY) || '{}') }; } catch {}
-const seen = () => (memory.seen[sol] ??= []);
+const seen = () => ((memory.looked ??= {})[sol] ??= {});          // row -> suits looked at, any run
 const solRuns = () => memory.runs.filter(r => (r.sol ?? 0) === sol);
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(memory)); } catch {} };
 
 // ---------- state ----------
 let mode = 'intro', run = newRun(deck, rules), stop = null, clock = 0, anim = null, effect = null, replay = null;
-let flipped = new Set();
+let shown = {}, pickRow = null;                                  // this run: row -> the 2 suits you chose to look at
+const LOOK = 2;
 const params = new URLSearchParams(location.search);
 const speed = Number(params.get('speed') || 1);
 if (params.has('film')) { document.documentElement.classList.add('film'); screen.resize(); }
@@ -41,6 +42,7 @@ function buildCards() {
     for (let r = 0; r < N; r++) {
       const c = document.createElement('div');
       c.className = 'card'; c.dataset.row = r; c.dataset.suit = suit;
+      c.addEventListener('click', () => { if (mode === 'pick' && r === pickRow) look(suit); });
       cardsEl.append(c);
     }
   }
@@ -48,7 +50,9 @@ function buildCards() {
 function paintCards() {
   for (const el of cardsEl.querySelectorAll('.card')) {
     const r = Number(el.dataset.row), [, get, glyphs] = SUITS.find(s => s[0] === el.dataset.suit);
-    const value = get(deck[r]), up = flipped.has(r), ghost = !up && seen().includes(r);
+    const suit = el.dataset.suit, value = get(deck[r]), up = !!shown[r]?.includes(suit), ghost = !up && !!seen()[r]?.includes(suit);
+    el.classList.toggle('pick', mode === 'pick' && r === pickRow && !up);
+    el.classList.toggle('unseen', r < run.pos && r !== pickRow && !up && !ghost);   // passed, never looked at
     el.classList.toggle('up', up);
     el.classList.toggle('ghost', ghost);
     el.classList.toggle('next', mode === 'play' && r === run.pos);
@@ -95,18 +99,19 @@ function ring(list, at, radius, c = INK, a = 1) {
   const rx = radius * screen.cw / SX * 1.5, ry = radius * screen.ch / SY * 1.5;
   for (let k = 0; k < 28; k++) list.push({ x: cx + Math.cos(k / 28 * 6.283) * rx, y: cy + Math.sin(k / 28 * 6.283) * ry, c, a, s: 0.9 });
 }
-function hazardMark(list, row, a = 1) {
+// A sand pit or storm is drawn only if you looked at the card that shows it.
+function hazardMark(list, row, a = 1, sh = shown) {
   const mid = route[Math.floor((first[row] + first[row + 1]) / 2)], [cx, cy] = dotPx(mid);
-  if (deck[row].ground === 'sand') {
+  if (deck[row].ground === 'sand' && sh[row]?.includes('ground')) {
     for (let k = 0; k < 40; k++) { const t = k * 0.55, r = 1.3 * t; list.push({ x: cx + Math.cos(t) * r, y: cy + Math.sin(t) * r * 0.9, c: SAND, a, s: 0.9 }); }
-  } else if (deck[row].dust === 'storm') {
+  } else if (deck[row].dust === 'storm' && sh[row]?.includes('dust')) {
     for (let k = 0; k < 5; k++) for (let j = 0; j < 7; j++) list.push({ x: cx - 18 + j * 4 + k * 3, y: cy - 12 + k * 6 + j * 0.6, c: SAND, a: a * (1 - j / 9), s: 0.9 });
   }
 }
 function marks(list, r0, a = 1) {
   r0.log.forEach(l => {
     if (l.stop === 'sample') ring(list, route[first[l.pos]], 4.5, INK, a);
-    if (l.move === 'avoid' || r0.end === 'sand' || r0.end === 'storm') hazardMark(list, l.pos, a);
+    hazardMark(list, l.pos, a);
   });
 }
 function rover(list, i, c = INK) {
@@ -139,6 +144,14 @@ function prompt(list) {
   put(' G go ', INK, 'go'); put(' ');
   put(' A avoid −2 ', INK, 'avoid');
 }
+function pickPrompt(list) {
+  const row = MAP.row + MAP.rows + 2, done = shown[pickRow] ?? [];
+  let col = 3;
+  const put = (t, c, hit, inv) => { screen.text(list, col, row, t, c, hit); if (inv) list[list.length - 1].inv = true; col += t.length; };
+  put(`row ${pickRow + 1} done`, INK); col += 4;
+  put(`look at ${LOOK - done.length} more of its 4 cards `, DIM); col += 1;
+  SUITS.forEach(([suit], i) => { put(` ${i + 1} ${suit} `, done.includes(suit) ? FAINT : INK, suit, done.includes(suit)); put(' '); });
+}
 function footer(list, t = 'real terrain + route · simulated hazards') {
   screen.text(list, COLS - 3 - t.length, MAP.row + MAP.rows + 0.6, t, FAINT);
 }
@@ -148,13 +161,14 @@ function frame() {
   if (mode === 'intro') return introFrame(list);
   if (mode === 'replay' || mode === 'over') return replayFrame(list);
   drawMap(list);
-  ticks(list, mode === 'play' ? run.pos : undefined);
+  ticks(list, mode === 'play' ? run.pos : mode === 'pick' ? pickRow : undefined);
   marks(list, run);
   if (anim?.ring) ring(list, route[first[anim.from]], anim.ring, INK);
   rover(list, anim ? anim.at : first[run.pos]);
   hud(list, anim?.battery ?? run.battery);
   if (anim?.label) screen.text(list, anim.label.col, anim.label.row, anim.label.t, INK);
   if (mode === 'play') prompt(list);
+  if (mode === 'pick') pickPrompt(list);
   footer(list);
   return list;
 }
@@ -171,7 +185,7 @@ function introFrame(list) {
     screen.text(list, 3, 1, 'ROVER RUN', INK);
     screen.text(list, 3, 2, `sol ${sol + 1}`, DIM);
     screen.text(list, 3, base - 1, `${N} rows of the real Perseverance route. Reach the end of row ${N}.`, DIM);
-    screen.text(list, 3, base, 'Each row: maybe stop (recharge or sample), then Go or Avoid. Then the cards flip.', DIM);
+    screen.text(list, 3, base, `Each row: maybe stop, then Go or Avoid. Then look at ${LOOK} of that row's 4 cards.`, DIM);
     screen.text(list, 3, base + 1, 'You have enough battery to drive straight through.', INK);
     const blink = Math.sin(clock * 4) > -0.3;
     if (blink) screen.text(list, COLS - 13, base + 1, ' P  start ', INK, 'start'), list[list.length - 1].inv = true;
@@ -196,7 +210,7 @@ function commit(move) {
   const midBattery = before.battery + (stop === 'recharge' ? 2 : 0);
   const len = (a1 - a0) * (dead ? 0.45 : 1);
   steps.push({ dur: Math.min(1.3, 0.35 + len / 220), run: (u, s) => { s.at = a0 + len * easeIO(u); s.battery = midBattery; s.move = move; } });
-  steps.push({ dur: 0.05, run: () => { flipped.add(from); if (!seen().includes(from)) seen().push(from); run = after; stop = null; paintCards(); } });
+  steps.push({ dur: 0.05, run: () => { run = after; stop = null; pickRow = from; paintCards(); } });
   steps.push({ dur: dead ? 0.9 : after.end === 'battery' ? 0.6 : 0.25, run: (u, s) => { s.at = a0 + len; s.battery = after.battery; } });
   anim = { from, at: a0, battery: before.battery, steps, i: 0, t0: clock, dead, move };
   run = { ...before, stops: after.stops, score: before.score };
@@ -213,13 +227,24 @@ function stepAnim() {
   if (step) { delete anim.label; delete anim.ring; step.run((clock - anim.t0) / (step.dur / speed), anim); return; }
   anim = null;
   if (run.end) return finishRun();
-  mode = 'play';
+  mode = 'pick';                                         // the attention budget: choose what to look at
+  paintCards();
+}
+function look(suit) {
+  if (mode !== 'pick' || shown[pickRow]?.includes(suit)) return;
+  (shown[pickRow] ??= []).push(suit);
+  const mem = seen(); if (!(mem[pickRow] ??= []).includes(suit)) mem[pickRow].push(suit);
+  save();
+  if (shown[pickRow].length >= LOOK) { mode = 'play'; pickRow = null; }
   paintCards();
 }
 
 // ---------- end of a run ----------
 function finishRun() {
-  memory.runs.push({ sol, log: run.log, end: run.end, score: run.score, at: Date.now() });
+  const last = run.log[run.log.length - 1].pos, fatal = { sand: 'ground', storm: 'dust' }[run.end];
+  if (fatal && !shown[last]?.includes(fatal)) (shown[last] ??= []).push(fatal);   // you see what killed you
+  pickRow = null; paintCards();
+  memory.runs.push({ sol, log: run.log, end: run.end, score: run.score, shown, at: Date.now() });
   save();
   const frozen = frame();
   const { width, height } = screen.canvas.getBoundingClientRect();
@@ -232,7 +257,7 @@ function finishRun() {
 let lastAt = 0;
 function startReplay() {
   mode = 'replay';
-  replay = { t0: clock, run, n: solRuns().length };
+  replay = { t0: clock, run, n: solRuns().length, shown: { ...shown } };
   paintCards();
 }
 const ROWDUR = 0.5;
@@ -259,7 +284,7 @@ function replayFrame(list) {
     headAt = a0 + span;
     if (l.stop === 'sample' && u > 0) ring(list, route[a0], 1 + 3.5 * Math.min(1, u / 0.3));
     if (l.stop === 'recharge' && u > 0) { const [x, y] = dotPx(route[a0]); list.push({ x: x - 6, y, c: INK, s: 0.9 }, { x: x + 6, y, c: INK, s: 0.9 }, { x, y: y - 6, c: INK, s: 0.9 }, { x, y: y + 6, c: INK, s: 0.9 }); }
-    if ((l.move === 'avoid' || deadHere) && u >= 1) hazardMark(list, l.pos);
+    if (u >= 1) hazardMark(list, l.pos, 1, replay.shown);
   });
   rover(list, headAt);
   const over = k >= r0.log.length;
@@ -270,8 +295,8 @@ function replayFrame(list) {
   // top: run number and the reading at the replay head (like the film's readings)
   screen.text(list, 3, 1, `SOL ${sol + 1} · RUN ${replay.n}  replay`, INK);
   if (cur) {
-    const row = deck[cur.pos];
-    screen.text(list, 3, 2, `row ${cur.pos + 1}  ${row.slope} · ${row.ground === 'sand' ? 'SAND' : row.ground} · ${row.dust === 'storm' ? 'STORM' : row.dust}`, DIM);
+    const row = deck[cur.pos], sh = replay.shown[cur.pos] ?? [], v = k => sh.includes(k) ? (['sand', 'storm'].includes(row[k]) ? row[k].toUpperCase() : row[k]) : '?';
+    screen.text(list, 3, 2, `row ${cur.pos + 1}  slope ${v('slope')} · ground ${v('ground')} · dust ${v('dust')}`, DIM);
   }
   // battery curve along the bottom
   const base = MAP.row + MAP.rows + 1.9, H = 2.2, W = 40;
@@ -313,7 +338,7 @@ function tick(ms) {
   requestAnimationFrame(tick);
 }
 function newGame() {
-  run = newRun(deck, rules); stop = null; flipped = new Set(); anim = null; mode = 'play';
+  run = newRun(deck, rules); stop = null; shown = {}; pickRow = null; anim = null; mode = 'play';
   paintCards();
 }
 function input(k) {
@@ -321,6 +346,7 @@ function input(k) {
   if (mode === 'over' && (k === 'n' || k === 'nextsol') && sol < sols.length - 1 && solRuns().some(r => r.end === 'finish')) {
     sol++; deck = sols[sol]; window.rover.deck = deck; return newGame();
   }
+  if (mode === 'pick') { const suit = SUITS.find(([s], i) => k === s || k === String(i + 1))?.[0]; if (suit) look(suit); return; }
   if (mode !== 'play') return;
   if ((k === 'r' || k === 'recharge') && run.stops) stop = stop === 'recharge' ? null : 'recharge';
   else if ((k === 's' || k === 'sample') && run.stops) stop = stop === 'sample' ? null : 'sample';
@@ -342,4 +368,4 @@ function paintPad() {
 }
 buildCards(); paintCards();
 requestAnimationFrame(ms => { introStart = ms / 1000; tick(ms); });
-window.rover = { get state() { return { mode, run, stop, memory, sol } }, input, deck };
+window.rover = { get state() { return { mode, run, stop, memory, sol, shown } }, input, deck };

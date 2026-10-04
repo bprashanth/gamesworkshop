@@ -22,6 +22,9 @@ const key = async (k, ms = 900) => { await page.keyboard.press(k); await wait(ms
 const turn = async t => {                       // "rA" = recharge then avoid, "G" = go
   await until('play'); await wait(700);
   for (const c of t.toLowerCase()) await key(c, c === 'g' || c === 'a' ? 200 : 650);
+  // look at 2 of the row's 4 cards: ground and dust (slope is on the map, battery on the meter)
+  await page.waitForFunction(() => window.rover.state.mode !== 'anim', null, { timeout: 60000 });
+  if ((await page.evaluate(() => window.rover.state.mode)) === 'pick') { await key('2', 450); await key('3', 300); }
 };
 await wait(5200);                                 // intro draws itself
 const runs = [

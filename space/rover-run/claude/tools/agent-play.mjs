@@ -1,6 +1,7 @@
 // Turn-by-turn harness for an outside playtester (human or agent) driving the real page.
 //   node tools/agent-play.mjs new                 start a fresh run (keeps memory of past runs)
-//   node tools/agent-play.mjs turn <stop> <move>  stop: none|recharge|sample, move: go|avoid
+//   node tools/agent-play.mjs turn <stop> <move> <card> <card>  stop: none|recharge|sample, move: go|avoid,
+//        cards: the 2 of slope|ground|dust|battery to look at afterwards
 //   node tools/agent-play.mjs look                re-render without acting
 // Each call replays the session log in a headless browser at high speed, applies the
 // new turn, and writes out/agent/screen.png (the whole page) plus a text summary.
@@ -11,12 +12,12 @@ const dir = new URL('../out/agent/', import.meta.url).pathname;
 mkdirSync(dir, { recursive: true });
 const file = dir + 'session.json';
 const session = existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : { runs: [] };
-const [cmd, stop, move] = process.argv.slice(2);
+const [cmd, stop, move, c1 = 'ground', c2 = 'dust'] = process.argv.slice(2);
 if (cmd === 'new') session.runs.push([]);
 else if (cmd === 'turn') {
   if (!['none', 'recharge', 'sample'].includes(stop) || !['go', 'avoid'].includes(move)) { console.log('usage: turn <none|recharge|sample> <go|avoid>'); process.exit(1); }
   if (!session.runs.length) session.runs.push([]);
-  session.runs[session.runs.length - 1].push([stop, move]);
+  session.runs[session.runs.length - 1].push([stop, move, c1, c2]);
 } else if (cmd !== 'look') { console.log('usage: new | turn <stop> <move> | look'); process.exit(1); }
 
 const browser = await chromium.launch();
@@ -30,11 +31,13 @@ const key = async k => { await page.evaluate(k => window.rover.input(k), k); };
 for (const [i, run] of session.runs.entries()) {
   await page.waitForTimeout(80);
   await key('p'); await settle();
-  for (const [s, m] of run) {
+  for (const [s, m, ...look] of run) {
     const st = await page.evaluate(() => window.rover.state);
     if (st.mode !== 'play') break;
     if (s !== 'none') await key(s);
     await key(m);
+    await page.waitForFunction(() => window.rover.state.mode !== 'anim', null, { timeout: 30000 });
+    if ((await page.evaluate(() => window.rover.state.mode)) === 'pick') for (const c of look) await key(c);
     await page.waitForTimeout(30);
     await settle();
   }
@@ -48,9 +51,9 @@ if (st.mode === 'over' || st.run.end) await page.waitForFunction(() => window.ro
 await page.screenshot({ path: dir + 'screen.png', fullPage: true });
 const s = await page.evaluate(() => window.rover.state);
 const deck = await page.evaluate(() => window.rover.deck);
-const seen = s.run.log.map(l => l.pos);
+const shown = await page.evaluate(() => window.rover.state.shown);
 console.log(`run ${session.runs.length}  row ${Math.min(s.run.pos + 1, deck.length)}/${deck.length}  battery ${s.run.battery}  stops left ${s.run.stops}  score ${s.run.score}${s.run.end ? '  ENDED: ' + s.run.end : ''}`);
-console.log('cards flipped this run:');
-for (const r of seen) { const c = deck[r]; console.log(`  row ${r + 1}: slope ${c.slope}, ground ${c.ground}, dust ${c.dust}, battery ${(c.ground === 'sand' || c.dust === 'storm') ? '-' : c.battery}`); }
+console.log('cards you looked at this run:');
+for (const [r, suits] of Object.entries(shown)) { const c = deck[r]; console.log(`  row ${+r + 1}: ` + suits.map(k => `${k} ${k === 'battery' ? ((c.ground === 'sand' || c.dust === 'storm') ? '-' : c.battery) : c[k]}`).join(', ')); }
 console.log(`screenshot: ${dir}screen.png`);
 await browser.close();

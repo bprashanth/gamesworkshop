@@ -96,3 +96,16 @@ whether "sometimes" means noise or a missing variable. Fixed in wording: `remove
 "safe = no SAND, no STORM", "sol n: new weather, same laws", and "sometimes … cards and map can't
 decide this one; a sample can".
 Its last run died on row 3 after a lucky haze, which is fair variance.
+
+## 2026-10-05 · v1.1: attention budget + legend (user: "I can't reveal them all, that's the attention budget")
+
+- After Go/Avoid the row's four cards wait face down, bright. The player **clicks 2 of 4** (or keys
+  1–4). The other two stay hidden for the run (dark), and the replay shows them as `?`.
+- Driving into a hazard reveals the fatal card. Sand and storm marks on the map appear only if
+  that card was looked at.
+- Ghost cards are now remembered per card, not per row.
+- Tuning is unchanged: the intended play needs only ground + dust (slope is on the map, the battery
+  change shows on the meter). Choosing those two *is* the attention lesson.
+- A legend in words under the grid covers card faces, card styles and map marks.
+- `tools/film.mjs` (looks at ground + dust each row) and `tools/agent-play.mjs`
+  (`turn <stop> <move> <card> <card>`) updated. v1 film re-recorded (125 s).

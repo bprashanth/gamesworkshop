@@ -5,8 +5,10 @@
 - **v2** (`/v2/`): two decks, slope printed on the map, a turn track, a safe/danger call before every
   move, sample = reveal one card of the row ahead, a new sol every run, and a notebook that plots
   *what came next* and tests one rule against the data.
-- **v1** (`/web/`): the rulebook as written: four decks, battery, stops. Frozen at git tag
-  `rover-run-claude-v1`.
+- **v1** (`/web/`): the rulebook as written (four decks, battery, stops), plus an attention budget.
+  After each row you look at only **2 of its 4 cards** (click, or 1–4). A plain-words legend for
+  cards and map sits under the grid. The original v1 is git tag `rover-run-claude-v1`; this one is
+  `rover-run-claude-v1.1`.
 
 ## v2 in one breath
 

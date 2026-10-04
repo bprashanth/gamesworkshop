@@ -10,6 +10,15 @@
 <main>
   <div class="screen"><canvas id="screen"></canvas></div>
   <div id="cards" class="cards"></div>
+  <div class="legend">
+    <p><b>cards</b> After each row you look at only 2 of its 4 cards. Click them, or press 1–4. Each card describes the row you just passed.</p>
+    <p><b>slope</b> ▁▁▁ flat · ▁▃▅ tilted · ▂▅█ steep &nbsp; <b>ground</b> ▪ firm · ∴ soft · ◍ SAND, deadly to drive into
+       &nbsp; <b>dust</b> ○ clear · ◌ haze · ≋ STORM, deadly to drive into &nbsp; <b>battery</b> what driving that row cost: 0 or −1 (– on a deadly row)</p>
+    <p><b>card look</b> white card = deadly · bright border = row ahead, or a card you can pick now · dashed = remembered from an earlier run · dark = passed, not looked at</p>
+    <p><b>map</b> coloured lines = terrain contours (lines close together = steep) · grey dots = route ahead · blinking = the row you are deciding ·
+       ticks across the route = row edges · solid white = rows you drove · dashed white = rows you avoided · big white dot = the rover ·
+       circle = you sampled here · tan spiral = a sand pit you saw · tan streaks = a storm you saw</p>
+  </div>
   <div id="pad" class="pad">
     <button data-k="none">·</button><button data-k="recharge">R +2</button><button data-k="sample">S +1</button>
     <span></span><button data-k="go">G go</button><button data-k="avoid">A avoid</button><button data-k="p" class="again">P play</button>
