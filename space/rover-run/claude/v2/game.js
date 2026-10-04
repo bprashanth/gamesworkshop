@@ -33,7 +33,7 @@ const SUITS = [
 const cardsEl = document.getElementById('cards');
 function buildCards() {
   cardsEl.innerHTML = '';
-  for (const [suit, states] of [...SUITS, ['call', 'safe · danger']]) {
+  for (const [suit, states] of [...SUITS, ['call', 'safe = no SAND, no STORM']]) {
     const label = document.createElement('div');
     label.className = 'suit'; label.innerHTML = `${suit}<small>${states}</small>`;
     cardsEl.append(label);
@@ -77,7 +77,7 @@ const ANDS = { 'any slope': () => true, flat: p => p.slope === 'flat', tilted: p
 const THENS = { 'has SAND': p => p.ng === 'sand', 'has STORM': p => p.nd === 'storm', 'is safe': p => p.ng !== 'sand' && p.nd !== 'storm' };
 const test = r => { const m = memory.pairs.filter(p => IFS[r.if](p) && ANDS[r.and](p)); return [m.filter(THENS[r.then]).length, m.length]; };
 // How a rule did across every row pair seen so far, in every run.
-const verdict = ([h, n]) => !n ? ['', 'no cases yet'] : h === n ? ['held', `always · ${h} of ${n}`] : h === 0 ? ['broke', `never · 0 of ${n}`] : ['some', `sometimes · ${h} of ${n}`];
+const verdict = ([h, n]) => !n ? ['', 'no cases yet'] : h === n ? ['held', `always · ${h} of ${n}`] : h === 0 ? ['broke', `never · 0 of ${n}`] : ['some', `sometimes · ${h} of ${n} · cards and map can't decide this one; a sample can`];
 function cell(filter, glyphOf) {
   const ps = memory.pairs.filter(filter);
   return ps.length ? ps.slice(-24).map(glyphOf).join('') + (ps.length > 24 ? `+${ps.length - 24}` : '') : '<em>·</em>';
@@ -86,7 +86,7 @@ function paintNotebook() {
   const slopeOf = p => SLOPE_GLYPH[p.slope];
   const grid = (rowsDef, cols) => `<table><tr><th></th>${cols.map(c => `<th>${c[0]}</th>`).join('')}</tr>${rowsDef.map(([name, f]) =>
     `<tr><th>${name}</th>${cols.map(([, g]) => `<td>${cell(p => f(p) && g(p), slopeOf)}</td>`).join('')}</tr>`).join('')}</table>`;
-  const kept = memory.rules.map((r, i) => { const [c, t] = verdict(test(r)); return `<li>if <b>${r.if}</b>, ${r.and}, next row <b>${r.then}</b> <span class="${c}">${t}</span> <button data-drop="${i}">×</button></li>`; }).join('');
+  const kept = memory.rules.map((r, i) => { const [c, t] = verdict(test(r)); return `<li>if <b>${r.if}</b>, ${r.and}, next row <b>${r.then}</b> <span class="${c}">${t}</span> <button data-drop="${i}">remove</button></li>`; }).join('');
   const sel = (name, opts, v) => `<select data-r="${name}">${Object.keys(opts).map(o => `<option${o === v ? ' selected' : ''}>${o}</option>`).join('')}</select>`;
   const draft = nb.draft ?? (nb.draft = { if: 'soft', and: 'any slope', then: 'has SAND' }), [vc, vt] = verdict(test(draft));
   nb.innerHTML = `
@@ -156,7 +156,7 @@ function marks(list, r0, d = deck) {
 function rover(list, i) { const [x, y] = dotPx(route[Math.min(route.length - 1, Math.max(0, Math.round(i)))]); list.push({ x, y, c: INK, s: 4.5 }); }
 function hud(list) {
   screen.text(list, 3, 1, 'JEZERO / PERSEVERANCE', INK);
-  screen.text(list, 3, 2, `rim climb · sols 753–1980 · sol ${sol + 1}`, DIM);
+  screen.text(list, 3, 2, `rim climb · sol ${sol + 1}: new weather, same laws`, DIM);
   const left = run.turns - run.turn;
   const right = `turns ${'▮'.repeat(left)}${'▯'.repeat(run.turn)}   calls ${run.right}/${run.calls}   score ${run.score}`;
   screen.text(list, COLS - 3 - right.length, 1, right, INK);

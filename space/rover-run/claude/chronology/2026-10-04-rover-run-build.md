@@ -85,3 +85,14 @@ Fixes (v2.1):
 - Rule verdicts read *always / never / sometimes · h of n*, "tested against every pair of rows you
   have seen, in every run".
 - A turn-cost legend sits above the prompt.
+
+## v2.1 blind playtest (fresh agent, GPT-5.6 Sol, 5 runs): `benchmarks/v2.1-blind-playtest-gpt56.md`
+
+Scores 3, 14, 8, **30** (max 31), 4. It kept `soft + not steep → has SAND` ("always, 5 of 5"):
+**the full slope rule, found blind.** It called haze "a risk signal, not a deterministic storm
+rule", and settled on "sample only the unresolved hazard channel". Run 4 "felt genuinely earned".
+Remaining friction: what a sol is; "×" on kept rules read as a failed test; "safe" was undefined;
+whether "sometimes" means noise or a missing variable. Fixed in wording: `remove`,
+"safe = no SAND, no STORM", "sol n: new weather, same laws", and "sometimes … cards and map can't
+decide this one; a sample can".
+Its last run died on row 3 after a lucky haze, which is fair variance.
