@@ -21,7 +21,7 @@ else if (cmd === 'turn') {
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1400, height: 1150 } });
-await page.goto('http://localhost:8670/?speed=40');
+await page.goto('http://localhost:8670/web/?speed=40');
 await page.evaluate(() => localStorage.clear());
 await page.reload();
 await page.waitForFunction(() => window.rover);

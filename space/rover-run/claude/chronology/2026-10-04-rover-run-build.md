@@ -44,3 +44,44 @@ first half was "mechanical". Fun: persistent knowledge, and planning the last ru
 Lesson: same-deck retries plus ghost cards reward memory, not a model. New sols must be the default,
 not a reward, and the history must show *transitions* (row → next row), not positions.
 That feeds v2.
+
+## 2026-10-05 · v2 (user's redesign), v1 kept at tag `rover-run-claude-v1`
+
+- **Dropped the battery; a turn track replaces it.** Avoid = 3 turns, Go = 1, Sample = 1 turn to
+  reveal *one* chosen card (ground or dust) of the row ahead. With Avoid = 2, a sample never saved a
+  turn, so measuring only scored calls. 3 turns plus haze that storms about 1 time in 3 makes
+  measuring cheaper than detouring on average.
+- **Slope printed on the map** (full word for the next row, ▁ ▄ █ elsewhere). Slope is no longer a
+  deck: 2 decks, 3 actions.
+- **Call SAFE / DANGER before each move**, scored after the flip. Score = rows + right calls + 3 for
+  the finish. The call is the verification step made explicit.
+- **Two patterns with different answers:** soft→SAND unless the next row is steep (*the map/model
+  answers it*), haze→STORM about 1 in 3 (*only a measurement answers it*). Simulator: intended 31;
+  never-sample 27; sample-everything 23; avoid-any-warning 22; random 6.1. Eight sols, all pass.
+- **A new sol every run.** Ghost cards are gone, so memory can't win.
+- **Notebook:** a *what came next* plot (one mark per observed transition, drawn as the next row's
+  slope) and a *one rule* builder ("if a row shows X and the next row is Y on the map, the next row
+  Z"), tested live against all observed pairs ("held 4/5"). It is asked for after every run, as the
+  rulebook's debrief prompt is on paper.
+- Fixed: the flip step fired every animation frame (duplicate pairs). Keys typed during animations
+  are now buffered. The screenshot harness had been dropping digit keys.
+- Ops mistake: a broad `pkill -f "serve.py$"` also killed the Codex servers on 8000 and 8661.
+  Both were restarted with their original bindings. Servers are now stopped by PID only.
+
+## v2 blind playtest #1 (fresh agent, GPT-5.6 Sol, 5 runs): `benchmarks/v2-blind-playtest-gpt56.md`
+
+Scores 4, 12, 12, 16, 10. It found **soft → SAND** after run 1 (notebook 5/5) and called haze
+"a tendency rather than a guarantee". It sampled dust after haze, which caught two storms.
+"Discovering soft-to-SAND … and having the notebook confirm 5/5 felt genuinely satisfying."
+It **never found the slope exception**: every run died by row 9, and the steep rows were 10–12, so
+it never saw soft before steep and concluded "SAND regardless of slope".
+It also asked: what is a sol, do the laws change, what does held x/y count, why Avoid costs 3.
+
+Fixes (v2.1):
+- v2's map is the **second half of the real route** (km 18–45, sols 753–1980: delta top and rim
+  climb). Steep runs from row 6, and the plateau rows 12–14 are tilted, so early runs meet soft on
+  flat (sand) and soft on steep (safe). Rebuilt 8 sols; all pass (`benchmarks/v2-sim.txt`).
+- The intro says "same route, new weather, same laws of nature".
+- Rule verdicts read *always / never / sometimes · h of n*, "tested against every pair of rows you
+  have seen, in every run".
+- A turn-cost legend sits above the prompt.

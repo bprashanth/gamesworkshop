@@ -13,7 +13,7 @@ rmSync(tmp, { recursive: true, force: true }); mkdirSync(tmp, { recursive: true 
 const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 1920, height: 1080 }, recordVideo: { dir: tmp, size: { width: 1920, height: 1080 } } });
 const page = await ctx.newPage();
-await page.goto('http://localhost:8670/?film=1');
+await page.goto('http://localhost:8670/web/?film=1');
 await page.evaluate(() => localStorage.clear());
 await page.reload();
 const wait = ms => page.waitForTimeout(ms);

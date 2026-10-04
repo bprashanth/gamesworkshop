@@ -1,0 +1,587 @@
+{
+ "name": "Jezero rim climb · sols 753–1980",
+ "rules": {
+  "turns": 29,
+  "avoidTurns": 3,
+  "finishBonus": 3
+ },
+ "sols": [
+  [
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "clear"
+   },
+   {
+    "slope": "flat",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "flat",
+    "ground": "sand",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "storm"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "clear"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "storm"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "clear"
+   }
+  ],
+  [
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "clear"
+   },
+   {
+    "slope": "flat",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "flat",
+    "ground": "sand",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "storm"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "storm"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "clear"
+   }
+  ],
+  [
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "clear"
+   },
+   {
+    "slope": "flat",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "flat",
+    "ground": "sand",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "storm"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "storm"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "clear"
+   }
+  ],
+  [
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "clear"
+   },
+   {
+    "slope": "flat",
+    "ground": "firm",
+    "dust": "clear"
+   },
+   {
+    "slope": "flat",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "storm"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "storm"
+   }
+  ],
+  [
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "flat",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "flat",
+    "ground": "firm",
+    "dust": "storm"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "clear"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "storm"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "clear"
+   }
+  ],
+  [
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "clear"
+   },
+   {
+    "slope": "flat",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "flat",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "storm"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "storm"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "clear"
+   }
+  ],
+  [
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "flat",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "flat",
+    "ground": "firm",
+    "dust": "storm"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "storm"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "clear"
+   }
+  ],
+  [
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "flat",
+    "ground": "firm",
+    "dust": "clear"
+   },
+   {
+    "slope": "flat",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "storm"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "storm"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "haze"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "clear"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "clear"
+   }
+  ]
+ ],
+ "notes": "Slope from the DEM at map scale (v2/rows.json). Ground, dust and every sol are authored; patterns: soft -> SAND unless next row steep; haze -> STORM about 1 in 3."
+}

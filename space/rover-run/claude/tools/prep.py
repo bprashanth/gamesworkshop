@@ -3,10 +3,11 @@ equal-distance rows, and per-row slope and dust readings.
 
 Inputs are the cached public datasets on the Seagate drive (read only):
   JPL Mars 2020 CTX DEM (20 m), NASA MMGIS M20 traverse, MEDA/TIRS tau.
-Output: web/map.json (normalised geometry) and tools/rows.json (per-row readings).
-Run: .venv/bin/python tools/prep.py
+Output: <out>/map.json (normalised geometry) and <rows> (per-row readings).
+Run: .venv/bin/python tools/prep.py                                  # v1: whole route -> web/
+     .venv/bin/python tools/prep.py --km-from 18 --out v2 --rows v2/rows.json   # v2: delta top + rim climb
 """
-import csv, hashlib, json, math
+import argparse, csv, hashlib, json, math
 from pathlib import Path
 import contourpy, numpy as np, rasterio
 from scipy.ndimage import gaussian_filter, map_coordinates
@@ -36,6 +37,9 @@ def simplify(points, tolerance):
     return points[keep]
 
 
+ap = argparse.ArgumentParser(); ap.add_argument('--km-from', type=float, default=0)
+ap.add_argument('--out', default='web'); ap.add_argument('--rows', default='tools/rows.json'); args = ap.parse_args()
+
 features = json.loads((RAW / 'M20_traverse.json').read_text())['features']
 route, sols = [], []
 for f in sorted(features, key=lambda e: e['properties']['sol']):
@@ -45,6 +49,8 @@ for f in sorted(features, key=lambda e: e['properties']['sol']):
             route.append(p); sols.append(f['properties']['sol'])
 route = np.array(route); sols = np.array(sols)
 dist = np.r_[0, np.cumsum(np.hypot(*np.diff(route, axis=0).T))]
+keep = dist >= args.km_from * 1000                     # optional window: start part-way along the real route
+route, sols, dist = route[keep], sols[keep], dist[keep] - dist[keep][0]
 
 with rasterio.open(RAW / 'jezero_ctx_dem_20m.tif') as ds:
     inv = ~ds.transform; dem = ds.read(1)
@@ -89,7 +95,7 @@ for i in range(ROWS):
     taus = [np.median(daily[s]) for s in range(s0, s1 + 1) if s in daily]
     rows.append({'row': i + 1, 'slope_deg': round(deg, 1),
                  'slope': 'steep' if deg >= STEEP else 'flat' if deg < FLAT else 'tilted',
-                 'km': [round(edges[i] / 1000, 1), round(edges[i + 1] / 1000, 1)], 'sols': [s0, s1],
+                 'km': [round(args.km_from + edges[i] / 1000, 1), round(args.km_from + edges[i + 1] / 1000, 1)], 'sols': [s0, s1],
                  'tau_median': round(float(np.median(taus)), 3) if taus else None,
                  'elev_m': round(float(sample(route[m]).mean()))})
     cuts.append(int(np.searchsorted(dist, edges[i])))
@@ -108,8 +114,8 @@ out = {
     'contours': contours,
     'source': {'dem': 'JPL Mars 2020 CTX DEM 20 m (USGS Astrogeology)', 'route': 'NASA MMGIS M20 traverse, sols %d-%d' % (sols[0], sols[-1])},
 }
-(HERE.parent / 'web/map.json').write_text(json.dumps(out, separators=(',', ':')))
-(HERE / 'rows.json').write_text(json.dumps({'thresholds_deg': {'flat_below': FLAT, 'steep_from': STEEP}, 'rows': rows,
+(HERE.parent / args.out / 'map.json').write_text(json.dumps(out, separators=(',', ':')))
+(HERE.parent / args.rows).write_text(json.dumps({'thresholds_deg': {'flat_below': FLAT, 'steep_from': STEEP}, 'rows': rows,
     'sha256': {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (RAW / 'M20_traverse.json', TAU)}}, indent=1))
 print(len(contours), 'contours', len(pts), 'route pts', round(dist[-1] / 1000, 1), 'km')
 for r in rows: print(r)

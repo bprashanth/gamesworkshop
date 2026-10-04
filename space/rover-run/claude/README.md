@@ -1,5 +1,43 @@
 # Rover Run — Claude build (online, 1 player)
 
+`python3 serve.py`, then open http://localhost:8670 to choose a version.
+
+- **v2** (`/v2/`): two decks, slope printed on the map, a turn track, a safe/danger call before every
+  move, sample = reveal one card of the row ahead, a new sol every run, and a notebook that plots
+  *what came next* and tests one rule against the data.
+- **v1** (`/web/`): the rulebook as written: four decks, battery, stops. Frozen at git tag
+  `rover-run-claude-v1`.
+
+## v2 in one breath
+
+Look at what you know. Call the row ahead **SAFE** or **DANGER**. Then **GO** (1 turn), **AVOID**
+(3 turns), or **SAMPLE** one of its cards (1 turn). Its ground and dust cards flip, and you see if you
+were right. 29 turns. Score = rows + right calls + 3 for finishing.
+
+Hidden patterns: soft ground means SAND next, unless the map says the next row is STEEP. Haze
+means a STORM next about one time in three, and nothing on the map tells you which. So the map
+answers the ground question, and only a dust sample answers the haze question. That's the lesson:
+collect data only where your model can't answer.
+
+| v2 strategy (sol 1; all 8 sols pass, `node tools/sim2.mjs`) | Score | How it ends |
+| --- | --- | --- |
+| Slope answers soft; sample the haze (intended) | **31** | finishes, 14/14 calls |
+| Warnings + slope, never sample | 27 | finishes, 4 wrong calls |
+| Sample every warning | 23 | storm, out of turns |
+| Avoid after any warning | 22 | out of turns |
+| Slope only (ignores haze) | 8 | storm, row 5 |
+| Always go | 4 | sand, row 3 |
+| Random | 6.1 | |
+
+Every run is a new sol (same route, new weather), so memorising cards is useless. That fixes the
+v1 blind-playtest failure: the agent memorised sol 1 and never found a pattern. The *what came next*
+plot logs each observed transition as the next row's slope glyph (▁ ▄ █). Soft→safe fills with █
+and soft→SAND with ▁ and ▄, so the pattern shows without being stated.
+
+---
+
+# v1
+
 Drive the real Perseverance route across Jezero, row by row. Each row is one line of the team
 sheet: an optional **stop** (recharge or sample), then **Go** or **Avoid**. Then the row's four cards
 flip. Nobody tells you the patterns. You find them from the cards, the map, and dying.

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rover Run v2</title>
+<link rel="stylesheet" href="../web/style.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <div class="screen"><canvas id="screen"></canvas></div>
+  <div id="cards" class="cards"></div>
+  <div id="pad" class="pad">
+    <button data-k="safe">Y safe</button><button data-k="danger">N danger</button><span></span>
+    <button data-k="go">G go</button><button data-k="avoid">A avoid</button><span></span>
+    <button data-k="ground">1 grnd</button><button data-k="dust">2 dust</button><button data-k="p" class="again">P play</button>
+  </div>
+  <div id="notebook" class="notebook"></div>
+</main>
+<script type="module" src="game.js"></script>
+</body>
+</html>
