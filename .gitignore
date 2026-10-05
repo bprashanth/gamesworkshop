@@ -269,3 +269,14 @@ benchmarks/
 
 # The archived Codex Rover Run stays local.
 space/rover-run/archive/
+
+# Kept locally, out of git: the Moon/Mars film projects (media live on Seagate), Rover Run's frozen
+# earlier versions and the v2 design experiment (git tags mark them), mocks, and media symlinks.
+space/moon-model-video/
+space/mars-rover-video/
+space/rover-run/src/v1.*/
+space/rover-run/src/v2/
+space/rover-run/src/mocks/
+space/rover-run/src/media/
+space/rover-run/src/tools/*2.mjs
+space/rover-run/src/tools/rows.json

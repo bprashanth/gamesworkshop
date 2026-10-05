@@ -1,5 +1,9 @@
 # Space anchors: knowing when a smaller model is enough
 
+> The films and their source projects (`space/mars-rover-video/`, `space/moon-model-video/`) are kept
+> on the workshop machine, not in git, so links into them resolve there only. The game they set up is
+> [Rover Run](../space/rover-run/README.md).
+
 This is the narrative and handoff for another agent to brainstorm a game. It is
 not a finished rulebook. The two approved films are **final for now**; explore
 game mechanics around them rather than redesigning their visuals.

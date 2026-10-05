@@ -1,5 +1,9 @@
 # Space — final anchor films
 
+> The films and their source projects (`space/mars-rover-video/`, `space/moon-model-video/`) are kept
+> on the workshop machine, not in git, so links into them resolve there only. The game they set up is
+> [Rover Run](rover-run/README.md).
+
 **[Watch both finals and earlier versions](http://100.82.28.38:8651/)** (Tailscale).
 
 | Final for now | What to watch |

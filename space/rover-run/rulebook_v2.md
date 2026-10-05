@@ -173,7 +173,8 @@ Simulated with `node src/tools/sim.mjs` (one life: does this way of reading the 
   a hover link from column to strip, Reset, and death screens;
 - a strategy simulator whose checks guard every number in this rulebook;
 - a film recorder and a blind-playtest harness;
-- frozen earlier versions at `/v1.0/`–`/v1.5/` and the separate two-deck design at `/v2/`.
+- frozen earlier versions at `/v1.0/`–`/v1.5/` and the separate two-deck design at `/v2/`, kept on the
+  workshop machine (not in git).
 
 **Learned from blind agent playtests:**
 - With same-deck retries and remembered cards, the first agent memorised the map instead of

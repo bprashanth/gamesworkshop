@@ -67,11 +67,10 @@ To build the same game on your own dataset, see **[narrative/REUSE.md](../../../
 | `web/` | The game (v1.6). `engine.js` holds the rules (pure). `analysis.js` holds the strategies and the checks. `game.js` is the page. `screen.js` + `effects.js` are the dot-matrix map and the death effects. `symbols.js` holds the card glyphs. `deck.json` is the fixed map. `map.json` / `rows.json` are the contours, route and strips. |
 | `tools/sim.mjs` | Plays every strategy against the deck and checks each tuning target and pattern (`node tools/sim.mjs`). |
 | `tools/prep.py` | Builds `map.json` from the DEM and traverse (`--strips 14 --rotate`). Needs a venv with numpy, scipy, rasterio, contourpy and pillow. |
-| `tools/film.mjs` | Records a played session to MP4 on Seagate (`media/` symlinks). |
+| `tools/film.mjs` | Records a played session to MP4 on Seagate (local `media/` symlinks, not in git). |
 | `tools/agent-play.mjs`, `shot.mjs`, `montage.py` | Blind-playtest harness and review screenshots. |
-| `mocks/` | The card-glyph mock page used to choose symbols. |
 | `benchmarks/` | Simulator output and blind agent playtests, kept locally (benchmarks aren't committed; the findings are in the chronology). |
-| `v1.0/` … `v1.5/`, `v2/` | Frozen earlier versions (`v2` is a separate two-deck design experiment). |
+| `v1.0/` … `v1.5/`, `v2/`, `mocks/` | Frozen earlier versions, the two-deck design experiment and the glyph mocks, **kept locally** (not in git; the `rover-run-*` git tags mark each version). |
 
 **Tuning (all checks pass, 22 turns; score = squares driven + 3 for finishing):**
 

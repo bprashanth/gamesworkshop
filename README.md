@@ -36,7 +36,7 @@ every table, so a room can replicate a session on paper.
 ## Also in this repo
 
 - **[Space anchor films](space/README.md):** short Mars and Moon films that set up Rover Run's
-  narrative ([handoff](narrative/SPACE_ANCHORS.md)).
+  narrative ([handoff](narrative/SPACE_ANCHORS.md)). The films live on the workshop machine, not in git.
 - **[Crew](crew/README.md)**, **[Fieldwork](fieldwork/README.md)**, **[Idlisseus](idlisseus/):**
   earlier prototypes. Run `python3 play.py` to choose a terminal game.
 - **[Chronology](chronology/)** and **[Benchmarks](benchmarks/)**: decisions, playtests and
