@@ -22,7 +22,8 @@ The game is built to teach the core moves of data science to people who don't us
 5. **Combine weak signals into a model**: haze alone storms 3 of 6 times; haze *and* a slope storm
    3 of 4. Write the model as one line, then play by it.
 6. **Weigh precision against cost**: misses kill, false alarms cost turns, and attention is limited
-   (on Hard you may look at only 1 card of the square ahead: the indicator tells you which).
+   (on Hard you see only 2 of the 4 cards of the square ahead; on Medium the battery is hidden
+   until you work out what it goes with). Three lives, so dying to learn the map is costly.
 
 - **[Rover Run: how to play, how it's built, tuning, data honesty](space/rover-run/src/README.md)**
 - **[Facilitator exercise: building indicators](narrative/INDICATORS.md)**

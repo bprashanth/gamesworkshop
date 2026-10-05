@@ -30,20 +30,24 @@ so the same game plays on a table.
 
 ## Modes, and how a session runs
 
-Before every move you look at cards of the **square ahead**. Once you cross a square, all four
-of its cards flip.
+Every run has **3 lives**. A death costs one, and the rover restarts on the square before the one
+that killed it, with a full battery and the turn clock still running. So a single mistake doesn't end
+a room's round, and learning the map by dying gets expensive.
 
-- **Hard: 1 card of the square ahead.** This is the indicator lesson in its sharpest form: the
-  warning on the square you're on tells you *which* card to check next. Soft → check ground (is it
-  SAND?). Haze → check dust (is it a STORM?). Slope settles which one matters: steep can't sand,
-  flat can't storm. Look at the wrong card and you die. The simulator agrees: looking where the
-  model points finishes; always ground dies in a storm; always dust dies in sand; slope is no help.
-- **Medium (default): 2 cards of the square ahead.** Players soon learn that ground + dust (or the
-  battery card) answers the question, and that slope, already on the map, is a wasted look.
-- **Easy:** the whole board is face up. Switch to it for the analysis below.
+- **Medium (default): battery is the hidden variable.** Before each move the square ahead shows its
+  slope, ground and dust. Its battery card shows only once you're past it (or die on it), and it
+  plots on the graph in real time next to the others. Players learn the battery's relationship to
+  the other variables just by going and avoiding: a dead battery sits exactly on the SAND and STORM
+  squares, and moving on after one kills you. A chooser for which variable is hidden can come later.
+- **Hard: all four hidden; pick 2 cards of the square ahead each turn.** Players learn which pair
+  answers the question (ground + dust, or slope + battery since a dead battery means a hazard is
+  there), and that slope alone, already on the map, wastes a look.
+- **Easy: the whole board is face up**, with all the trends on the graph. Switch to it for the
+  analysis below.
 
-Suggested session: one or two rounds on Medium, then Hard, then Easy for the exercise. **Reset** and
-**Play again** flip every card face down and forget the remembered cards.
+Once you cross a square, all four of its cards flip. Suggested session: a round of Medium, a
+round of Hard, then Easy for the exercise. **Reset** and **Play again** flip every card face down and
+forget the remembered cards.
 
 Two helpers, both silent:
 - **Click any face-up card.** Every card with the same value lights up, and the squares just before
@@ -110,15 +114,16 @@ model gets across:
 | Protocol | Score | How it ends |
 | --- | --- | --- |
 | The model (both rules above, recharge after a dead battery card) | **17** | finishes, 26 turns |
-| Hard: 1 look where the model points, or always at battery | 17 | finishes |
-| Hard: 1 look always at ground / dust / slope | 3 / 2 / 2 | storm / sand / sand |
+| Hard: look at ground + dust, or slope + battery | 17 | finishes |
+| Hard: look at slope + ground (misses the storms) | 3 | storm |
 | Avoid after every haze (ignores slope for storms) | 13 | out of turns |
 | Avoid after every soft (ignores slope for sand) | 13 | out of turns |
 | Avoid after any warning | 12 | out of turns |
 | The model without recharging | 3 | battery dies one move after the first hazard |
 | Random | ~2.6 | |
 
-(`node space/rover-run/src/tools/sim.mjs`; the checks in `space/rover-run/src/web/analysis.js` guard every
+(Strategies are scored with one life, i.e. does this way of reading the cards survive. Lives are
+forgiveness for people. `node space/rover-run/src/tools/sim.mjs`; the checks in `space/rover-run/src/web/analysis.js` guard every
 row of the tables above.)
 
 ## Debrief prompts

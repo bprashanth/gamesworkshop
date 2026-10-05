@@ -22,7 +22,7 @@ The index also keeps every earlier version.
 | **Correlation over time** | The warning is one square ahead | a single variable along the row: soft → SAND, haze → STORM |
 | **Correlation across variables** | Context changes what a warning means | down a column: sand is never on steep ground; storms never on flat ground |
 | **Models combine weak signals** | Neither signal alone decides | storm = haze before **and** a slope: 3 of 4, against 3 of 6 for haze alone and 0 of 5 for slope alone |
-| **Attention is a budget** | You can't look at everything | Hard mode: 1 look at the square ahead; the indicator says which card |
+| **Attention is a budget** | You can't look at everything | Hard mode: 2 of the 4 cards of the square ahead; Medium hides the battery for you to work out |
 | **Precision has a price** | False alarms cost, misses kill | a detour costs 2 turns; getting past a hazard leaves the battery dead (recharge); turns are limited |
 
 The facilitated exercise (identify the death → find the earliest indicator → check it recurs →
@@ -45,13 +45,15 @@ correlate along a row → correlate down a column → write a one-line model) is
   White cards are deadly. The card that killed you gets a red ring.
 - **The graph** plots everything you've seen on one x axis with the cards: battery (top lane),
   ground (dotted ●), dust (dashed ×) and slope (grey terrain band). Warning and hazard points are named.
-- **Look ahead, then decide.** Before each move you look at cards of the square ahead, and the
-  game opens with a look, not a Go. Once you cross a square, all its cards flip.
+- **3 lives.** A death costs one, and the rover restarts on the square before, battery full.
 - **Modes** (top right):
-  - **Easy:** the whole board is face up, for analysis.
-  - **Medium (default):** look at 2 of the square ahead's cards.
-  - **Hard:** look at 1. The warning on your square tells you which card to check: soft → ground,
-    haze → dust.
+  - **Easy:** the whole board face up, with every trend on the graph.
+  - **Medium (default):** the square ahead shows slope, ground and dust. **Battery is the hidden
+    variable**: you see each battery card only once you're past that square, plotted in real time,
+    so you learn its relationship by playing.
+  - **Hard:** all hidden. Pick 2 cards of the square ahead each turn.
+
+  Once you cross a square, all its cards flip.
 - **Helpers:** click a face-up card to light up every card with the same value and outline the
   square before each. Hover a column to light its strip on the map. **Reset** flips every card
   face down and starts over.
@@ -74,9 +76,8 @@ correlate along a row → correlate down a column → write a one-line model) is
 | Protocol | Score | How it ends |
 | --- | --- | --- |
 | The model (sand risk = soft before and not steep; storm risk = haze before and a slope; recharge after a dead battery card) | **17** | finishes |
-| Hard, 1 look where the model points (soft → ground, haze → dust) | 17 | finishes |
-| Hard, 1 look always at battery (dead = a hazard is there) | 17 | finishes |
-| Hard, 1 look always at ground / dust / slope | 3 / 2 / 2 | storm / sand / sand |
+| Hard, look at ground + dust, or slope + battery | 17 | finishes |
+| Hard, look at slope + ground (misses storms) | 3 | storm |
 | Ignore slope for storms, or for sand | 13 | out of turns |
 | Avoid after any warning | 12 | out of turns |
 | The model without recharging | 3 | battery |

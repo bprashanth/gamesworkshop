@@ -28,7 +28,7 @@ const turn = async t => {                       // one action: G, A or R; first 
 };
 await wait(5200);                                 // intro draws itself
 const runs = [                                    // the simulator's lines (tools/sim.mjs), medium mode
-  'G G G',                                         // always go: sand on square 3
+  'G G G G G',                                     // always go: sand on square 3, three lives lost
   'G A A R A R G A R A G A R A A R A',             // avoid after any warning: out of turns (a detour is 2 turns)
   'G G A R A R G A R G G A R G A R G A A',         // the model: finishes
 ];

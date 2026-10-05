@@ -1,5 +1,6 @@
 // Rover Run v1.6. 14 squares = 14 strips of the map. Each turn: go, avoid or recharge.
-// Before each move you look at cards of the square AHEAD: Medium 2, Hard 1 (Easy: the whole board).
+// Easy: the whole board. Medium: the square ahead shows everything but battery (battery shows once
+// you're past it). Hard: pick 2 cards of the square ahead. Three lives: a death restarts the square.
 // Once you cross a square, all its cards flip. Decide on partial information,
 // then the rest of the last square's cards flip, then pick 2 cards of the square you
 // just crossed. Three stacked panels: the map, a graph of everything seen, the cards.
@@ -42,7 +43,8 @@ const solRuns = () => memory.runs.filter(r => (r.sol ?? 0) === sol);
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(memory)); } catch {} };
 
 // ---------- state ----------
-const looks = () => memory.level === 'hard' ? 1 : 2;         // cards of the square ahead you may see
+const looks = () => 2;                                       // Hard: cards of the square ahead you may see
+const AHEAD = ['slope', 'ground', 'dust'];                   // Medium: shown ahead; battery is the hidden variable
 const easy = () => memory.level === 'easy';
 let mode = 'intro', run = newRun(deck, rules), clock = 0, anim = null, effect = null, replay = null;
 let shown = {}, pickCol = null, lastAt = 0, introStart = 0, queued = null;
@@ -158,8 +160,10 @@ function sayFor() {
   const left = run.turns - run.turn;
   if (mode === 'intro') return 'press play to start';
   if (mode === 'pick') { const n = looks() - (shown[pickCol]?.length ?? 0); return `look ahead: click ${n} card${n === 1 ? '' : 's'} of square ${pickCol + 1} before you decide`; }
-  if (mode === 'play') return `choose go, avoid or recharge · ${left} turn${left === 1 ? '' : 's'} left`;
-  if (mode === 'over' || mode === 'dead' || mode === 'replay') return { finish: 'the rover made it across', sand: 'the rover ran into a sand trap', storm: 'the rover drove into a storm', battery: 'the battery ran out', time: 'the rover ran out of turns' }[run.end] ?? sayText;
+  if (mode === 'play') return `choose go, avoid or recharge · ${left} turn${left === 1 ? '' : 's'} left · ${'♥'.repeat(run.lives)}`;
+  const why = { finish: 'the rover made it across', sand: 'the rover ran into a sand trap', storm: 'the rover drove into a storm', battery: 'the battery ran out', time: 'the rover ran out of turns' };
+  if (mode === 'dead' && !run.end) { const d = run.log[run.log.length - 1]?.died; return `${why[d]} · ${run.lives} ${run.lives === 1 ? 'life' : 'lives'} left`; }
+  if (mode === 'over' || mode === 'dead' || mode === 'replay') return why[run.end] ?? sayText;
   return sayText;
 }
 function paintSay() {
@@ -258,11 +262,12 @@ function commit(action) {
     anim = { from, at: a0, steps, i: 0, t0: clock, still: true };
     return paintCards();
   }
-  const dead = after.end === 'sand' || after.end === 'storm', len = (a1 - a0) * (dead ? 0.45 : 1);
+  const died = after.end ?? after.log[after.log.length - 1].died;
+  const dead = died === 'sand' || died === 'storm', len = (a1 - a0) * (dead ? 0.45 : 1);
   steps.push({ dur: Math.min(1.3, 0.35 + len / 220), run: (u, s) => { s.at = a0 + len * easeIO(u); } });
   // the past becomes fully known: the last square's hidden cards flip
-  steps.push({ dur: 0.05, once: true, run: () => { run = after; reveal(from); if (after.end) fatal = fatalCard(after); save(); paintCards(); } });   // crossed: all its cards flip
-  steps.push({ dur: dead ? 1.0 : after.end ? 0.7 : 0.45, run: (u, s) => { s.at = a0 + len; } });
+  steps.push({ dur: 0.05, once: true, run: () => { run = after; reveal(from); fatal = died && died !== 'finish' ? fatalCard(after) : null; save(); paintCards(); } });   // crossed or died: all its cards flip
+  steps.push({ dur: dead ? 1.0 : died ? 0.7 : 0.45, run: (u, s) => { s.at = a0 + len; } });
   anim = { from, at: a0, steps, i: 0, t0: clock };
   paintCards();
 }
@@ -274,6 +279,7 @@ function stepAnim() {
   if (step) { if (!step.once) step.run((clock - anim.t0) / (step.dur / speed), anim); return; }
   lastAt = anim.at; const { from, still } = anim; anim = null;
   if (run.end) return finishRun();
+  if (run.log[run.log.length - 1]?.died) return loseLife();
   lookAhead();                                          // the attention budget: which card of the next square?
   paintCards();
   const k = queued; queued = null; if (k) input(k);
@@ -288,15 +294,26 @@ function look(suit) {
 }
 // before a move: look at cards of the square ahead (Medium 2, Hard 1); Easy already shows everything
 function lookAhead() {
-  const done = (shown[run.pos]?.length ?? 0) >= looks();
-  if (easy() || run.pos >= N || done) { mode = 'play'; pickCol = null; }
-  else { pickCol = run.pos; mode = 'pick'; }
+  pickCol = null; mode = 'play';
+  if (easy() || run.pos >= N) return;
+  if (memory.level === 'medium') {                      // everything ahead but the battery
+    shown[run.pos] = [...new Set([...(shown[run.pos] ?? []), ...AHEAD])];
+    const m = seen(); m[run.pos] = [...new Set([...(m[run.pos] ?? []), ...AHEAD])];
+    return;
+  }
+  if ((shown[run.pos]?.length ?? 0) < looks()) { pickCol = run.pos; mode = 'pick'; }   // hard: choose 2
+}
+// a death with lives left: the death screen, then the rover is back on the square before
+function loseLife() {
+  const frozen = frame(), { width, height } = screen.canvas.getBoundingClientRect(), d = run.log[run.log.length - 1].died;
+  effect = { f: (d === 'storm' || d === 'sand') ? fx.storm(frozen, width, height) : fx.battery(frozen, width, height), t0: clock, resume: true };
+  mode = 'dead'; paintCards();
 }
 
 // which card explains the death: the ground card (sand), the dust card (storm), the dead battery before
 function fatalCard(r) {
   const last = r.log[r.log.length - 1];
-  return { sand: { c: last.pos, suit: 'ground' }, storm: { c: last.pos, suit: 'dust' }, battery: { c: last.pos - 1, suit: 'battery' } }[r.end] ?? null;
+  return { sand: { c: last.pos, suit: 'ground' }, storm: { c: last.pos, suit: 'dust' }, battery: { c: last.pos - 1, suit: 'battery' } }[r.end ?? last.died] ?? null;
 }
 // ---------- end of a run ----------
 function finishRun() {
@@ -311,7 +328,7 @@ function finishRun() {
 }
 function startReplay() { mode = 'replay'; replay = { t0: clock, run, shown: { ...shown } }; paintCards(); }
 function replayFrame(list) {
-  const moves = replay.run.log.filter(l => l.action !== 'recharge'), r0 = replay.run;
+  const moves = replay.run.log.filter(l => l.action !== 'recharge' && !l.died), r0 = replay.run;   // lives lost aren't squares driven
   const t = Math.max(0, clock - replay.t0 - 0.6) * speed, k = Math.min(moves.length, t / 0.5);
   for (const d of contours) { const [x, y] = dotPx(d); list.push({ x, y, c: d.c, a: 0.7 }); }
   stripLines(list, 0.8);
@@ -354,7 +371,12 @@ function tick(ms) {
   clock = ms / 1000;
   stepAnim();
   if (anim) lastAt = anim.at;
-  if (mode === 'dead') { const out = effect.f((clock - effect.t0) * speed); if (out) screen.draw(out); else { effect = null; startReplay(); } }
+  if (mode === 'dead') {
+    const out = effect.f((clock - effect.t0) * speed);
+    if (out) screen.draw(out);
+    else if (effect.resume) { effect = null; lookAhead(); paintCards(); }   // a life lost: carry on from here
+    else { effect = null; startReplay(); }
+  }
   else screen.draw(frame());
   paintControls();
   paintSay();

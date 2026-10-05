@@ -1,18 +1,18 @@
-// Rover Run rules (v1.8). Pure: no DOM. Shared by the game and tools/sim.mjs.
+// Rover Run rules (v1.9). Pure: no DOM. Shared by the game and tools/sim.mjs.
 // Everything is a card, so the game plays the same on a table.
 //
 // One action at a time: 'go' (1 turn) or 'avoid' (a detour, 2 turns) the next square, or
 // 'recharge' (1 turn). Every square has four cards: slope, ground, dust and battery. The battery
 // card is dead on a square with a death condition (SAND or STORM), full otherwise. When you get
 // past a square, apply its battery card: dead means recharge before your next move, or the rover
-// dies.
+// dies. Three lives: a death costs one, and the rover restarts on the square before, battery full.
 
-export const RULES = { spareTurns: 12, avoidTurns: 2, finishBonus: 3 };
+export const RULES = { spareTurns: 12, avoidTurns: 2, finishBonus: 3, lives: 3 };
 export const batteryCard = row => (row.ground === 'sand' || row.dust === 'storm') ? 'dead' : 'full';
 
 export function newRun(deck, rules = RULES) {
   return { rules, n: deck.length, pos: 0, battery: 'full', turn: 0, turns: deck.length + rules.spareTurns,
-           score: 0, log: [], end: null };
+           lives: rules.lives ?? 1, score: 0, log: [], end: null };
 }
 
 export function act(deck, s, action) {
@@ -26,6 +26,9 @@ export function act(deck, s, action) {
   else if (row.ground === 'sand') { t.end = 'sand'; t.turn += 1; }
   else if (row.dust === 'storm') { t.end = 'storm'; t.turn += 1; }
   else { t.battery = batteryCard(row); t.pos++; t.score++; t.turn += 1; }
+  if (t.end && t.end !== 'finish' && t.lives > 1) {            // lose a life; restart before that square
+    step.died = t.end; t.end = null; t.lives--; t.battery = 'full';
+  }
   if (!t.end && t.pos === t.n) { t.end = 'finish'; t.score += s.rules.finishBonus; }
   if (!t.end && t.turn >= t.turns) t.end = 'time';
   step.to = t.battery; step.score = t.score; step.crossed = t.pos > s.pos;
