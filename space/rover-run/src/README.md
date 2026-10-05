@@ -96,5 +96,5 @@ The map is rotated 180° (south up), not mirrored.
 ## History
 
 [chronology/2026-10-04-rover-run.md](../../../chronology/2026-10-04-rover-run.md) records every
-version, decision, simulator sweep and playtest. The original game-design handoff is
-[../rulebook.md](../rulebook.md). An earlier parallel Codex build is archived locally in `../archive/` (not in git).
+version, decision, simulator sweep and playtest. The current rules are in [../rulebook_v2.md](../rulebook_v2.md); the original game-design
+handoff is [../rulebook.md](../rulebook.md). An earlier parallel Codex build is archived locally in `../archive/` (not in git).
