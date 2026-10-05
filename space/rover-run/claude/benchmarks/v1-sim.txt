@@ -1,21 +1,15 @@
 
-sol 1 · 14 rows · battery 8 · stops 6 · recharge +2 · straight-through battery 7
-hindsight ceiling          19  finish  14/14  G G A G A G rA rA rG G rG G sG sG
-always go                   5  sand     2/14  sG sG sG
-always go -samples          2  sand     2/14  G G G
-always avoid                9  battery  9/14  A A A rA rA rA rA rA rA A
-always avoid -samples       9  battery  9/14  A A A rA rA rA rA rA rA A
-avoid any warning          12  battery 12/14  G G A G A G rA rA rG rA rA rA A
-avoid any warning -samples 12  battery 12/14  G G A G A G rA rA rG rA rA rA A
-slope only                  9  storm    4/14  sG sG sA sG sG
-slope only -samples         4  storm    4/14  G G A G G
-haze only                   5  sand     2/14  sG sG sG
-haze only -samples          2  sand     2/14  G G G
-warnings + slope           18  finish  14/14  G G A G A G rA rA rG G rG G rA sG
-warnings + slope -samples  17  finish  14/14  G G A G A G rA rA rG G rG G rA G
-random                    4.9
+sol 1 · 14 rows · battery 8 · turns 19 · recharge +2 · straight-through battery 7
+hindsight ceiling          17  finish  14/14  R R R G G A R G R A G A A G G G G G G
+always go                   2  sand     2/14  R R R G G G
+always avoid               11  time    11/14  R R R A R A R A R A R A R A A A A A A
+avoid any warning          13  battery 13/14  R R R G G A R G R A R G A A G A A A A
+slope only                  4  storm    4/14  R R R G G A R G R G
+haze only                   2  sand     2/14  R R R G G G
+warnings + slope           17  finish  14/14  R R R G G A R G R A G A A G G G G A G
+random                    3.7
 PASS  intended is the best knowable play
-PASS  intended finishes and samples
+PASS  intended finishes
 PASS  hindsight at most 2 above intended
 PASS  only intended within 10%
 PASS  random below 40%
@@ -28,23 +22,17 @@ PASS  soft before non-steep is always sand
 PASS  battery card is -1 on soft or haze
 PASS  some warnings are false alarms
 
-sol 2 · 14 rows · battery 8 · stops 6 · recharge +2 · straight-through battery 7
-hindsight ceiling          19  finish  14/14  G G A A G rA G G rG G rG rG sG sA
-always go                   5  storm    2/14  sG sG sG
-always go -samples          2  storm    2/14  G G G
-always avoid                9  battery  9/14  A A A rA rA rA rA rA rA A
-always avoid -samples       9  battery  9/14  A A A rA rA rA rA rA rA A
-avoid any warning          13  battery 13/14  G G A A G rA G rA rG rA rA rA G A
-avoid any warning -samples 13  battery 13/14  G G A A G rA G rA rG rA rA rA G A
-slope only                  5  storm    2/14  sG sG sG
-slope only -samples         2  storm    2/14  G G G
-haze only                   7  sand     3/14  sG sG sA sG
-haze only -samples          3  sand     3/14  G G A G
-warnings + slope           18  finish  14/14  G G A A G rA G rA rG G rG G rG sA
-warnings + slope -samples  17  finish  14/14  G G A A G rA G rA rG G rG G G rA
-random                    4.6
+sol 2 · 14 rows · battery 8 · turns 19 · recharge +2 · straight-through battery 7
+hindsight ceiling          17  finish  14/14  R R R G G A R A R G A G G G G G G G A
+always go                   2  storm    2/14  R R R G G G
+always avoid               11  time    11/14  R R R A R A R A R A R A R A A A A A A
+avoid any warning          13  time    13/14  R R R G G A R A R G R A G A G A A A G
+slope only                  2  storm    2/14  R R R G G G
+haze only                   3  sand     3/14  R R R G G A R G
+warnings + slope           17  finish  14/14  R R R G G A R A R G A G A G G G G G A
+random                    3.4
 PASS  intended is the best knowable play
-PASS  intended finishes and samples
+PASS  intended finishes
 PASS  hindsight at most 2 above intended
 PASS  only intended within 10%
 PASS  random below 40%
@@ -57,81 +45,63 @@ PASS  soft before non-steep is always sand
 PASS  battery card is -1 on soft or haze
 PASS  some warnings are false alarms
 
-sol 3 · 14 rows · battery 8 · stops 6 · recharge +2 · straight-through battery 7
-hindsight ceiling          19  finish  14/14  G G A G G A G rA rG G rG rG sA sG
-always go                   5  storm    2/14  sG sG sG
-always go -samples          2  storm    2/14  G G G
-always avoid                9  battery  9/14  A A A rA rA rA rA rA rA A
-always avoid -samples       9  battery  9/14  A A A rA rA rA rA rA rA A
-avoid any warning          13  battery 13/14  G G A G G A G rA rG rA rA rA rA A
-avoid any warning -samples 13  battery 13/14  G G A G G A G rA rG rA rA rA rA A
-slope only                  5  storm    2/14  sG sG sG
-slope only -samples         2  storm    2/14  G G G
-haze only                  11  sand     5/14  sG sG sA sG sG sG
-haze only -samples          5  sand     5/14  G G A G G G
-warnings + slope           18  finish  14/14  G G A G G A G rA rG G rG rG rA sA
-warnings + slope -samples  17  finish  14/14  G G A G G A G rA rG G rG G rA rA
+sol 3 · 14 rows · battery 8 · turns 19 · recharge +2 · straight-through battery 7
+hindsight ceiling          17  finish  14/14  R R R G G A R G G R A G A G G G G A G
+always go                   2  storm    2/14  R R R G G G
+always avoid               11  time    11/14  R R R A R A R A R A R A R A A A A A A
+avoid any warning          13  time    13/14  R R R G G A R G G R A R G A G A A A A
+slope only                  2  storm    2/14  R R R G G G
+haze only                   5  sand     5/14  R R R G G A R G G R G
+warnings + slope           17  finish  14/14  R R R G G A R G G R A G A G G G G A A
+random                    4.2
+PASS  intended is the best knowable play
+PASS  intended finishes
+PASS  hindsight at most 2 above intended
+PASS  only intended within 10%
+PASS  random below 40%
+PASS  ignoring slope costs 3+
+PASS  ignoring haze dies
+PASS  straight-through below start battery
+PASS  sand only after soft, never steep
+PASS  storm only after haze
+PASS  soft before non-steep is always sand
+PASS  battery card is -1 on soft or haze
+PASS  some warnings are false alarms
+
+sol 4 · 14 rows · battery 8 · turns 19 · recharge +2 · straight-through battery 7
+hindsight ceiling          17  finish  14/14  R R R G G A R A R G G A G G G G G G A
+always go                   2  storm    2/14  R R R G G G
+always avoid               11  time    11/14  R R R A R A R A R A R A R A A A A A A
+avoid any warning          13  time    13/14  R R R G G A R A R G G R A G A A A A G
+slope only                  2  storm    2/14  R R R G G G
+haze only                   3  sand     3/14  R R R G G A R G
+warnings + slope           17  finish  14/14  R R R G G A R A R G G A G A G G G G A
+random                    3.6
+PASS  intended is the best knowable play
+PASS  intended finishes
+PASS  hindsight at most 2 above intended
+PASS  only intended within 10%
+PASS  random below 40%
+PASS  ignoring slope costs 3+
+PASS  ignoring haze dies
+PASS  straight-through below start battery
+PASS  sand only after soft, never steep
+PASS  storm only after haze
+PASS  soft before non-steep is always sand
+PASS  battery card is -1 on soft or haze
+PASS  some warnings are false alarms
+
+sol 5 · 14 rows · battery 8 · turns 19 · recharge +2 · straight-through battery 6
+hindsight ceiling          17  finish  14/14  R R R G G G G R A R A G A G G G G G A
+always go                   4  sand     4/14  R R R G G G G R G
+always avoid               11  time    11/14  R R R A R A R A R A R A R A A A A A A
+avoid any warning          13  time    13/14  R R R G G A R G R A R A G A G A G A G
+slope only                  5  storm    5/14  R R R G G G G R A R G
+haze only                   4  sand     4/14  R R R G G A R G R G
+warnings + slope           17  finish  14/14  R R R G G A R G R A A G A G G G G G A
 random                    5.4
 PASS  intended is the best knowable play
-PASS  intended finishes and samples
-PASS  hindsight at most 2 above intended
-PASS  only intended within 10%
-PASS  random below 40%
-PASS  ignoring slope costs 3+
-PASS  ignoring haze dies
-PASS  straight-through below start battery
-PASS  sand only after soft, never steep
-PASS  storm only after haze
-PASS  soft before non-steep is always sand
-PASS  battery card is -1 on soft or haze
-PASS  some warnings are false alarms
-
-sol 4 · 14 rows · battery 8 · stops 6 · recharge +2 · straight-through battery 7
-hindsight ceiling          19  finish  14/14  G G A A G G rA G rG G rG rG sG sA
-always go                   5  storm    2/14  sG sG sG
-always go -samples          2  storm    2/14  G G G
-always avoid                9  battery  9/14  A A A rA rA rA rA rA rA A
-always avoid -samples       9  battery  9/14  A A A rA rA rA rA rA rA A
-avoid any warning          13  battery 13/14  G G A A G G rA G rA rA rA rA rG A
-avoid any warning -samples 13  battery 13/14  G G A A G G rA G rA rA rA rA rG A
-slope only                  5  storm    2/14  sG sG sG
-slope only -samples         2  storm    2/14  G G G
-haze only                   7  sand     3/14  sG sG sA sG
-haze only -samples          3  sand     3/14  G G A G
-warnings + slope           18  finish  14/14  G G A A G G rA G rA rG G rG rG sA
-warnings + slope -samples  17  finish  14/14  G G A A G G rA G rA rG G G rG rA
-random                    4.7
-PASS  intended is the best knowable play
-PASS  intended finishes and samples
-PASS  hindsight at most 2 above intended
-PASS  only intended within 10%
-PASS  random below 40%
-PASS  ignoring slope costs 3+
-PASS  ignoring haze dies
-PASS  straight-through below start battery
-PASS  sand only after soft, never steep
-PASS  storm only after haze
-PASS  soft before non-steep is always sand
-PASS  battery card is -1 on soft or haze
-PASS  some warnings are false alarms
-
-sol 5 · 14 rows · battery 8 · stops 6 · recharge +2 · straight-through battery 6
-hindsight ceiling          19  finish  14/14  G G G G A A G rA rG G rG rG sG sA
-always go                   9  sand     4/14  sG sG sG sG sG
-always go -samples          4  sand     4/14  G G G G G
-always avoid                9  battery  9/14  A A A rA rA rA rA rA rA A
-always avoid -samples       9  battery  9/14  A A A rA rA rA rA rA rA A
-avoid any warning          13  battery 13/14  G G A G A rA G rA rG rA G rA rG A
-avoid any warning -samples 13  battery 13/14  G G A G A rA G rA rG rA G rA rG A
-slope only                 11  storm    5/14  sG sG sG sG sA sG
-slope only -samples         5  storm    5/14  G G G G A G
-haze only                   9  sand     4/14  sG sG sA sG sG
-haze only -samples          4  sand     4/14  G G A G G
-warnings + slope           18  finish  14/14  G G A G A rA G rA rG G G rG rG sA
-warnings + slope -samples  17  finish  14/14  G G A G A rA G rA rG G G G rG rA
-random                    7.0
-PASS  intended is the best knowable play
-PASS  intended finishes and samples
+PASS  intended finishes
 PASS  hindsight at most 2 above intended
 PASS  only intended within 10%
 PASS  random below 40%

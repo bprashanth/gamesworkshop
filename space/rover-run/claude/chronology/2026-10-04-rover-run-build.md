@@ -159,3 +159,24 @@ dot/dash variation) so players see correlations.
   dashed, and face-down cards are numbered backs, so neither needs a legend line.
 - **Card key** = suits × low/mid/high with symbols only. **Graph key** = line swatches + names.
 - The score shows at the end of a run. v1.2 is frozen at `/v1.2/`.
+
+## 2026-10-05 · v1.4 MARS (tag `rover-run-claude-v1.4`)
+
+- **Glyphs** were chosen from `mocks/glyphs.html` (`http://…:8670/mocks/glyphs.html`):
+  - ground: a stick figure standing (firm), sunk to the shins with arms wobbling (soft), only head
+    and raised arms above quicksand (SAND);
+  - dust: the sun with ×-rays (clear), rain falling right to left over a faint sun (haze), a spiral
+    dust devil (STORM);
+  - slope: "tilted" is shown as **slope**.
+- **No sample, no stops. Recharge is a turn.** One action per turn: Go, Avoid, Recharge.
+  Recharge has to cost something, or always-avoid-and-recharge never loses, so there is a turn
+  limit: 14 + 5 spare = 19, swept 3–7 in the simulator. Spare 5 passes every target on all 5 sols:
+  intended 17 (finish); avoid-any-warning 13 (battery / out of turns); slope-only 4 (storm);
+  always-go 2; random 3.7. Score = squares + 3 for finishing. Turns left shows beside the battery in
+  the graph key.
+- **Screen:** only MARS sits above the map. Below it is one caption: "this is a contour map of the
+  jezero crater. lines closer together = steep". The map-mark legend and square counter are gone.
+  **Go / Avoid / Recharge buttons** sit under the map (keys G A R); while picking, the same line says
+  "pick 2 of square n's cards below". End of run: the score in the caption, then Play again / New sol.
+- Tools: `tools/film.mjs` and `tools/agent-play.mjs` (`turn <go|avoid|recharge> [card card]`)
+  updated; the film was re-recorded. v1.3 is frozen at `/v1.3/`.

@@ -19,21 +19,21 @@ await page.reload();
 const wait = ms => page.waitForTimeout(ms);
 const until = mode => page.waitForFunction(m => window.rover.state.mode === m, mode, { timeout: 60000 });
 const key = async (k, ms = 900) => { await page.keyboard.press(k); await wait(ms); };
-const turn = async t => {                       // "rA" = recharge then avoid, "G" = go
-  await until('play'); await wait(700);
-  for (const c of t.toLowerCase()) await key(c, c === 'g' || c === 'a' ? 200 : 650);
-  // look at 2 of the row's 4 cards: ground and dust (slope is on the map, battery on the meter)
+const turn = async t => {                       // one action: G, A or R
+  await until('play'); await wait(600);
+  await key(t.toLowerCase(), 200);
+  // after a move, look at 2 of the 4 cards: ground and dust (slope is on the map, battery on the graph)
   await page.waitForFunction(() => window.rover.state.mode !== 'anim', null, { timeout: 60000 });
   if ((await page.evaluate(() => window.rover.state.mode)) === 'pick') { await key('2', 450); await key('3', 300); }
 };
 await wait(5200);                                 // intro draws itself
-const runs = [
+const runs = [                                    // the simulator's lines (tools/sim.mjs)
   'G G G',
-  'G G A G A G rA rA rG rA rA rA A',
-  'G G A G A G rA rA rG G rG G rA sG',
+  'R R R G G A R G R A R G A A G A A A A',
+  'R R R G G A R G R A G A A G G G G A G',
 ];
 for (const [i, r] of runs.entries()) {
-  await key('p', 400);
+  await key('p', 600);
   for (const t of r.split(' ')) await turn(t);
   await until('over'); await wait(i === runs.length - 1 ? 6000 : 2500);
 }

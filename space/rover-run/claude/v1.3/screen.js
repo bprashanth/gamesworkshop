@@ -2,8 +2,8 @@
 // SX x SY dots per character cell (braille is 2 x 4; finer reads closer to the film) or a glyph in a cell. Frames are display lists,
 // so the death effects can pick up the same dots and move them as particles.
 
-export const COLS = 100, ROWS = 28;
-export const MAP = { col: 3, row: 1.5, cols: 94, rows: 25 };  // map window, in cells: the place name above, one caption below
+export const COLS = 100, ROWS = 29;
+export const MAP = { col: 3, row: 0.6, cols: 94, rows: 25 };  // map window, in cells: legend + prompt below
 export const SX = 3, SY = 6;
 export const DW = MAP.cols * SX, DH = MAP.rows * SY;           // map size, in dots
 

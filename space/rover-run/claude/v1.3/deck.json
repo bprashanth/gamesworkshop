@@ -1,8 +1,8 @@
 {
- "name": "Jezero \u00b7 sols 14\u20131980",
+ "name": "Jezero · sols 14–1980",
  "rules": {
   "battery": 8,
-  "spareTurns": 5,
+  "stops": 6,
   "avoidCost": 2,
   "recharge": 2,
   "finishBonus": 3
