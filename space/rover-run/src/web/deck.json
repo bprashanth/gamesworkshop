@@ -1,0 +1,98 @@
+{
+ "name": "Jezero \u00b7 14 strips",
+ "rules": {
+  "spareTurns": 8,
+  "avoidTurns": 1,
+  "finishBonus": 3,
+  "lives": 3
+ },
+ "notes": "One fixed map for the room. 14 squares = 14 strips of the map (south up). Slope from the DEM per strip; ground and dust authored so each indicator pattern has repeated evidence: sand after soft and never on steep; storm after haze and only on a slope (haze + slope storms 3 of 4). Battery card: the battery you arrive with, dead on the square right after a SAND or STORM.",
+ "sols": [
+  [
+   {
+    "slope": "flat",
+    "ground": "firm",
+    "dust": "haze",
+    "battery": "full"
+   },
+   {
+    "slope": "flat",
+    "ground": "soft",
+    "dust": "clear",
+    "battery": "full"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "haze",
+    "battery": "full"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "storm",
+    "battery": "dead"
+   },
+   {
+    "slope": "flat",
+    "ground": "soft",
+    "dust": "clear",
+    "battery": "dead"
+   },
+   {
+    "slope": "flat",
+    "ground": "sand",
+    "dust": "haze",
+    "battery": "full"
+   },
+   {
+    "slope": "flat",
+    "ground": "firm",
+    "dust": "clear",
+    "battery": "dead"
+   },
+   {
+    "slope": "tilted",
+    "ground": "firm",
+    "dust": "haze",
+    "battery": "full"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "storm",
+    "battery": "full"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "haze",
+    "battery": "dead"
+   },
+   {
+    "slope": "steep",
+    "ground": "soft",
+    "dust": "storm",
+    "battery": "full"
+   },
+   {
+    "slope": "steep",
+    "ground": "firm",
+    "dust": "haze",
+    "battery": "dead"
+   },
+   {
+    "slope": "tilted",
+    "ground": "soft",
+    "dust": "clear",
+    "battery": "full"
+   },
+   {
+    "slope": "tilted",
+    "ground": "sand",
+    "dust": "clear",
+    "battery": "full"
+   }
+  ]
+ ]
+}

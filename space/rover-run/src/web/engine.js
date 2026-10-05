@@ -1,0 +1,39 @@
+// Rover Run rules (v1.11). Pure: no DOM. Shared by the game and tools/sim.mjs.
+// Everything is a card, so the game plays the same on a table.
+//
+// One action per turn: 'go' or 'avoid' (detour around) the next square, or 'recharge'. Every square
+// has four cards: slope, ground, dust and battery. The battery card is the battery you arrive with:
+// dead on the square right AFTER a death condition (SAND or STORM; the detour round it drained the
+// battery), full otherwise. Before moving on from a square whose battery card is dead, recharge, or
+// the rover dies. Only squares you drive through score; a detour scores nothing. Three lives: a death costs one, and the rover restarts on the square before, battery full.
+
+export const RULES = { spareTurns: 8, avoidTurns: 1, finishBonus: 3, lives: 3 };
+const hazard = row => !!row && (row.ground === 'sand' || row.dust === 'storm');
+export const batteryCard = (deck, c) => hazard(deck[c - 1]) ? 'dead' : 'full';   // arriving after a detour round a hazard
+
+export function newRun(deck, rules = RULES) {
+  return { rules, n: deck.length, pos: 0, battery: 'full', turn: 0, turns: deck.length + rules.spareTurns,
+           lives: rules.lives ?? 1, score: 0, log: [], end: null };
+}
+
+export function act(deck, s, action) {
+  if (s.end) return s;
+  const row = deck[s.pos], t = { ...s, log: [...s.log] };
+  const step = { action, pos: s.pos, from: s.battery };
+  if (action === 'recharge') { t.battery = 'full'; t.turn += 1; }
+  else if (action !== 'go' && action !== 'avoid') return s;
+  else if (s.battery === 'dead') { t.end = 'battery'; t.turn += 1; }       // moving on a dead battery
+  else if (action === 'avoid') { t.pos++; t.turn += s.rules.avoidTurns ?? 1; }   // a detour scores nothing
+  else if (row.ground === 'sand') { t.end = 'sand'; t.turn += 1; }
+  else if (row.dust === 'storm') { t.end = 'storm'; t.turn += 1; }
+  else { t.pos++; t.score++; t.turn += 1; }
+  if (!t.end && t.pos > s.pos && t.pos < t.n) t.battery = deck[t.pos].battery ?? batteryCard(deck, t.pos);   // arrive with this square's card
+  if (t.end && t.end !== 'finish' && t.lives > 1) {            // lose a life; restart before that square
+    step.died = t.end; t.end = null; t.lives--; t.battery = 'full';
+  }
+  if (!t.end && t.pos === t.n) { t.end = 'finish'; t.score += s.rules.finishBonus; }
+  if (!t.end && t.turn >= t.turns) t.end = 'time';
+  step.to = t.battery; step.score = t.score; step.crossed = t.pos > s.pos;
+  t.log.push(step);
+  return t;
+}
