@@ -296,8 +296,9 @@ function finishRun() {
   memory.runs.push({ sol, log: run.log, end: run.end, score: run.score, at: Date.now() });
   save(); paintCards();
   if (run.end === 'finish') return startReplay();
-  const frozen = frame(), { width, height } = screen.canvas.getBoundingClientRect(), [rx, ry] = dotPx(route[Math.round(lastAt)]);
-  const end = { storm: () => fx.storm(frozen, width, height), sand: () => fx.sand(frozen, width, height, rx, ry) }[run.end] ?? (() => fx.battery(frozen, width, height));
+  const frozen = frame(), { width, height } = screen.canvas.getBoundingClientRect();
+  // sand and storm share the sandstorm screen; a dead battery or no turns left is the TV switching off
+  const end = (run.end === 'storm' || run.end === 'sand') ? () => fx.storm(frozen, width, height) : () => fx.battery(frozen, width, height);
   effect = { f: end(), t0: clock };
   mode = 'dead';
 }
@@ -355,7 +356,11 @@ function tick(ms) {
 // a new game: every card turns face down first
 function newGame() {
   mode = 'reset';
-  flipAll(() => { run = newRun(deck, rules); shown = {}; pickCol = null; anim = null; fatal = null; selected = null; before = new Set(); mode = 'play'; if (easy()) revealBoard(); document.getElementById('status').textContent = ''; paintCards(); });
+  flipAll(() => {
+    memory.looked[sol] = {}; save();                    // a fresh board: no remembered cards
+    run = newRun(deck, rules); shown = {}; pickCol = null; anim = null; fatal = null; selected = null; before = new Set();
+    mode = 'play'; if (easy()) revealBoard(); document.getElementById('status').textContent = ''; paintCards();
+  });
 }
 const canNewSol = () => sol < sols.length - 1 && solRuns().some(r => r.end === 'finish');
 function input(k) {
