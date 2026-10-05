@@ -414,7 +414,7 @@ function paintControls() {
 
 // ---------- the card key, drawn from the same symbols as the cards ----------
 document.getElementById('key').innerHTML = '<tr><th></th><th>low</th><th>mid</th><th>high</th></tr>' + SUITS.map(s =>
-  `<tr><td>${s.name}</td>${s.levels.map(v => v === null ? '<td></td>' : `<td class="${deadly(s.name, v) ? 'haz' : ''}">${SYMBOLS[s.name][v]}</td>`).join('')}</tr>`).join('');
+  `<tr><td>${s.name}</td>${s.levels.map(v => v === null ? '<td class="none" title="the battery is full or dead; there is no middle">–</td>' : `<td class="${deadly(s.name, v) ? 'haz' : ''}">${SYMBOLS[s.name][v]}</td>`).join('')}</tr>`).join('');
 
 window.rover = { get state() { return { mode, run, memory, sol, shown, level: memory.level } }, input, deck, setLevel: m => modesEl.querySelector(`[data-mode=${m}]`).click() };
 main.style.setProperty('--n', N);                     // before measuring, or the grid wraps
