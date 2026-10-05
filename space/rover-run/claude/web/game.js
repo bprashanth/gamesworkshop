@@ -370,6 +370,8 @@ function input(k) {
 addEventListener('keydown', e => { if (!e.metaKey && !e.ctrlKey) input(e.key.toLowerCase()); });
 screen.canvas.addEventListener('pointerdown', () => { if (mode === 'intro' || mode === 'over') input('p'); });
 addEventListener('resize', () => { fit(); screen.resize(); alignStrips(); paintCards(); });
+// Reset: flip every card face down and start the run again
+document.getElementById('reset').addEventListener('click', () => { if (mode !== 'anim' && mode !== 'reset' && mode !== 'dead') newGame(); });
 // easy / hard, top right; switching starts a fresh game
 const modesEl = document.getElementById('modes');
 const paintModes = () => modesEl.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.mode === memory.level));

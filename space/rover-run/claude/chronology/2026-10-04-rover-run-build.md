@@ -252,3 +252,4 @@ on one fixed map (generated maps make room replication hard). The exercise is wr
   - the graph's battery is its own thin full/dead lane, with "dead" named;
   - ground labels sit below their points and dust labels above, so neighbours never collide.
 - v1.5 is frozen at `/v1.5/`.
+- v1.6.1: a **Reset** button at the right edge of the map's bar (opposite Recharge) flips every card face down and restarts the run, keeping the mode.
