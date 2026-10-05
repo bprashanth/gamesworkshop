@@ -367,7 +367,7 @@ function replayFrame(list) {
   if (over && mode !== 'over') {
     const squares = r0.score - (r0.end === 'finish' ? rules.finishBonus : 0);
     const why = { finish: `+${rules.finishBonus} for finishing`, sand: 'sand', storm: 'storm', battery: 'battery ran out', time: 'out of turns' }[r0.end];
-    document.getElementById('status').textContent = `score ${r0.score} · ${squares} squares${r0.end === 'finish' ? ` + ${rules.finishBonus}` : ''} · best ${best()}`;
+    document.getElementById('status').textContent = `score ${r0.score} · ${squares} squares driven${r0.end === 'finish' ? ` + ${rules.finishBonus}` : ''} · best ${best()}`;
     mode = 'over'; paintCards();
   }
   const h = screen.canvas.getBoundingClientRect().height, scan = h * (clock - replay.t0) / 0.7;

@@ -25,8 +25,9 @@ Ground and dust are authored.
 The **battery card** is part of the deck, like the others: **dead on every square with a death
 condition** (SAND or STORM), full otherwise. When you get past a square (and you can only get past a
 deadly one by avoiding it), apply its battery card. If it's dead, recharge before your next move or
-the rover dies. A detour costs 2 turns. There are 14 squares and 26 turns. Every rule is a card,
-so the same game plays on a table.
+the rover dies. A detour around a safe square costs nothing but the point you would have scored:
+**only squares you drive through score** (+3 for finishing). There are 14 squares and 22 turns.
+Every rule is a card, so the same game plays on a table.
 
 ## Modes, and how a session runs
 
@@ -107,20 +108,19 @@ haze then STORM. The same shape keeps recurring along the row.
   In practice: recharge after every avoid that dodged something. On Hard, the battery card ahead is
   also a one-look summary ("is there a hazard here?"), so finding it is an indicator lesson of its own.
 
-**7. Why precision matters.** Misses kill, and false alarms cost turns: a detour is 2 turns, and
-a hazard you detoured around leaves you a recharge to make. The turn budget is set so that only a
-model gets across:
+**7. Why precision matters.** Misses kill (a life), and false alarms cost points: a detour
+scores nothing, so every needless avoid is a square of data you didn't collect. The deck is tuned
+so that the better the model, the higher the score:
 
 | Protocol | Score | How it ends |
 | --- | --- | --- |
-| The model (both rules above, recharge after a dead battery card) | **17** | finishes, 26 turns |
-| Hard: look at ground + dust, or slope + battery | 17 | finishes |
-| Hard: look at slope + ground (misses the storms) | 3 | storm |
-| Avoid after every haze (ignores slope for storms) | 13 | out of turns |
-| Avoid after every soft (ignores slope for sand) | 13 | out of turns |
-| Avoid after any warning | 12 | out of turns |
-| The model without recharging | 3 | battery dies one move after the first hazard |
-| Random | ~2.6 | |
+| Hard: look at ground + dust, or slope + battery | **11** | drives every safe square |
+| The model (both rules above, recharge after a dead battery card) | 10 | one false alarm (square 13) |
+| Avoid after every haze, or every soft (ignores slope) | 8 | 2 needless detours |
+| Avoid after any warning | 6 | 4 needless detours |
+| Always avoid | 3 | finishes, nothing driven |
+| Always go / dust rule only / never recharge | 2 | sand / sand / battery |
+| Random | ~1 | |
 
 (Strategies are scored with one life, i.e. does this way of reading the cards survive. Lives are
 forgiveness for people. `node space/rover-run/src/tools/sim.mjs`; the checks in `space/rover-run/src/web/analysis.js` guard every

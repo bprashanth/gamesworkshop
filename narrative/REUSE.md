@@ -51,7 +51,7 @@ One fixed deck, the same for every table, so a room can replicate it on paper:
 ```json
 {
   "name": "Jezero · 14 strips",
-  "rules": { "spareTurns": 12, "avoidTurns": 2, "finishBonus": 3, "lives": 3 },
+  "rules": { "spareTurns": 8, "avoidTurns": 1, "finishBonus": 3, "lives": 3 },
   "notes": "what is real, what is authored",
   "sols": [[
     { "slope": "flat", "ground": "firm", "dust": "haze", "battery": "full" },
@@ -116,7 +116,8 @@ look at a given pair ahead. Recharge timing is searched optimally, and strategie
 one life. Keep sweeping `spareTurns` and `avoidTurns` until every check passes:
 
 - the intended model is the unique best play and finishes;
-- avoiding every warning, or ignoring the dismisser, runs out of turns: false alarms cost;
+- avoiding every warning, or ignoring the dismisser, scores clearly less: false alarms cost (in
+  Rover Run a detour scores nothing, a cost that needs no state and works on a table);
 - ignoring an indicator dies: misses kill;
 - random play scores below 40% of the best;
 - each designed pattern (recurrence, dismisser, conjunction) actually holds in the deck.

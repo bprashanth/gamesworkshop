@@ -72,9 +72,10 @@ export function analyse(deck, allRules) {
     ['Hard: slope + ground misses the storms', runs['look 2: slope + ground'].end === 'storm'],
     ['battery card is dead exactly on SAND or STORM squares', deck.every(r => (r.battery === 'dead') === (r.ground === 'sand' || r.dust === 'storm'))],
     ['the model finishes', intended.end === 'finish'],
-    ['avoiding every warning does not finish', runs['avoid any warning'].end !== 'finish'],
-    ['haze without slope costs the finish', runs['haze ignores slope'].end !== 'finish'],
-    ['soft without slope costs the finish', runs['soft ignores slope'].end !== 'finish'],
+    ['avoiding every warning costs 3+ points', intended.score - scores['avoid any warning'] >= 3],
+    ['ignoring slope for haze costs 2+ points', intended.score - scores['haze ignores slope'] >= 2],
+    ['ignoring slope for soft costs 2+ points', intended.score - scores['soft ignores slope'] >= 2],
+    ['always avoiding scores under half', scores['always avoid'] < intended.score / 2],
     ['never recharging dies of battery', runs['model, never recharge'].end === 'battery'],
     ['random below 40%', rnd < 0.4 * max],
     // the patterns the room is asked to find

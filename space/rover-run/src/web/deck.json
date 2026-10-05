@@ -1,8 +1,8 @@
 {
  "name": "Jezero \u00b7 14 strips",
  "rules": {
-  "spareTurns": 12,
-  "avoidTurns": 2,
+  "spareTurns": 8,
+  "avoidTurns": 1,
   "finishBonus": 3,
   "lives": 3
  },
