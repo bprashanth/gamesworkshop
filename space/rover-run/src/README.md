@@ -70,7 +70,7 @@ To build the same game on your own dataset, see **[narrative/REUSE.md](../../../
 | `tools/film.mjs` | Records a played session to MP4 on Seagate (`media/` symlinks). |
 | `tools/agent-play.mjs`, `shot.mjs`, `montage.py` | Blind-playtest harness and review screenshots. |
 | `mocks/` | The card-glyph mock page used to choose symbols. |
-| `benchmarks/` | Simulator output and three blind agent playtests. |
+| `benchmarks/` | Simulator output and blind agent playtests, kept locally (benchmarks aren't committed; the findings are in the chronology). |
 | `v1.0/` … `v1.5/`, `v2/` | Frozen earlier versions (`v2` is a separate two-deck design experiment). |
 
 **Tuning (all checks pass, 22 turns; score = squares driven + 3 for finishing):**
@@ -97,4 +97,4 @@ The map is rotated 180° (south up), not mirrored.
 
 [chronology/2026-10-04-rover-run.md](../../../chronology/2026-10-04-rover-run.md) records every
 version, decision, simulator sweep and playtest. The original game-design handoff is
-[../rulebook.md](../rulebook.md). An earlier parallel Codex build is archived in [../archive/](../archive/README.md).
+[../rulebook.md](../rulebook.md). An earlier parallel Codex build is archived locally in `../archive/` (not in git).

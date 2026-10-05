@@ -129,8 +129,8 @@ Rover Run's sweeps and their results are in `chronology/2026-10-04-rover-run.md`
 
 - **Agent playtest:** `tools/agent-play.mjs` drives the real page turn by turn and writes a
   screenshot. Give an agent no access to the code or deck, ask it to play 5–8 runs, keep one rule
-  after each, and write notes. The prompt is `space/rover-run/src/tools/agent-prompt.md`; past
-  results are in `space/rover-run/src/benchmarks/`. Read its notes for
+  after each, and write notes. The prompt is `space/rover-run/src/tools/agent-prompt.md`; Rover Run's
+  playtest findings are summarised in `chronology/2026-10-04-rover-run.md`. Read its notes for
   *memorised the map* (a failure; Rover Run's first build had this) versus *stated the rule*
   (success).
 - **People:** one round on Medium, one on Hard, then Easy for the exercise. Listen for "X means Y

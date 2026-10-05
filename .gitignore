@@ -261,3 +261,11 @@ Thumbs.db
 # Large media (renders, audio, masters) lives on /mnt/seagate/gamesworkshop and is symlinked in.
 # Commit the symlink, never the file. Scratch output from tools:
 out/
+
+# Benchmarks stay local for now (playtests, sims, render checks). An important one graduates by
+# being written up somewhere tracked (a README, chronology/ or narrative/). Files already tracked
+# in the root benchmarks/ stay tracked.
+benchmarks/
+
+# The archived Codex Rover Run stays local.
+space/rover-run/archive/
