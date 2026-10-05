@@ -27,6 +27,7 @@ export function strategies(deck) {
     'look 1: always ground':     r => deck[r].ground === 'sand',
     'look 1: always dust':       r => deck[r].dust === 'storm',
     'look 1: always slope':      () => false,                // slope is already on the map
+    'look 1: always battery':    r => deck[r].battery === 'dead',   // dead battery = a death condition there
   };
 }
 
@@ -37,7 +38,7 @@ export function best(deck, rules, avoid, recharge = true) {
     const key = `${s.pos},${s.battery},${s.turn}`;
     if (memo.has(key)) return memo.get(key);
     let top = null;
-    for (const a of [...(recharge ? ['recharge'] : []), avoid[s.pos] ? 'avoid' : 'go']) {
+    for (const a of [...(recharge && s.battery === 'dead' ? ['recharge'] : []), avoid[s.pos] ? 'avoid' : 'go']) {
       if (a === 'recharge' && s.battery === 'full') continue;
       const r = search(act(deck, s, a));
       if (!top || r.score > top.score) top = r;
@@ -78,6 +79,7 @@ export function analyse(deck, rules) {
     ['Hard (1 look): always looking at dust dies in sand', runs['look 1: always dust'].end === 'sand'],
     ['Hard (1 look): looking at slope is no help', runs['look 1: always slope'].end === 'sand' || runs['look 1: always slope'].end === 'storm'],
     ['Medium (2 looks): ground + dust finishes', runs['look 2: ground + dust'].end === 'finish'],
+    ['battery card is dead exactly on SAND or STORM squares', deck.every(r => (r.battery === 'dead') === (r.ground === 'sand' || r.dust === 'storm'))],
     ['the model finishes', intended.end === 'finish'],
     ['avoiding every warning does not finish', runs['avoid any warning'].end !== 'finish'],
     ['haze without slope costs the finish', runs['haze ignores slope'].end !== 'finish'],

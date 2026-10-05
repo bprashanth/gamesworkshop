@@ -22,9 +22,11 @@ Ground and dust are authored.
 
 (The card word "slope" is the middle slope level, "tilted" in the data.)
 
-The **battery card** is not part of the deck. It records what you did on that square: *full* after
-a go, *dead* after an avoid. A detour drains the battery, and moving again on a dead battery kills
-the rover, so every avoid must be followed by a recharge. There are 14 squares and 21 turns.
+The **battery card** is part of the deck, like the others: **dead on every square with a death
+condition** (SAND or STORM), full otherwise. When you get past a square (and you can only get past a
+deadly one by avoiding it), apply its battery card. If it's dead, recharge before your next move or
+the rover dies. A detour costs 2 turns. There are 14 squares and 26 turns. Every rule is a card,
+so the same game plays on a table.
 
 ## Modes, and how a session runs
 
@@ -36,9 +38,8 @@ of its cards flip.
   SAND?). Haze → check dust (is it a STORM?). Slope settles which one matters: steep can't sand,
   flat can't storm. Look at the wrong card and you die. The simulator agrees: looking where the
   model points finishes; always ground dies in a storm; always dust dies in sand; slope is no help.
-- **Medium (default): 2 cards of the square ahead.** Players soon learn that ground + dust is
-  always the right pair, and that slope (already on the map) and battery (what *you* will do,
-  so not pickable) are wasted looks.
+- **Medium (default): 2 cards of the square ahead.** Players soon learn that ground + dust (or the
+  battery card) answers the question, and that slope, already on the map, is a wasted look.
 - **Easy:** the whole board is face up. Switch to it for the analysis below.
 
 Suggested session: one or two rounds on Medium, then Hard, then Easy for the exercise. **Reset** and
@@ -59,9 +60,9 @@ STORM at 4, 9 and 11; a dead battery can kill after any avoid.
 **2. Find the earliest indication.** Look at the square *before* each death (click SAND or STORM).
 - Every SAND has **soft** ground right before it.
 - Every STORM has **haze** right before it.
-- Every dead-battery death comes right after an **avoid**. Look for the dashed (detoured) stretches
-  on the map; the dead cards sit next to the SAND and STORM squares, because that is where people
-  detour.
+- Every dead-battery death comes right after getting past a square whose **battery card was
+  dead**. Those are exactly the SAND and STORM squares (the ones you detoured around). Teams that
+  miss this keep dying one move after a successful avoid.
 
 **3. Check whether it is a pattern.** Click *soft*, then *haze*, and count.
 
@@ -98,21 +99,24 @@ haze then STORM. The same shape keeps recurring along the row.
   3 of 6 times, and slope alone without haze never storms. Together they storm 3 of 4 times. *Seeing
   both raises the odds; it does not guarantee.* That is what a model does: it combines weak signals
   into a stronger one and still carries uncertainty (square 13 is the false alarm).
-- **Battery: recharge every time you avoid.** In practice: recharge after every haze-or-soft
-  detour. This one-line protocol replaces watching the battery line.
+- **Battery: a dead battery card means a hazard is there, so recharge after getting past it.**
+  In practice: recharge after every avoid that dodged something. On Hard, the battery card ahead is
+  also a one-look summary ("is there a hazard here?"), so finding it is an indicator lesson of its own.
 
-**7. Why precision matters.** Misses kill, and false alarms cost turns: each avoid needs a
-recharge. The turn budget is set so that only the model gets across:
+**7. Why precision matters.** Misses kill, and false alarms cost turns: a detour is 2 turns, and
+a hazard you detoured around leaves you a recharge to make. The turn budget is set so that only a
+model gets across:
 
 | Protocol | Score | How it ends |
 | --- | --- | --- |
-| The model (both rules above, recharge after each avoid) | **17** | finishes, 21 turns |
+| The model (both rules above, recharge after a dead battery card) | **17** | finishes, 26 turns |
+| Hard: 1 look where the model points, or always at battery | 17 | finishes |
+| Hard: 1 look always at ground / dust / slope | 3 / 2 / 2 | storm / sand / sand |
 | Avoid after every haze (ignores slope for storms) | 13 | out of turns |
 | Avoid after every soft (ignores slope for sand) | 13 | out of turns |
 | Avoid after any warning | 12 | out of turns |
-| The model without recharging | 3 | battery dies at the second avoid |
-| Ground rule only / dust rule only | 3 / 2 | storm / sand |
-| Random | ~2 | |
+| The model without recharging | 3 | battery dies one move after the first hazard |
+| Random | ~2.6 | |
 
 (`node space/rover-run/src/tools/sim.mjs`; the checks in `space/rover-run/src/web/analysis.js` guard every
 row of the tables above.)

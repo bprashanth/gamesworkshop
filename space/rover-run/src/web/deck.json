@@ -1,81 +1,96 @@
 {
  "name": "Jezero \u00b7 14 strips",
  "rules": {
-  "spareTurns": 7,
+  "spareTurns": 12,
+  "avoidTurns": 2,
   "finishBonus": 3
  },
- "notes": "One fixed map for the room. 14 squares = 14 strips of the map (south up). Slope from the DEM per strip; ground and dust authored so each indicator pattern has repeated evidence: sand after soft and never on steep; storm after haze and only on a slope (haze + slope storms 3 of 4).",
+ "notes": "One fixed map for the room. 14 squares = 14 strips of the map (south up). Slope from the DEM per strip; ground and dust authored so each indicator pattern has repeated evidence: sand after soft and never on steep; storm after haze and only on a slope (haze + slope storms 3 of 4). Battery card: dead on every SAND or STORM square, full otherwise.",
  "sols": [
   [
    {
     "slope": "flat",
     "ground": "firm",
-    "dust": "haze"
+    "dust": "haze",
+    "battery": "full"
    },
    {
     "slope": "flat",
     "ground": "soft",
-    "dust": "clear"
+    "dust": "clear",
+    "battery": "full"
    },
    {
     "slope": "tilted",
     "ground": "sand",
-    "dust": "haze"
+    "dust": "haze",
+    "battery": "dead"
    },
    {
     "slope": "tilted",
     "ground": "firm",
-    "dust": "storm"
+    "dust": "storm",
+    "battery": "dead"
    },
    {
     "slope": "flat",
     "ground": "soft",
-    "dust": "clear"
+    "dust": "clear",
+    "battery": "full"
    },
    {
     "slope": "flat",
     "ground": "sand",
-    "dust": "haze"
+    "dust": "haze",
+    "battery": "dead"
    },
    {
     "slope": "flat",
     "ground": "firm",
-    "dust": "clear"
+    "dust": "clear",
+    "battery": "full"
    },
    {
     "slope": "tilted",
     "ground": "firm",
-    "dust": "haze"
+    "dust": "haze",
+    "battery": "full"
    },
    {
     "slope": "tilted",
     "ground": "soft",
-    "dust": "storm"
+    "dust": "storm",
+    "battery": "dead"
    },
    {
     "slope": "steep",
     "ground": "soft",
-    "dust": "haze"
+    "dust": "haze",
+    "battery": "full"
    },
    {
     "slope": "steep",
     "ground": "soft",
-    "dust": "storm"
+    "dust": "storm",
+    "battery": "dead"
    },
    {
     "slope": "steep",
     "ground": "firm",
-    "dust": "haze"
+    "dust": "haze",
+    "battery": "full"
    },
    {
     "slope": "tilted",
     "ground": "soft",
-    "dust": "clear"
+    "dust": "clear",
+    "battery": "full"
    },
    {
     "slope": "tilted",
     "ground": "sand",
-    "dust": "clear"
+    "dust": "clear",
+    "battery": "dead"
    }
   ]
  ]

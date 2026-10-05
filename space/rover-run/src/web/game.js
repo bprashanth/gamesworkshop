@@ -3,7 +3,7 @@
 // Once you cross a square, all its cards flip. Decide on partial information,
 // then the rest of the last square's cards flip, then pick 2 cards of the square you
 // just crossed. Three stacked panels: the map, a graph of everything seen, the cards.
-import { newRun, act, batteryAfter } from './engine.js';
+import { newRun, act } from './engine.js';
 import { Screen, COLS, MAP, SX, SY, DW, DH, INK, DIM, FAINT, SAND, contourDots, routeDots } from './screen.js';
 import * as fx from './effects.js';
 import { SYMBOLS } from './symbols.js';
@@ -53,7 +53,7 @@ const SUITS = [
   { name: 'slope', get: r => r.slope, levels: ['flat', 'tilted', 'steep'] },
   { name: 'ground', get: r => r.ground, levels: ['firm', 'soft', 'sand'] },
   { name: 'dust', get: r => r.dust, levels: ['clear', 'haze', 'storm'] },
-  { name: 'battery', get: (r, c) => batteryAfter(run.log, c), levels: ['full', null, 'dead'] },   // what crossing it did to you
+  { name: 'battery', get: r => r.battery, levels: ['full', null, 'dead'] },   // a card like the others: dead where a death condition is
 ];
 const ALL = SUITS.map(s => s.name);
 const deadly = (suit, v) => (suit === 'ground' && v === 'sand') || (suit === 'dust' && v === 'storm') || (suit === 'battery' && v === 'dead');
@@ -69,8 +69,8 @@ function paintCards() {
   const deciding = mode === 'play' ? run.pos : null;
   for (const el of cardsEl.querySelectorAll('.card')) {
     const c = +el.dataset.col, suit = el.dataset.suit, s = SUITS.find(x => x.name === suit), v = s.get(deck[c], c);
-    const up = !!shown[c]?.includes(suit) && v !== null, ghost = !up && suit !== 'battery' && !!seen()[c]?.includes(suit);
-    const pick = mode === 'pick' && c === pickCol && !up && suit !== 'battery';   // the battery card is what you will do: not pickable
+    const up = !!shown[c]?.includes(suit), ghost = !up && !!seen()[c]?.includes(suit);
+    const pick = mode === 'pick' && c === pickCol && !up;
     const hit = selected && (up || ghost) && selected.suit === suit && selected.v === v;
     const flip = el.classList.contains('flip');
     el.className = 'card' + (up ? ' up' : ghost ? ' ghost' : pick ? ' pick' : ' back') + (flip ? ' flip' : '')

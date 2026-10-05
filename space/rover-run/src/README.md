@@ -23,7 +23,7 @@ The index also keeps every earlier version.
 | **Correlation across variables** | Context changes what a warning means | down a column: sand is never on steep ground; storms never on flat ground |
 | **Models combine weak signals** | Neither signal alone decides | storm = haze before **and** a slope: 3 of 4, against 3 of 6 for haze alone and 0 of 5 for slope alone |
 | **Attention is a budget** | You can't look at everything | Hard mode: 1 look at the square ahead; the indicator says which card |
-| **Precision has a price** | False alarms cost, misses kill | every avoid drains the battery and needs a recharge turn, and turns are limited |
+| **Precision has a price** | False alarms cost, misses kill | a detour costs 2 turns; getting past a hazard leaves the battery dead (recharge); turns are limited |
 
 The facilitated exercise (identify the death → find the earliest indicator → check it recurs →
 correlate along a row → correlate down a column → write a one-line model) is in
@@ -33,14 +33,15 @@ correlate along a row → correlate down a column → write a one-line model) is
 
 - **The map** is 14 vertical strips of the Jezero contour map, turned south-up so the westward
   drive reads left to right. Lines closer together mean steeper ground.
-- **One action per turn:** **Go** (cross the next square), **Avoid** (detour around it; drains the
-  battery), or **Recharge** (stay; battery full). Moving on a dead battery kills the rover.
-  14 squares, 21 turns.
+- **Actions:** **Go** (cross the next square, 1 turn), **Avoid** (detour around it, 2 turns), or
+  **Recharge** (stay, 1 turn). When you get past a square, apply its battery card. If it's dead,
+  recharge before your next move or the rover dies. 14 squares, 26 turns. Every rule is a card, so
+  the same game plays on a table.
 - **Cards** sit in a column under each strip:
   - slope: flat / slope / steep;
   - ground: a stick figure firm / sinking in soft ground / in quicksand (**SAND**);
   - dust: clear sun / rain haze / **STORM** dust devil;
-  - battery: full after a go, **dead** after an avoid.
+  - battery: **dead** on every square with a death condition (SAND or STORM), full otherwise.
   White cards are deadly. The card that killed you gets a red ring.
 - **The graph** plots everything you've seen on one x axis with the cards: battery (top lane),
   ground (dotted ●), dust (dashed ×) and slope (grey terrain band). Warning and hazard points are named.
@@ -68,15 +69,18 @@ correlate along a row → correlate down a column → write a one-line model) is
 | `benchmarks/` | Simulator output and three blind agent playtests. |
 | `v1.0/` … `v1.5/`, `v2/` | Frozen earlier versions (`v2` is a separate two-deck design experiment). |
 
-**Tuning (all checks pass):**
+**Tuning (all checks pass, 26 turns):**
 
 | Protocol | Score | How it ends |
 | --- | --- | --- |
-| The model (sand risk = soft before and not steep; storm risk = haze before and a slope; recharge after each avoid) | **17** | finishes |
+| The model (sand risk = soft before and not steep; storm risk = haze before and a slope; recharge after a dead battery card) | **17** | finishes |
+| Hard, 1 look where the model points (soft → ground, haze → dust) | 17 | finishes |
+| Hard, 1 look always at battery (dead = a hazard is there) | 17 | finishes |
+| Hard, 1 look always at ground / dust / slope | 3 / 2 / 2 | storm / sand / sand |
 | Ignore slope for storms, or for sand | 13 | out of turns |
 | Avoid after any warning | 12 | out of turns |
 | The model without recharging | 3 | battery |
-| Random | 1.9 | |
+| Random | 2.6 | |
 
 ## Data honesty
 
