@@ -1,10 +1,9 @@
-// DUNE//EATER (Rover Run v1.3). Each square: decide go/avoid on partial information,
+// DUNE//EATER (Rover Run v1.2). Each square: decide go/avoid on partial information,
 // then the rest of the last square's cards flip, then pick 2 cards of the square you
-// just crossed. Three stacked panels: the map, a graph of everything seen, the cards.
+// just crossed. The cards are drawn as a graph, one lane per suit, so correlations show.
 import { newRun, play } from './engine.js';
 import { Screen, COLS, MAP, SX, SY, INK, DIM, FAINT, SAND, contourDots, routeDots } from './screen.js';
 import * as fx from './effects.js';
-import { SYMBOLS } from './symbols.js';
 
 const [map, deckFile] = await Promise.all(['map.json', 'deck.json'].map(f => fetch(f).then(r => r.json())));
 const sols = deckFile.sols, rules = deckFile.rules, N = sols[0].length;
@@ -15,18 +14,18 @@ if (params.has('film')) document.documentElement.classList.add('film');
 // ---------- one page: size the screen so map + cards fit the window ----------
 const main = document.querySelector('main');
 function fit() {
-  const below = [...document.querySelectorAll('.panel')].reduce((h, el) => h + el.getBoundingClientRect().height + 8, 0) || 300;
-  const w = Math.min(1280, innerWidth - 24, (innerHeight - below - 28) / ROWS_RATIO);
+  const below = document.querySelector('.below').getBoundingClientRect().height || 170;
+  const w = Math.min(1280, innerWidth - 24, (innerHeight - below - 44) / (ROWS_RATIO));
   main.style.maxWidth = `${Math.max(320, Math.floor(w))}px`;
 }
-const ROWS_RATIO = 29 * 1.9 / COLS;
+const ROWS_RATIO = 31 * 1.9 / COLS;
 fit();
 const screen = new Screen(document.getElementById('screen'));
 const contours = contourDots(map), route = routeDots(map);
 const first = Array.from({ length: N + 1 }, (_, r) => r < N ? route.findIndex(d => d.row === r) : route.length - 1);
 
 // ---------- memory: past runs and every card ever looked at ----------
-const KEY = 'rover-run.claude.v1.3';
+const KEY = 'rover-run.claude.v1.2.frozen';
 let memory = { runs: [], looked: {} };
 try { memory = { ...memory, ...JSON.parse(localStorage.getItem(KEY) || '{}') }; } catch {}
 const seen = () => (memory.looked[sol] ??= {});                    // square -> suits seen, any run
@@ -38,71 +37,52 @@ const LOOK = 2;
 let mode = 'intro', run = newRun(deck, rules), stop = null, clock = 0, anim = null, effect = null, replay = null;
 let shown = {}, pickCol = null, lastAt = 0, introStart = 0, queued = null;
 
-// ---------- suits: three levels each ----------
+// ---------- suits: three levels each, drawn as lanes of a graph ----------
 const SUITS = [
-  { name: 'slope', get: r => r.slope, levels: ['flat', 'tilted', 'steep'], dash: '7 3' },
-  { name: 'ground', get: r => r.ground, levels: ['firm', 'soft', 'sand'], dash: '1.5 3' },
-  { name: 'dust', get: r => r.dust, levels: ['clear', 'haze', 'storm'], dash: '5 2 1.5 2' },
-  { name: 'battery', get: r => (r.ground === 'sand' || r.dust === 'storm') ? '–' : r.battery < 0 ? '−1' : '0', levels: ['0', '−1', '–'] },
+  { name: 'slope', get: r => r.slope, levels: ['flat', 'tilted', 'steep'], dash: '' },
+  { name: 'ground', get: r => r.ground, levels: ['firm', 'soft', 'sand'], dash: '1 3' },
+  { name: 'dust', get: r => r.dust, levels: ['clear', 'haze', 'storm'], dash: '5 3' },
+  { name: 'battery', get: r => (r.ground === 'sand' || r.dust === 'storm') ? '–' : r.battery < 0 ? '−1' : '0', levels: ['0', '−1', '–'], dash: '6 2 1 2' },
 ];
 const ALL = SUITS.map(s => s.name);
-const deadly = (suit, v) => (suit === 'ground' && v === 'sand') || (suit === 'dust' && v === 'storm');
-const warning = (suit, v) => (suit === 'ground' && v === 'soft') || (suit === 'dust' && v === 'haze');
+const deadly = (suit, v) => (suit === 'ground' && v === 'sand') || (suit === 'dust' && v === 'storm') || (suit === 'battery' && v === '–');
 const word = v => (v === 'sand' || v === 'storm') ? v.toUpperCase() : v;
 
-// ---------- cards panel: bordered cards, symbol + word ----------
 const cardsEl = document.getElementById('cards');
-function buildCards() {
-  cardsEl.innerHTML = '<div></div>' + Array.from({ length: N }, (_, c) => `<div class="colnum" data-col="${c}">${c + 1}</div>`).join('');
-  for (const s of SUITS) {
-    cardsEl.insertAdjacentHTML('beforeend', `<div class="suit">${s.name}</div>`);
-    for (let c = 0; c < N; c++) cardsEl.insertAdjacentHTML('beforeend', `<div class="card" data-col="${c}" data-suit="${s.name}"></div>`);
-  }
-}
 function paintCards() {
+  const W = cardsEl.clientWidth || 600, L = 58, top = 14, LH = 30, cw = (W - L - 4) / N, H = top + SUITS.length * LH + 2;
+  const cx = c => L + (c + 0.5) * cw, ly = (lane, lv) => top + lane * LH + LH * (0.8 - lv * 0.3);
   const deciding = mode === 'play' ? run.pos : null;
-  for (const el of cardsEl.querySelectorAll('.colnum')) el.classList.toggle('on', +el.dataset.col === deciding || +el.dataset.col === pickCol);
-  for (const el of cardsEl.querySelectorAll('.card')) {
-    const c = +el.dataset.col, suit = el.dataset.suit, s = SUITS.find(x => x.name === suit), v = s.get(deck[c]);
-    const up = !!shown[c]?.includes(suit), ghost = !up && !!seen()[c]?.includes(suit), pick = mode === 'pick' && c === pickCol && !up;
-    el.className = 'card' + (up ? ' up' : ghost ? ' ghost' : pick ? ' pick' : ' back')
-      + (c === deciding ? ' next' : '') + ((up || ghost) && deadly(suit, v) ? ' hazard' : '') + ((up || ghost) && warning(suit, v) ? ' warn' : '');
-    el.innerHTML = up || ghost ? `${SYMBOLS[suit][v]}<i>${word(v)}</i>` : pick ? `<span>${ALL.indexOf(suit) + 1}</span>` : `<span>${c + 1}</span>`;
-  }
-  paintGraph();
-}
-cardsEl.addEventListener('click', e => { const el = e.target.closest('.card'); if (el && mode === 'pick' && +el.dataset.col === pickCol) look(el.dataset.suit); });
-
-// ---------- graph panel: battery and every seen card as lines, one shared x with the cards ----------
-const graphEl = document.getElementById('graph');
-function paintGraph() {
-  const W = graphEl.clientWidth || 600, H = graphEl.clientHeight || 90, box = cardsEl.getBoundingClientRect();
-  const cols = [...cardsEl.querySelectorAll('.colnum')].map(el => { const r = el.getBoundingClientRect(); return r.left - box.left + r.width / 2; });
-  if (!cols.length) return;
-  const half = (cols[1] - cols[0]) / 2, top = 6, bottom = H - 6, maxB = Math.max(10, ...run.log.map(l => l.to), run.battery);
-  const by = b => bottom - (Math.max(0, b) / maxB) * (bottom - top), ly = (lv, off) => bottom - 4 - lv * (bottom - top - 8) / 2 + off;
   let svg = '';
-  for (const lv of [0, 1, 2]) svg += `<line x1="${cols[0] - half}" x2="${W}" y1="${ly(lv, 0)}" y2="${ly(lv, 0)}" class="guide"/>`;
-  svg += ['low', 'mid', 'high'].map((t, lv) => `<text x="0" y="${ly(lv, 0) + 3}" class="axis">${t}</text>`).join('');
-  // battery: always known (it is the meter), from the start of the run to now
-  const pts = [[cols[0] - half, by(rules.battery)], ...run.log.filter(l => l.to !== undefined).map(l => [cols[l.pos], by(l.to)])];
-  if (pts.length > 1) svg += `<polyline points="${pts.map(p => p.join(',')).join(' ')}" class="bat"/>`;
-  svg += `<circle cx="${pts[pts.length - 1][0]}" cy="${pts[pts.length - 1][1]}" r="2.4" class="dot"/>`;
-  // slope, ground, dust: only cards you have seen this run; gaps where you didn't look
-  SUITS.slice(0, 3).forEach((s, k) => {
-    const off = (k - 1) * 3;
+  // column numbers, and the square being decided
+  for (let c = 0; c < N; c++) {
+    const on = c === deciding || c === pickCol;
+    svg += `<text x="${cx(c)}" y="10" class="${on ? 'num on' : 'num'}">${c + 1}</text>`;
+    if (c === deciding) svg += `<rect x="${L + c * cw + 1}" y="${top - 1}" width="${cw - 2}" height="${SUITS.length * LH}" class="deciding"/>`;
+  }
+  SUITS.forEach((s, lane) => {
+    svg += `<text x="0" y="${top + lane * LH + LH * 0.58}" class="lane">${s.name}</text>`;
+    svg += `<line x1="${L}" x2="${W - 4}" y1="${top + (lane + 1) * LH - 0.5}" y2="${top + (lane + 1) * LH - 0.5}" class="sep"/>`;
     let prev = null;
     for (let c = 0; c < N; c++) {
-      if (!shown[c]?.includes(s.name)) { prev = null; continue; }
-      const v = s.get(deck[c]), x = cols[c], y = ly(s.levels.indexOf(v), off);
-      if (prev) svg += `<line x1="${prev[0]}" y1="${prev[1]}" x2="${x}" y2="${y}" stroke-dasharray="${s.dash}" class="trace"/>`;
-      svg += deadly(s.name, v) ? `<rect x="${x - 3.5}" y="${y - 3.5}" width="7" height="7" class="dot"/>` : `<circle cx="${x}" cy="${y}" r="1.8" class="dot"/>`;
-      prev = [x, y];
+      const v = s.get(deck[c]), lv = s.levels.indexOf(v), up = shown[c]?.includes(s.name);
+      const x = cx(c), y = ly(lane, lv), x0 = L + c * cw + 2, y0 = top + lane * LH + 3, w = cw - 4, h = LH - 6;
+      if (up) {
+        if (prev) svg += `<line x1="${prev[0]}" y1="${prev[1]}" x2="${x}" y2="${y}" stroke-dasharray="${s.dash}" class="trace"/>`;
+        svg += deadly(s.name, v) ? `<rect x="${x - 4}" y="${y - 4}" width="8" height="8" class="dead"><title>${word(v)}</title></rect>`
+                                 : `<circle cx="${x}" cy="${y}" r="2.6" class="dot"><title>${word(v)}</title></circle>`;
+        prev = [x, y];
+        continue;
+      }
+      prev = null;
+      if (mode === 'pick' && c === pickCol) svg += `<rect x="${x0}" y="${y0}" width="${w}" height="${h}" rx="2" class="pick" data-suit="${s.name}"/><text x="${x}" y="${y0 + h / 2 + 4}" class="q">${lane + 1}</text>`;
+      else if (seen()[c]?.includes(s.name)) svg += `<circle cx="${x}" cy="${y}" r="2.6" class="ghost"><title>${word(v)} (earlier run)</title></circle>`;
+      else if (c < run.pos || c === pickCol) svg += `<rect x="${x0}" y="${y0}" width="${w}" height="${h}" rx="2" class="back"/>`;
     }
   });
-  graphEl.innerHTML = `<svg width="${W}" height="${H}">${svg}</svg>`;
-  const b = document.getElementById('batnow'); if (b) b.textContent = run.battery;
+  cardsEl.innerHTML = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${svg}</svg>`;
 }
+cardsEl.addEventListener('click', e => { const s = e.target.dataset?.suit; if (s) look(s); });
 
 // ---------- drawing the screen ----------
 const dotPx = d => screen.px(d.dx, d.dy);
@@ -149,7 +129,17 @@ function marks(list, log, sh = shown) {
   for (const l of log) { if (l.stop === 'sample') ring(list, route[first[l.pos]], 4.5); hazardMark(list, l.pos, sh); }
 }
 function rover(list, i) { const [x, y] = dotPx(route[Math.min(route.length - 1, Math.max(0, Math.round(i)))]); list.push({ x, y, c: INK, s: 4.5 }); }
+const cells = (n, of, on = '▮', off = '▯') => on.repeat(Math.max(0, n)) + off.repeat(Math.max(0, of - n));
 const BELOW = MAP.row + MAP.rows;                         // first text row under the map
+function title(list, right) {
+  screen.text(list, 3, 0.3, 'DUNE//EATER', INK);
+  if (right) screen.text(list, COLS - 3 - right.length, 0.3, right, INK);
+}
+function hud(list, battery = run.battery) {
+  const right = `battery ${cells(battery, Math.max(rules.battery, battery))}   stops ${cells(run.stops, rules.stops, '◆', '◇')}   score ${run.score}`;
+  title(list, right);
+  if (battery <= 2) screen.text(list, COLS - 3 - right.length + 8, 0.3, cells(battery, battery), '#e07a5f');
+}
 function legendLine(list) {
   screen.text(list, 3, BELOW + 0.7, '━ driven  ╍ avoided  ┄ ahead  ● rover  ○ sample  ◍ sand  ≋ storm', DIM);
   const t = 'lines closer together = steep';
@@ -168,7 +158,7 @@ function promptLine(list) {
   }
   if (mode !== 'play') return;
   put(`square ${run.pos + 1}/${N}`, INK); col += 4;
-  put(`stop (${run.stops} left) `, DIM);
+  put('stop ', DIM);
   const none = run.stops === 0;
   put(' · none ', none ? FAINT : INK, 'none', stop === null); put(' ');
   put(' R +2 battery ', none ? FAINT : INK, 'recharge', stop === 'recharge'); put(' ');
@@ -187,6 +177,7 @@ function frame() {
   marks(list, run.log);
   if (anim?.ring) ring(list, route[first[anim.from]], anim.ring);
   rover(list, anim ? anim.at : first[run.pos]);
+  hud(list, anim?.battery ?? run.battery);
   if (anim?.label) screen.text(list, anim.label.col, anim.label.row, anim.label.t, INK);
   legendLine(list);
   promptLine(list);
@@ -199,10 +190,12 @@ function introFrame(list) {
   const k = Math.min(route.length, Math.floor(route.length * Math.max(0, t - 0.8) / 2.2));
   for (let i = 0; i < k; i++) { const [x, y] = dotPx(route[i]); list.push({ x, y, c: INK, s: 1.2 }); }
   if (k) rover(list, k - 1);
+  title(list, memory.runs.length ? `best ${best()}` : '');
   if (t > 3) {
-    screen.text(list, 3, BELOW + 0.7, `DUNE//EATER · ${N} squares of the real Perseverance route. Go or avoid each. Reach the end.`, DIM);
-    screen.text(list, 3, BELOW + 2.0, `After a square, see ${LOOK} of its 4 cards; the rest flip after your next move.`, INK);
-    if (Math.sin(clock * 4) > -0.3) { screen.text(list, COLS - 13, BELOW + 2.0, ' P  start ', INK, 'start'); list[list.length - 1].inv = true; }
+    screen.text(list, 3, BELOW + 0.7, `${N} squares of the real Perseverance route. Go or avoid each one. Reach the end.`, DIM);
+    screen.text(list, 3, BELOW + 1.7, `After a square, pick ${LOOK} of its 4 cards to see. The other ${4 - LOOK} flip after your next move.`, DIM);
+    screen.text(list, 3, BELOW + 2.7, 'You have enough battery to drive straight through.', INK);
+    if (Math.sin(clock * 4) > -0.3) { screen.text(list, COLS - 13, BELOW + 2.7, ' P  start ', INK, 'start'); list[list.length - 1].inv = true; }
   }
   return list;
 }
@@ -283,14 +276,19 @@ function replayFrame(list) {
   rover(list, head);
   const over = k >= r0.log.length;
   if (over && r0.end !== 'finish') { const [x, y] = dotPx(route[Math.round(head)]); screen.text(list, Math.round(x / screen.cw) + 1, Math.round(y / screen.ch) - 1, `✕ ${r0.end}`, '#e07a5f'); }
-  legendLine(list);
+  // the battery as a graph, under the map
+  const base = BELOW + 0.4, H = 2.4, W = 46, pts = [rules.battery, ...r0.log.map(l => l.to)];
+  screen.text(list, 3, base + 1.4, 'battery', DIM);
+  for (let j = 0; j < Math.min(pts.length - 1, k); j++)
+    for (let s = 0; s <= 10; s++) { const v = pts[j] + (pts[j + 1] - pts[j]) * (s / 10); list.push({ x: (12 + (j + s / 10) * W / N) * screen.cw, y: (base + H - Math.max(0, v) / 14 * H) * screen.ch, c: INK, s: 0.9 }); }
+  for (let s = 0; s <= W; s++) list.push({ x: (12 + s) * screen.cw, y: (base + H) * screen.ch, c: FAINT, s: 0.7 });
   if (over) {
     const samples = r0.log.filter(l => l.stop === 'sample').length, rows = r0.score - samples - (r0.end === 'finish' ? rules.finishBonus : 0);
-    screen.text(list, 3, BELOW + 2.2, `score ${r0.score} · squares ${rows} · samples ${samples}${r0.end === 'finish' ? ` · finish +${rules.finishBonus}` : ''} · best ${best()}`, INK);
+    title(list, `score ${r0.score}   squares ${rows} · samples ${samples}${r0.end === 'finish' ? ` · finish +${rules.finishBonus}` : ''}   best ${best()}`);
     if (Math.sin(clock * 4) > -0.3) { screen.text(list, COLS - 17, BELOW + 2.2, ' P  play again ', INK, 'again'); list[list.length - 1].inv = true; }
-    if (solRuns().some(r => r.end === 'finish') && sol < sols.length - 1) screen.text(list, COLS - 44, BELOW + 2.2, ' N  new sol: new weather ', INK, 'nextsol');
+    if (solRuns().some(r => r.end === 'finish') && sol < sols.length - 1) screen.text(list, COLS - 42, BELOW + 2.2, ' N  new sol: new weather ', INK, 'nextsol');
     if (mode !== 'over') { mode = 'over'; paintCards(); }
-  }
+  } else title(list);
   const h = screen.canvas.getBoundingClientRect().height, scan = h * (clock - replay.t0) / 0.7;
   return scan > h * 1.2 ? list : list.filter(d => d.y < scan).map(d => ({ ...d, a: (d.a ?? 1) * Math.min(1, (scan - d.y) / 80) }));
 }
@@ -332,5 +330,5 @@ function paintPad() {
   for (const b of pad.querySelectorAll('button')) b.classList.toggle('on', b.dataset.k === (stop ?? 'none') && mode === 'play');
 }
 window.rover = { get state() { return { mode, run, stop, memory, sol, shown } }, input, deck };
-buildCards(); paintCards(); fit(); screen.resize();
+paintCards();
 requestAnimationFrame(ms => { introStart = ms / 1000; tick(ms); });

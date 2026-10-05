@@ -9,18 +9,18 @@
 <body>
 <main>
   <div class="screen"><canvas id="screen"></canvas></div>
-  <div class="below">
-    <div class="box cardsbox"><div id="cards"></div></div>
-    <div class="box legendbox">
-      <table>
-        <tr><th></th><th></th><th>low</th><th>mid</th><th>high</th></tr>
-        <tr><td><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="currentColor" stroke-width="1.3" stroke-dasharray=""/></svg></td><td>slope</td><td>flat</td><td>tilted</td><td>steep</td></tr>
-        <tr><td><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="currentColor" stroke-width="1.3" stroke-dasharray="1 3"/></svg></td><td>ground</td><td>firm</td><td>soft</td><td>SAND ■</td></tr>
-        <tr><td><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="currentColor" stroke-width="1.3" stroke-dasharray="5 3"/></svg></td><td>dust</td><td>clear</td><td>haze</td><td>STORM ■</td></tr>
-        <tr><td><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="currentColor" stroke-width="1.3" stroke-dasharray="6 2 1 2"/></svg></td><td>battery</td><td>0</td><td>−1</td><td>– ■</td></tr>
-      </table>
-      <p>■ deadly to drive into · ▢ face down<br>● seen this run · ○ seen in an earlier run<br>battery card = what that square cost</p>
+  <div class="panel">
+    <div id="graph" class="body graph"></div>
+    <div class="side">
+      <p><svg width="30" height="8"><line x1="1" y1="4" x2="29" y2="4" stroke="currentColor" stroke-width="1.8" stroke-dasharray=""/></svg> battery <b id="batnow"></b></p>
+      <p><svg width="30" height="8"><line x1="1" y1="4" x2="29" y2="4" stroke="currentColor" stroke-width="1.3" stroke-dasharray="7 3"/></svg> slope</p>
+      <p><svg width="30" height="8"><line x1="1" y1="4" x2="29" y2="4" stroke="currentColor" stroke-width="1.3" stroke-dasharray="1.5 3"/></svg> ground</p>
+      <p><svg width="30" height="8"><line x1="1" y1="4" x2="29" y2="4" stroke="currentColor" stroke-width="1.3" stroke-dasharray="5 2 1.5 2"/></svg> dust</p>
     </div>
+  </div>
+  <div class="panel">
+    <div id="cards" class="body cards"></div>
+    <div class="side"><table class="key"><tr><th></th><th>low</th><th>mid</th><th>high</th></tr><tr><td>slope</td><td class=""><svg viewBox="0 0 32 20" class="sym" aria-hidden="true"><path d="M3 15 H29"/></svg></td><td class=""><svg viewBox="0 0 32 20" class="sym" aria-hidden="true"><path d="M3 16 L29 9"/></svg></td><td class=""><svg viewBox="0 0 32 20" class="sym" aria-hidden="true"><path d="M7 18 L25 3"/></svg></td></tr><tr><td>ground</td><td class=""><svg viewBox="0 0 32 20" class="sym" aria-hidden="true"><path d="M2 15 H30"/><circle cx="16" cy="11.2" r="3.6"/><circle cx="16" cy="11.2" r="0.8" class="fill"/></svg></td><td class=""><svg viewBox="0 0 32 20" class="sym" aria-hidden="true"><path d="M2 13.5 H10 Q16 17.5 22 13.5 H30"/><circle cx="16" cy="12.6" r="3.6"/><circle cx="16" cy="12.6" r="0.8" class="fill"/><path d="M8 17.5 h1 M15 18.5 h1 M22 17.5 h1" class="thin"/></svg></td><td class="haz"><svg viewBox="0 0 32 20" class="sym" aria-hidden="true"><path d="M2 8 H7 Q16 23 25 8 H30"/><circle cx="16" cy="14.2" r="3.6"/><circle cx="16" cy="14.2" r="0.8" class="fill"/><path d="M9 12 h1 M22 12 h1 M12 16.5 h1 M20 16.5 h1" class="thin"/></svg></td></tr><tr><td>dust</td><td class=""><svg viewBox="0 0 32 20" class="sym" aria-hidden="true"><circle cx="16" cy="10" r="4.5"/><path d="M16 1.5 v2 M16 16.5 v2 M7.5 10 h2 M22.5 10 h2" class="thin"/></svg></td><td class=""><svg viewBox="0 0 32 20" class="sym" aria-hidden="true"><circle cx="16" cy="10" r="4.5" class="faint"/><path d="M5 6.5 H27 M3 10 H29 M5 13.5 H27" stroke-dasharray="2.5 2"/></svg></td><td class="haz"><svg viewBox="0 0 32 20" class="sym" aria-hidden="true"><path d="M3 5 q4 -3 8 0 t8 0 t8 0 M2 10 q4 -3 8 0 t8 0 t8 0 t6 0 M3 15 q4 -3 8 0 t8 0 t8 0"/></svg></td></tr><tr><td>battery</td><td class=""><svg viewBox="0 0 32 20" class="sym" aria-hidden="true"><rect x="5" y="5" width="20" height="10" rx="1.5"/><path d="M26.5 8.5 v3"/><rect x="7.5" y="7.5" width="15" height="5" class="fill"/></svg></td><td class=""><svg viewBox="0 0 32 20" class="sym" aria-hidden="true"><rect x="5" y="5" width="20" height="10" rx="1.5"/><path d="M26.5 8.5 v3"/><rect x="7.5" y="7.5" width="9" height="5" class="fill"/></svg></td><td class=""><svg viewBox="0 0 32 20" class="sym" aria-hidden="true"><rect x="5" y="5" width="20" height="10" rx="1.5"/><path d="M26.5 8.5 v3 M10 10 h10"/></svg></td></tr></table></div>
   </div>
   <div id="pad" class="pad">
     <button data-k="none">·</button><button data-k="recharge">R +2</button><button data-k="sample">S +1</button>

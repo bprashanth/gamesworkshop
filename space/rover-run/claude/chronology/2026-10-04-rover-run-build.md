@@ -142,3 +142,20 @@ dot/dash variation) so players see correlations.
   layout changes can't reach it.
 - Patterns are unchanged and not periodic: haze is followed by storm on 2 of 3 squares; sand only
   follows soft and never sits on steep.
+
+## 2026-10-05 · v1.3 (user: "the inline graphs are confusing; the old cards were better")
+
+- **Three stacked panels, nothing above the map** (no title or score line):
+  1. map, with its one-line legend and the prompt (stops left are shown in the prompt);
+  2. graph, the battery level (solid) plus seen slope / ground / dust values as dashed / dotted /
+     dash-dot lines on a low-mid-high axis, sharing the x positions of the card columns;
+  3. cards.
+- **Cards are bordered cards again**, each with a line-drawn symbol plus its word (`web/symbols.js`):
+  - slope: a ground line at three angles;
+  - ground: a wheel on firm ground, sinking slightly into soft, sunk in a SAND pit;
+  - dust: a clear sun, a sun behind dashed haze lines, STORM waves;
+  - battery: full or part-drained, and "–" on a deadly square.
+  Deadly cards are inverted and warnings get a bright border. Earlier-run cards are faded and
+  dashed, and face-down cards are numbered backs, so neither needs a legend line.
+- **Card key** = suits × low/mid/high with symbols only. **Graph key** = line swatches + names.
+- The score shows at the end of a run. v1.2 is frozen at `/v1.2/`.

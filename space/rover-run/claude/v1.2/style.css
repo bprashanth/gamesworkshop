@@ -1,0 +1,43 @@
+:root { --bg: #000; --ink: #e6e6e1; --dim: #8a8a86; --faint: #3a3a38; --sand: #c2a374; --mono: "JetBrains Mono", "DejaVu Sans Mono", ui-monospace, monospace; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--mono); }
+main { max-width: 1280px; margin: 0 auto; padding: 10px 12px; }
+.screen { width: 100%; border: 1px solid #1c1c1b; }
+canvas { display: block; width: 100%; cursor: default; touch-action: manipulation; }
+
+/* Under the map: the cards drawn as a graph (one lane per suit), and the legend. */
+.below { display: flex; gap: 10px; margin-top: 8px; align-items: stretch; }
+.box { border: 1px solid #2a2a29; border-radius: 3px; padding: 6px 10px; }
+.cardsbox { flex: 1 1 auto; min-width: 0; }
+.legendbox { flex: 0 0 auto; color: var(--dim); font-size: 11px; line-height: 1.5; }
+.legendbox table { border-collapse: collapse; }
+.legendbox th { font-weight: 400; color: #555552; text-align: left; padding: 0 8px 2px 0; }
+.legendbox td { padding: 0 10px 0 0; color: var(--ink); }
+.legendbox td:first-child { color: var(--ink); padding-right: 6px; }
+.legendbox td:nth-child(2) { color: var(--dim); }
+.legendbox p { margin: 6px 0 0; }
+#cards svg { display: block; font: 10px var(--mono); }
+#cards .num { fill: #4a4a48; text-anchor: middle; }
+#cards .num.on { fill: var(--ink); }
+#cards .lane { fill: var(--dim); }
+#cards .sep { stroke: #1c1c1b; }
+#cards .deciding { fill: none; stroke: var(--ink); stroke-opacity: .55; stroke-dasharray: 2 3; }
+#cards .trace { stroke: var(--ink); stroke-width: 1.2; }
+#cards .dot { fill: var(--ink); }
+#cards .dead { fill: var(--ink); }
+#cards .ghost { fill: none; stroke: #6a6a67; }
+#cards .back { fill: #0b0b0b; stroke: #2a2a29; }
+#cards .pick { fill: #111; stroke: var(--ink); cursor: pointer; animation: pick .9s ease-in-out infinite alternate; }
+#cards .pick:hover { fill: #222; }
+#cards .q { fill: var(--ink); text-anchor: middle; pointer-events: none; }
+@keyframes pick { from { stroke-opacity: .35; } to { stroke-opacity: 1; } }
+@media (max-width: 760px) { .below { flex-direction: column; } }
+
+/* Touch pad: only on narrow or coarse-pointer screens; the keyboard is the main input. */
+.pad { display: none; gap: 6px; margin-top: 12px; }
+.pad button { flex: 1; font: 13px var(--mono); color: var(--ink); background: #000; border: 1px solid #555; border-radius: 3px; padding: 12px 0; }
+.pad button.on { background: var(--ink); color: #000; }
+.pad span { width: 10px; }
+.pad .again { display: none; }
+.pad.over button { display: none; } .pad.over .again { display: block; }
+@media (max-width: 700px), (pointer: coarse) { .pad { display: flex; } }
