@@ -220,3 +220,35 @@ dot/dash variation) so players see correlations.
   **SAND**), dust right of its × (haze, **STORM**); hazard words are bright. Slope is named inside
   its terrain band, and battery shows its current value. The three levels sit above the band;
   firm/clear points stay unlabelled so the warnings stand out.
+
+## 2026-10-05 · v1.6: built for the indicator exercise (tag `rover-run-claude-v1.6`)
+
+User brief: 14 squares (8 had too few correlations); easy / medium / hard; a binary battery; a
+death highlight; and a deck where each step of an indicator-building exercise has repeated evidence
+on one fixed map (generated maps make room replication hard). The exercise is written up in
+`narrative/INDICATORS.md`, inside this folder, since the repo-level `narrative/` is read-only here.
+
+- **Map:** 14 strips (`prep.py --strips 14 --rotate`), south-up, read left to right. Slopes:
+  flat ×5, slope ×6, steep ×3 (squares 10–12).
+- **Deck (one fixed sol):** SAND ×3 (3, 6, 14), always right after soft and never on steep. Soft
+  before steep is never sand (3 cases). STORM ×3 (4, 9, 11), always right after haze **and** on a
+  slope: haze alone storms 3/6, haze + flat 0/2, haze + slope 3/4, slope without haze 0/5. So
+  neither indicator alone predicts a storm, both together raise the odds, and square 13 is the
+  false alarm. Flat can sand but not storm, steep can storm but not sand, and middling slope can do
+  both. `web/analysis.js` checks every one of these.
+- **Binary battery:** an avoid drains it, moving on a dead battery kills, recharge refills. The
+  battery card = what you did on that square (full after go, dead after avoid; white when dead).
+  The one-line model: recharge after every avoid.
+- **Turns:** 14 + 7. Sim: the model 17 (finish); haze-ignores-slope 13 and soft-ignores-slope 13
+  (out of turns); avoid-any-warning 12; model-without-recharging 3 (battery); random 1.9. The
+  generator (`tools/gen.mjs`) was removed: one fixed map is the point now.
+- **Modes:** Easy = the whole board face up (for the analysis); **Medium (default)** = every
+  crossed square shows; Hard = pick 2 of 4.
+- **UX for the exercise:**
+  - the fatal card gets a red ring;
+  - clicking a face-up card lights up every card with the same value and outlines the square before
+    each;
+  - hovering a column lights its strip on the map;
+  - the graph's battery is its own thin full/dead lane, with "dead" named;
+  - ground labels sit below their points and dust labels above, so neighbours never collide.
+- v1.5 is frozen at `/v1.5/`.

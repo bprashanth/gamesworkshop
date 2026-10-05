@@ -9,15 +9,14 @@ const file = args.find(a => a.endsWith('.json')) || new URL('../web/deck.json', 
 const opt = k => { const i = args.indexOf('--' + k); return i < 0 ? undefined : Number(args[i + 1]); };
 const raw = JSON.parse(readFileSync(file, 'utf8'));
 const rules = { ...RULES, ...(raw.rules ?? {}) };
-for (const [k, r] of [['battery', 'battery'], ['spare', 'spareTurns'], ['recharge', 'recharge']]) if (opt(k) !== undefined) rules[r] = opt(k);
+if (opt('spare') !== undefined) rules.spareTurns = opt('spare');
 const sols = raw.sols ?? [raw.rows ?? raw];
 let failed = false;
 for (const [i, deck] of sols.entries()) {
   if (opt('sol') && opt('sol') !== i + 1) continue;
   const a = analyse(deck, rules);
   const line = (k, s) => `${k.padEnd(26)}${String(s.score).padStart(3)}  ${s.end.padEnd(7)} ${String(s.pos).padStart(2)}/${deck.length}  ${trace(s)}`;
-  console.log(`\nsol ${i + 1} · ${deck.length} rows · battery ${rules.battery} · turns ${deck.length + rules.spareTurns} · recharge +${rules.recharge} · straight-through battery ${a.straight}`);
-  console.log(line('hindsight ceiling', a.ceiling));
+  console.log(`\nsol ${i + 1} · ${deck.length} squares · ${deck.length + rules.spareTurns} turns · haze+slope storm rate ${a.stormRate.toFixed(2)}`);
   for (const [k, s] of Object.entries(a.runs)) console.log(line(k, s));
   console.log(`${'random'.padEnd(26)}${a.random.toFixed(1)}`);
   for (const [k, v] of a.checks) console.log(`${v ? 'PASS' : 'FAIL'}  ${k}`);

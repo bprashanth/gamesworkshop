@@ -32,9 +32,9 @@ export const SYMBOLS = {
     tilted: svg('<path d="M3 18 L29 10"/>'),
     steep: svg('<path d="M8 21 L25 4"/>'),
   },
-  battery: {                                                 // binary: full, or dead after a detour
-    full: svg('<rect x="5" y="7" width="20" height="10" rx="1.5"/><path d="M26.5 10.5 v3"/><rect x="7.5" y="9.5" width="15" height="5" class="fill"/>'),
-    dead: svg('<rect x="5" y="7" width="20" height="10" rx="1.5"/><path d="M26.5 10.5 v3 M11 9 l8 6 M19 9 l-8 6"/>'),
+  battery: {
+    '0': svg('<rect x="5" y="7" width="20" height="10" rx="1.5"/><path d="M26.5 10.5 v3"/><rect x="7.5" y="9.5" width="15" height="5" class="fill"/>'),
+    '−1': svg('<rect x="5" y="7" width="20" height="10" rx="1.5"/><path d="M26.5 10.5 v3"/><rect x="7.5" y="9.5" width="9" height="5" class="fill"/>'),
+    '–': svg('<rect x="5" y="7" width="20" height="10" rx="1.5"/><path d="M26.5 10.5 v3 M10 12 h10"/>'),
   },
-
 };

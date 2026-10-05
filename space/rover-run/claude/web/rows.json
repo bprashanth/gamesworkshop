@@ -6,123 +6,213 @@
  "rows": [
   {
    "row": 1,
-   "slope_deg": 0.9,
+   "slope_deg": 0.8,
    "slope": "flat",
    "km": [
     0.0,
-    9.7
+    2.0
    ],
    "sols": [
     14,
-    402
+    177
    ],
-   "tau_median": 0.317,
-   "elev_m": -2570
+   "tau_median": 0.321,
+   "elev_m": -2574
   },
   {
    "row": 2,
-   "slope_deg": 3.0,
-   "slope": "tilted",
-   "km": [
-    9.7,
-    11.8
-   ],
-   "sols": [
-    402,
-    420
-   ],
-   "tau_median": 0.361,
-   "elev_m": -2546
-  },
-  {
-   "row": 3,
-   "slope_deg": 2.8,
-   "slope": "tilted",
-   "km": [
-    11.8,
-    19.2
-   ],
-   "sols": [
-    420,
-    765
-   ],
-   "tau_median": 0.335,
-   "elev_m": -2494
-  },
-  {
-   "row": 4,
    "slope_deg": 0.9,
    "slope": "flat",
    "km": [
-    19.2,
-    24.3
+    2.0,
+    9.9
    ],
    "sols": [
-    765,
-    1018
+    177,
+    404
    ],
-   "tau_median": 0.341,
-   "elev_m": -2414
+   "tau_median": 0.314,
+   "elev_m": -2569
+  },
+  {
+   "row": 3,
+   "slope_deg": 3.5,
+   "slope": "tilted",
+   "km": [
+    9.9,
+    11.0
+   ],
+   "sols": [
+    404,
+    413
+   ],
+   "tau_median": 0.332,
+   "elev_m": -2549
+  },
+  {
+   "row": 4,
+   "slope_deg": 3.1,
+   "slope": "tilted",
+   "km": [
+    11.0,
+    17.0
+   ],
+   "sols": [
+    413,
+    719
+   ],
+   "tau_median": 0.369,
+   "elev_m": -2519
   },
   {
    "row": 5,
-   "slope_deg": 3.6,
-   "slope": "tilted",
+   "slope_deg": 1.9,
+   "slope": "flat",
    "km": [
-    24.3,
-    27.3
+    17.0,
+    18.9
    ],
    "sols": [
-    1018,
-    1171
+    719,
+    763
    ],
-   "tau_median": 0.399,
-   "elev_m": -2381
+   "tau_median": 0.247,
+   "elev_m": -2446
   },
   {
    "row": 6,
-   "slope_deg": 10.4,
-   "slope": "steep",
+   "slope_deg": 1.7,
+   "slope": "flat",
    "km": [
-    27.3,
-    31.9
+    18.9,
+    21.0
    ],
    "sols": [
-    1171,
-    1348
+    763,
+    909
    ],
-   "tau_median": 0.303,
-   "elev_m": -2177
+   "tau_median": 0.378,
+   "elev_m": -2420
   },
   {
    "row": 7,
-   "slope_deg": 11.5,
-   "slope": "steep",
+   "slope_deg": 0.9,
+   "slope": "flat",
    "km": [
-    31.9,
-    39.4
+    21.0,
+    24.3
    ],
    "sols": [
-    1348,
-    1701
+    909,
+    1018
    ],
-   "tau_median": 0.268,
-   "elev_m": -1899
+   "tau_median": 0.286,
+   "elev_m": -2412
   },
   {
    "row": 8,
    "slope_deg": 3.1,
    "slope": "tilted",
    "km": [
-    39.4,
+    24.3,
+    25.9
+   ],
+   "sols": [
+    1018,
+    1115
+   ],
+   "tau_median": 0.252,
+   "elev_m": -2395
+  },
+  {
+   "row": 9,
+   "slope_deg": 3.6,
+   "slope": "tilted",
+   "km": [
+    25.9,
+    27.6
+   ],
+   "sols": [
+    1115,
+    1175
+   ],
+   "tau_median": 0.443,
+   "elev_m": -2364
+  },
+  {
+   "row": 10,
+   "slope_deg": 11.8,
+   "slope": "steep",
+   "km": [
+    27.6,
+    31.3
+   ],
+   "sols": [
+    1175,
+    1332
+   ],
+   "tau_median": 0.313,
+   "elev_m": -2206
+  },
+  {
+   "row": 11,
+   "slope_deg": 9.7,
+   "slope": "steep",
+   "km": [
+    31.3,
+    32.5
+   ],
+   "sols": [
+    1332,
+    1354
+   ],
+   "tau_median": 0.2,
+   "elev_m": -1902
+  },
+  {
+   "row": 12,
+   "slope_deg": 11.7,
+   "slope": "steep",
+   "km": [
+    32.5,
+    39.2
+   ],
+   "sols": [
+    1354,
+    1698
+   ],
+   "tau_median": 0.274,
+   "elev_m": -1904
+  },
+  {
+   "row": 13,
+   "slope_deg": 6.0,
+   "slope": "tilted",
+   "km": [
+    39.2,
+    40.4
+   ],
+   "sols": [
+    1698,
+    1756
+   ],
+   "tau_median": 0.166,
+   "elev_m": -1952
+  },
+  {
+   "row": 14,
+   "slope_deg": 3.0,
+   "slope": "tilted",
+   "km": [
+    40.4,
     45.2
    ],
    "sols": [
-    1701,
+    1756,
     1980
    ],
    "tau_median": null,
-   "elev_m": -1963
+   "elev_m": -1962
   }
  ],
  "sha256": {

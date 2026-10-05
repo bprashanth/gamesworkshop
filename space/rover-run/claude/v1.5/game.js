@@ -1,8 +1,8 @@
-// Rover Run v1.6. 14 squares = 14 strips of the map. Each turn: go, avoid or recharge.
-// Easy: the whole board shows. Medium: every crossed square shows. Hard: decide on partial information,
+// Rover Run v1.5. 8 squares = 8 strips of the map. Each turn: go, avoid or recharge.
+// Easy: every crossed square's cards show. Hard: decide on partial information,
 // then the rest of the last square's cards flip, then pick 2 cards of the square you
 // just crossed. Three stacked panels: the map, a graph of everything seen, the cards.
-import { newRun, act, batteryAfter } from './engine.js';
+import { newRun, act } from './engine.js';
 import { Screen, COLS, MAP, SX, SY, DW, DH, INK, DIM, FAINT, SAND, contourDots, routeDots } from './screen.js';
 import * as fx from './effects.js';
 import { SYMBOLS } from './symbols.js';
@@ -33,8 +33,8 @@ const contours = contourDots(map), route = routeDots(map);
 const first = Array.from({ length: N + 1 }, (_, r) => r < N ? route.findIndex(d => d.row === r) : route.length - 1);
 
 // ---------- memory: past runs and every card ever looked at ----------
-const KEY = 'rover-run.claude.v1.6';
-let memory = { runs: [], looked: {}, level: 'medium' };
+const KEY = 'rover-run.claude.v1.5.frozen';
+let memory = { runs: [], looked: {}, level: 'easy' };
 try { memory = { ...memory, ...JSON.parse(localStorage.getItem(KEY) || '{}') }; } catch {}
 const seen = () => (memory.looked[sol] ??= {});                    // square -> suits seen, any run
 const solRuns = () => memory.runs.filter(r => (r.sol ?? 0) === sol);
@@ -42,20 +42,19 @@ const save = () => { try { localStorage.setItem(KEY, JSON.stringify(memory)); } 
 
 // ---------- state ----------
 const LOOK = 2;
-const hard = () => memory.level === 'hard', easy = () => memory.level === 'easy';
+const hard = () => memory.level === 'hard';
 let mode = 'intro', run = newRun(deck, rules), clock = 0, anim = null, effect = null, replay = null;
 let shown = {}, pickCol = null, lastAt = 0, introStart = 0, queued = null;
-let selected = null, before = new Set(), fatal = null, hoverCol = null;   // card matching, the death card, the hovered column
 
 // ---------- suits: three levels each ----------
 const SUITS = [
-  { name: 'slope', get: r => r.slope, levels: ['flat', 'tilted', 'steep'] },
-  { name: 'ground', get: r => r.ground, levels: ['firm', 'soft', 'sand'] },
-  { name: 'dust', get: r => r.dust, levels: ['clear', 'haze', 'storm'] },
-  { name: 'battery', get: (r, c) => batteryAfter(run.log, c), levels: ['full', null, 'dead'] },   // what crossing it did to you
+  { name: 'slope', get: r => r.slope, levels: ['flat', 'tilted', 'steep'], dash: '7 3' },
+  { name: 'ground', get: r => r.ground, levels: ['firm', 'soft', 'sand'], dash: '1.5 3' },
+  { name: 'dust', get: r => r.dust, levels: ['clear', 'haze', 'storm'], dash: '5 2 1.5 2' },
+  { name: 'battery', get: r => (r.ground === 'sand' || r.dust === 'storm') ? '–' : r.battery < 0 ? '−1' : '0', levels: ['0', '−1', '–'] },
 ];
 const ALL = SUITS.map(s => s.name);
-const deadly = (suit, v) => (suit === 'ground' && v === 'sand') || (suit === 'dust' && v === 'storm') || (suit === 'battery' && v === 'dead');
+const deadly = (suit, v) => (suit === 'ground' && v === 'sand') || (suit === 'dust' && v === 'storm');
 const warning = (suit, v) => (suit === 'ground' && v === 'soft') || (suit === 'dust' && v === 'haze');
 const word = v => (v === 'sand' || v === 'storm') ? v.toUpperCase() : v === 'tilted' ? 'slope' : v;
 
@@ -67,31 +66,16 @@ function buildCards() {
 function paintCards() {
   const deciding = mode === 'play' ? run.pos : null;
   for (const el of cardsEl.querySelectorAll('.card')) {
-    const c = +el.dataset.col, suit = el.dataset.suit, s = SUITS.find(x => x.name === suit), v = s.get(deck[c], c);
-    const up = !!shown[c]?.includes(suit) && v !== null, ghost = !up && suit !== 'battery' && !!seen()[c]?.includes(suit), pick = mode === 'pick' && c === pickCol && !up;
-    const hit = selected && (up || ghost) && selected.suit === suit && selected.v === v;
+    const c = +el.dataset.col, suit = el.dataset.suit, s = SUITS.find(x => x.name === suit), v = s.get(deck[c]);
+    const up = !!shown[c]?.includes(suit), ghost = !up && !!seen()[c]?.includes(suit), pick = mode === 'pick' && c === pickCol && !up;
     const flip = el.classList.contains('flip');
     el.className = 'card' + (up ? ' up' : ghost ? ' ghost' : pick ? ' pick' : ' back') + (flip ? ' flip' : '')
-      + (c === deciding ? ' next' : '') + ((up || ghost) && deadly(suit, v) ? ' hazard' : '') + ((up || ghost) && warning(suit, v) ? ' warn' : '')
-      + (fatal && fatal.c === c && fatal.suit === suit ? ' fatal' : '') + (hit ? ' match' : '') + (selected && before.has(c) ? ' before' : '');
+      + (c === deciding ? ' next' : '') + ((up || ghost) && deadly(suit, v) ? ' hazard' : '') + ((up || ghost) && warning(suit, v) ? ' warn' : '');
     el.innerHTML = up || ghost ? `${SYMBOLS[suit][v]}<i>${word(v)}</i>` : pick ? '<span>?</span>' : `<span>${c + 1}</span>`;
   }
   paintGraph();
 }
-// click a seen card: every card with the same value lights up, and the square before each is outlined
-cardsEl.addEventListener('click', e => {
-  const el = e.target.closest('.card'); if (!el) return;
-  if (mode === 'pick' && +el.dataset.col === pickCol) return look(el.dataset.suit);
-  if (!el.classList.contains('up') && !el.classList.contains('ghost')) { selected = null; before = new Set(); return paintCards(); }
-  const s = SUITS.find(x => x.name === el.dataset.suit), v = s.get(deck[+el.dataset.col], +el.dataset.col);
-  selected = selected && selected.suit === s.name && selected.v === v ? null : { suit: s.name, v };
-  before = new Set();
-  if (selected) for (let c = 1; c < N; c++) if (s.get(deck[c], c) === v && (shown[c]?.includes(s.name) || seen()[c]?.includes(s.name))) before.add(c - 1);
-  paintCards();
-});
-// hover a column: its strip lights up on the map
-cardsEl.addEventListener('pointerover', e => { const el = e.target.closest('.card'); hoverCol = el ? +el.dataset.col : null; });
-cardsEl.addEventListener('pointerleave', () => { hoverCol = null; });
+cardsEl.addEventListener('click', e => { const el = e.target.closest('.card'); if (el && mode === 'pick' && +el.dataset.col === pickCol) look(el.dataset.suit); });
 // turn every card face down, then run `then` (used when a game restarts)
 function flipAll(then) {
   const cards = [...cardsEl.querySelectorAll('.card.up, .card.ghost')];
@@ -107,8 +91,9 @@ function paintGraph() {
   const firstRow = [...cardsEl.querySelectorAll('.card[data-suit="slope"]')];
   const cols = firstRow.map(el => { const r = el.getBoundingClientRect(); return r.left - box.left + r.width / 2; });
   if (!cols.length) return;
-  const colW = cols.length > 1 ? cols[1] - cols[0] : W, half = colW / 2, top = 6, bottom = H - 4;
-  const by = b => b === 'dead' ? top + 14 : top, base = bottom - 30, ly = lv => base - lv * (base - top - 28) / 2;  // card levels: between the battery lane and the slope band
+  const colW = cols.length > 1 ? cols[1] - cols[0] : W, half = colW / 2, top = 10, bottom = H - 4;
+  const maxB = Math.max(10, ...run.log.map(l => l.to), run.battery);
+  const by = b => bottom - (Math.max(0, b) / maxB) * (bottom - top), base = bottom - 32, ly = lv => base - lv * (base - top) / 2;  // levels sit above the slope band
   let svg = '';
   for (let c = 1; c < N; c++) svg += `<line x1="${cols[c] - half}" x2="${cols[c] - half}" y1="${top}" y2="${bottom}" class="strip"/>`;
   for (const lv of [0, 1, 2]) svg += `<line x1="0" x2="${W}" y1="${ly(lv)}" y2="${ly(lv)}" class="guide"/>`;
@@ -129,24 +114,17 @@ function paintGraph() {
       const big = deadly(s.name, v) ? 4.5 : 3;
       svg += mark === 'dot' ? `<circle cx="${x}" cy="${y}" r="${big - 0.6}" class="dot"/>` : `<path d="M${x - big} ${y - big} l${2 * big} ${2 * big} M${x + big} ${y - big} l${-2 * big} ${2 * big}" class="x"/>`;
       // name the point: ground to the left of its ●, dust to the right of its ×
-      // name the point: ground below its ●, dust above its ×, so neighbours never collide
-      if (s.levels.indexOf(v) > 0) svg += `<text x="${x}" y="${k === 1 ? y + 13 : y - 7}" class="lab mid ${deadly(s.name, v) ? 'hot' : ''}">${word(v)}</text>`;
+      if (s.levels.indexOf(v) > 0) svg += `<text x="${x + (k === 1 ? -7 : 7)}" y="${y + 3.5}" class="lab ${k === 1 ? 'left' : ''} ${deadly(s.name, v) ? 'hot' : ''}">${word(v)}</text>`;
       prev = [x, y];
     }
   });
   // battery: always known, from the start of the run to now
-  // battery: full or dead, as a step line; a dead stretch is named where it starts
-  const pts = [[cols[0] - half, by('full')]];
-  for (const l of run.log) {
-    const x = l.action === 'recharge' ? (l.pos ? cols[l.pos - 1] + half * 0.75 : cols[0] - half * 0.75) : cols[l.pos] + half * 0.6;
-    pts.push([x, pts[pts.length - 1][1]], [x, by(l.to)]);
-    if (l.to === 'dead' && l.from === 'full') svg += `<text x="${x + 4}" y="${by('dead') + 3}" class="lab hot">dead</text>`;
-  }
-  svg += `<polyline points="${pts.map(p => p.join(',')).join(' ')}" class="bat"/>`;
+  const pts = [[cols[0] - half, by(rules.battery)], ...run.log.map(l => [l.action === 'recharge' ? (l.pos ? cols[l.pos - 1] + half * 0.6 : cols[0] - half * 0.6) : cols[l.pos] + half * 0.6, by(l.to)])];
+  if (pts.length > 1) svg += `<polyline points="${pts.map(p => p.join(',')).join(' ')}" class="bat"/>`;
   const [bx, byy] = pts[pts.length - 1];
-  svg += `<circle cx="${bx}" cy="${byy}" r="2.6" class="dot"/>`;
+  svg += `<circle cx="${bx}" cy="${byy}" r="2.6" class="dot"/><text x="${bx + 6}" y="${byy - 5}" class="lab bat">${run.battery}</text>`;
   graphEl.innerHTML = `<svg width="${W}" height="${H}">${svg}</svg>`;
-  document.getElementById('batnow').textContent = run.battery;  // full / dead
+  document.getElementById('batnow').textContent = run.battery;
 }
 
 // ---------- one typed line: what to do now ----------
@@ -172,7 +150,6 @@ const dotPx = d => screen.px(d.dx, d.dy);
 function stripLines(list, a = 1) {
   const b = map.strips; if (!b) return;
   for (let i = 1; i < b.length - 1; i++) for (let dy = 0; dy < DH; dy += 3) { const [x, y] = screen.px(b[i] * (DW - 1), dy); list.push({ x, y, c: '#3a3a38', a, s: 0.8 }); }
-  if (hoverCol !== null) for (const i of [hoverCol, hoverCol + 1]) for (let dy = 0; dy < DH; dy += 2) { const [x, y] = screen.px(b[i] * (DW - 1), dy); list.push({ x, y, c: INK, a: 0.8, s: 1.1 }); }
 }
 function drawMap(list, { contourAlpha = 1, live = true } = {}) {
   for (const d of contours) { const [x, y] = dotPx(d); list.push({ x, y, c: d.c, a: contourAlpha * 0.75 }); }
@@ -242,7 +219,6 @@ const best = () => Math.max(0, ...solRuns().map(r => r.score));
 
 // ---------- a turn ----------
 const reveal = c => { if (c >= 0 && c < N) { shown[c] = [...ALL]; const m = seen(); m[c] = [...ALL]; } };
-const revealBoard = () => { for (let c = 0; c < N; c++) shown[c] = [...ALL]; };
 function commit(action) {
   if (mode !== 'play') return;
   const before = run, after = act(deck, run, action);
@@ -259,7 +235,7 @@ function commit(action) {
   const dead = after.end === 'sand' || after.end === 'storm', len = (a1 - a0) * (dead ? 0.45 : 1);
   steps.push({ dur: Math.min(1.3, 0.35 + len / 220), run: (u, s) => { s.at = a0 + len * easeIO(u); } });
   // the past becomes fully known: the last square's hidden cards flip
-  steps.push({ dur: 0.05, once: true, run: () => { run = after; reveal(from - 1); if (after.end || !hard()) reveal(from); if (after.end) fatal = fatalCard(after); save(); paintCards(); } });
+  steps.push({ dur: 0.05, once: true, run: () => { run = after; reveal(from - 1); if (after.end || !hard()) reveal(from); save(); paintCards(); } });
   steps.push({ dur: dead ? 1.0 : after.end ? 0.7 : 0.45, run: (u, s) => { s.at = a0 + len; } });
   anim = { from, at: a0, steps, i: 0, t0: clock };
   paintCards();
@@ -286,11 +262,6 @@ function look(suit) {
   paintCards();
 }
 
-// which card explains the death: the ground card (sand), the dust card (storm), the dead battery before
-function fatalCard(r) {
-  const last = r.log[r.log.length - 1];
-  return { sand: { c: last.pos, suit: 'ground' }, storm: { c: last.pos, suit: 'dust' }, battery: { c: last.pos - 1, suit: 'battery' } }[r.end] ?? null;
-}
 // ---------- end of a run ----------
 function finishRun() {
   memory.runs.push({ sol, log: run.log, end: run.end, score: run.score, at: Date.now() });
@@ -355,7 +326,7 @@ function tick(ms) {
 // a new game: every card turns face down first
 function newGame() {
   mode = 'reset';
-  flipAll(() => { run = newRun(deck, rules); shown = {}; pickCol = null; anim = null; fatal = null; selected = null; before = new Set(); mode = 'play'; if (easy()) revealBoard(); document.getElementById('status').textContent = ''; paintCards(); });
+  flipAll(() => { run = newRun(deck, rules); shown = {}; pickCol = null; anim = null; mode = 'play'; document.getElementById('status').textContent = ''; paintCards(); });
 }
 const canNewSol = () => sol < sols.length - 1 && solRuns().some(r => r.end === 'finish');
 function input(k) {
@@ -396,9 +367,8 @@ function paintControls() {
 
 // ---------- the card key, drawn from the same symbols as the cards ----------
 document.getElementById('key').innerHTML = '<tr><th></th><th>low</th><th>mid</th><th>high</th></tr>' + SUITS.map(s =>
-  `<tr><td>${s.name}</td>${s.levels.map(v => v === null ? '<td></td>' : `<td class="${deadly(s.name, v) ? 'haz' : ''}">${SYMBOLS[s.name][v]}</td>`).join('')}</tr>`).join('');
+  `<tr><td>${s.name}</td>${s.levels.map(v => `<td class="${deadly(s.name, v) ? 'haz' : ''}">${SYMBOLS[s.name][v]}</td>`).join('')}</tr>`).join('');
 
 window.rover = { get state() { return { mode, run, memory, sol, shown, level: memory.level } }, input, deck, setLevel: m => modesEl.querySelector(`[data-mode=${m}]`).click() };
-main.style.setProperty('--n', N);                     // before measuring, or the grid wraps
 buildCards(); paintCards(); fit(); screen.resize(); alignStrips(); paintCards();
 requestAnimationFrame(ms => { introStart = ms / 1000; tick(ms); });
