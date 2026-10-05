@@ -23,7 +23,7 @@ The index also keeps every earlier version.
 | **Correlation across variables** | Context changes what a warning means | down a column: sand is never on steep ground; storms never on flat ground |
 | **Models combine weak signals** | Neither signal alone decides | storm = haze before **and** a slope: 3 of 4, against 3 of 6 for haze alone and 0 of 5 for slope alone |
 | **Attention is a budget** | You can't look at everything | Hard mode: 2 of the 4 cards of the square ahead; Medium hides the battery for you to work out |
-| **Precision has a price** | False alarms cost, misses kill | a detour scores nothing; getting past a hazard leaves the battery dead (recharge); a miss costs a life |
+| **Precision has a price** | False alarms cost, misses kill | a detour scores nothing; the square after a hazard is dead battery (recharge); a miss costs a life |
 
 The facilitated exercise (identify the death → find the earliest indicator → check it recurs →
 correlate along a row → correlate down a column → write a one-line model) is in
@@ -35,14 +35,15 @@ To build the same game on your own dataset, see **[narrative/REUSE.md](../../../
 - **The map** is 14 vertical strips of the Jezero contour map, turned south-up so the westward
   drive reads left to right. Lines closer together mean steeper ground.
 - **Actions, one per turn:** **Go** (drive the next square), **Avoid** (detour around it), or
-  **Recharge**. When you get past a square, apply its battery card. If it's dead, recharge before
-  your next move or the rover dies. **Only squares you drive score** (+3 for finishing); a detour
+  **Recharge**. A square's battery card is the battery you arrive with. It's dead on the square right
+  after a SAND or STORM (the detour round it drained you). Recharge before moving on from a dead
+  square, or the rover dies. **Only squares you drive score** (+3 for finishing); a detour
   scores nothing. 14 squares, 22 turns. Every rule is a card, so the same game plays on a table.
 - **Cards** sit in a column under each strip:
   - slope: flat / slope / steep;
   - ground: a stick figure firm / sinking in soft ground / in quicksand (**SAND**);
   - dust: clear sun / rain haze / **STORM** dust devil;
-  - battery: **dead** on every square with a death condition (SAND or STORM), full otherwise.
+  - battery: the battery you arrive with: **dead** on the square right after a SAND or STORM, full otherwise.
   White cards are deadly. The card that killed you gets a red ring.
 - **The graph** plots everything you've seen on one x axis with the cards: battery (top lane),
   ground (dotted ●), dust (dashed ×) and slope (grey terrain band). Warning and hazard points are named.
@@ -76,7 +77,8 @@ To build the same game on your own dataset, see **[narrative/REUSE.md](../../../
 
 | Protocol | Score | How it ends |
 | --- | --- | --- |
-| Hard, look at ground + dust (or slope + battery) | **11** | finishes, drives every safe square |
+| Hard, look at ground + dust | **11** | finishes, drives every safe square |
+| Hard, look at slope + battery (battery tells you nothing about the square ahead's hazard) | 10 | finishes, like the model |
 | The model with no look ahead (sand risk = soft before and not steep; storm risk = haze before and a slope) | 10 | finishes; one false alarm costs a point |
 | Ignore slope for storms, or for sand | 8 | finishes, 2 needless detours |
 | Avoid after any warning | 6 | finishes, 4 needless detours |

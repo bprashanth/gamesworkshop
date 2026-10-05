@@ -320,7 +320,7 @@ function loseLife() {
 // which card explains the death: the ground card (sand), the dust card (storm), the dead battery before
 function fatalCard(r) {
   const last = r.log[r.log.length - 1];
-  return { sand: { c: last.pos, suit: 'ground' }, storm: { c: last.pos, suit: 'dust' }, battery: { c: last.pos - 1, suit: 'battery' } }[r.end ?? last.died] ?? null;
+  return { sand: { c: last.pos, suit: 'ground' }, storm: { c: last.pos, suit: 'dust' }, battery: { c: last.pos, suit: 'battery' } }[r.end ?? last.died] ?? null;   // the dead battery you arrived with
 }
 // ---------- end of a run ----------
 function finishRun() {

@@ -18,7 +18,7 @@ export function strategies(deck) {
     'model (intended)':   r => sandRisk(r) || stormRisk(r),
     // Looking ahead before deciding (Hard: 2 cards; Medium: everything but battery)
     'look 2: ground + dust':     r => deck[r].ground === 'sand' || deck[r].dust === 'storm',
-    'look 2: slope + battery':   r => deck[r].battery === 'dead',           // dead battery = a hazard there
+    'look 2: slope + battery':   r => sandRisk(r) || stormRisk(r),          // battery says nothing about this square's hazard
     'look 2: slope + ground':    r => deck[r].ground === 'sand',
   };
 }
@@ -70,7 +70,8 @@ export function analyse(deck, allRules) {
     ['the model is the unique best play without looking ahead', intended.score === max && Object.values(blind).filter(v => v === max).length === 1],
     ['Hard: looking at ground + dust finishes', runs['look 2: ground + dust'].end === 'finish'],
     ['Hard: slope + ground misses the storms', runs['look 2: slope + ground'].end === 'storm'],
-    ['battery card is dead exactly on SAND or STORM squares', deck.every(r => (r.battery === 'dead') === (r.ground === 'sand' || r.dust === 'storm'))],
+    ['Hard: ground + dust beats slope + battery', runs['look 2: ground + dust'].score > runs['look 2: slope + battery'].score],
+    ['battery card is dead exactly on the square after a SAND or STORM', deck.every((r, i) => (r.battery === 'dead') === (i > 0 && (deck[i - 1].ground === 'sand' || deck[i - 1].dust === 'storm')))],
     ['the model finishes', intended.end === 'finish'],
     ['avoiding every warning costs 3+ points', intended.score - scores['avoid any warning'] >= 3],
     ['ignoring slope for haze costs 2+ points', intended.score - scores['haze ignores slope'] >= 2],

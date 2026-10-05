@@ -22,10 +22,10 @@ Ground and dust are authored.
 
 (The card word "slope" is the middle slope level, "tilted" in the data.)
 
-The **battery card** is part of the deck, like the others: **dead on every square with a death
-condition** (SAND or STORM), full otherwise. When you get past a square (and you can only get past a
-deadly one by avoiding it), apply its battery card. If it's dead, recharge before your next move or
-the rover dies. A detour around a safe square costs nothing but the point you would have scored:
+The **battery card** is part of the deck, like the others. It is **the battery you arrive with**:
+**dead on the square right after a death condition** (SAND or STORM: the full battery went on the
+detour round it), full otherwise. Before moving on from a square whose battery card is dead,
+recharge, or the rover dies. A detour around a safe square costs nothing but the point you would have scored:
 **only squares you drive through score** (+3 for finishing). There are 14 squares and 22 turns.
 Every rule is a card, so the same game plays on a table.
 
@@ -65,9 +65,9 @@ STORM at 4, 9 and 11; a dead battery can kill after any avoid.
 **2. Find the earliest indication.** Look at the square *before* each death (click SAND or STORM).
 - Every SAND has **soft** ground right before it.
 - Every STORM has **haze** right before it.
-- Every dead-battery death comes right after getting past a square whose **battery card was
-  dead**. Those are exactly the SAND and STORM squares (the ones you detoured around). Teams that
-  miss this keep dying one move after a successful avoid.
+- Every dead-battery death happens on a square whose **battery card is dead**, and those are exactly
+  the squares right after a SAND or STORM (4, 5, 7, 10, 12). Teams that miss this keep dying one
+  move after a successful avoid.
 
 **3. Check whether it is a pattern.** Click *soft*, then *haze*, and count.
 
@@ -104,9 +104,9 @@ haze then STORM. The same shape keeps recurring along the row.
   3 of 6 times, and slope alone without haze never storms. Together they storm 3 of 4 times. *Seeing
   both raises the odds; it does not guarantee.* That is what a model does: it combines weak signals
   into a stronger one and still carries uncertainty (square 13 is the false alarm).
-- **Battery: a dead battery card means a hazard is there, so recharge after getting past it.**
-  In practice: recharge after every avoid that dodged something. On Hard, the battery card ahead is
-  also a one-look summary ("is there a hazard here?"), so finding it is an indicator lesson of its own.
+- **Battery: recharge on the square after every hazard you detoured round.** The dead battery is
+  a *lagging* indicator: it tells you about the square behind you, never the one ahead, so on Hard
+  it is a wasted look for prediction (and a needed one for survival if you forgot).
 
 **7. Why precision matters.** Misses kill (a life), and false alarms cost points: a detour
 scores nothing, so every needless avoid is a square of data you didn't collect. The deck is tuned
@@ -114,7 +114,8 @@ so that the better the model, the higher the score:
 
 | Protocol | Score | How it ends |
 | --- | --- | --- |
-| Hard: look at ground + dust, or slope + battery | **11** | drives every safe square |
+| Hard: look at ground + dust | **11** | drives every safe square |
+| Hard: look at slope + battery | 10 | battery says nothing about the square ahead |
 | The model (both rules above, recharge after a dead battery card) | 10 | one false alarm (square 13) |
 | Avoid after every haze, or every soft (ignores slope) | 8 | 2 needless detours |
 | Avoid after any warning | 6 | 4 needless detours |

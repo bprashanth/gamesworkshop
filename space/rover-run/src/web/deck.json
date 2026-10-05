@@ -6,7 +6,7 @@
   "finishBonus": 3,
   "lives": 3
  },
- "notes": "One fixed map for the room. 14 squares = 14 strips of the map (south up). Slope from the DEM per strip; ground and dust authored so each indicator pattern has repeated evidence: sand after soft and never on steep; storm after haze and only on a slope (haze + slope storms 3 of 4). Battery card: dead on every SAND or STORM square, full otherwise.",
+ "notes": "One fixed map for the room. 14 squares = 14 strips of the map (south up). Slope from the DEM per strip; ground and dust authored so each indicator pattern has repeated evidence: sand after soft and never on steep; storm after haze and only on a slope (haze + slope storms 3 of 4). Battery card: the battery you arrive with, dead on the square right after a SAND or STORM.",
  "sols": [
   [
    {
@@ -25,7 +25,7 @@
     "slope": "tilted",
     "ground": "sand",
     "dust": "haze",
-    "battery": "dead"
+    "battery": "full"
    },
    {
     "slope": "tilted",
@@ -37,19 +37,19 @@
     "slope": "flat",
     "ground": "soft",
     "dust": "clear",
-    "battery": "full"
+    "battery": "dead"
    },
    {
     "slope": "flat",
     "ground": "sand",
     "dust": "haze",
-    "battery": "dead"
+    "battery": "full"
    },
    {
     "slope": "flat",
     "ground": "firm",
     "dust": "clear",
-    "battery": "full"
+    "battery": "dead"
    },
    {
     "slope": "tilted",
@@ -61,25 +61,25 @@
     "slope": "tilted",
     "ground": "soft",
     "dust": "storm",
-    "battery": "dead"
+    "battery": "full"
    },
    {
     "slope": "steep",
     "ground": "soft",
     "dust": "haze",
-    "battery": "full"
+    "battery": "dead"
    },
    {
     "slope": "steep",
     "ground": "soft",
     "dust": "storm",
-    "battery": "dead"
+    "battery": "full"
    },
    {
     "slope": "steep",
     "ground": "firm",
     "dust": "haze",
-    "battery": "full"
+    "battery": "dead"
    },
    {
     "slope": "tilted",
@@ -91,7 +91,7 @@
     "slope": "tilted",
     "ground": "sand",
     "dust": "clear",
-    "battery": "dead"
+    "battery": "full"
    }
   ]
  ]

@@ -69,7 +69,8 @@ that make patterns learnable, all checked by the simulator:
 - **The dismisser has 2 or more cases** (soft before steep, three times, never sand).
 - **The conjunction is likely but not certain** (3 of 4), so the model carries honest uncertainty.
 - **The state variable is a card.** If the rule needs memory (Rover Run's battery), make it a card
-  on the deck (dead on every hazard square), so the physical version needs no computer.
+  on the deck, e.g. dead on the step *after* each hazard (where you arrive drained), so the physical
+  version needs no computer and the card never gives away the hazard ahead.
 
 ## 4. The backdrop (`web/map.json`)
 
