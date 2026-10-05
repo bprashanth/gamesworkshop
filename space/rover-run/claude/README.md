@@ -5,7 +5,11 @@
 - **v2** (`/v2/`): two decks, slope printed on the map, a turn track, a safe/danger call before every
   move, sample = reveal one card of the row ahead, a new sol every run, and a notebook that plots
   *what came next* and tests one rule against the data.
-- **v1** (`/web/`): the rulebook as written (four decks, battery, stops), plus an attention budget.
+- **DUNE//EATER, v1.2** (`/web/`): one page. Decide go/avoid on partial information; then the last
+  square's hidden cards flip, then pick 2 of the 4 cards of the square just crossed. The cards are
+  drawn as a graph (one lane per suit, low/mid/high, the same ink with dot/dash styles), so soft→SAND,
+  haze→STORM and −1 battery line up visibly. Earlier: v1.1 (`/v1.1/`), v1 (`/v1.0/`).
+- **v1.1**: the rulebook as written (four decks, battery, stops), plus an attention budget.
   After each row you look at only **2 of its 4 cards** (click, or 1–4). A plain-words legend for
   cards and map sits under the grid. The original v1 is git tag `rover-run-claude-v1`; this one is
   `rover-run-claude-v1.1`.

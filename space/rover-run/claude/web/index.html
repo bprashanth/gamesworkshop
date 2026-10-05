@@ -3,21 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Rover Run</title>
+<title>DUNE//EATER</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <main>
   <div class="screen"><canvas id="screen"></canvas></div>
-  <div id="cards" class="cards"></div>
-  <div class="legend">
-    <p><b>cards</b> After each row you look at only 2 of its 4 cards. Click them, or press 1–4. Each card describes the row you just passed.</p>
-    <p><b>slope</b> ▁▁▁ flat · ▁▃▅ tilted · ▂▅█ steep &nbsp; <b>ground</b> ▪ firm · ∴ soft · ◍ SAND, deadly to drive into
-       &nbsp; <b>dust</b> ○ clear · ◌ haze · ≋ STORM, deadly to drive into &nbsp; <b>battery</b> what driving that row cost: 0 or −1 (– on a deadly row)</p>
-    <p><b>card look</b> white card = deadly · bright border = row ahead, or a card you can pick now · dashed = remembered from an earlier run · dark = passed, not looked at</p>
-    <p><b>map</b> coloured lines = terrain contours (lines close together = steep) · grey dots = route ahead · blinking = the row you are deciding ·
-       ticks across the route = row edges · solid white = rows you drove · dashed white = rows you avoided · big white dot = the rover ·
-       circle = you sampled here · tan spiral = a sand pit you saw · tan streaks = a storm you saw</p>
+  <div class="below">
+    <div class="box cardsbox"><div id="cards"></div></div>
+    <div class="box legendbox">
+      <table>
+        <tr><th></th><th></th><th>low</th><th>mid</th><th>high</th></tr>
+        <tr><td><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="currentColor" stroke-width="1.3" stroke-dasharray=""/></svg></td><td>slope</td><td>flat</td><td>tilted</td><td>steep</td></tr>
+        <tr><td><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="currentColor" stroke-width="1.3" stroke-dasharray="1 3"/></svg></td><td>ground</td><td>firm</td><td>soft</td><td>SAND ■</td></tr>
+        <tr><td><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="currentColor" stroke-width="1.3" stroke-dasharray="5 3"/></svg></td><td>dust</td><td>clear</td><td>haze</td><td>STORM ■</td></tr>
+        <tr><td><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="currentColor" stroke-width="1.3" stroke-dasharray="6 2 1 2"/></svg></td><td>battery</td><td>0</td><td>−1</td><td>– ■</td></tr>
+      </table>
+      <p>■ deadly to drive into · ▢ face down<br>● seen this run · ○ seen in an earlier run<br>battery card = what that square cost</p>
+    </div>
   </div>
   <div id="pad" class="pad">
     <button data-k="none">·</button><button data-k="recharge">R +2</button><button data-k="sample">S +1</button>

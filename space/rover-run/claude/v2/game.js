@@ -1,8 +1,8 @@
 // Rover Run v2: two decks, slope printed on the map, a turn track, a call per row,
 // a new sol every run, and a notebook that tests the player's rule against the data.
 import { newRun, act, canAct, danger } from './engine.js';
-import { Screen, COLS, MAP, SX, SY, INK, DIM, FAINT, SAND, contourDots, routeDots } from '../web/screen.js';
-import * as fx from '../web/effects.js';
+import { Screen, COLS, MAP, SX, SY, INK, DIM, FAINT, SAND, contourDots, routeDots } from './screen.js';
+import * as fx from './effects.js';
 
 const [map, deckFile] = await Promise.all(['map.json', 'deck.json'].map(f => fetch(f).then(r => r.json())));
 const sols = deckFile.sols, rules = deckFile.rules, N = sols[0].length;

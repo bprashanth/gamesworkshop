@@ -109,3 +109,36 @@ Its last run died on row 3 after a lucky haze, which is fair variance.
 - A legend in words under the grid covers card faces, card styles and map marks.
 - `tools/film.mjs` (looks at ground + dust each row) and `tools/agent-play.mjs`
   (`turn <stop> <move> <card> <card>`) updated. v1 film re-recorded (125 s).
+
+## 2026-10-05 · index serves every version
+
+`http://100.82.28.38:8670/` (Tailscale) lists v2 (`/v2/`), v1.1 (`/web/`) and the original v1
+(`/v1.0/`, extracted from tag `rover-run-claude-v1`, with its own localStorage key). v1.1 is also
+frozen as `/v1.1/` before the next round of v1 changes, so `/web/` is always the latest v1.
+
+## Next (user, 2026-10-05): v1.2 brief
+
+One page with no scrolling. Title DUNE//EATER only above the map. Map legend in words below the map,
+replacing "real terrain + route" with "lines closer together = steep". Cards shrunk into one box
+with a legend box beside them, right under the map. Pick cards *before* go/avoid; the rest flip
+after; death if a hidden card was deadly. Explore showing everything as a graph (same ink,
+dot/dash variation) so players see correlations.
+
+## 2026-10-05 · v1.2 DUNE//EATER (tag `rover-run-claude-v1.2`)
+
+- **Turn order:** decide go/avoid, *then* the last square's 2 hidden cards flip (the past becomes
+  fully known), then pick 2 of the 4 cards of the square just crossed. You always decide on 2 known
+  cards of the last square plus everything older. Death or finish flips that square's cards.
+- **Cards as a graph:** one SVG lane per suit, values at low/mid/high, joined across consecutive
+  seen squares, in one ink with solid / dotted / dashed / dash-dot lines. Deadly = filled block.
+  Ghosts from earlier runs are hollow dots, face-down cards are dark boxes, and the 2 to pick pulse.
+  On a finished run you see soft→SAND, haze→STORM, the steep run with no sand, and battery −1
+  lining up with soft/haze.
+- **One page:** the screen is sized from the window height. Only DUNE//EATER (plus battery, stops
+  and score) sits above the map. Under the map: a map legend in words and "lines closer together =
+  steep" (it replaces the "real terrain + route" footer, which moved to the index page). Then the
+  prompt. Below: the card-graph box and the legend box side by side.
+- "Rows" became "squares" in the UI. v2 now has its own copies of screen/effects/base CSS, so v1
+  layout changes can't reach it.
+- Patterns are unchanged and not periodic: haze is followed by storm on 2 of 3 squares; sand only
+  follows soft and never sits on steep.
