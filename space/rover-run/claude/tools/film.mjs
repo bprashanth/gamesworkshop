@@ -29,7 +29,7 @@ const turn = async t => {                       // one action: G, A or R
 await wait(5200);                                 // intro draws itself
 const runs = [                                    // the simulator's lines (tools/sim.mjs), medium mode
   'G G G',                                         // always go: sand on square 3
-  'G A R A R A R G A R A R G A R A R A R A',       // avoid after any warning: out of turns
+  'G A R A R A R G A R A R G A R A R A R A R',     // avoid after any warning: out of turns
   'G G A R A R G A R G G A R G A R G A R A',       // the model: finishes
 ];
 for (const [i, r] of runs.entries()) {
