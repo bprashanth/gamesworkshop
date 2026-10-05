@@ -40,9 +40,10 @@ a room's round, and learning the map by dying gets expensive.
   plots on the graph in real time next to the others. Players learn the battery's relationship to
   the other variables just by going and avoiding: a dead battery sits exactly on the SAND and STORM
   squares, and moving on after one kills you. A chooser for which variable is hidden can come later.
-- **Hard: all four hidden; pick 2 cards of the square ahead each turn.** Players learn which pair
-  answers the question (ground + dust, or slope + battery since a dead battery means a hazard is
-  there), and that slope alone, already on the map, wastes a look.
+- **Hard: all four hidden; pick 2 cards of the square ahead each turn.** Players learn that ground
+  + dust answers "is it deadly?", that slope (already on the map) wastes a look, and that the
+  battery card ahead tells you only whether you must recharge there, never whether the square is
+  deadly.
 - **Easy: the whole board is face up**, with all the trends on the graph. Switch to it for the
   analysis below.
 
