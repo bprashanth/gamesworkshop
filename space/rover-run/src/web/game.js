@@ -150,14 +150,12 @@ function paintGraph() {
   const [bx, byy] = pts[pts.length - 1];
   svg += `<circle cx="${bx}" cy="${byy}" r="2.6" class="dot"/>`;
   graphEl.innerHTML = `<svg width="${W}" height="${H}">${svg}</svg>`;
-  document.getElementById('batnow').textContent = run.battery;  // full / dead
   paintLives();
 }
-// top bar: lives, and the rover's own battery (the token a table would keep), apart from any square's card
+// top bar: lives
 function paintLives() {
   const el = document.getElementById('lives'); if (!el) return;
-  const html = `<span class="hearts">${'♥'.repeat(run.lives)}<i>${'♥'.repeat(Math.max(0, (rules.lives ?? 3) - run.lives))}</i></span>`
-    + `<span class="mybat ${run.battery}" title="your rover's battery">${SYMBOLS.battery[run.battery]}your battery ${run.battery}</span>`;
+  const html = `<span class="hearts">${'♥'.repeat(run.lives)}<i>${'♥'.repeat(Math.max(0, (rules.lives ?? 3) - run.lives))}</i></span>`;
   if (el.innerHTML !== html) el.innerHTML = html;
 }
 

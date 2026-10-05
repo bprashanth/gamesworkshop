@@ -28,6 +28,7 @@ The index also keeps every earlier version.
 The facilitated exercise (identify the death → find the earliest indicator → check it recurs →
 correlate along a row → correlate down a column → write a one-line model) is in
 **[narrative/INDICATORS.md](../../../narrative/INDICATORS.md)**, with counts and square numbers.
+To build the same game on your own dataset, see **[narrative/REUSE.md](../../../narrative/REUSE.md)**.
 
 ## How to play
 

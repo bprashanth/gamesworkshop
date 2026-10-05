@@ -27,6 +27,7 @@ The game is built to teach the core moves of data science to people who don't us
 
 - **[Rover Run: how to play, how it's built, tuning, data honesty](space/rover-run/src/README.md)**
 - **[Facilitator exercise: building indicators](narrative/INDICATORS.md)**
+- **[Reuse it with your own data](narrative/REUSE.md)**: a river, a clinic, a season; for teams and agents
 - **[Design history](chronology/2026-10-04-rover-run.md)** · [original rulebook](space/rover-run/rulebook.md)
 
 The map and route are real (JPL CTX DEM, NASA traverse); the hazards are authored and the same for

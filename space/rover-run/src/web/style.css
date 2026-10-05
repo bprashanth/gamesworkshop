@@ -92,7 +92,3 @@ canvas { display: block; width: 100%; cursor: default; touch-action: manipulatio
 .lives { display: flex; align-items: center; gap: 12px; font-size: 13px; white-space: nowrap; }
 .lives .hearts { color: var(--ink); letter-spacing: 2px; font-size: 15px; }
 .lives .hearts i { font-style: normal; color: #3a3a38; }
-.lives .mybat { display: flex; align-items: center; gap: 6px; color: var(--dim); }
-.lives .mybat .sym { width: 26px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.4; }
-.lives .mybat .sym .fill { fill: currentColor; stroke: none; }
-.lives .mybat.dead { color: #000; background: var(--ink); border-radius: 3px; padding: 1px 8px 1px 4px; }
