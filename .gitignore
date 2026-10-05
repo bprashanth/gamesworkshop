@@ -257,3 +257,7 @@ playwright/.cache/
 # Operating-system metadata
 .DS_Store
 Thumbs.db
+
+# Large media (renders, audio, masters) lives on /mnt/seagate/gamesworkshop and is symlinked in.
+# Commit the symlink, never the file. Scratch output from tools:
+out/
