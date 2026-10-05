@@ -3,7 +3,7 @@
 // so the death effects can pick up the same dots and move them as particles.
 
 export const COLS = 100, ROWS = 26;
-export const MAP = { col: 2, row: 0.5, cols: 96, rows: 25 };  // map window, in cells: the map and nothing else
+export const MAP = { col: 3, row: 0.5, cols: 94, rows: 25 };  // map window, in cells: the map and nothing else
 export const SX = 3, SY = 6;
 export const DW = MAP.cols * SX, DH = MAP.rows * SY;           // map size, in dots
 

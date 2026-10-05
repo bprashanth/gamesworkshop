@@ -191,3 +191,28 @@ dot/dash variation) so players see correlations.
   (Play / Go Avoid Recharge, greyed while picking cards / Play again, New sol), then the score and
   cause on the right after a run. The line under the map and the "pick 2 of square n" prompt are
   gone; the map and panels take the space.
+
+## 2026-10-05 · v1.5: 8 squares as 8 strips of the map (tag `rover-run-claude-v1.5`)
+
+- **8 squares = 8 vertical strips of the map**, so the room's strip of 8 squares maps onto the map.
+  `tools/prep.py --strips 8 --rotate` frames the map so the route spans its full width and splits
+  the route by westward progress: square i runs from first reaching strip i to first reaching strip
+  i+1. The real drive heads west, so the map is **turned 180° (south up)** to read left to right.
+  It is rotated, not mirrored, so the geometry stays true. Slopes per strip: flat, tilted, tilted,
+  flat, tilted, steep, steep, tilted (`web/rows.json`).
+- **Deck:** the rulebook's 8-row shape, with one sand trap, one storm, two slope-dismissed soft
+  squares and one haze false alarm. Battery 8, 8 + 2 turns. Sim: intended 11 (finish);
+  avoid-any-warning 8 (battery); slope-only 4 (storm); always-go 2; random 3.5. All checks pass on
+  4 sols (`benchmarks/v1-sim.txt`). `gen.mjs` places one trap of each kind on short routes.
+- **Layout:** the main column holds the map, then **cards (8 columns, aligned under the map's
+  dotted strip lines)**, then the graph, all on one x grid. The right sidebar holds Easy/Hard (top
+  right), the card key beside the cards, the graph key beside the graph, and **one typed
+  instruction** at the bottom right ("choose go, avoid or recharge · n turns left" / "click 2 cards
+  to see them, and their points on the graph" / "the rover ran into a sand trap" / …). The title is
+  set at title size.
+- **Graph:** slope is a filled terrain band, ground is dotted with ●, dust is dashed with ×, battery
+  is a solid line. "Turns left" moved from the graph key into the typed line.
+- **Easy:** every crossed square's 4 cards show. **Hard:** pick 2; the other 2 flip after the next
+  move. Every new game flips all cards face down first (CSS rotateY).
+- **Bug fixed** (since v1.4, also patched in the frozen `/v1.4/`): the driven route wasn't drawn
+  white because the map still read the old `l.move` field after recharge became a turn.

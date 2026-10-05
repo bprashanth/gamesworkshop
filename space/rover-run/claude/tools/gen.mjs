@@ -16,16 +16,17 @@ const pick = xs => xs[Math.floor(rand() * xs.length)];
 
 function candidate() {
   const g = Array(N).fill('firm'), d = Array(N).fill('clear');
-  // two sand traps on non-steep rows, each warned by a soft row
-  for (let k = 0; k < 2; k++) {
+  // sand traps on non-steep rows, each warned by a soft row (two on a long route, one on a short one)
+  const traps = N >= 12 ? 2 : 1;
+  for (let k = 0; k < traps; k++) {
     const i = pick([...Array(N).keys()].filter(i => i >= 2 && slopes[i] !== 'steep' && g[i] === 'firm' && g[i - 1] === 'firm' && g[i + 1] !== 'soft'));
     if (i === undefined) return null;
     g[i] = 'sand'; g[i - 1] = 'soft';
   }
   // soft false alarms: only where the next row is steep
   for (const i of [...Array(N - 1).keys()].filter(i => slopes[i + 1] === 'steep' && g[i] === 'firm')) if (rand() < 0.75) g[i] = 'soft';
-  // two storms, each warned by haze; one haze false alarm
-  for (let k = 0; k < 2; k++) {
+  // storms, each warned by haze; one haze false alarm
+  for (let k = 0; k < traps; k++) {
     const j = pick([...Array(N).keys()].filter(j => j >= 2 && d[j] === 'clear' && d[j - 1] === 'clear' && g[j] !== 'sand' && d[j + 1] !== 'haze'));
     if (j === undefined) return null;
     d[j] = 'storm'; d[j - 1] = 'haze';

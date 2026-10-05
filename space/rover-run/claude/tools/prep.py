@@ -38,7 +38,10 @@ def simplify(points, tolerance):
 
 
 ap = argparse.ArgumentParser(); ap.add_argument('--km-from', type=float, default=0)
-ap.add_argument('--out', default='web'); ap.add_argument('--rows', default='tools/rows.json'); args = ap.parse_args()
+ap.add_argument('--out', default='web'); ap.add_argument('--rows', default='tools/rows.json')
+ap.add_argument('--strips', type=int, default=0, help='N squares = N vertical strips of the map, split by westward progress')
+ap.add_argument('--rotate', action='store_true', help='turn the map 180 degrees (south up) so the westward drive reads left to right')
+args = ap.parse_args()
 
 features = json.loads((RAW / 'M20_traverse.json').read_text())['features']
 route, sols = [], []
@@ -51,6 +54,8 @@ route = np.array(route); sols = np.array(sols)
 dist = np.r_[0, np.cumsum(np.hypot(*np.diff(route, axis=0).T))]
 keep = dist >= args.km_from * 1000                     # optional window: start part-way along the real route
 route, sols, dist = route[keep], sols[keep], dist[keep] - dist[keep][0]
+if args.strips: ROWS = args.strips
+flip = -1 if args.rotate else 1                       # screen x/y = flip * map x/y
 
 with rasterio.open(RAW / 'jezero_ctx_dem_20m.tif') as ds:
     inv = ~ds.transform; dem = ds.read(1)
@@ -63,10 +68,13 @@ def sample(q, values=smooth):
 # Frame: route bounds plus margin, stretched to the screen aspect.
 lo, hi = route.min(0), route.max(0)
 center = (lo + hi) / 2
-height = max(hi[1] - lo[1], (hi[0] - lo[0]) / ASPECT) * 1.18
-width = height * ASPECT
+if args.strips:                                       # the route spans the full width, so strips = columns
+    width = (hi[0] - lo[0]) * 1.02; height = width / ASPECT
+else:
+    height = max(hi[1] - lo[1], (hi[0] - lo[0]) / ASPECT) * 1.18; width = height * ASPECT
 x0, y1 = center[0] - width / 2, center[1] + height / 2
-norm = lambda p: np.c_[(p[:, 0] - x0) / width, (y1 - p[:, 1]) / height]
+_norm = lambda p: np.c_[(p[:, 0] - x0) / width, (y1 - p[:, 1]) / height]
+norm = (lambda p: 1 - _norm(p)) if args.rotate else _norm
 
 gx_ = np.linspace(x0, x0 + width, 900); gy_ = np.linspace(y1, y1 - height, 450)
 qx, qy = np.meshgrid(gx_, gy_)
@@ -78,6 +86,7 @@ for level in np.arange(math.ceil(emin / INTERVAL) * INTERVAL, emax, INTERVAL):
     for line in gen.lines(level):
         if len(line) < 6: continue
         line = simplify(line / [899, 449], 0.0012)
+        if args.rotate: line = 1 - line
         contours.append({'e': round((level - emin) / (emax - emin), 3), 'p': [round(float(v), 4) for v in line.ravel()]})
 
 daily = {}
@@ -86,7 +95,14 @@ with TAU.open() as fh:
         t = float(r['TAU'])
         if math.isfinite(t) and t >= 0: daily.setdefault(int(float(r['SOL'])), []).append(t)
 
-edges = np.linspace(0, dist[-1], ROWS + 1)
+if args.strips:                                       # square i = from first reaching strip i to first reaching strip i+1
+    sx = norm(route)[:, 0]; env = np.maximum.accumulate(sx)
+    bounds = np.linspace(sx.min(), sx.max(), ROWS + 1)
+    square = np.clip(np.searchsorted(bounds, env, side='right') - 1, 0, ROWS - 1)
+    starts = [int(np.argmax(square >= i)) for i in range(ROWS)] + [len(route) - 1]
+    edges = dist[starts]
+else:
+    edges = np.linspace(0, dist[-1], ROWS + 1)
 rows, cuts = [], []
 for i in range(ROWS):
     m = (dist >= edges[i]) & (dist <= edges[i + 1])
@@ -111,6 +127,7 @@ out = {
     'aspect': ASPECT, 'interval_m': INTERVAL, 'elev': [round(emin), round(emax)],
     'km_per_unit': round(width / 1000, 3),
     'route': [round(float(v), 4) for v in np.array(pts).ravel()], 'rowStart': marks,
+    'strips': [round(float(b), 4) for b in bounds] if args.strips else None, 'southUp': bool(args.rotate),
     'contours': contours,
     'source': {'dem': 'JPL Mars 2020 CTX DEM 20 m (USGS Astrogeology)', 'route': 'NASA MMGIS M20 traverse, sols %d-%d' % (sols[0], sols[-1])},
 }

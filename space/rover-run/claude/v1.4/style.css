@@ -1,0 +1,71 @@
+:root { --bg: #000; --ink: #e6e6e1; --dim: #8a8a86; --faint: #3a3a38; --sand: #c2a374; --mono: "JetBrains Mono", "DejaVu Sans Mono", ui-monospace, monospace; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--mono); }
+main { max-width: 1280px; margin: 0 auto; padding: 10px 12px; }
+.screen { width: 100%; border: 1px solid #1c1c1b; }
+canvas { display: block; width: 100%; cursor: default; touch-action: manipulation; }
+
+/* Three stacked panels: map, graph, cards. Each panel: a body on the left, its key on the right. */
+.panel { display: flex; margin-top: 8px; border: 1px solid #1c1c1b; border-radius: 3px; }
+.panel .body { flex: 1 1 auto; min-width: 0; padding: 6px 8px; }
+.panel .side { flex: 0 0 190px; border-left: 1px solid #1c1c1b; padding: 6px 10px; font-size: 11px; color: var(--dim); }
+.side p { margin: 0 0 3px; display: flex; align-items: center; gap: 8px; }
+.side b { color: var(--ink); font-weight: 400; }
+
+.graph { height: 92px; }
+.graph svg { display: block; font: 9.5px var(--mono); }
+.graph .guide { stroke: #1f1f1e; stroke-dasharray: 1 3; }
+.graph .axis { fill: #4a4a48; }
+.graph .bat { fill: none; stroke: var(--ink); stroke-width: 1.8; }
+.graph .trace { stroke: var(--ink); stroke-width: 1.3; }
+.graph .dot { fill: var(--ink); }
+
+/* The cards: a numbered back until seen; symbol + word once seen. */
+.cards { display: grid; grid-template-columns: 52px repeat(14, minmax(0, 1fr)); gap: 3px; user-select: none; }
+.cards .suit { color: var(--dim); font-size: 11px; align-self: center; }
+.cards .colnum { text-align: center; font-size: 9.5px; color: #4a4a48; }
+.cards .colnum.on { color: var(--ink); }
+.card { height: 46px; border: 1px solid #262625; border-radius: 3px; display: grid; place-items: center; align-content: center; color: #3a3a38; font-size: 10px; }
+.card .sym { width: 34px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; }
+.card .sym .fill, .key .sym .fill { fill: currentColor; stroke: none; }
+.card .sym .thin, .key .sym .thin { stroke-width: 1; }
+.card .sym .hair, .key .sym .hair { stroke-width: .7; }
+.card .sym .faint, .key .sym .faint { stroke-opacity: .55; }
+.card i { font-style: normal; font-size: 9px; line-height: 1; margin-top: 1px; }
+.card.up { color: var(--ink); border-color: #5a5a58; }
+.card.warn { border-color: var(--ink); }
+.card.hazard { background: var(--ink); color: #000; border-color: var(--ink); }
+.card.ghost { color: #5f5f5c; border-style: dashed; border-color: #3a3a38; }
+.card.ghost.hazard { background: #2a2a29; color: #b5b5b0; }
+.card.back.next { border-color: var(--ink); color: var(--ink); }
+.card.pick { border-color: var(--ink); color: var(--ink); background: #111; cursor: pointer; font-size: 12px; animation: pick .9s ease-in-out infinite alternate; }
+.card.pick:hover { background: #222; }
+@keyframes pick { from { border-color: #5a5a58; } to { border-color: #fff; } }
+
+.key { border-collapse: collapse; }
+.key th { font-weight: 400; color: #555552; padding: 0 4px 2px; text-align: center; }
+.key td { padding: 0 4px; color: var(--ink); }
+.key td:first-child { color: var(--dim); padding-left: 0; }
+.key .sym { width: 28px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; display: block; }
+.key td.haz { background: var(--ink); color: #000; border: 2px solid #000; border-radius: 3px; }
+@media (max-width: 760px) { .panel { flex-direction: column; } .panel .side { border-left: 0; border-top: 1px solid #1c1c1b; } .card i { display: none; } }
+
+/* Touch pad: only on narrow or coarse-pointer screens; the keyboard is the main input. */
+.pad { display: none; gap: 6px; margin-top: 12px; }
+.pad button { flex: 1; font: 13px var(--mono); color: var(--ink); background: #000; border: 1px solid #555; border-radius: 3px; padding: 12px 0; }
+.pad button.on { background: var(--ink); color: #000; }
+.pad span { width: 10px; }
+.pad .again { display: none; }
+.pad.over button { display: none; } .pad.over .again { display: block; }
+@media (max-width: 700px), (pointer: coarse) { .pad { display: flex; } }
+
+/* One line above the map: the place, the buttons, and the score once a run ends. */
+.bar { display: flex; align-items: center; gap: 14px; min-height: 34px; margin-bottom: 6px; font-size: 13px; }
+#place { color: var(--ink); white-space: nowrap; }
+#status { margin-left: auto; color: var(--dim); white-space: nowrap; }
+.controls { display: flex; gap: 6px; }
+.controls button { font: 13px var(--mono); color: var(--ink); background: #000; border: 1px solid #5a5a58; border-radius: 3px; padding: 5px 12px; cursor: pointer; }
+.controls button:hover:not(:disabled) { border-color: var(--ink); background: #111; }
+.controls button:disabled { color: #4a4a48; border-color: #262625; cursor: default; }
+.controls button u { text-decoration: none; border-bottom: 1px solid currentColor; }
+@media (max-width: 760px) { .bar { flex-wrap: wrap; } .controls { width: 100%; } .controls button { flex: 1; } }

@@ -27,10 +27,10 @@ const turn = async t => {                       // one action: G, A or R
   if ((await page.evaluate(() => window.rover.state.mode)) === 'pick') { await key('2', 450); await key('3', 300); }
 };
 await wait(5200);                                 // intro draws itself
-const runs = [                                    // the simulator's lines (tools/sim.mjs)
+const runs = [                                    // the simulator's lines on sol 1 (tools/sim.mjs), easy mode
   'G G G',
-  'R R R G G A R G R A R G A A G A A A A',
-  'R R R G G A R G R A G A A G G G G A G',
+  'R R G G A G A A A A',
+  'R R G G A G A G G A',
 ];
 for (const [i, r] of runs.entries()) {
   await key('p', 600);
