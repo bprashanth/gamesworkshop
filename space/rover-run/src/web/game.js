@@ -1,5 +1,6 @@
 // Rover Run v1.6. 14 squares = 14 strips of the map. Each turn: go, avoid or recharge.
-// Easy: the whole board shows. Medium: every crossed square shows. Hard: decide on partial information,
+// Before each move you look at cards of the square AHEAD: Medium 2, Hard 1 (Easy: the whole board).
+// Once you cross a square, all its cards flip. Decide on partial information,
 // then the rest of the last square's cards flip, then pick 2 cards of the square you
 // just crossed. Three stacked panels: the map, a graph of everything seen, the cards.
 import { newRun, act, batteryAfter } from './engine.js';
@@ -41,8 +42,8 @@ const solRuns = () => memory.runs.filter(r => (r.sol ?? 0) === sol);
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(memory)); } catch {} };
 
 // ---------- state ----------
-const LOOK = 2;
-const hard = () => memory.level === 'hard', easy = () => memory.level === 'easy';
+const looks = () => memory.level === 'hard' ? 1 : 2;         // cards of the square ahead you may see
+const easy = () => memory.level === 'easy';
 let mode = 'intro', run = newRun(deck, rules), clock = 0, anim = null, effect = null, replay = null;
 let shown = {}, pickCol = null, lastAt = 0, introStart = 0, queued = null;
 let selected = null, before = new Set(), fatal = null, hoverCol = null;   // card matching, the death card, the hovered column
@@ -68,7 +69,8 @@ function paintCards() {
   const deciding = mode === 'play' ? run.pos : null;
   for (const el of cardsEl.querySelectorAll('.card')) {
     const c = +el.dataset.col, suit = el.dataset.suit, s = SUITS.find(x => x.name === suit), v = s.get(deck[c], c);
-    const up = !!shown[c]?.includes(suit) && v !== null, ghost = !up && suit !== 'battery' && !!seen()[c]?.includes(suit), pick = mode === 'pick' && c === pickCol && !up;
+    const up = !!shown[c]?.includes(suit) && v !== null, ghost = !up && suit !== 'battery' && !!seen()[c]?.includes(suit);
+    const pick = mode === 'pick' && c === pickCol && !up && suit !== 'battery';   // the battery card is what you will do: not pickable
     const hit = selected && (up || ghost) && selected.suit === suit && selected.v === v;
     const flip = el.classList.contains('flip');
     el.className = 'card' + (up ? ' up' : ghost ? ' ghost' : pick ? ' pick' : ' back') + (flip ? ' flip' : '')
@@ -155,7 +157,7 @@ let sayText = '', sayT0 = 0;
 function sayFor() {
   const left = run.turns - run.turn;
   if (mode === 'intro') return 'press play to start';
-  if (mode === 'pick') return `click ${LOOK - (shown[pickCol]?.length ?? 0)} cards to see them, and their points on the graph`;
+  if (mode === 'pick') { const n = looks() - (shown[pickCol]?.length ?? 0); return `look ahead: click ${n} card${n === 1 ? '' : 's'} of square ${pickCol + 1} before you decide`; }
   if (mode === 'play') return `choose go, avoid or recharge · ${left} turn${left === 1 ? '' : 's'} left`;
   if (mode === 'over' || mode === 'dead' || mode === 'replay') return { finish: 'the rover made it across', sand: 'the rover ran into a sand trap', storm: 'the rover drove into a storm', battery: 'the battery ran out', time: 'the rover ran out of turns' }[run.end] ?? sayText;
   return sayText;
@@ -259,7 +261,7 @@ function commit(action) {
   const dead = after.end === 'sand' || after.end === 'storm', len = (a1 - a0) * (dead ? 0.45 : 1);
   steps.push({ dur: Math.min(1.3, 0.35 + len / 220), run: (u, s) => { s.at = a0 + len * easeIO(u); } });
   // the past becomes fully known: the last square's hidden cards flip
-  steps.push({ dur: 0.05, once: true, run: () => { run = after; reveal(from - 1); if (after.end || !hard()) reveal(from); if (after.end) fatal = fatalCard(after); save(); paintCards(); } });
+  steps.push({ dur: 0.05, once: true, run: () => { run = after; reveal(from); if (after.end) fatal = fatalCard(after); save(); paintCards(); } });   // crossed: all its cards flip
   steps.push({ dur: dead ? 1.0 : after.end ? 0.7 : 0.45, run: (u, s) => { s.at = a0 + len; } });
   anim = { from, at: a0, steps, i: 0, t0: clock };
   paintCards();
@@ -272,8 +274,7 @@ function stepAnim() {
   if (step) { if (!step.once) step.run((clock - anim.t0) / (step.dur / speed), anim); return; }
   lastAt = anim.at; const { from, still } = anim; anim = null;
   if (run.end) return finishRun();
-  if (still || !hard()) mode = 'play';                  // a recharge doesn't cross a square; easy shows every card
-  else { pickCol = from; mode = 'pick'; }                // hard: the attention budget, what will you look at?
+  lookAhead();                                          // the attention budget: which card of the next square?
   paintCards();
   const k = queued; queued = null; if (k) input(k);
 }
@@ -282,8 +283,14 @@ function look(suit) {
   (shown[pickCol] ??= []).push(suit);
   const m = seen(); if (!(m[pickCol] ??= []).includes(suit)) m[pickCol].push(suit);
   save();
-  if (shown[pickCol].length >= LOOK) { mode = 'play'; pickCol = null; }
+  if (shown[pickCol].length >= looks()) { mode = 'play'; pickCol = null; }
   paintCards();
+}
+// before a move: look at cards of the square ahead (Medium 2, Hard 1); Easy already shows everything
+function lookAhead() {
+  const done = (shown[run.pos]?.length ?? 0) >= looks();
+  if (easy() || run.pos >= N || done) { mode = 'play'; pickCol = null; }
+  else { pickCol = run.pos; mode = 'pick'; }
 }
 
 // which card explains the death: the ground card (sand), the dust card (storm), the dead battery before
@@ -359,7 +366,7 @@ function newGame() {
   flipAll(() => {
     memory.looked[sol] = {}; save();                    // a fresh board: no remembered cards
     run = newRun(deck, rules); shown = {}; pickCol = null; anim = null; fatal = null; selected = null; before = new Set();
-    mode = 'play'; if (easy()) revealBoard(); document.getElementById('status').textContent = ''; paintCards();
+    if (easy()) revealBoard(); lookAhead(); document.getElementById('status').textContent = ''; paintCards();
   });
 }
 const canNewSol = () => sol < sols.length - 1 && solRuns().some(r => r.end === 'finish');

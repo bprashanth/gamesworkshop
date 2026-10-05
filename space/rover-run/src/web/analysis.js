@@ -16,6 +16,17 @@ export function strategies(deck) {
     'ground only':        r => sandRisk(r),
     'dust only':          r => stormRisk(r),
     'model (intended)':   r => sandRisk(r) || stormRisk(r),
+    // Looking ahead (Medium: 2 cards of the square ahead, Hard: 1) before deciding.
+    'look 2: ground + dust':     r => deck[r].ground === 'sand' || deck[r].dust === 'storm',
+    'look 1: the model chooses': r => {                      // the indicator says which card to check
+      if (sandRisk(r) && stormRisk(r)) return true;          // both risks, one look: still detour
+      if (sandRisk(r)) return deck[r].ground === 'sand';
+      if (stormRisk(r)) return deck[r].dust === 'storm';
+      return false;
+    },
+    'look 1: always ground':     r => deck[r].ground === 'sand',
+    'look 1: always dust':       r => deck[r].dust === 'storm',
+    'look 1: always slope':      () => false,                // slope is already on the map
   };
 }
 
@@ -53,13 +64,20 @@ export function analyse(deck, rules) {
   for (const [name, f] of Object.entries(S)) runs[name] = best(deck, rules, deck.map((_, r) => f(r)));
   runs['model, never recharge'] = best(deck, rules, deck.map((_, r) => S['model (intended)'](r)), false);
   const scores = Object.fromEntries(Object.entries(runs).map(([k, v]) => [k, v.score]));
-  const rnd = random(deck, rules), intended = runs['model (intended)'], max = Math.max(...Object.values(scores));
+  const rnd = random(deck, rules), intended = runs['model (intended)'];
+  const blind = Object.fromEntries(Object.entries(scores).filter(([k]) => !k.startsWith('look')));
+  const max = Math.max(...Object.values(blind));
   const prev = (i, k, v) => i > 0 && deck[i - 1][k] === v, idx = deck.map((_, i) => i);
   const count = f => idx.filter(f).length;
   const hazeSlope = idx.filter(i => prev(i, 'dust', 'haze') && deck[i].slope !== 'flat');
   const stormRate = hazeSlope.filter(i => deck[i].dust === 'storm').length / (hazeSlope.length || 1);
   const checks = [
-    ['the model is the unique best play', intended.score === max && Object.values(scores).filter(v => v === max).length === 1],
+    ['the model is the unique best play without looking ahead', intended.score === max && Object.values(blind).filter(v => v === max).length === 1],
+    ['Hard (1 look): the model-chosen look finishes', runs['look 1: the model chooses'].end === 'finish'],
+    ['Hard (1 look): always looking at ground dies in a storm', runs['look 1: always ground'].end === 'storm'],
+    ['Hard (1 look): always looking at dust dies in sand', runs['look 1: always dust'].end === 'sand'],
+    ['Hard (1 look): looking at slope is no help', runs['look 1: always slope'].end === 'sand' || runs['look 1: always slope'].end === 'storm'],
+    ['Medium (2 looks): ground + dust finishes', runs['look 2: ground + dust'].end === 'finish'],
     ['the model finishes', intended.end === 'finish'],
     ['avoiding every warning does not finish', runs['avoid any warning'].end !== 'finish'],
     ['haze without slope costs the finish', runs['haze ignores slope'].end !== 'finish'],

@@ -19,12 +19,12 @@ await page.reload();
 const wait = ms => page.waitForTimeout(ms);
 const until = mode => page.waitForFunction(m => window.rover.state.mode === m, mode, { timeout: 60000 });
 const key = async (k, ms = 900) => { await page.keyboard.press(k); await wait(ms); };
-const turn = async t => {                       // one action: G, A or R
-  await until('play'); await wait(600);
+const turn = async t => {                       // one action: G, A or R; first look ahead if asked
+  await page.waitForFunction(() => ['play', 'pick'].includes(window.rover.state.mode), null, { timeout: 60000 });
+  // look at 2 cards of the square ahead: ground and dust (slope is on the map, battery is what you do)
+  if ((await page.evaluate(() => window.rover.state.mode)) === 'pick') { await wait(500); await key('2', 450); await key('3', 300); }
+  await until('play'); await wait(500);
   await key(t.toLowerCase(), 200);
-  // after a move, look at 2 of the 4 cards: ground and dust (slope is on the map, battery on the graph)
-  await page.waitForFunction(() => window.rover.state.mode !== 'anim', null, { timeout: 60000 });
-  if ((await page.evaluate(() => window.rover.state.mode)) === 'pick') { await key('2', 450); await key('3', 300); }
 };
 await wait(5200);                                 // intro draws itself
 const runs = [                                    // the simulator's lines (tools/sim.mjs), medium mode

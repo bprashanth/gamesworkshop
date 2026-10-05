@@ -22,7 +22,7 @@ The index also keeps every earlier version.
 | **Correlation over time** | The warning is one square ahead | a single variable along the row: soft → SAND, haze → STORM |
 | **Correlation across variables** | Context changes what a warning means | down a column: sand is never on steep ground; storms never on flat ground |
 | **Models combine weak signals** | Neither signal alone decides | storm = haze before **and** a slope: 3 of 4, against 3 of 6 for haze alone and 0 of 5 for slope alone |
-| **Attention is a budget** | You can't look at everything | Hard mode: see 2 of 4 cards per square |
+| **Attention is a budget** | You can't look at everything | Hard mode: 1 look at the square ahead; the indicator says which card |
 | **Precision has a price** | False alarms cost, misses kill | every avoid drains the battery and needs a recharge turn, and turns are limited |
 
 The facilitated exercise (identify the death → find the earliest indicator → check it recurs →
@@ -44,10 +44,13 @@ correlate along a row → correlate down a column → write a one-line model) is
   White cards are deadly. The card that killed you gets a red ring.
 - **The graph** plots everything you've seen on one x axis with the cards: battery (top lane),
   ground (dotted ●), dust (dashed ×) and slope (grey terrain band). Warning and hazard points are named.
+- **Look ahead, then decide.** Before each move you look at cards of the square ahead, and the
+  game opens with a look, not a Go. Once you cross a square, all its cards flip.
 - **Modes** (top right):
   - **Easy:** the whole board is face up, for analysis.
-  - **Medium (default):** every square you cross shows.
-  - **Hard:** pick 2 of a crossed square's 4 cards; the other 2 flip after your next move.
+  - **Medium (default):** look at 2 of the square ahead's cards.
+  - **Hard:** look at 1. The warning on your square tells you which card to check: soft → ground,
+    haze → dust.
 - **Helpers:** click a face-up card to light up every card with the same value and outline the
   square before each. Hover a column to light its strip on the map. **Reset** flips every card
   face down and starts over.

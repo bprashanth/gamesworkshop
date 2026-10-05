@@ -28,11 +28,21 @@ the rover, so every avoid must be followed by a recharge. There are 14 squares a
 
 ## Modes, and how a session runs
 
-- **Hard:** after crossing a square you see only 2 of its 4 cards. The other 2 flip after your
-  next move. Play this for one or two rounds first, so the room feels deciding on partial
-  information.
-- **Medium (default):** every card of each crossed square shows.
-- **Easy:** the whole board is face up from the start. Switch to this for the analysis below.
+Before every move you look at cards of the **square ahead**. Once you cross a square, all four
+of its cards flip.
+
+- **Hard: 1 card of the square ahead.** This is the indicator lesson in its sharpest form: the
+  warning on the square you're on tells you *which* card to check next. Soft → check ground (is it
+  SAND?). Haze → check dust (is it a STORM?). Slope settles which one matters: steep can't sand,
+  flat can't storm. Look at the wrong card and you die. The simulator agrees: looking where the
+  model points finishes; always ground dies in a storm; always dust dies in sand; slope is no help.
+- **Medium (default): 2 cards of the square ahead.** Players soon learn that ground + dust is
+  always the right pair, and that slope (already on the map) and battery (what *you* will do,
+  so not pickable) are wasted looks.
+- **Easy:** the whole board is face up. Switch to it for the analysis below.
+
+Suggested session: one or two rounds on Medium, then Hard, then Easy for the exercise. **Reset** and
+**Play again** flip every card face down and forget the remembered cards.
 
 Two helpers, both silent:
 - **Click any face-up card.** Every card with the same value lights up, and the squares just before
