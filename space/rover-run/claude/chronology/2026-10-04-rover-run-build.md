@@ -180,3 +180,14 @@ dot/dash variation) so players see correlations.
   "pick 2 of square n's cards below". End of run: the score in the caption, then Play again / New sol.
 - Tools: `tools/film.mjs` and `tools/agent-play.mjs` (`turn <go|avoid|recharge> [card card]`)
   updated; the film was re-recorded. v1.3 is frozen at `/v1.3/`.
+
+## 2026-10-05 · v1.4.1 cosmetic (tag `rover-run-claude-v1.4.1`)
+
+- The card key was static HTML generated from the old symbols. It is now built at runtime from
+  `SYMBOLS`, so the key can't drift from the cards again.
+- The map frame holds only the map: no title, caption, square numbers, "+2" or "✕ sand" text. Where a
+  run broke is a cross of dots.
+- One bar above the map: `MAP: Jezero crater, Mars` (one string, easy to change), then the buttons
+  (Play / Go Avoid Recharge, greyed while picking cards / Play again, New sol), then the score and
+  cause on the right after a run. The line under the map and the "pick 2 of square n" prompt are
+  gone; the map and panels take the space.

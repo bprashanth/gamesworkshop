@@ -59,11 +59,13 @@ canvas { display: block; width: 100%; cursor: default; touch-action: manipulatio
 .pad.over button { display: none; } .pad.over .again { display: block; }
 @media (max-width: 700px), (pointer: coarse) { .pad { display: flex; } }
 
-/* Go / Avoid / Recharge, right under the map. */
-.controls { display: flex; gap: 8px; margin-top: 8px; min-height: 38px; align-items: center; }
-.controls button { flex: 0 0 auto; min-width: 120px; font: 14px var(--mono); color: var(--ink); background: #000; border: 1px solid #5a5a58; border-radius: 3px; padding: 8px 14px; cursor: pointer; }
-.controls button:hover { border-color: var(--ink); background: #111; }
+/* One line above the map: the place, the buttons, and the score once a run ends. */
+.bar { display: flex; align-items: center; gap: 14px; min-height: 34px; margin-bottom: 6px; font-size: 13px; }
+#place { color: var(--ink); white-space: nowrap; }
+#status { margin-left: auto; color: var(--dim); white-space: nowrap; }
+.controls { display: flex; gap: 6px; }
+.controls button { font: 13px var(--mono); color: var(--ink); background: #000; border: 1px solid #5a5a58; border-radius: 3px; padding: 5px 12px; cursor: pointer; }
+.controls button:hover:not(:disabled) { border-color: var(--ink); background: #111; }
+.controls button:disabled { color: #4a4a48; border-color: #262625; cursor: default; }
 .controls button u { text-decoration: none; border-bottom: 1px solid currentColor; }
-.controls button small { color: var(--dim); margin-left: 6px; }
-.controls p { margin: 0; color: var(--ink); font-size: 13px; }
-@media (max-width: 760px) { .controls button { flex: 1; min-width: 0; } }
+@media (max-width: 760px) { .bar { flex-wrap: wrap; } .controls { width: 100%; } .controls button { flex: 1; } }

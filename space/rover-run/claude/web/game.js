@@ -15,11 +15,11 @@ if (params.has('film')) document.documentElement.classList.add('film');
 // ---------- one page: size the screen so map + cards fit the window ----------
 const main = document.querySelector('main');
 function fit() {
-  const below = [...document.querySelectorAll('.panel, .controls')].reduce((h, el) => h + Math.max(38, el.getBoundingClientRect().height) + 8, 0) || 340;
+  const below = [...document.querySelectorAll('.panel, .bar')].reduce((h, el) => h + el.getBoundingClientRect().height + 8, 0) || 320;
   const w = Math.min(1280, innerWidth - 24, (innerHeight - below - 28) / ROWS_RATIO);
   main.style.maxWidth = `${Math.max(320, Math.floor(w))}px`;
 }
-const ROWS_RATIO = 28 * 1.9 / COLS;
+const ROWS_RATIO = 26 * 1.9 / COLS;
 fit();
 const screen = new Screen(document.getElementById('screen'));
 const contours = contourDots(map), route = routeDots(map);
@@ -129,10 +129,6 @@ function ticks(list, label) {
     const [x, y] = dotPx(route[first[r]]), [nx, ny] = normalAt(first[r]);
     for (const k of [-9, -7, -5, 5, 7, 9]) list.push({ x: x + nx * k, y: y + ny * k, c: INK, a: 0.8, s: 1.2 });
   }
-  if (label === null || label === undefined || label >= N) return;
-  const mid = Math.floor((first[label] + first[label + 1]) / 2), [x, y] = dotPx(route[mid]), [nx, ny] = normalAt(mid);
-  const side = ny > 0 ? -1 : 1;
-  screen.text(list, Math.round((x + nx * 22 * side) / screen.cw) - 1, (y + ny * 22 * side) / screen.ch - 0.5, String(label + 1), INK);
 }
 function ring(list, at, radius, c = INK, a = 1) {
   const [cx, cy] = dotPx(at), rx = radius * screen.cw / SX * 1.5, ry = radius * screen.ch / SY * 1.5;
@@ -154,8 +150,6 @@ function marks(list, log, sh = shown) {
 }
 function rover(list, i) { const [x, y] = dotPx(route[Math.min(route.length - 1, Math.max(0, Math.round(i)))]); list.push({ x, y, c: INK, s: 4.5 }); }
 const BELOW = MAP.row + MAP.rows;                         // the text row under the map
-const title = list => screen.text(list, 3, 0.25, 'MARS', INK);
-const caption = (list, t = 'this is a contour map of the jezero crater. lines closer together = steep') => screen.text(list, 3, BELOW + 0.3, t, DIM);
 function frame() {
   screen.hits = [];
   const list = [];
@@ -165,9 +159,6 @@ function frame() {
   ticks(list, mode === 'play' ? run.pos : pickCol);
   marks(list, run.log);
   rover(list, anim ? anim.at : first[run.pos]);
-  if (anim?.label) screen.text(list, anim.label.col, anim.label.row, anim.label.t, INK);
-  title(list);
-  caption(list);
   return list;
 }
 
@@ -177,8 +168,6 @@ function introFrame(list) {
   const k = Math.min(route.length, Math.floor(route.length * Math.max(0, t - 0.8) / 2.2));
   for (let i = 0; i < k; i++) { const [x, y] = dotPx(route[i]); list.push({ x, y, c: INK, s: 1.2 }); }
   if (k) rover(list, k - 1);
-  title(list);
-  caption(list);
   return list;
 }
 const best = () => Math.max(0, ...solRuns().map(r => r.score));
@@ -192,7 +181,7 @@ function commit(action) {
   mode = 'anim';
   const from = before.pos, a0 = first[from], a1 = first[from + 1], steps = [];
   if (action === 'recharge') {
-    steps.push({ dur: 0.6, run: (u, s) => { s.at = a0; s.label = label(a0, '+2'); } });
+    steps.push({ dur: 0.6, run: (u, s) => { s.at = a0; } });
     steps.push({ dur: 0.05, once: true, run: () => { run = after; save(); paintCards(); } });
     if (after.end) steps.push({ dur: 0.6, run: (u, s) => { s.at = a0; } });
     anim = { from, at: a0, steps, i: 0, t0: clock, still: true };
@@ -207,12 +196,11 @@ function commit(action) {
   paintCards();
 }
 const easeIO = u => u < 0.5 ? 2 * u * u : 1 - (-2 * u + 2) ** 2 / 2;
-function label(at, t) { const [x, y] = dotPx(route[at]); return { col: Math.round(x / screen.cw) + 2, row: Math.max(MAP.row, Math.round(y / screen.ch) - 2), t }; }
 function stepAnim() {
   if (!anim) return;
   let step = anim.steps[anim.i];
   while (step && clock - anim.t0 >= step.dur / speed) { step.run(1, anim); anim.t0 += step.dur / speed; step = anim.steps[++anim.i]; }
-  if (step) { delete anim.label; if (!step.once) step.run((clock - anim.t0) / (step.dur / speed), anim); return; }
+  if (step) { if (!step.once) step.run((clock - anim.t0) / (step.dur / speed), anim); return; }
   lastAt = anim.at; const { from, still } = anim; anim = null;
   if (run.end) return finishRun();
   if (still) mode = 'play';                             // a recharge doesn't cross a square
@@ -264,14 +252,16 @@ function replayFrame(list) {
   });
   rover(list, head);
   const over = k >= moves.length;
-  const why = { sand: 'sand', storm: 'storm', battery: 'battery', time: 'out of turns' }[r0.end];
-  if (over && why) { const [x, y] = dotPx(route[Math.round(head)]); screen.text(list, Math.round(x / screen.cw) + 1, Math.round(y / screen.ch) - 1, `✕ ${why}`, '#e07a5f'); }
-  title(list);
-  if (over) {
+  if (over && r0.end !== 'finish') {                     // where it broke: a cross of dots
+    const [x, y] = dotPx(route[Math.round(head)]);
+    for (let d = -8; d <= 8; d += 2) list.push({ x: x + d, y: y + d, c: '#e07a5f', s: 1.1 }, { x: x + d, y: y - d, c: '#e07a5f', s: 1.1 });
+  }
+  if (over && mode !== 'over') {
     const squares = r0.score - (r0.end === 'finish' ? rules.finishBonus : 0);
-    caption(list, `score ${r0.score} · ${squares} squares${r0.end === 'finish' ? ` + ${rules.finishBonus} for finishing` : ''} · best ${best()}`);
-    if (mode !== 'over') { mode = 'over'; paintCards(); }
-  } else caption(list);
+    const why = { finish: `+${rules.finishBonus} for finishing`, sand: 'sand', storm: 'storm', battery: 'battery ran out', time: 'out of turns' }[r0.end];
+    document.getElementById('status').textContent = `score ${r0.score} · ${squares} squares · ${why} · best ${best()}`;
+    mode = 'over'; paintCards();
+  }
   const h = screen.canvas.getBoundingClientRect().height, scan = h * (clock - replay.t0) / 0.7;
   return scan > h * 1.2 ? list : list.filter(d => d.y < scan).map(d => ({ ...d, a: (d.a ?? 1) * Math.min(1, (scan - d.y) / 80) }));
 }
@@ -286,7 +276,7 @@ function tick(ms) {
   paintControls();
   requestAnimationFrame(tick);
 }
-function newGame() { run = newRun(deck, rules); shown = {}; pickCol = null; anim = null; mode = 'play'; paintCards(); }
+function newGame() { run = newRun(deck, rules); shown = {}; pickCol = null; anim = null; mode = 'play'; document.getElementById('status').textContent = ''; paintCards(); }
 const canNewSol = () => sol < sols.length - 1 && solRuns().some(r => r.end === 'finish');
 function input(k) {
   if (mode === 'anim') { queued = k; return; }
@@ -301,20 +291,24 @@ addEventListener('keydown', e => { if (!e.metaKey && !e.ctrlKey) input(e.key.toL
 screen.canvas.addEventListener('pointerdown', () => { if (mode === 'intro' || mode === 'over') input('p'); });
 addEventListener('resize', () => { fit(); screen.resize(); paintCards(); });
 
-// ---------- controls: buttons, so it plays on a phone too ----------
+// ---------- controls: in the bar above the map, so it plays on a phone too ----------
 const controls = document.getElementById('controls');
 controls.addEventListener('click', e => { const k = e.target.closest('button')?.dataset.k; if (k) input(k); });
 let shownControls = '';
 function paintControls() {
-  const view = mode === 'intro' ? 'start' : mode === 'over' ? 'over' + canNewSol() : mode === 'pick' ? 'pick' + (shown[pickCol]?.length ?? 0) : mode === 'play' ? 'play' : shownControls;
+  const view = mode === 'intro' ? 'start' : mode === 'over' ? 'over' + canNewSol() : mode === 'play' ? 'play' : mode === 'pick' ? 'wait' : shownControls || 'wait';
   if (view === shownControls) return;
   shownControls = view;
-  const b = (k, t, key) => `<button data-k="${k}"><u>${key}</u>${t}</button>`;
-  controls.innerHTML = view === 'start' ? '<button data-k="start">Start <small>P</small></button>'
-    : view.startsWith('over') ? `<button data-k="again">Play again <small>P</small></button>${canNewSol() ? '<button data-k="nextsol">New sol: new weather <small>N</small></button>' : ''}`
-    : view.startsWith('pick') ? `<p>pick ${LOOK - (shown[pickCol]?.length ?? 0)} of square ${pickCol + 1}'s cards below</p>`
-    : `${b('go', 'o', 'G')}${b('avoid', 'void', 'A')}${b('recharge', 'echarge', 'R')}`;
+  const b = (k, key, rest, off) => `<button data-k="${k}"${off ? ' disabled' : ''}><u>${key}</u>${rest}</button>`;
+  controls.innerHTML = view === 'start' ? b('start', 'P', 'lay')
+    : view.startsWith('over') ? b('again', 'P', 'lay again') + (canNewSol() ? b('nextsol', 'N', 'ew sol') : '')
+    : b('go', 'G', 'o', view !== 'play') + b('avoid', 'A', 'void', view !== 'play') + b('recharge', 'R', 'echarge', view !== 'play');
 }
+
+// ---------- the card key, drawn from the same symbols as the cards ----------
+document.getElementById('key').innerHTML = '<tr><th></th><th>low</th><th>mid</th><th>high</th></tr>' + SUITS.map(s =>
+  `<tr><td>${s.name}</td>${s.levels.map(v => `<td class="${deadly(s.name, v) ? 'haz' : ''}">${SYMBOLS[s.name][v]}</td>`).join('')}</tr>`).join('');
+
 window.rover = { get state() { return { mode, run, memory, sol, shown } }, input, deck };
 buildCards(); paintCards(); fit(); screen.resize();
 requestAnimationFrame(ms => { introStart = ms / 1000; tick(ms); });
