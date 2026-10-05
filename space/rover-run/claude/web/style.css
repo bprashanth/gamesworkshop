@@ -22,7 +22,7 @@ canvas { display: block; width: 100%; cursor: default; touch-action: manipulatio
 .modes button:first-child { border-radius: 3px 0 0 3px; } .modes button:last-child { border-radius: 0 3px 3px 0; border-left: 0; }
 .modes button.on { color: #000; background: var(--ink); border-color: var(--ink); }
 
-.graph { height: 92px; margin: 0 var(--stripR, 0) 0 var(--stripL, 0); }
+.graph { height: 118px; margin: 0 var(--stripR, 0) 0 var(--stripL, 0); }
 .graph svg { display: block; overflow: visible; }
 .graph .guide { stroke: #1f1f1e; stroke-dasharray: 1 3; }
 .graph .terrain { fill: #2a2a29; }
@@ -31,6 +31,11 @@ canvas { display: block; width: 100%; cursor: default; touch-action: manipulatio
 .graph .dot { fill: var(--ink); }
 .graph .x { stroke: var(--ink); stroke-width: 1.4; }
 .graph .strip { stroke: #161615; }
+.graph .lab { font: 10px var(--mono); fill: var(--dim); }
+.graph .lab.left { text-anchor: end; }
+.graph .lab.hot { fill: var(--ink); font-weight: 700; }
+.graph .lab.slope { text-anchor: middle; font-size: 9px; fill: #8a8a86; }
+.graph .lab.bat { fill: var(--ink); }
 
 /* The cards: one column per strip of the map. A numbered back until seen; symbol + word once seen. */
 .cards { display: grid; grid-template-columns: repeat(var(--n, 8), minmax(0, 1fr)); gap: 4px; margin: 0 var(--stripR, 0) 0 var(--stripL, 0); user-select: none; perspective: 600px; }

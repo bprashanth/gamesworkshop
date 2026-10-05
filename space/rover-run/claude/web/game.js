@@ -91,16 +91,17 @@ function paintGraph() {
   const firstRow = [...cardsEl.querySelectorAll('.card[data-suit="slope"]')];
   const cols = firstRow.map(el => { const r = el.getBoundingClientRect(); return r.left - box.left + r.width / 2; });
   if (!cols.length) return;
-  const colW = cols.length > 1 ? cols[1] - cols[0] : W, half = colW / 2, top = 6, bottom = H - 6;
+  const colW = cols.length > 1 ? cols[1] - cols[0] : W, half = colW / 2, top = 10, bottom = H - 4;
   const maxB = Math.max(10, ...run.log.map(l => l.to), run.battery);
-  const by = b => bottom - (Math.max(0, b) / maxB) * (bottom - top), ly = lv => bottom - 6 - lv * (bottom - top - 12) / 2;
+  const by = b => bottom - (Math.max(0, b) / maxB) * (bottom - top), base = bottom - 32, ly = lv => base - lv * (base - top) / 2;  // levels sit above the slope band
   let svg = '';
   for (let c = 1; c < N; c++) svg += `<line x1="${cols[c] - half}" x2="${cols[c] - half}" y1="${top}" y2="${bottom}" class="strip"/>`;
   for (const lv of [0, 1, 2]) svg += `<line x1="0" x2="${W}" y1="${ly(lv)}" y2="${ly(lv)}" class="guide"/>`;
   // slope: the ground's profile, a filled band, one step per seen square
   for (let c = 0; c < N; c++) if (shown[c]?.includes('slope')) {
-    const lv = SUITS[0].levels.indexOf(deck[c].slope), h = 6 + lv * 9;
+    const lv = SUITS[0].levels.indexOf(deck[c].slope), h = 9 + lv * 8;
     svg += `<rect x="${cols[c] - half + 1}" y="${bottom - h}" width="${colW - 2}" height="${h}" class="terrain"/>`;
+    svg += `<text x="${cols[c]}" y="${bottom - 2}" class="lab slope">${word(deck[c].slope)}</text>`;
   }
   // ground (dotted, ●) and dust (dashed, ×): only cards you have seen; gaps where you didn't look
   [[1, '1.5 3', 'dot'], [2, '5 3', 'x']].forEach(([k, dash, mark]) => {
@@ -112,13 +113,16 @@ function paintGraph() {
       if (prev) svg += `<line x1="${prev[0]}" y1="${prev[1]}" x2="${x}" y2="${y}" stroke-dasharray="${dash}" class="trace"/>`;
       const big = deadly(s.name, v) ? 4.5 : 3;
       svg += mark === 'dot' ? `<circle cx="${x}" cy="${y}" r="${big - 0.6}" class="dot"/>` : `<path d="M${x - big} ${y - big} l${2 * big} ${2 * big} M${x + big} ${y - big} l${-2 * big} ${2 * big}" class="x"/>`;
+      // name the point: ground to the left of its ●, dust to the right of its ×
+      if (s.levels.indexOf(v) > 0) svg += `<text x="${x + (k === 1 ? -7 : 7)}" y="${y + 3.5}" class="lab ${k === 1 ? 'left' : ''} ${deadly(s.name, v) ? 'hot' : ''}">${word(v)}</text>`;
       prev = [x, y];
     }
   });
   // battery: always known, from the start of the run to now
   const pts = [[cols[0] - half, by(rules.battery)], ...run.log.map(l => [l.action === 'recharge' ? (l.pos ? cols[l.pos - 1] + half * 0.6 : cols[0] - half * 0.6) : cols[l.pos] + half * 0.6, by(l.to)])];
   if (pts.length > 1) svg += `<polyline points="${pts.map(p => p.join(',')).join(' ')}" class="bat"/>`;
-  svg += `<circle cx="${pts[pts.length - 1][0]}" cy="${pts[pts.length - 1][1]}" r="2.6" class="dot"/>`;
+  const [bx, byy] = pts[pts.length - 1];
+  svg += `<circle cx="${bx}" cy="${byy}" r="2.6" class="dot"/><text x="${bx + 6}" y="${byy - 5}" class="lab bat">${run.battery}</text>`;
   graphEl.innerHTML = `<svg width="${W}" height="${H}">${svg}</svg>`;
   document.getElementById('batnow').textContent = run.battery;
 }

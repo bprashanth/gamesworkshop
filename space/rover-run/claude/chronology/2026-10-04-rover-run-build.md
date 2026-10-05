@@ -216,3 +216,7 @@ dot/dash variation) so players see correlations.
   move. Every new game flips all cards face down first (CSS rotateY).
 - **Bug fixed** (since v1.4, also patched in the frozen `/v1.4/`): the driven route wasn't drawn
   white because the map still read the old `l.move` field after recharge became a turn.
+- v1.5.1: graph points are named. Ground warnings and hazards are labelled left of their ● (soft,
+  **SAND**), dust right of its × (haze, **STORM**); hazard words are bright. Slope is named inside
+  its terrain band, and battery shows its current value. The three levels sit above the band;
+  firm/clear points stay unlabelled so the warnings stand out.
