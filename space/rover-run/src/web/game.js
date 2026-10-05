@@ -47,7 +47,7 @@ const looks = () => 2;                                       // Hard: cards of t
 const AHEAD = ['slope', 'ground', 'dust'];                   // Medium: shown ahead; battery is the hidden variable
 const easy = () => memory.level === 'easy';
 let mode = 'intro', run = newRun(deck, rules), clock = 0, anim = null, effect = null, replay = null;
-let shown = {}, pickCol = null, lastAt = 0, introStart = 0, queued = null;
+let shown = {}, pickCol = null, lastAt = 0, introStart = 0, queued = [];   // keys typed during an animation, in order
 let selected = null, before = new Set(), fatal = null, hoverCol = null;   // card matching, the death card, the hovered column
 
 // ---------- suits: three levels each ----------
@@ -151,6 +151,14 @@ function paintGraph() {
   svg += `<circle cx="${bx}" cy="${byy}" r="2.6" class="dot"/>`;
   graphEl.innerHTML = `<svg width="${W}" height="${H}">${svg}</svg>`;
   document.getElementById('batnow').textContent = run.battery;  // full / dead
+  paintLives();
+}
+// top bar: lives, and the rover's own battery (the token a table would keep), apart from any square's card
+function paintLives() {
+  const el = document.getElementById('lives'); if (!el) return;
+  const html = `<span class="hearts">${'♥'.repeat(run.lives)}<i>${'♥'.repeat(Math.max(0, (rules.lives ?? 3) - run.lives))}</i></span>`
+    + `<span class="mybat ${run.battery}" title="your rover's battery">${SYMBOLS.battery[run.battery]}your battery ${run.battery}</span>`;
+  if (el.innerHTML !== html) el.innerHTML = html;
 }
 
 // ---------- one typed line: what to do now ----------
@@ -160,7 +168,7 @@ function sayFor() {
   const left = run.turns - run.turn;
   if (mode === 'intro') return 'press play to start';
   if (mode === 'pick') { const n = looks() - (shown[pickCol]?.length ?? 0); return `look ahead: click ${n} card${n === 1 ? '' : 's'} of square ${pickCol + 1} before you decide`; }
-  if (mode === 'play') return `choose go, avoid or recharge · ${left} turn${left === 1 ? '' : 's'} left · ${'♥'.repeat(run.lives)}`;
+  if (mode === 'play') return `choose go, avoid or recharge · ${left} turn${left === 1 ? '' : 's'} left`;
   const why = { finish: 'the rover made it across', sand: 'the rover ran into a sand trap', storm: 'the rover drove into a storm', battery: 'the battery ran out', time: 'the rover ran out of turns' };
   if (mode === 'dead' && !run.end) { const d = run.log[run.log.length - 1]?.died; return `${why[d]} · ${run.lives} ${run.lives === 1 ? 'life' : 'lives'} left`; }
   if (mode === 'over' || mode === 'dead' || mode === 'replay') return why[run.end] ?? sayText;
@@ -282,7 +290,7 @@ function stepAnim() {
   if (run.log[run.log.length - 1]?.died) return loseLife();
   lookAhead();                                          // the attention budget: which card of the next square?
   paintCards();
-  const k = queued; queued = null; if (k) input(k);
+  const k = queued.shift(); if (k) input(k);            // the rest wait for the next animation to end
 }
 function look(suit) {
   if (mode !== 'pick' || shown[pickCol]?.includes(suit)) return;
@@ -305,6 +313,7 @@ function lookAhead() {
 }
 // a death with lives left: the death screen, then the rover is back on the square before
 function loseLife() {
+  queued = [];                                          // keys typed before the death don't carry over
   const frozen = frame(), { width, height } = screen.canvas.getBoundingClientRect(), d = run.log[run.log.length - 1].died;
   effect = { f: (d === 'storm' || d === 'sand') ? fx.storm(frozen, width, height) : fx.battery(frozen, width, height), t0: clock, resume: true };
   mode = 'dead'; paintCards();
@@ -317,6 +326,7 @@ function fatalCard(r) {
 }
 // ---------- end of a run ----------
 function finishRun() {
+  queued = [];
   memory.runs.push({ sol, log: run.log, end: run.end, score: run.score, at: Date.now() });
   save(); paintCards();
   if (run.end === 'finish') return startReplay();
@@ -393,7 +403,7 @@ function newGame() {
 }
 const canNewSol = () => sol < sols.length - 1 && solRuns().some(r => r.end === 'finish');
 function input(k) {
-  if (mode === 'anim') { queued = k; return; }
+  if (mode === 'anim') { queued.push(k); return; }
   if ((mode === 'intro' || mode === 'over') && ['p', 'start', 'again', 'enter'].includes(k)) return newGame();
   if (mode === 'over' && ['n', 'nextsol'].includes(k) && canNewSol()) { sol++; deck = sols[sol]; window.rover.deck = deck; return newGame(); }
   if (mode === 'pick') { const s = SUITS.find((x, i) => k === x.name || k === String(i + 1)); if (s) look(s.name); return; }
