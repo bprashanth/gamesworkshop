@@ -55,6 +55,8 @@ The game is built to teach the core moves of data science to people who don't us
 
 ## Also in this repo
 
+- **[Servers](servers/README.md):** Rover Run retold for running an online service: scale up your
+  servers or spend the month on marketing? Same indicator lessons, one for one. `python3 servers/serve.py` (port 8672).
 - **[Space anchor films](space/README.md):** short Mars and Moon films that set up Rover Run's
   narrative ([handoff](narrative/SPACE_ANCHORS.md)). The films live on the workshop machine, not in git.
 - **[Crew](crew/README.md)**, **[Fieldwork](fieldwork/README.md)**, **[Idlisseus](idlisseus/):**

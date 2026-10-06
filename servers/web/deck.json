@@ -1,0 +1,95 @@
+{
+ "name": "Servers \u00b7 14 months",
+ "rules": {
+  "spareTurns": 8,
+  "finishBonus": 3,
+  "lives": 3
+ },
+ "notes": "Illustrative, authored deck: the same laws as Rover Run. Users GONE only after a month of few users, never into a flood; servers BURNING only after a warm month and only with real traffic (chatter or flood); funds empty in the month after each hazard.",
+ "months": [
+  {
+   "queries": "whisper",
+   "users": "many",
+   "servers": "warm",
+   "funds": "full"
+  },
+  {
+   "queries": "chatter",
+   "users": "few",
+   "servers": "cool",
+   "funds": "full"
+  },
+  {
+   "queries": "chatter",
+   "users": "gone",
+   "servers": "warm",
+   "funds": "full"
+  },
+  {
+   "queries": "flood",
+   "users": "few",
+   "servers": "burning",
+   "funds": "empty"
+  },
+  {
+   "queries": "flood",
+   "users": "many",
+   "servers": "warm",
+   "funds": "empty"
+  },
+  {
+   "queries": "whisper",
+   "users": "few",
+   "servers": "cool",
+   "funds": "full"
+  },
+  {
+   "queries": "chatter",
+   "users": "gone",
+   "servers": "warm",
+   "funds": "full"
+  },
+  {
+   "queries": "flood",
+   "users": "few",
+   "servers": "burning",
+   "funds": "empty"
+  },
+  {
+   "queries": "flood",
+   "users": "many",
+   "servers": "warm",
+   "funds": "empty"
+  },
+  {
+   "queries": "whisper",
+   "users": "few",
+   "servers": "cool",
+   "funds": "full"
+  },
+  {
+   "queries": "whisper",
+   "users": "gone",
+   "servers": "cool",
+   "funds": "full"
+  },
+  {
+   "queries": "chatter",
+   "users": "few",
+   "servers": "warm",
+   "funds": "empty"
+  },
+  {
+   "queries": "flood",
+   "users": "many",
+   "servers": "burning",
+   "funds": "full"
+  },
+  {
+   "queries": "chatter",
+   "users": "many",
+   "servers": "cool",
+   "funds": "empty"
+  }
+ ]
+}
