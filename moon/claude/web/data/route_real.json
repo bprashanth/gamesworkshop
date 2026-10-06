@@ -1,0 +1,227 @@
+{
+ "note": "Measured along the authored route: light (share of time in sunlight) and slope. Buckets below.",
+ "buckets": {
+  "light": {
+   "sun_from_pct": 50.0,
+   "dark_below_pct": 14.0
+  },
+  "slope_deg": {
+   "flat_below": 4.0,
+   "steep_from": 10.0
+  }
+ },
+ "waypoints_m": [
+  [
+   19750,
+   -23840
+  ],
+  [
+   10990,
+   -25200
+  ],
+  [
+   2310,
+   -23410
+  ],
+  [
+   -6550,
+   -23160
+  ]
+ ],
+ "start_latlon": [
+  -88.973,
+  140.6
+ ],
+ "end_latlon": [
+  -89.215,
+  195.9
+ ],
+ "rows": [
+  {
+   "square": 1,
+   "vis": 6134,
+   "sun_pct": 61,
+   "slope_deg": 12.1,
+   "light": "sun",
+   "slope": "steep",
+   "elev_m": 228,
+   "km": [
+    0.0,
+    2.0
+   ]
+  },
+  {
+   "square": 2,
+   "vis": 3582,
+   "sun_pct": 36,
+   "slope_deg": 11.5,
+   "light": "shade",
+   "slope": "steep",
+   "elev_m": -103,
+   "km": [
+    2.0,
+    3.9
+   ]
+  },
+  {
+   "square": 3,
+   "vis": 955,
+   "sun_pct": 10,
+   "slope_deg": 2.5,
+   "light": "dark",
+   "slope": "flat",
+   "elev_m": -255,
+   "km": [
+    3.9,
+    5.9
+   ]
+  },
+  {
+   "square": 4,
+   "vis": 1753,
+   "sun_pct": 18,
+   "slope_deg": 3.7,
+   "light": "shade",
+   "slope": "flat",
+   "elev_m": -195,
+   "km": [
+    5.9,
+    7.8
+   ]
+  },
+  {
+   "square": 5,
+   "vis": 3911,
+   "sun_pct": 39,
+   "slope_deg": 4.8,
+   "light": "shade",
+   "slope": "slope",
+   "elev_m": -89,
+   "km": [
+    7.8,
+    10.0
+   ]
+  },
+  {
+   "square": 6,
+   "vis": 4455,
+   "sun_pct": 45,
+   "slope_deg": 7.7,
+   "light": "shade",
+   "slope": "slope",
+   "elev_m": 109,
+   "km": [
+    10.0,
+    11.9
+   ]
+  },
+  {
+   "square": 7,
+   "vis": 7981,
+   "sun_pct": 80,
+   "slope_deg": 6.6,
+   "light": "sun",
+   "slope": "slope",
+   "elev_m": 338,
+   "km": [
+    11.9,
+    13.9
+   ]
+  },
+  {
+   "square": 8,
+   "vis": 7606,
+   "sun_pct": 76,
+   "slope_deg": 6.8,
+   "light": "sun",
+   "slope": "slope",
+   "elev_m": 265,
+   "km": [
+    13.9,
+    15.9
+   ]
+  },
+  {
+   "square": 9,
+   "vis": 4494,
+   "sun_pct": 45,
+   "slope_deg": 2.8,
+   "light": "shade",
+   "slope": "flat",
+   "elev_m": 123,
+   "km": [
+    15.9,
+    17.8
+   ]
+  },
+  {
+   "square": 10,
+   "vis": 1462,
+   "sun_pct": 15,
+   "slope_deg": 2.9,
+   "light": "shade",
+   "slope": "flat",
+   "elev_m": 93,
+   "km": [
+    17.9,
+    19.8
+   ]
+  },
+  {
+   "square": 11,
+   "vis": 4246,
+   "sun_pct": 42,
+   "slope_deg": 2.1,
+   "light": "shade",
+   "slope": "flat",
+   "elev_m": 82,
+   "km": [
+    19.9,
+    21.8
+   ]
+  },
+  {
+   "square": 12,
+   "vis": 4761,
+   "sun_pct": 48,
+   "slope_deg": 3.0,
+   "light": "shade",
+   "slope": "flat",
+   "elev_m": -1,
+   "km": [
+    21.8,
+    23.8
+   ]
+  },
+  {
+   "square": 13,
+   "vis": 7437,
+   "sun_pct": 74,
+   "slope_deg": 7.3,
+   "light": "sun",
+   "slope": "slope",
+   "elev_m": 68,
+   "km": [
+    23.8,
+    25.8
+   ]
+  },
+  {
+   "square": 14,
+   "vis": 7594,
+   "sun_pct": 76,
+   "slope_deg": 8.9,
+   "light": "sun",
+   "slope": "slope",
+   "elev_m": 179,
+   "km": [
+    25.8,
+    27.7
+   ]
+  }
+ ],
+ "sha256": {
+  "LDEM_80S_80MPP_ADJ.TIF": "82030dcbdd7c4bb0c7d858e9b4b293b9f2cda5a543ba31ec0f42784bd6beee5a",
+  "AVGVISIB_85S_060M_201608.TIF": "ccf67d4f39e0a970c111196da7d6551ffcf50d075470b93067fb3904c0b05806"
+ }
+}

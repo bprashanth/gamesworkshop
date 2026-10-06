@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARCHIVE · Moon Run</title>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="moon.css"><link rel="stylesheet" href="pages.css">
+<style>
+  .top { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 20px; align-items: start; }
+  .count { font-size: 14px; min-height: 2.6em; line-height: 1.5; }
+  .count b { font-weight: 400; color: var(--ink); }
+  .laws { border: 1px dashed #5a5a58; border-radius: 3px; padding: 8px 12px; font-size: 12px; margin: 8px 0; }
+  .laws[hidden] { display: none; }
+  .hists .hist { cursor: default; }
+  .hist .card.up { cursor: pointer; }
+  .hist.mini .card i { display: block; font-size: 7.5px; }
+  .hist.mini { --cw: 44px; } .hist.mini .card { height: 38px; } .hist.mini .card .sym { width: 30px; height: 19px; }
+  .hist.mini .card i { font-size: 8.5px !important; }
+  .lawtag { font-size: 10px; color: #f2d36b; }
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="bar"><h1 id="place">ARCHIVE: south pole, Moon</h1>
+    <span class="controls"><button class="b" id="lawsBtn" title="facilitator only (L)">Laws</button></span>
+    <nav><a href="stage.html">Stage</a><a href="archive.html" class="on">Archive</a><a href="rules.html">Rules</a><a href="model.html">Model</a><a href="index.html">Board</a><a href="sudden.html">Sudden death</a></nav>
+  </header>
+  <div class="top">
+    <div>
+      <p class="q"><b id="nobs"></b> Click any card: every card like it lights up, and the observation after each is outlined.</p>
+      <div class="count" id="count"></div>
+      <div class="laws" id="laws" hidden></div>
+    </div>
+    <div id="key" class="side"></div>
+  </div>
+  <div class="hists" id="hists"></div>
+</main>
+<script type="module">
+import { load, $, strip, keyTable, outWord } from './ui.js';
+import { LAWS, lawOutcome, OUTCOME_WORD, VARS } from './moon.js';
+const data = await load('data/archive.json'), A = data.histories;
+const n = A.reduce((s, h) => s + h.obs.length, 0), fails = A.flatMap(h => h.obs.filter(o => o.outcome).map(o => o.outcome));
+$('#nobs').textContent = `${A.length} short histories, ${n} observations, ${fails.length} failures.`;
+$('#key').innerHTML = keyTable();
+let sel = null, laws = new URLSearchParams(location.search).has('laws');
+function paint() {
+  $('#hists').innerHTML = A.map((h, i) => strip(h, { sub: laws ? `<span class="lawtag">${h.kind}${h.luck.length ? ' (lucky)' : ''}</span>` : '', mark: (t, k) => {
+    if (!sel) return '';
+    const o = h.obs[t], v = k === 'outcome' ? (o.outcome ?? 'safe') : o[k];
+    if (k === sel.k && v === sel.v) return 'lit';
+    if (k === 'outcome' && t > 0) { const p = h.obs[t - 1]; if ((sel.k === 'outcome' ? (p.outcome ?? 'safe') : p[sel.k]) === sel.v) return 'after'; }
+    return 'dimmed';
+  } }).replace('class="hist"', 'class="hist mini"')).join('');
+  $('#hists').querySelectorAll('.card.up').forEach(c => c.onclick = () => {
+    const k = c.dataset.key, v = c.dataset.v;
+    sel = sel && sel.k === k && sel.v === v ? null : { k, v }; paint(); paintCount();
+  });
+  paintLaws();
+}
+// x of n: how often the next observation was a failure, after this card
+function paintCount() {
+  if (!sel || sel.k === 'outcome') { $('#count').innerHTML = ''; return; }
+  let seen = 0, next = 0; const by = {};
+  for (const h of A) h.obs.forEach((o, t) => { if (o[sel.k] !== sel.v || o.outcome || t === h.obs.length - 1) return; seen++; const f = h.obs[t + 1].outcome; if (f) { next++; by[f] = (by[f] ?? 0) + 1; } });
+  const name = VARS.find(v => v.key === sel.k).name;
+  $('#count').innerHTML = `${name} <b>${sel.v}</b>: seen <b>${seen}</b> times before another observation · the next one failed <b>${next} of ${seen}</b>${next ? ' (' + Object.entries(by).map(([k, c]) => `${OUTCOME_WORD[k]} ${c}`).join(', ') + ')' : ''}`;
+}
+function paintLaws() {
+  $('#laws').hidden = !laws; $('#lawsBtn').classList.toggle('on', laws);
+  if (!laws) return;
+  const kinds = {}; for (const h of A) kinds[h.kind] = (kinds[h.kind] ?? 0) + 1;
+  const bal = { power: 0, frozen: 0, stuck: 0 }; fails.forEach(f => bal[f]++);
+  const fired = { power: 0, frozen: 0, stuck: 0 }; for (const h of A) h.obs.forEach((o, t) => { for (const k in LAWS) if (!o.outcome && LAWS[k](h.obs, t)) fired[k]++; });
+  $('#laws').innerHTML = `<b>Hidden laws</b> (facilitator only). Each reads one observation and decides the next.<br>
+    POWER LOSS: shade or dark 3 observations running, unless the ground at the third is firm · FROZEN: dark WITH cold · STUCK: loose WITH steep.<br>
+    Battery: low after 2 non-sun observations; dead at a power loss (a late measurement).<br>
+    Balance: ${Object.entries(bal).map(([k, v]) => `${OUTCOME_WORD[k]} ${v}`).join(' · ')} · safe histories ${A.length - fails.length} · laws fired ${Object.entries(fired).map(([k, v]) => `${k} ${v}`).join(', ')} (2 lucky escapes)<br>
+    Histories by template: ${Object.entries(kinds).map(([k, v]) => `${k} ${v}`).join(' · ')}. <span class="dim">${data.note}</span>`;
+}
+$('#lawsBtn').onclick = () => { laws = !laws; paint(); };
+addEventListener('keydown', e => { if (e.key === 'l' || e.key === 'L') $('#lawsBtn').click(); });
+paint();
+</script>
+</body>
+</html>

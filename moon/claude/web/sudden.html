@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SUDDEN DEATH · Moon Run</title>
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="moon.css"><link rel="stylesheet" href="pages.css">
+<style>
+  .stagebox { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 30px; margin-top: 14px; }
+  .case .hist { --cw: 74px; } .case .hist .card { height: 60px; } .case .hist .card .sym { width: 46px; height: 30px; } .case .hist .card i { font-size: 11px; }
+  .case .strip-l { font-size: 12px; } .case .strip-g { grid-template-columns: 110px repeat(var(--n), var(--cw)); }
+  .rule { font-size: 13px; color: var(--dim); margin: 14px 0; line-height: 1.6; }
+  .rule b { color: var(--ink); font-weight: 400; }
+  .team { display: grid; grid-template-columns: 54px 1fr; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid #1c1c1b; }
+  .team .name { font-size: 22px; } .team.out { opacity: .3; } .team.out .name { text-decoration: line-through; }
+  .team .pick { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .team .model { font-size: 11px; color: var(--dim); width: 100%; }
+  .team .verdictline { font-size: 12px; }
+  .ok { color: #9bd39b; } .bad { color: #e07a5f; }
+  .count { font-size: 13px; color: var(--dim); }
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="bar"><h1 id="place">SUDDEN DEATH: south pole, Moon</h1><span class="controls"><button class="b" id="reveal">Reveal</button><button class="b" id="next" disabled>Next case</button><button class="b" id="restart">Restart</button></span>
+    <nav><a href="stage.html">Stage</a><a href="archive.html">Archive</a><a href="rules.html">Rules</a><a href="model.html">Model</a><a href="index.html">Board</a><a href="sudden.html" class="on">Sudden death</a></nav>
+  </header>
+  <p class="rule"><b>Finale rule, deliberately harsh:</b> GO on a square that fails, or NO GO on a square that was safe, and you are out. Both misses and false alarms count now.</p>
+  <div class="stagebox">
+    <div class="case"><p class="count" id="count"></p><div id="case"></div></div>
+    <div id="teams"></div>
+  </div>
+</main>
+<script type="module">
+import { load, $, strip, api, TEAMS, outWord } from './ui.js';
+import { decide, OUTCOME_WORD } from './moon.js';
+const cases = (await load('data/sudden.json')).cases;
+const st = await api.state();
+const teams = [...new Set([...TEAMS, ...Object.keys(st.models)])].sort();
+const KEY = 'moon-run.claude.sudden';
+let s = { i: 0, picks: {}, out: [], revealed: false };
+try { s = { ...s, ...JSON.parse(localStorage.getItem(KEY) || '{}') }; } catch {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch {} };
+function paint() {
+  const c = cases[s.i];
+  $('#count').textContent = `case ${s.i + 1} of ${cases.length} · ${teams.length - s.out.length} still in`;
+  const h = { id: c.id, obs: [...c.recent, { ...c.recent[c.recent.length - 1], outcome: c.next === 'safe' ? null : c.next }] };
+  $('#case').innerHTML = strip(h, { sub: 'the most recent observations, then the square ahead', hidden: (t, k) => t === c.recent.length && (k !== 'outcome' || !s.revealed), mark: (t, k) => t === c.recent.length && k === 'outcome' && !s.revealed ? 'next' : '' });
+  $('#teams').innerHTML = teams.map(t => {
+    const out = s.out.includes(t), p = s.picks[t], m = st.models[t];
+    const said = m ? decide(m.rules, c.recent, c.recent.length - 1).action : null;
+    const right = s.revealed && p && ((p === 'go') === (c.next === 'safe'));
+    return `<div class="team ${out && !(s.revealed && s.lost?.includes(t)) ? 'out' : ''}"><span class="name">${t}</span><div class="pick">
+      ${out && !(s.revealed && s.lost?.includes(t)) ? '<span class="dim">out</span>' : `<button class="b go ${p === 'go' ? 'on' : ''}" data-t="${t}" data-p="go">GO</button><button class="b no ${p === 'nogo' ? 'on' : ''}" data-t="${t}" data-p="nogo">NO GO</button>
+      ${s.revealed && p ? `<span class="verdictline ${right ? 'ok' : 'bad'}">${right ? 'through' : s.allOut ? 'missed' : 'eliminated'}</span>` : ''}`}
+      ${m && s.revealed ? `<span class="model">model ${t} said ${said === 'ask' ? 'ASK YOU' : said === 'nogo' ? 'NO GO' : 'GO'}</span>` : ''}</div></div>`;
+  }).join('') + (s.revealed && s.allOut ? '<p class="rule"><b>Everyone missed:</b> nobody goes out this time.</p>' : '') + (s.revealed ? `<p class="rule">It was <b>${c.next === 'safe' ? 'safe' : OUTCOME_WORD[c.next]}</b>: ${c.why}.</p>` : '');
+  $('#teams').querySelectorAll('[data-p]').forEach(b => b.onclick = () => { if (s.revealed) return; s.picks[b.dataset.t] = b.dataset.p; save(); paint(); });
+  $('#reveal').disabled = s.revealed; $('#next').disabled = !s.revealed || s.i >= cases.length - 1 || teams.length - s.out.length <= 1;
+}
+$('#reveal').onclick = () => {
+  const c = cases[s.i]; s.lost = []; s.allOut = false;
+  for (const t of teams) if (!s.out.includes(t)) { const p = s.picks[t]; if (!p || (p === 'go') !== (c.next === 'safe')) { s.out.push(t); s.lost.push(t); } }
+  if (s.out.length === teams.length) { s.out = s.out.filter(t => !s.lost.includes(t)); s.allOut = true; }   // everyone missed: nobody goes out
+  s.revealed = true; save(); paint();
+  api.post('run', { kind: 'sudden', case: c.id, picks: s.picks, out: s.out });
+};
+$('#next').onclick = () => { s.i++; s.picks = {}; s.revealed = false; s.lost = []; save(); paint(); };
+$('#restart').onclick = () => { s = { i: 0, picks: {}, out: [], revealed: false }; save(); paint(); };
+window.moonSudden = { pick: (t, p) => { s.picks[t] = p; paint(); }, reveal: () => $('#reveal').click(), next: () => $('#next').click() };
+paint();
+</script>
+</body>
+</html>
