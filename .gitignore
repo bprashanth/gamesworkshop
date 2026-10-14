@@ -280,3 +280,6 @@ space/rover-run/src/mocks/
 space/rover-run/src/media/
 space/rover-run/src/tools/*2.mjs
 space/rover-run/src/tools/rows.json
+
+# Generated competitive stage, assembled by the Netlify build.
+/space/rover-run/src/web/paperweights/
