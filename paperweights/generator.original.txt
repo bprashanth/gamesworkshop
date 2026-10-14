@@ -1,0 +1,138 @@
+---
+
+### Complete Working Python Code (Verified Zero Dead-Ends & 1 Page Per Sheet)
+
+If you want to run the script directly yourself without waiting for the agent to write it, save and run this file (`generate_ben_swift_sheets.py`):
+
+```python
+#!/usr/bin/env python3
+import re
+import random
+import argparse
+from collections import Counter
+from weasyprint import HTML
+
+# Every single unique word in this corpus appears >= 2 times in different contexts!
+CLOSED_CORPUS = """
+the old man sat in a skiff in the cold , dark sea .
+the boy saw the old man in a skiff and said , why did you go out in the dark night ?
+the old man said , I went out to see the flat sea and the steep wave !
+I went to see a pale blue eye in the flat sea and the dark night !
+the pale blue eye looked at the boy in the house and the boy went cold .
+why did you say that I am mad ?
+why did you say that I saw the pale blue eye ?
+I saw that I am mad , and the cat in the hat sat in the cold house .
+the sun did not shine , so the cat in the hat sat in the dark house .
+the sun did not shine and it was too wet to go out , so the boy looked at the steep wave and said that it was too wet !
+"""
+
+# Fill color for Left Box (w1) and matching Font color for Right Word (w2)
+COLORS = [
+    {"name": "RED",    "fill": "#dc2626", "font": "#ef4444"},
+    {"name": "BLUE",   "fill": "#2563eb", "font": "#3b82f6"},
+    {"name": "AMBER",  "fill": "#d97706", "font": "#f59e0b"},
+    {"name": "GREEN",  "fill": "#16a34a", "font": "#22c55e"},
+    {"name": "PURPLE", "fill": "#7c3aed", "font": "#a855f7"},
+    {"name": "PINK",   "fill": "#db2777", "font": "#ec4899"},
+]
+
+def build_deck(num_sheets=12, pairs_per_sheet=24, seed=42):
+    random.seed(seed)
+    raw_tokens = re.findall(r"\w+|[.,!?]", CLOSED_CORPUS)
+    tokens = [t if t == "I" else t.lower() for t in raw_tokens]
+    
+    # Close the loop so the last token transitions into the first token
+    tokens.append(tokens[0])
+    base_pairs = [(tokens[i], tokens[i+1]) for i in range(len(tokens) - 1)]
+
+    # Deterministic color assignment per unique token
+    vocab = sorted(list(set(tokens)))
+    word_color = {w: COLORS[i % len(COLORS)] for i, w in enumerate(vocab)}
+
+    total_needed = num_sheets * pairs_per_sheet
+    full_copies = max(2, (total_needed // len(base_pairs)) + 1)
+    pool = base_pairs * full_copies
+    random.shuffle(pool)
+    selected_pairs = pool[:total_needed]
+
+    # Verify zero dead-ends across the selected deck
+    left_counts = Counter(p[0] for p in selected_pairs)
+    right_words = set(p[1] for p in selected_pairs)
+    for w in right_words:
+        assert left_counts[w] >= 2, f"Dead end for '{w}': only {left_counts[w]} on left"
+
+    color_rank = {c["name"]: i for i, c in enumerate(COLORS)}
+    sheets = []
+    for s in range(num_sheets):
+        chunk = selected_pairs[s * pairs_per_sheet : (s + 1) * pairs_per_sheet]
+        # Group by Left Box Color so the human can scan in 1 second
+        chunk.sort(key=lambda p: (color_rank[word_color[p[0]]["name"]], p[0]))
+        sheets.append(chunk)
+
+    return sheets, word_color
+
+def render_pdf(num_sheets=12, output_path="ben_swift_sheets.pdf"):
+    sheets, word_color = build_deck(num_sheets=num_sheets)
+    pages_html = []
+
+    for idx, sheet in enumerate(sheets):
+        cards = []
+        for w1, w2 in sheet:
+            c1 = word_color[w1]
+            c2 = word_color[w2]
+            cards.append(f"""
+            <div class="card">
+              <div class="left-box" style="background:{c1['fill']};">
+                <span class="box-tag">{c1['name']}</span>
+                <span class="w1">{w1}</span>
+              </div>
+              <div class="arrow">→</div>
+              <div class="right-box">
+                <span class="w2" style="color:{c2['font']};">{w2}</span>
+                <span class="font-tag" style="color:{c2['font']};">({c2['name']})</span>
+              </div>
+            </div>
+            """)
+
+        pages_html.append(f"""
+        <div class="sheet">
+          <div class="header">
+            <div>
+              <div class="h-title">TELEMETRY LOG // PAPER WEIGHTS</div>
+              <div class="h-sub">1. Match called <b>BOX COLOR + WORD</b> on left. 2. Raise hand! 3. Call out <b>RIGHT WORD + ITS FONT COLOR</b>.</div>
+            </div>
+            <div class="badge">SHEET #{idx+1:03d}</div>
+          </div>
+          <div class="grid">{"".join(cards)}</div>
+        </div>
+        """)
+
+    html = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+      @page {{ size: A4 portrait; margin: 10mm; }}
+      body {{ font-family: 'Courier New', monospace; background: #090d16; color: #f8fafc; margin: 0; }}
+      .sheet {{ page-break-after: always; background: #090d16; border: 2px solid #334155; border-radius: 6px; padding: 8px 10px; box-sizing: border-box; }}
+      .sheet:last-child {{ page-break-after: auto; }}
+      .header {{ display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #334155; padding-bottom: 6px; margin-bottom: 8px; }}
+      .h-title {{ font-size: 13px; font-weight: bold; color: #f8fafc; }}
+      .h-sub {{ font-family: sans-serif; font-size: 9px; color: #94a3b8; margin-top: 2px; }}
+      .badge {{ background: #1e293b; border: 1px solid #475569; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; color: #38bdf8; }}
+      .grid {{ display: flex; flex-wrap: wrap; justify-content: space-between; row-gap: 5px; }}
+      .card {{ width: 49%; background: #111827; border: 1px solid #1f2937; border-radius: 5px; padding: 4px 6px; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; height: 34px; }}
+      .left-box {{ width: 45%; height: 26px; border-radius: 4px; display: flex; align-items: center; justify-content: space-between; padding: 0 7px; box-sizing: border-box; }}
+      .box-tag {{ font-family: sans-serif; font-size: 7px; font-weight: 900; color: rgba(255,255,255,0.85); }}
+      .w1 {{ font-size: 14px; font-weight: 900; color: #ffffff; }}
+      .arrow {{ width: 8%; text-align: center; font-size: 14px; color: #64748b; font-weight: bold; }}
+      .right-box {{ width: 45%; height: 26px; background: #0f172a; border: 1px solid #1e293b; border-radius: 4px; display: flex; align-items: center; justify-content: space-between; padding: 0 7px; box-sizing: border-box; }}
+      .w2 {{ font-size: 15px; font-weight: 900; }}
+      .font-tag {{ font-family: sans-serif; font-size: 7.5px; font-weight: 800; }}
+    </style></head><body>{"".join(pages_html)}</body></html>"""
+
+    HTML(string=html).write_pdf(output_path)
+    print(f"Generated {output_path} ({num_sheets} pages, 0 dead-ends).")
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--sheets", type=int, default=12)
+    parser.add_argument("--output", type=str, default="ben_swift_12_sheets.pdf")
+    args = parser.parse_args()
+    render_pdf(num_sheets=args.sheets, output_path=args.output)

@@ -1,0 +1,20 @@
+[
+  {
+    "packId": "PW1-374-15-8dac60b141",
+    "sheetCount": 15,
+    "seed": 374,
+    "url": "packs/PW1-374-15-8dac60b141.json"
+  },
+  {
+    "packId": "PW1-374-100-95db2b2ab6",
+    "sheetCount": 100,
+    "seed": 374,
+    "url": "packs/PW1-374-100-95db2b2ab6.json"
+  },
+  {
+    "packId": "PW1-374-200-f0f8f62022",
+    "sheetCount": 200,
+    "seed": 374,
+    "url": "packs/PW1-374-200-f0f8f62022.json"
+  }
+]

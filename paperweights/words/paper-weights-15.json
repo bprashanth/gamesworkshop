@@ -1,0 +1,2283 @@
+{
+  "kind": "Paper Weights",
+  "seed": 42,
+  "sheet_count": 15,
+  "pairs_per_sheet": 24,
+  "corpus_tokens": 176,
+  "vocabulary": 51,
+  "colors": {
+    "!": {
+      "name": "RED",
+      "fill": "#dc2626"
+    },
+    ",": {
+      "name": "BLUE",
+      "fill": "#2563eb"
+    },
+    ".": {
+      "name": "AMBER",
+      "fill": "#d97706"
+    },
+    "?": {
+      "name": "GREEN",
+      "fill": "#16a34a"
+    },
+    "I": {
+      "name": "PURPLE",
+      "fill": "#7c3aed"
+    },
+    "a": {
+      "name": "PINK",
+      "fill": "#db2777"
+    },
+    "am": {
+      "name": "RED",
+      "fill": "#dc2626"
+    },
+    "and": {
+      "name": "BLUE",
+      "fill": "#2563eb"
+    },
+    "at": {
+      "name": "AMBER",
+      "fill": "#d97706"
+    },
+    "blue": {
+      "name": "GREEN",
+      "fill": "#16a34a"
+    },
+    "boy": {
+      "name": "PURPLE",
+      "fill": "#7c3aed"
+    },
+    "cat": {
+      "name": "PINK",
+      "fill": "#db2777"
+    },
+    "cold": {
+      "name": "RED",
+      "fill": "#dc2626"
+    },
+    "dark": {
+      "name": "BLUE",
+      "fill": "#2563eb"
+    },
+    "did": {
+      "name": "AMBER",
+      "fill": "#d97706"
+    },
+    "eye": {
+      "name": "GREEN",
+      "fill": "#16a34a"
+    },
+    "flat": {
+      "name": "PURPLE",
+      "fill": "#7c3aed"
+    },
+    "go": {
+      "name": "PINK",
+      "fill": "#db2777"
+    },
+    "hat": {
+      "name": "RED",
+      "fill": "#dc2626"
+    },
+    "house": {
+      "name": "BLUE",
+      "fill": "#2563eb"
+    },
+    "in": {
+      "name": "AMBER",
+      "fill": "#d97706"
+    },
+    "it": {
+      "name": "GREEN",
+      "fill": "#16a34a"
+    },
+    "looked": {
+      "name": "PURPLE",
+      "fill": "#7c3aed"
+    },
+    "mad": {
+      "name": "PINK",
+      "fill": "#db2777"
+    },
+    "man": {
+      "name": "RED",
+      "fill": "#dc2626"
+    },
+    "night": {
+      "name": "BLUE",
+      "fill": "#2563eb"
+    },
+    "not": {
+      "name": "AMBER",
+      "fill": "#d97706"
+    },
+    "old": {
+      "name": "GREEN",
+      "fill": "#16a34a"
+    },
+    "out": {
+      "name": "PURPLE",
+      "fill": "#7c3aed"
+    },
+    "pale": {
+      "name": "PINK",
+      "fill": "#db2777"
+    },
+    "said": {
+      "name": "RED",
+      "fill": "#dc2626"
+    },
+    "sat": {
+      "name": "BLUE",
+      "fill": "#2563eb"
+    },
+    "saw": {
+      "name": "AMBER",
+      "fill": "#d97706"
+    },
+    "say": {
+      "name": "GREEN",
+      "fill": "#16a34a"
+    },
+    "sea": {
+      "name": "PURPLE",
+      "fill": "#7c3aed"
+    },
+    "see": {
+      "name": "PINK",
+      "fill": "#db2777"
+    },
+    "shine": {
+      "name": "RED",
+      "fill": "#dc2626"
+    },
+    "skiff": {
+      "name": "BLUE",
+      "fill": "#2563eb"
+    },
+    "so": {
+      "name": "AMBER",
+      "fill": "#d97706"
+    },
+    "steep": {
+      "name": "GREEN",
+      "fill": "#16a34a"
+    },
+    "sun": {
+      "name": "PURPLE",
+      "fill": "#7c3aed"
+    },
+    "that": {
+      "name": "PINK",
+      "fill": "#db2777"
+    },
+    "the": {
+      "name": "RED",
+      "fill": "#dc2626"
+    },
+    "to": {
+      "name": "BLUE",
+      "fill": "#2563eb"
+    },
+    "too": {
+      "name": "AMBER",
+      "fill": "#d97706"
+    },
+    "was": {
+      "name": "GREEN",
+      "fill": "#16a34a"
+    },
+    "wave": {
+      "name": "PURPLE",
+      "fill": "#7c3aed"
+    },
+    "went": {
+      "name": "PINK",
+      "fill": "#db2777"
+    },
+    "wet": {
+      "name": "RED",
+      "fill": "#dc2626"
+    },
+    "why": {
+      "name": "BLUE",
+      "fill": "#2563eb"
+    },
+    "you": {
+      "name": "AMBER",
+      "fill": "#d97706"
+    }
+  },
+  "single_successor_tokens": [
+    "am",
+    "at",
+    "blue",
+    "cat",
+    "flat",
+    "go",
+    "hat",
+    "it",
+    "looked",
+    "not",
+    "old",
+    "pale",
+    "sat",
+    "say",
+    "so",
+    "steep",
+    "sun",
+    "too",
+    "was",
+    "why"
+  ],
+  "successors": {
+    "!": {
+      "counts": {
+        "I": 3,
+        "the": 4
+      },
+      "responding_people": 5,
+      "random_hand_probability": {
+        "the": 0.6000000000000001,
+        "I": 0.4
+      }
+    },
+    ",": {
+      "counts": {
+        "I": 2,
+        "and": 2,
+        "dark": 2,
+        "so": 4,
+        "why": 2
+      },
+      "responding_people": 10,
+      "random_hand_probability": {
+        "so": 0.4,
+        "dark": 0.1,
+        "why": 0.15000000000000002,
+        "and": 0.2,
+        "I": 0.15000000000000002
+      }
+    },
+    ".": {
+      "counts": {
+        "the": 6,
+        "why": 2
+      },
+      "responding_people": 7,
+      "random_hand_probability": {
+        "the": 0.7142857142857142,
+        "why": 0.2857142857142857
+      }
+    },
+    "?": {
+      "counts": {
+        "I": 2,
+        "the": 2,
+        "why": 2
+      },
+      "responding_people": 5,
+      "random_hand_probability": {
+        "I": 0.4,
+        "why": 0.30000000000000004,
+        "the": 0.30000000000000004
+      }
+    },
+    "I": {
+      "counts": {
+        "am": 4,
+        "saw": 5,
+        "went": 4
+      },
+      "responding_people": 8,
+      "random_hand_probability": {
+        "am": 0.34375,
+        "saw": 0.25,
+        "went": 0.40625
+      }
+    },
+    "a": {
+      "counts": {
+        "pale": 2,
+        "skiff": 4
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "skiff": 0.6666666666666666,
+        "pale": 0.3333333333333333
+      }
+    },
+    "am": {
+      "counts": {
+        "mad": 4
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "mad": 1.0
+      }
+    },
+    "and": {
+      "counts": {
+        "it": 2,
+        "said": 4,
+        "the": 8
+      },
+      "responding_people": 9,
+      "random_hand_probability": {
+        "said": 0.33333333333333337,
+        "it": 0.1111111111111111,
+        "the": 0.5555555555555557
+      }
+    },
+    "at": {
+      "counts": {
+        "the": 4
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "the": 1.0
+      }
+    },
+    "blue": {
+      "counts": {
+        "eye": 6
+      },
+      "responding_people": 6,
+      "random_hand_probability": {
+        "eye": 0.9999999999999999
+      }
+    },
+    "boy": {
+      "counts": {
+        "in": 2,
+        "looked": 2,
+        "saw": 2,
+        "went": 2
+      },
+      "responding_people": 6,
+      "random_hand_probability": {
+        "in": 0.25,
+        "looked": 0.3333333333333333,
+        "saw": 0.25,
+        "went": 0.16666666666666666
+      }
+    },
+    "cat": {
+      "counts": {
+        "in": 4
+      },
+      "responding_people": 3,
+      "random_hand_probability": {
+        "in": 1.0
+      }
+    },
+    "cold": {
+      "counts": {
+        ",": 2,
+        ".": 2,
+        "house": 2
+      },
+      "responding_people": 5,
+      "random_hand_probability": {
+        ".": 0.30000000000000004,
+        "house": 0.30000000000000004,
+        ",": 0.4
+      }
+    },
+    "dark": {
+      "counts": {
+        "house": 2,
+        "night": 4,
+        "sea": 2
+      },
+      "responding_people": 7,
+      "random_hand_probability": {
+        "sea": 0.2857142857142857,
+        "night": 0.5,
+        "house": 0.21428571428571427
+      }
+    },
+    "did": {
+      "counts": {
+        "not": 4,
+        "you": 6
+      },
+      "responding_people": 9,
+      "random_hand_probability": {
+        "you": 0.6111111111111112,
+        "not": 0.38888888888888884
+      }
+    },
+    "eye": {
+      "counts": {
+        "?": 2,
+        "in": 2,
+        "looked": 2
+      },
+      "responding_people": 3,
+      "random_hand_probability": {
+        "?": 0.5,
+        "looked": 0.2777777777777778,
+        "in": 0.2222222222222222
+      }
+    },
+    "flat": {
+      "counts": {
+        "sea": 4
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "sea": 1.0
+      }
+    },
+    "go": {
+      "counts": {
+        "out": 4
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "out": 1.0
+      }
+    },
+    "hat": {
+      "counts": {
+        "sat": 4
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "sat": 1.0
+      }
+    },
+    "house": {
+      "counts": {
+        ".": 4,
+        "and": 2
+      },
+      "responding_people": 5,
+      "random_hand_probability": {
+        ".": 0.7000000000000001,
+        "and": 0.30000000000000004
+      }
+    },
+    "in": {
+      "counts": {
+        "a": 4,
+        "the": 16
+      },
+      "responding_people": 12,
+      "random_hand_probability": {
+        "a": 0.29166666666666663,
+        "the": 0.7083333333333333
+      }
+    },
+    "it": {
+      "counts": {
+        "was": 5
+      },
+      "responding_people": 5,
+      "random_hand_probability": {
+        "was": 1.0
+      }
+    },
+    "looked": {
+      "counts": {
+        "at": 4
+      },
+      "responding_people": 3,
+      "random_hand_probability": {
+        "at": 1.0
+      }
+    },
+    "mad": {
+      "counts": {
+        ",": 2,
+        "?": 2
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        ",": 0.5,
+        "?": 0.5
+      }
+    },
+    "man": {
+      "counts": {
+        "in": 2,
+        "said": 2,
+        "sat": 2
+      },
+      "responding_people": 6,
+      "random_hand_probability": {
+        "sat": 0.3333333333333333,
+        "said": 0.3333333333333333,
+        "in": 0.3333333333333333
+      }
+    },
+    "night": {
+      "counts": {
+        "!": 2,
+        "?": 2
+      },
+      "responding_people": 2,
+      "random_hand_probability": {
+        "?": 0.6666666666666666,
+        "!": 0.3333333333333333
+      }
+    },
+    "not": {
+      "counts": {
+        "shine": 4
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "shine": 1.0
+      }
+    },
+    "old": {
+      "counts": {
+        "man": 6
+      },
+      "responding_people": 6,
+      "random_hand_probability": {
+        "man": 0.9999999999999999
+      }
+    },
+    "out": {
+      "counts": {
+        ",": 2,
+        "in": 2,
+        "to": 2
+      },
+      "responding_people": 5,
+      "random_hand_probability": {
+        ",": 0.30000000000000004,
+        "to": 0.30000000000000004,
+        "in": 0.4
+      }
+    },
+    "pale": {
+      "counts": {
+        "blue": 6
+      },
+      "responding_people": 5,
+      "random_hand_probability": {
+        "blue": 1.0
+      }
+    },
+    "said": {
+      "counts": {
+        ",": 4,
+        "that": 2
+      },
+      "responding_people": 6,
+      "random_hand_probability": {
+        "that": 0.3333333333333333,
+        ",": 0.6666666666666666
+      }
+    },
+    "sat": {
+      "counts": {
+        "in": 6
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "in": 1.0
+      }
+    },
+    "saw": {
+      "counts": {
+        "that": 3,
+        "the": 4
+      },
+      "responding_people": 6,
+      "random_hand_probability": {
+        "the": 0.5833333333333333,
+        "that": 0.41666666666666663
+      }
+    },
+    "say": {
+      "counts": {
+        "that": 4
+      },
+      "responding_people": 3,
+      "random_hand_probability": {
+        "that": 1.0
+      }
+    },
+    "sea": {
+      "counts": {
+        ".": 2,
+        "and": 4
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        ".": 0.3333333333333333,
+        "and": 0.6666666666666666
+      }
+    },
+    "see": {
+      "counts": {
+        "a": 2,
+        "the": 2
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "a": 0.5,
+        "the": 0.5
+      }
+    },
+    "shine": {
+      "counts": {
+        ",": 2,
+        "and": 2
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        ",": 0.5,
+        "and": 0.5
+      }
+    },
+    "skiff": {
+      "counts": {
+        "and": 2,
+        "in": 2
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "and": 0.5,
+        "in": 0.5
+      }
+    },
+    "so": {
+      "counts": {
+        "the": 4
+      },
+      "responding_people": 3,
+      "random_hand_probability": {
+        "the": 1.0
+      }
+    },
+    "steep": {
+      "counts": {
+        "wave": 4
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "wave": 1.0
+      }
+    },
+    "sun": {
+      "counts": {
+        "did": 4
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "did": 1.0
+      }
+    },
+    "that": {
+      "counts": {
+        "I": 6,
+        "it": 3
+      },
+      "responding_people": 6,
+      "random_hand_probability": {
+        "I": 0.7222222222222221,
+        "it": 0.2777777777777778
+      }
+    },
+    "the": {
+      "counts": {
+        "boy": 8,
+        "cat": 4,
+        "cold": 4,
+        "dark": 6,
+        "flat": 4,
+        "hat": 4,
+        "house": 2,
+        "old": 6,
+        "pale": 4,
+        "steep": 4,
+        "sun": 4
+      },
+      "responding_people": 15,
+      "random_hand_probability": {
+        "cat": 0.11111111111111112,
+        "boy": 0.19444444444444442,
+        "hat": 0.07777777777777778,
+        "steep": 0.08888888888888889,
+        "sun": 0.075,
+        "dark": 0.1638888888888889,
+        "cold": 0.07777777777777778,
+        "pale": 0.07222222222222223,
+        "flat": 0.05555555555555555,
+        "old": 0.06666666666666667,
+        "house": 0.016666666666666666
+      }
+    },
+    "to": {
+      "counts": {
+        "go": 2,
+        "see": 4
+      },
+      "responding_people": 6,
+      "random_hand_probability": {
+        "see": 0.6666666666666666,
+        "go": 0.3333333333333333
+      }
+    },
+    "too": {
+      "counts": {
+        "wet": 5
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "wet": 1.0
+      }
+    },
+    "was": {
+      "counts": {
+        "too": 5
+      },
+      "responding_people": 4,
+      "random_hand_probability": {
+        "too": 1.0
+      }
+    },
+    "wave": {
+      "counts": {
+        "!": 2,
+        "and": 2
+      },
+      "responding_people": 3,
+      "random_hand_probability": {
+        "!": 0.5,
+        "and": 0.5
+      }
+    },
+    "went": {
+      "counts": {
+        "cold": 2,
+        "out": 2,
+        "to": 2
+      },
+      "responding_people": 5,
+      "random_hand_probability": {
+        "to": 0.30000000000000004,
+        "out": 0.4,
+        "cold": 0.30000000000000004
+      }
+    },
+    "wet": {
+      "counts": {
+        "!": 3,
+        "to": 2
+      },
+      "responding_people": 5,
+      "random_hand_probability": {
+        "!": 0.6000000000000001,
+        "to": 0.4
+      }
+    },
+    "why": {
+      "counts": {
+        "did": 6
+      },
+      "responding_people": 5,
+      "random_hand_probability": {
+        "did": 1.0
+      }
+    },
+    "you": {
+      "counts": {
+        "go": 2,
+        "say": 4
+      },
+      "responding_people": 5,
+      "random_hand_probability": {
+        "say": 0.7000000000000001,
+        "go": 0.30000000000000004
+      }
+    }
+  },
+  "sheets": [
+    [
+      [
+        "!",
+        "the"
+      ],
+      [
+        "man",
+        "sat"
+      ],
+      [
+        "said",
+        "that"
+      ],
+      [
+        "shine",
+        ","
+      ],
+      [
+        "the",
+        "cat"
+      ],
+      [
+        ",",
+        "so"
+      ],
+      [
+        "and",
+        "said"
+      ],
+      [
+        "dark",
+        "sea"
+      ],
+      [
+        "to",
+        "see"
+      ],
+      [
+        "not",
+        "shine"
+      ],
+      [
+        "?",
+        "I"
+      ],
+      [
+        "was",
+        "too"
+      ],
+      [
+        "I",
+        "am"
+      ],
+      [
+        "I",
+        "saw"
+      ],
+      [
+        "I",
+        "saw"
+      ],
+      [
+        "I",
+        "went"
+      ],
+      [
+        "flat",
+        "sea"
+      ],
+      [
+        "out",
+        ","
+      ],
+      [
+        "sun",
+        "did"
+      ],
+      [
+        "go",
+        "out"
+      ],
+      [
+        "pale",
+        "blue"
+      ],
+      [
+        "see",
+        "a"
+      ],
+      [
+        "that",
+        "I"
+      ],
+      [
+        "went",
+        "to"
+      ]
+    ],
+    [
+      [
+        "cold",
+        "."
+      ],
+      [
+        "cold",
+        "house"
+      ],
+      [
+        "hat",
+        "sat"
+      ],
+      [
+        "man",
+        "said"
+      ],
+      [
+        "the",
+        "boy"
+      ],
+      [
+        ",",
+        "so"
+      ],
+      [
+        "and",
+        "it"
+      ],
+      [
+        "and",
+        "the"
+      ],
+      [
+        "dark",
+        "night"
+      ],
+      [
+        "house",
+        "."
+      ],
+      [
+        "skiff",
+        "and"
+      ],
+      [
+        "at",
+        "the"
+      ],
+      [
+        "too",
+        "wet"
+      ],
+      [
+        "it",
+        "was"
+      ],
+      [
+        "was",
+        "too"
+      ],
+      [
+        "was",
+        "too"
+      ],
+      [
+        "boy",
+        "in"
+      ],
+      [
+        "flat",
+        "sea"
+      ],
+      [
+        "out",
+        ","
+      ],
+      [
+        "out",
+        "to"
+      ],
+      [
+        "wave",
+        "!"
+      ],
+      [
+        "wave",
+        "and"
+      ],
+      [
+        "see",
+        "the"
+      ],
+      [
+        "went",
+        "out"
+      ]
+    ],
+    [
+      [
+        "!",
+        "I"
+      ],
+      [
+        "!",
+        "the"
+      ],
+      [
+        "man",
+        "said"
+      ],
+      [
+        "said",
+        ","
+      ],
+      [
+        "the",
+        "hat"
+      ],
+      [
+        "the",
+        "steep"
+      ],
+      [
+        "dark",
+        "night"
+      ],
+      [
+        "night",
+        "?"
+      ],
+      [
+        "why",
+        "did"
+      ],
+      [
+        "why",
+        "did"
+      ],
+      [
+        ".",
+        "the"
+      ],
+      [
+        "did",
+        "you"
+      ],
+      [
+        "in",
+        "a"
+      ],
+      [
+        "too",
+        "wet"
+      ],
+      [
+        "?",
+        "why"
+      ],
+      [
+        "old",
+        "man"
+      ],
+      [
+        "I",
+        "am"
+      ],
+      [
+        "boy",
+        "looked"
+      ],
+      [
+        "looked",
+        "at"
+      ],
+      [
+        "looked",
+        "at"
+      ],
+      [
+        "go",
+        "out"
+      ],
+      [
+        "pale",
+        "blue"
+      ],
+      [
+        "went",
+        "cold"
+      ],
+      [
+        "went",
+        "to"
+      ]
+    ],
+    [
+      [
+        "!",
+        "I"
+      ],
+      [
+        "the",
+        "steep"
+      ],
+      [
+        "the",
+        "sun"
+      ],
+      [
+        ",",
+        "dark"
+      ],
+      [
+        ",",
+        "why"
+      ],
+      [
+        "and",
+        "the"
+      ],
+      [
+        "dark",
+        "house"
+      ],
+      [
+        "to",
+        "go"
+      ],
+      [
+        "why",
+        "did"
+      ],
+      [
+        ".",
+        "why"
+      ],
+      [
+        "at",
+        "the"
+      ],
+      [
+        "did",
+        "not"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "you",
+        "say"
+      ],
+      [
+        "?",
+        "the"
+      ],
+      [
+        "?",
+        "why"
+      ],
+      [
+        "blue",
+        "eye"
+      ],
+      [
+        "flat",
+        "sea"
+      ],
+      [
+        "sea",
+        "."
+      ],
+      [
+        "sea",
+        "and"
+      ],
+      [
+        "sea",
+        "and"
+      ],
+      [
+        "pale",
+        "blue"
+      ],
+      [
+        "pale",
+        "blue"
+      ]
+    ],
+    [
+      [
+        "am",
+        "mad"
+      ],
+      [
+        "hat",
+        "sat"
+      ],
+      [
+        "said",
+        "that"
+      ],
+      [
+        "the",
+        "boy"
+      ],
+      [
+        "the",
+        "dark"
+      ],
+      [
+        "wet",
+        "!"
+      ],
+      [
+        ",",
+        "so"
+      ],
+      [
+        "night",
+        "!"
+      ],
+      [
+        "night",
+        "!"
+      ],
+      [
+        "night",
+        "?"
+      ],
+      [
+        "skiff",
+        "in"
+      ],
+      [
+        "at",
+        "the"
+      ],
+      [
+        "did",
+        "you"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "too",
+        "wet"
+      ],
+      [
+        "too",
+        "wet"
+      ],
+      [
+        "blue",
+        "eye"
+      ],
+      [
+        "eye",
+        "?"
+      ],
+      [
+        "eye",
+        "looked"
+      ],
+      [
+        "old",
+        "man"
+      ],
+      [
+        "say",
+        "that"
+      ],
+      [
+        "say",
+        "that"
+      ],
+      [
+        "I",
+        "am"
+      ],
+      [
+        "go",
+        "out"
+      ]
+    ],
+    [
+      [
+        "man",
+        "sat"
+      ],
+      [
+        "the",
+        "boy"
+      ],
+      [
+        "the",
+        "cold"
+      ],
+      [
+        "the",
+        "cold"
+      ],
+      [
+        ",",
+        "so"
+      ],
+      [
+        "and",
+        "the"
+      ],
+      [
+        "dark",
+        "night"
+      ],
+      [
+        "sat",
+        "in"
+      ],
+      [
+        "sat",
+        "in"
+      ],
+      [
+        "sat",
+        "in"
+      ],
+      [
+        "why",
+        "did"
+      ],
+      [
+        "in",
+        "a"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "saw",
+        "the"
+      ],
+      [
+        "so",
+        "the"
+      ],
+      [
+        "too",
+        "wet"
+      ],
+      [
+        "old",
+        "man"
+      ],
+      [
+        "say",
+        "that"
+      ],
+      [
+        "steep",
+        "wave"
+      ],
+      [
+        "was",
+        "too"
+      ],
+      [
+        "I",
+        "went"
+      ],
+      [
+        "sea",
+        "."
+      ],
+      [
+        "sun",
+        "did"
+      ],
+      [
+        "wave",
+        "!"
+      ]
+    ],
+    [
+      [
+        "am",
+        "mad"
+      ],
+      [
+        "man",
+        "in"
+      ],
+      [
+        "said",
+        ","
+      ],
+      [
+        "the",
+        "dark"
+      ],
+      [
+        "wet",
+        "!"
+      ],
+      [
+        ",",
+        "why"
+      ],
+      [
+        "and",
+        "the"
+      ],
+      [
+        "and",
+        "the"
+      ],
+      [
+        "house",
+        "and"
+      ],
+      [
+        "to",
+        "go"
+      ],
+      [
+        ".",
+        "the"
+      ],
+      [
+        "did",
+        "you"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "saw",
+        "that"
+      ],
+      [
+        "saw",
+        "the"
+      ],
+      [
+        "so",
+        "the"
+      ],
+      [
+        "so",
+        "the"
+      ],
+      [
+        "you",
+        "say"
+      ],
+      [
+        "was",
+        "too"
+      ],
+      [
+        "cat",
+        "in"
+      ],
+      [
+        "cat",
+        "in"
+      ],
+      [
+        "mad",
+        ","
+      ],
+      [
+        "pale",
+        "blue"
+      ]
+    ],
+    [
+      [
+        "!",
+        "I"
+      ],
+      [
+        "!",
+        "the"
+      ],
+      [
+        "the",
+        "cold"
+      ],
+      [
+        "the",
+        "pale"
+      ],
+      [
+        "the",
+        "sun"
+      ],
+      [
+        ",",
+        "and"
+      ],
+      [
+        "skiff",
+        "and"
+      ],
+      [
+        "to",
+        "see"
+      ],
+      [
+        "did",
+        "not"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "not",
+        "shine"
+      ],
+      [
+        "blue",
+        "eye"
+      ],
+      [
+        "it",
+        "was"
+      ],
+      [
+        "I",
+        "went"
+      ],
+      [
+        "boy",
+        "saw"
+      ],
+      [
+        "boy",
+        "went"
+      ],
+      [
+        "sea",
+        "and"
+      ],
+      [
+        "sun",
+        "did"
+      ],
+      [
+        "pale",
+        "blue"
+      ],
+      [
+        "see",
+        "the"
+      ],
+      [
+        "that",
+        "I"
+      ],
+      [
+        "that",
+        "it"
+      ],
+      [
+        "that",
+        "it"
+      ]
+    ],
+    [
+      [
+        "cold",
+        "."
+      ],
+      [
+        "said",
+        ","
+      ],
+      [
+        "shine",
+        ","
+      ],
+      [
+        "the",
+        "flat"
+      ],
+      [
+        "the",
+        "hat"
+      ],
+      [
+        "the",
+        "hat"
+      ],
+      [
+        "the",
+        "pale"
+      ],
+      [
+        ",",
+        "and"
+      ],
+      [
+        "house",
+        "."
+      ],
+      [
+        "skiff",
+        "in"
+      ],
+      [
+        ".",
+        "the"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "saw",
+        "the"
+      ],
+      [
+        "blue",
+        "eye"
+      ],
+      [
+        "it",
+        "was"
+      ],
+      [
+        "old",
+        "man"
+      ],
+      [
+        "I",
+        "saw"
+      ],
+      [
+        "I",
+        "saw"
+      ],
+      [
+        "looked",
+        "at"
+      ],
+      [
+        "out",
+        "in"
+      ],
+      [
+        "sun",
+        "did"
+      ],
+      [
+        "mad",
+        "?"
+      ]
+    ],
+    [
+      [
+        "hat",
+        "sat"
+      ],
+      [
+        "shine",
+        "and"
+      ],
+      [
+        "the",
+        "cold"
+      ],
+      [
+        "the",
+        "dark"
+      ],
+      [
+        "the",
+        "dark"
+      ],
+      [
+        "the",
+        "old"
+      ],
+      [
+        "the",
+        "old"
+      ],
+      [
+        "the",
+        "old"
+      ],
+      [
+        "wet",
+        "to"
+      ],
+      [
+        "and",
+        "it"
+      ],
+      [
+        "and",
+        "said"
+      ],
+      [
+        "dark",
+        "sea"
+      ],
+      [
+        "sat",
+        "in"
+      ],
+      [
+        "did",
+        "you"
+      ],
+      [
+        "in",
+        "a"
+      ],
+      [
+        "not",
+        "shine"
+      ],
+      [
+        "saw",
+        "that"
+      ],
+      [
+        "it",
+        "was"
+      ],
+      [
+        "steep",
+        "wave"
+      ],
+      [
+        "flat",
+        "sea"
+      ],
+      [
+        "cat",
+        "in"
+      ],
+      [
+        "mad",
+        "?"
+      ],
+      [
+        "that",
+        "I"
+      ],
+      [
+        "went",
+        "out"
+      ]
+    ],
+    [
+      [
+        "am",
+        "mad"
+      ],
+      [
+        "cold",
+        ","
+      ],
+      [
+        "the",
+        "boy"
+      ],
+      [
+        "the",
+        "old"
+      ],
+      [
+        "the",
+        "old"
+      ],
+      [
+        "the",
+        "pale"
+      ],
+      [
+        "the",
+        "steep"
+      ],
+      [
+        "the",
+        "sun"
+      ],
+      [
+        "and",
+        "the"
+      ],
+      [
+        "and",
+        "the"
+      ],
+      [
+        ".",
+        "the"
+      ],
+      [
+        "in",
+        "a"
+      ],
+      [
+        "you",
+        "say"
+      ],
+      [
+        "eye",
+        "in"
+      ],
+      [
+        "eye",
+        "in"
+      ],
+      [
+        "eye",
+        "looked"
+      ],
+      [
+        "boy",
+        "saw"
+      ],
+      [
+        "looked",
+        "at"
+      ],
+      [
+        "out",
+        "in"
+      ],
+      [
+        "sea",
+        "and"
+      ],
+      [
+        "a",
+        "skiff"
+      ],
+      [
+        "that",
+        "I"
+      ],
+      [
+        "that",
+        "I"
+      ],
+      [
+        "went",
+        "cold"
+      ]
+    ],
+    [
+      [
+        "am",
+        "mad"
+      ],
+      [
+        "man",
+        "in"
+      ],
+      [
+        "shine",
+        "and"
+      ],
+      [
+        "the",
+        "boy"
+      ],
+      [
+        "the",
+        "boy"
+      ],
+      [
+        "the",
+        "dark"
+      ],
+      [
+        "the",
+        "flat"
+      ],
+      [
+        "the",
+        "flat"
+      ],
+      [
+        "the",
+        "house"
+      ],
+      [
+        "the",
+        "house"
+      ],
+      [
+        "the",
+        "sun"
+      ],
+      [
+        "wet",
+        "!"
+      ],
+      [
+        ",",
+        "I"
+      ],
+      [
+        "and",
+        "said"
+      ],
+      [
+        "house",
+        "."
+      ],
+      [
+        "did",
+        "you"
+      ],
+      [
+        "it",
+        "was"
+      ],
+      [
+        "old",
+        "man"
+      ],
+      [
+        "say",
+        "that"
+      ],
+      [
+        "I",
+        "went"
+      ],
+      [
+        "a",
+        "pale"
+      ],
+      [
+        "a",
+        "skiff"
+      ],
+      [
+        "a",
+        "skiff"
+      ],
+      [
+        "see",
+        "a"
+      ]
+    ],
+    [
+      [
+        "!",
+        "the"
+      ],
+      [
+        "said",
+        ","
+      ],
+      [
+        "the",
+        "cat"
+      ],
+      [
+        "the",
+        "flat"
+      ],
+      [
+        "the",
+        "pale"
+      ],
+      [
+        "house",
+        "."
+      ],
+      [
+        "house",
+        "and"
+      ],
+      [
+        "sat",
+        "in"
+      ],
+      [
+        "to",
+        "see"
+      ],
+      [
+        "why",
+        "did"
+      ],
+      [
+        "at",
+        "the"
+      ],
+      [
+        "did",
+        "not"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "saw",
+        "that"
+      ],
+      [
+        "so",
+        "the"
+      ],
+      [
+        "you",
+        "go"
+      ],
+      [
+        "you",
+        "say"
+      ],
+      [
+        "blue",
+        "eye"
+      ],
+      [
+        "boy",
+        "in"
+      ],
+      [
+        "boy",
+        "went"
+      ],
+      [
+        "out",
+        "to"
+      ],
+      [
+        "a",
+        "pale"
+      ],
+      [
+        "that",
+        "I"
+      ]
+    ],
+    [
+      [
+        "cold",
+        "house"
+      ],
+      [
+        "hat",
+        "sat"
+      ],
+      [
+        "the",
+        "boy"
+      ],
+      [
+        "the",
+        "cat"
+      ],
+      [
+        "the",
+        "cat"
+      ],
+      [
+        "the",
+        "hat"
+      ],
+      [
+        "the",
+        "old"
+      ],
+      [
+        "the",
+        "steep"
+      ],
+      [
+        "dark",
+        "house"
+      ],
+      [
+        "dark",
+        "night"
+      ],
+      [
+        "why",
+        "did"
+      ],
+      [
+        ".",
+        "why"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "saw",
+        "the"
+      ],
+      [
+        "you",
+        "go"
+      ],
+      [
+        "?",
+        "I"
+      ],
+      [
+        "blue",
+        "eye"
+      ],
+      [
+        "steep",
+        "wave"
+      ],
+      [
+        "I",
+        "am"
+      ],
+      [
+        "I",
+        "saw"
+      ],
+      [
+        "wave",
+        "and"
+      ],
+      [
+        "go",
+        "out"
+      ],
+      [
+        "mad",
+        ","
+      ],
+      [
+        "that",
+        "it"
+      ]
+    ],
+    [
+      [
+        "cold",
+        ","
+      ],
+      [
+        "the",
+        "boy"
+      ],
+      [
+        "the",
+        "dark"
+      ],
+      [
+        "wet",
+        "to"
+      ],
+      [
+        ",",
+        "I"
+      ],
+      [
+        ",",
+        "dark"
+      ],
+      [
+        "and",
+        "said"
+      ],
+      [
+        "and",
+        "the"
+      ],
+      [
+        "sat",
+        "in"
+      ],
+      [
+        "to",
+        "see"
+      ],
+      [
+        ".",
+        "the"
+      ],
+      [
+        ".",
+        "the"
+      ],
+      [
+        "did",
+        "not"
+      ],
+      [
+        "did",
+        "you"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "in",
+        "the"
+      ],
+      [
+        "not",
+        "shine"
+      ],
+      [
+        "?",
+        "the"
+      ],
+      [
+        "eye",
+        "?"
+      ],
+      [
+        "old",
+        "man"
+      ],
+      [
+        "steep",
+        "wave"
+      ],
+      [
+        "boy",
+        "looked"
+      ],
+      [
+        "a",
+        "skiff"
+      ],
+      [
+        "cat",
+        "in"
+      ]
+    ]
+  ],
+  "layout": "approved minimal",
+  "pdf": {
+    "pages": 15,
+    "size": "A4 portrait",
+    "verified": true
+  }
+}

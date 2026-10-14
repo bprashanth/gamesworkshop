@@ -1,0 +1,61 @@
+{
+  "themes": {
+    "01-mission": [
+      "Mission / mineral accents",
+      [
+        "#ad5945",
+        "#507b91",
+        "#a27c36",
+        "#527b63",
+        "#7f6b90",
+        "#a9637c"
+      ]
+    ],
+    "02-terminal": [
+      "Terminal / pixel accents",
+      [
+        "#b94e40",
+        "#427fa8",
+        "#9c7823",
+        "#408563",
+        "#7964a3",
+        "#b05183"
+      ]
+    ],
+    "03-dotmatrix": [
+      "Telemetry / monochrome",
+      [
+        "#383834",
+        "#383834",
+        "#383834",
+        "#383834",
+        "#383834",
+        "#383834"
+      ]
+    ]
+  },
+  "context_mapping": {
+    "RED": "C01",
+    "BLUE": "C02",
+    "AMBER": "C03",
+    "GREEN": "C04",
+    "PURPLE": "C05",
+    "PINK": "C06"
+  },
+  "source_sha256": {
+    "audience-60.json": "e101bf6569bd0ae307137cbef32ca7f7eefea2a533935120062dc1642b3fe69d",
+    "stage-mockup.json": "eb62fd4713f1326fee569ac927ae1f299b40df9e7978c22ee961afb2fe27ce8a"
+  },
+  "outputs": [
+    "01-mission-paper.pdf",
+    "01-mission-light.pdf",
+    "01-mission-dark.pdf",
+    "02-terminal-paper.pdf",
+    "02-terminal-light.pdf",
+    "02-terminal-dark.pdf",
+    "03-dotmatrix-paper.pdf",
+    "03-dotmatrix-light.pdf",
+    "03-dotmatrix-dark.pdf"
+  ],
+  "pages_verified": 9
+}

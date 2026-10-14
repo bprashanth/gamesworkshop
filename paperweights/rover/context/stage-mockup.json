@@ -1,0 +1,197 @@
+{
+  "stages": [
+    {
+      "team": "A",
+      "call": [
+        "RED",
+        "dust",
+        "haze"
+      ],
+      "record": {
+        "id": "C12140",
+        "older": {
+          "slope": "tilted",
+          "ground": "sand",
+          "dust": "haze",
+          "battery": "full"
+        },
+        "previous": {
+          "slope": "flat",
+          "ground": "firm",
+          "dust": "haze",
+          "battery": "dead"
+        },
+        "current": {
+          "slope": "steep",
+          "ground": "firm",
+          "dust": "haze",
+          "battery": "full"
+        },
+        "next": {
+          "slope": "tilted",
+          "ground": "firm",
+          "dust": "storm",
+          "battery": "full"
+        },
+        "context": "RED"
+      },
+      "sealed_next": {
+        "slope": "flat",
+        "ground": "soft",
+        "dust": "haze",
+        "battery": "full"
+      },
+      "votes": {
+        "battery": 3,
+        "slope": 1,
+        "dust": 8,
+        "ground": 3
+      }
+    },
+    {
+      "team": "B",
+      "call": [
+        "GREEN",
+        "dust",
+        "haze"
+      ],
+      "record": {
+        "id": "C09611",
+        "older": {
+          "slope": "flat",
+          "ground": "firm",
+          "dust": "haze",
+          "battery": "dead"
+        },
+        "previous": {
+          "slope": "steep",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "full"
+        },
+        "current": {
+          "slope": "flat",
+          "ground": "sand",
+          "dust": "haze",
+          "battery": "full"
+        },
+        "next": {
+          "slope": "tilted",
+          "ground": "firm",
+          "dust": "storm",
+          "battery": "dead"
+        },
+        "context": "GREEN"
+      },
+      "sealed_next": {
+        "slope": "tilted",
+        "ground": "soft",
+        "dust": "clear",
+        "battery": "dead"
+      },
+      "votes": {
+        "battery": 3,
+        "slope": 3,
+        "dust": 5,
+        "ground": 4
+      }
+    },
+    {
+      "team": "C",
+      "call": [
+        "RED",
+        "dust",
+        "storm"
+      ],
+      "record": {
+        "id": "C23611",
+        "older": {
+          "slope": "tilted",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "dead"
+        },
+        "previous": {
+          "slope": "steep",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "full"
+        },
+        "current": {
+          "slope": "tilted",
+          "ground": "sand",
+          "dust": "storm",
+          "battery": "full"
+        },
+        "next": {
+          "slope": "flat",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "dead"
+        },
+        "context": "RED"
+      },
+      "sealed_next": {
+        "slope": "tilted",
+        "ground": "firm",
+        "dust": "haze",
+        "battery": "dead"
+      },
+      "votes": {
+        "battery": 11,
+        "slope": 1,
+        "dust": 1,
+        "ground": 2
+      }
+    },
+    {
+      "team": "D",
+      "call": [
+        "BLUE",
+        "dust",
+        "storm"
+      ],
+      "record": {
+        "id": "C29532",
+        "older": {
+          "slope": "tilted",
+          "ground": "soft",
+          "dust": "storm",
+          "battery": "dead"
+        },
+        "previous": {
+          "slope": "flat",
+          "ground": "sand",
+          "dust": "haze",
+          "battery": "dead"
+        },
+        "current": {
+          "slope": "tilted",
+          "ground": "soft",
+          "dust": "storm",
+          "battery": "dead"
+        },
+        "next": {
+          "slope": "tilted",
+          "ground": "sand",
+          "dust": "clear",
+          "battery": "dead"
+        },
+        "context": "BLUE"
+      },
+      "sealed_next": {
+        "slope": "tilted",
+        "ground": "sand",
+        "dust": "clear",
+        "battery": "dead"
+      },
+      "votes": {
+        "battery": 11,
+        "slope": 1,
+        "dust": 1,
+        "ground": 2
+      }
+    }
+  ],
+  "warning": "Includes sealed next states for facilitator review"
+}

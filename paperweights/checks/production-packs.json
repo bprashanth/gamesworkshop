@@ -1,0 +1,23 @@
+[
+  {
+    "packId": "PW1-374-15-8dac60b141",
+    "people": 15,
+    "actualPdfRows": true,
+    "duplexPairing": true,
+    "gameTallies": true
+  },
+  {
+    "packId": "PW1-374-100-95db2b2ab6",
+    "people": 100,
+    "actualPdfRows": true,
+    "duplexPairing": true,
+    "gameTallies": true
+  },
+  {
+    "packId": "PW1-374-200-f0f8f62022",
+    "people": 200,
+    "actualPdfRows": true,
+    "duplexPairing": true,
+    "gameTallies": true
+  }
+]

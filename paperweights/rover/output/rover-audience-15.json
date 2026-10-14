@@ -1,0 +1,5003 @@
+{
+  "model": {
+    "slope": {
+      "flat": 0.35714285714285715,
+      "tilted": 0.42857142857142855,
+      "steep": 0.21428571428571427
+    },
+    "sand_given_soft_and_not_steep": 0.65,
+    "storm_given_haze_and_not_flat": 0.75,
+    "otherwise_ground": {
+      "firm": 0.5,
+      "soft": 0.5
+    },
+    "otherwise_dust": {
+      "clear": 0.5,
+      "haze": 0.5
+    },
+    "battery": "dead iff previous square is sand or storm",
+    "attention_allocation": "weight(category | cue) = 1 + 3 * historical danger rate; normalize"
+  },
+  "archive_seed": 80421,
+  "archive_size": 30000,
+  "groups": {
+    "A": {
+      "people": 4,
+      "cues": {
+        "battery:dead": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "dust:clear": 1,
+            "slope:tilted": 1,
+            "ground:firm": 1,
+            "battery:full": 1
+          },
+          "historical_cases": 10965,
+          "target_vote_shares": {
+            "battery": 0.2796579330422125,
+            "slope": 0.16625727802037846,
+            "dust": 0.2758824599708879,
+            "ground": 0.2782023289665211
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.22735978112175104,
+            "battery:full": 0.7726402188782481,
+            "dust:clear": 0.3915673246042602,
+            "dust:haze": 0.3915673246042602,
+            "dust:storm": 0.2168653507914794,
+            "ground:firm": 0.38742394632271504,
+            "ground:sand": 0.2251521073545697,
+            "ground:soft": 0.38742394632271504,
+            "slope:flat": 0.3571428571428571,
+            "slope:steep": 0.2142857142857143,
+            "slope:tilted": 0.42857142857142827
+          }
+        },
+        "battery:full": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "battery:full": 1,
+            "dust:storm": 1,
+            "slope:steep": 1,
+            "ground:soft": 1
+          },
+          "historical_cases": 19035,
+          "target_vote_shares": {
+            "battery": 0.36176966086383283,
+            "slope": 0.15491857313768098,
+            "dust": 0.24010547647532776,
+            "ground": 0.24320628952315843
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.44507486209613867,
+            "battery:full": 0.5549251379038606,
+            "dust:clear": 0.4092831813576494,
+            "dust:haze": 0.4092831813576494,
+            "dust:storm": 0.18143363728470105,
+            "ground:firm": 0.4048061840969643,
+            "ground:sand": 0.19038763180607152,
+            "ground:soft": 0.4048061840969643,
+            "slope:flat": 0.3571428571428574,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.42857142857142827
+          }
+        },
+        "dust:clear": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "dust:haze": 1,
+            "ground:firm": 1,
+            "battery:full": 1,
+            "slope:flat": 1
+          },
+          "historical_cases": 12006,
+          "target_vote_shares": {
+            "battery": 0.3124702068834016,
+            "slope": 0.19077128420249787,
+            "dust": 0.19077128420249787,
+            "ground": 0.3059872247116026
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.21264367816091956,
+            "battery:full": 0.7873563218390809,
+            "dust:clear": 0.5,
+            "dust:haze": 0.5,
+            "ground:firm": 0.3999500249875062,
+            "ground:sand": 0.20009995002498754,
+            "ground:soft": 0.3999500249875062,
+            "slope:flat": 0.3571428571428571,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.4285714285714286
+          }
+        },
+        "dust:haze": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "battery:full": 1,
+            "slope:flat": 1,
+            "dust:storm": 1,
+            "ground:soft": 1
+          },
+          "historical_cases": 12095,
+          "target_vote_shares": {
+            "battery": 0.24297399977724699,
+            "slope": 0.14967762693826028,
+            "dust": 0.3686809311074536,
+            "ground": 0.2386674421770391
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.2077718065316246,
+            "battery:full": 0.7922281934683765,
+            "dust:clear": 0.2589285714285715,
+            "dust:haze": 0.2589285714285715,
+            "dust:storm": 0.48214285714285704,
+            "ground:firm": 0.3994405893816806,
+            "ground:sand": 0.20111882123663857,
+            "ground:soft": 0.3994405893816806,
+            "slope:flat": 0.35714285714285726,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.4285714285714281
+          }
+        },
+        "dust:storm": {
+          "votes": {
+            "battery": 2,
+            "slope": 1,
+            "dust": 0,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 50.0,
+            "slope": 25.0,
+            "dust": 0.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "battery:dead": 2,
+            "ground:sand": 1,
+            "slope:flat": 1
+          },
+          "historical_cases": 5899,
+          "target_vote_shares": {
+            "battery": 0.5234018011623265,
+            "slope": 0.13085045029058162,
+            "dust": 0.13085045029058162,
+            "ground": 0.21489729825651036
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.9999999999999997,
+            "dust:clear": 0.49999999999999983,
+            "dust:haze": 0.49999999999999983,
+            "ground:firm": 0.39338114208219294,
+            "ground:sand": 0.21323771583561382,
+            "ground:soft": 0.39338114208219294,
+            "slope:flat": 0.35714285714285715,
+            "slope:steep": 0.21428571428571414,
+            "slope:tilted": 0.4285714285714284
+          }
+        },
+        "ground:firm": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "battery:full": 1,
+            "dust:clear": 1,
+            "slope:steep": 1,
+            "ground:soft": 1
+          },
+          "historical_cases": 11992,
+          "target_vote_shares": {
+            "battery": 0.3095016226984994,
+            "slope": 0.1926673307413001,
+            "dust": 0.3051637158189004,
+            "ground": 0.1926673307413001
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.20213475650433624,
+            "battery:full": 0.7978652434956638,
+            "dust:clear": 0.4031251489087964,
+            "dust:haze": 0.4031251489087964,
+            "dust:storm": 0.1937497021824073,
+            "ground:firm": 0.5,
+            "ground:soft": 0.5,
+            "slope:flat": 0.3571428571428572,
+            "slope:steep": 0.21428571428571427,
+            "slope:tilted": 0.42857142857142855
+          }
+        },
+        "ground:sand": {
+          "votes": {
+            "battery": 2,
+            "slope": 1,
+            "dust": 1,
+            "ground": 0
+          },
+          "percent": {
+            "battery": 50.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 0.0
+          },
+          "printed_outcomes": {
+            "dust:clear": 1,
+            "battery:dead": 2,
+            "slope:tilted": 1
+          },
+          "historical_cases": 6078,
+          "target_vote_shares": {
+            "battery": 0.5258240332208669,
+            "slope": 0.13145600830521673,
+            "dust": 0.21126395016869973,
+            "ground": 0.13145600830521673
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.9999999999999991,
+            "dust:clear": 0.4003269990128333,
+            "dust:haze": 0.4003269990128333,
+            "dust:storm": 0.19934600197433364,
+            "ground:firm": 0.5000000000000001,
+            "ground:soft": 0.5000000000000001,
+            "slope:flat": 0.35714285714285715,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.4285714285714285
+          }
+        },
+        "ground:soft": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "ground:sand": 1,
+            "dust:haze": 1,
+            "battery:full": 1,
+            "slope:flat": 1
+          },
+          "historical_cases": 11930,
+          "target_vote_shares": {
+            "battery": 0.2404505569730537,
+            "slope": 0.1484846599041633,
+            "dust": 0.23567116808762215,
+            "ground": 0.37539361503516094
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.20645431684828144,
+            "battery:full": 0.7935456831517186,
+            "dust:clear": 0.40375329301880025,
+            "dust:haze": 0.40375329301880025,
+            "dust:storm": 0.1924934139623997,
+            "ground:firm": 0.24464285714285705,
+            "ground:sand": 0.5107142857142859,
+            "ground:soft": 0.24464285714285705,
+            "slope:flat": 0.3571428571428574,
+            "slope:steep": 0.21428571428571416,
+            "slope:tilted": 0.42857142857142877
+          }
+        },
+        "slope:flat": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "ground:soft": 1,
+            "dust:clear": 1,
+            "slope:flat": 1,
+            "battery:dead": 1
+          },
+          "historical_cases": 10714,
+          "target_vote_shares": {
+            "battery": 0.2907090914669694,
+            "slope": 0.16437053174189192,
+            "dust": 0.28679696848823294,
+            "ground": 0.2581234083029057
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.25620683218219154,
+            "battery:full": 0.7437931678178079,
+            "dust:clear": 0.37782174191311774,
+            "dust:haze": 0.37782174191311774,
+            "dust:storm": 0.24435651617376464,
+            "ground:firm": 0.40599882663537695,
+            "ground:sand": 0.1880023467292461,
+            "ground:soft": 0.40599882663537695,
+            "slope:flat": 0.3571428571428573,
+            "slope:steep": 0.2142857142857143,
+            "slope:tilted": 0.4285714285714284
+          }
+        },
+        "slope:steep": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "battery:full": 1,
+            "slope:flat": 1,
+            "ground:firm": 1,
+            "dust:clear": 1
+          },
+          "historical_cases": 6510,
+          "target_vote_shares": {
+            "battery": 0.3130973715651135,
+            "slope": 0.16203703703703706,
+            "dust": 0.2405913978494624,
+            "ground": 0.2842741935483871
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.31075268817204316,
+            "battery:full": 0.6892473118279574,
+            "dust:clear": 0.41801349572086927,
+            "dust:haze": 0.41801349572086927,
+            "dust:storm": 0.16397300855826197,
+            "ground:firm": 0.3726352315119599,
+            "ground:sand": 0.25472953697608075,
+            "ground:soft": 0.3726352315119599,
+            "slope:flat": 0.3571428571428575,
+            "slope:steep": 0.2142857142857143,
+            "slope:tilted": 0.4285714285714288
+          }
+        },
+        "slope:tilted": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "slope:flat": 1,
+            "battery:full": 1,
+            "ground:soft": 1,
+            "dust:haze": 1
+          },
+          "historical_cases": 12776,
+          "target_vote_shares": {
+            "battery": 0.37581021985263285,
+            "slope": 0.15307014916432035,
+            "dust": 0.23167794884083145,
+            "ground": 0.23944168214221528
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.48505009392611154,
+            "battery:full": 0.5149499060738884,
+            "dust:clear": 0.4160137031487612,
+            "dust:haze": 0.4160137031487612,
+            "dust:storm": 0.1679725937024779,
+            "ground:firm": 0.40528040857858494,
+            "ground:sand": 0.1894391828428304,
+            "ground:soft": 0.40528040857858494,
+            "slope:flat": 0.3571428571428573,
+            "slope:steep": 0.2142857142857142,
+            "slope:tilted": 0.4285714285714284
+          }
+        }
+      }
+    },
+    "B": {
+      "people": 4,
+      "cues": {
+        "battery:dead": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "battery:full": 1,
+            "ground:firm": 1,
+            "slope:tilted": 1,
+            "dust:clear": 1
+          },
+          "historical_cases": 10965,
+          "target_vote_shares": {
+            "battery": 0.2796579330422125,
+            "slope": 0.16625727802037846,
+            "dust": 0.2758824599708879,
+            "ground": 0.2782023289665211
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.22735978112175104,
+            "battery:full": 0.7726402188782481,
+            "dust:clear": 0.3915673246042602,
+            "dust:haze": 0.3915673246042602,
+            "dust:storm": 0.2168653507914794,
+            "ground:firm": 0.38742394632271504,
+            "ground:sand": 0.2251521073545697,
+            "ground:soft": 0.38742394632271504,
+            "slope:flat": 0.3571428571428571,
+            "slope:steep": 0.2142857142857143,
+            "slope:tilted": 0.42857142857142827
+          }
+        },
+        "battery:full": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "ground:sand": 1,
+            "slope:flat": 1,
+            "dust:haze": 1,
+            "battery:dead": 1
+          },
+          "historical_cases": 19035,
+          "target_vote_shares": {
+            "battery": 0.36176966086383283,
+            "slope": 0.15491857313768098,
+            "dust": 0.24010547647532776,
+            "ground": 0.24320628952315843
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.44507486209613867,
+            "battery:full": 0.5549251379038606,
+            "dust:clear": 0.4092831813576494,
+            "dust:haze": 0.4092831813576494,
+            "dust:storm": 0.18143363728470105,
+            "ground:firm": 0.4048061840969643,
+            "ground:sand": 0.19038763180607152,
+            "ground:soft": 0.4048061840969643,
+            "slope:flat": 0.3571428571428574,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.42857142857142827
+          }
+        },
+        "dust:clear": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "dust:haze": 1,
+            "slope:tilted": 1,
+            "battery:full": 1,
+            "ground:firm": 1
+          },
+          "historical_cases": 12006,
+          "target_vote_shares": {
+            "battery": 0.3124702068834016,
+            "slope": 0.19077128420249787,
+            "dust": 0.19077128420249787,
+            "ground": 0.3059872247116026
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.21264367816091956,
+            "battery:full": 0.7873563218390809,
+            "dust:clear": 0.5,
+            "dust:haze": 0.5,
+            "ground:firm": 0.3999500249875062,
+            "ground:sand": 0.20009995002498754,
+            "ground:soft": 0.3999500249875062,
+            "slope:flat": 0.3571428571428571,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.4285714285714286
+          }
+        },
+        "dust:haze": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "ground:soft": 1,
+            "slope:tilted": 1,
+            "battery:full": 1,
+            "dust:storm": 1
+          },
+          "historical_cases": 12095,
+          "target_vote_shares": {
+            "battery": 0.24297399977724699,
+            "slope": 0.14967762693826028,
+            "dust": 0.3686809311074536,
+            "ground": 0.2386674421770391
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.2077718065316246,
+            "battery:full": 0.7922281934683765,
+            "dust:clear": 0.2589285714285715,
+            "dust:haze": 0.2589285714285715,
+            "dust:storm": 0.48214285714285704,
+            "ground:firm": 0.3994405893816806,
+            "ground:sand": 0.20111882123663857,
+            "ground:soft": 0.3994405893816806,
+            "slope:flat": 0.35714285714285726,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.4285714285714281
+          }
+        },
+        "dust:storm": {
+          "votes": {
+            "battery": 2,
+            "slope": 1,
+            "dust": 0,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 50.0,
+            "slope": 25.0,
+            "dust": 0.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "battery:dead": 2,
+            "slope:steep": 1,
+            "ground:sand": 1
+          },
+          "historical_cases": 5899,
+          "target_vote_shares": {
+            "battery": 0.5234018011623265,
+            "slope": 0.13085045029058162,
+            "dust": 0.13085045029058162,
+            "ground": 0.21489729825651036
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.9999999999999997,
+            "dust:clear": 0.49999999999999983,
+            "dust:haze": 0.49999999999999983,
+            "ground:firm": 0.39338114208219294,
+            "ground:sand": 0.21323771583561382,
+            "ground:soft": 0.39338114208219294,
+            "slope:flat": 0.35714285714285715,
+            "slope:steep": 0.21428571428571414,
+            "slope:tilted": 0.4285714285714284
+          }
+        },
+        "ground:firm": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "battery:full": 1,
+            "ground:firm": 1,
+            "slope:flat": 1,
+            "dust:haze": 1
+          },
+          "historical_cases": 11992,
+          "target_vote_shares": {
+            "battery": 0.3095016226984994,
+            "slope": 0.1926673307413001,
+            "dust": 0.3051637158189004,
+            "ground": 0.1926673307413001
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.20213475650433624,
+            "battery:full": 0.7978652434956638,
+            "dust:clear": 0.4031251489087964,
+            "dust:haze": 0.4031251489087964,
+            "dust:storm": 0.1937497021824073,
+            "ground:firm": 0.5,
+            "ground:soft": 0.5,
+            "slope:flat": 0.3571428571428572,
+            "slope:steep": 0.21428571428571427,
+            "slope:tilted": 0.42857142857142855
+          }
+        },
+        "ground:sand": {
+          "votes": {
+            "battery": 2,
+            "slope": 1,
+            "dust": 1,
+            "ground": 0
+          },
+          "percent": {
+            "battery": 50.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 0.0
+          },
+          "printed_outcomes": {
+            "battery:dead": 2,
+            "slope:flat": 1,
+            "dust:storm": 1
+          },
+          "historical_cases": 6078,
+          "target_vote_shares": {
+            "battery": 0.5258240332208669,
+            "slope": 0.13145600830521673,
+            "dust": 0.21126395016869973,
+            "ground": 0.13145600830521673
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.9999999999999991,
+            "dust:clear": 0.4003269990128333,
+            "dust:haze": 0.4003269990128333,
+            "dust:storm": 0.19934600197433364,
+            "ground:firm": 0.5000000000000001,
+            "ground:soft": 0.5000000000000001,
+            "slope:flat": 0.35714285714285715,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.4285714285714285
+          }
+        },
+        "ground:soft": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "dust:clear": 1,
+            "ground:sand": 1,
+            "slope:steep": 1,
+            "battery:full": 1
+          },
+          "historical_cases": 11930,
+          "target_vote_shares": {
+            "battery": 0.2404505569730537,
+            "slope": 0.1484846599041633,
+            "dust": 0.23567116808762215,
+            "ground": 0.37539361503516094
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.20645431684828144,
+            "battery:full": 0.7935456831517186,
+            "dust:clear": 0.40375329301880025,
+            "dust:haze": 0.40375329301880025,
+            "dust:storm": 0.1924934139623997,
+            "ground:firm": 0.24464285714285705,
+            "ground:sand": 0.5107142857142859,
+            "ground:soft": 0.24464285714285705,
+            "slope:flat": 0.3571428571428574,
+            "slope:steep": 0.21428571428571416,
+            "slope:tilted": 0.42857142857142877
+          }
+        },
+        "slope:flat": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "ground:soft": 1,
+            "slope:tilted": 1,
+            "dust:clear": 1,
+            "battery:dead": 1
+          },
+          "historical_cases": 10714,
+          "target_vote_shares": {
+            "battery": 0.2907090914669694,
+            "slope": 0.16437053174189192,
+            "dust": 0.28679696848823294,
+            "ground": 0.2581234083029057
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.25620683218219154,
+            "battery:full": 0.7437931678178079,
+            "dust:clear": 0.37782174191311774,
+            "dust:haze": 0.37782174191311774,
+            "dust:storm": 0.24435651617376464,
+            "ground:firm": 0.40599882663537695,
+            "ground:sand": 0.1880023467292461,
+            "ground:soft": 0.40599882663537695,
+            "slope:flat": 0.3571428571428573,
+            "slope:steep": 0.2142857142857143,
+            "slope:tilted": 0.4285714285714284
+          }
+        },
+        "slope:steep": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "dust:haze": 1,
+            "ground:firm": 1,
+            "battery:dead": 1,
+            "slope:tilted": 1
+          },
+          "historical_cases": 6510,
+          "target_vote_shares": {
+            "battery": 0.3130973715651135,
+            "slope": 0.16203703703703706,
+            "dust": 0.2405913978494624,
+            "ground": 0.2842741935483871
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.31075268817204316,
+            "battery:full": 0.6892473118279574,
+            "dust:clear": 0.41801349572086927,
+            "dust:haze": 0.41801349572086927,
+            "dust:storm": 0.16397300855826197,
+            "ground:firm": 0.3726352315119599,
+            "ground:sand": 0.25472953697608075,
+            "ground:soft": 0.3726352315119599,
+            "slope:flat": 0.3571428571428575,
+            "slope:steep": 0.2142857142857143,
+            "slope:tilted": 0.4285714285714288
+          }
+        },
+        "slope:tilted": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "dust:clear": 1,
+            "battery:dead": 1,
+            "slope:steep": 1,
+            "ground:firm": 1
+          },
+          "historical_cases": 12776,
+          "target_vote_shares": {
+            "battery": 0.37581021985263285,
+            "slope": 0.15307014916432035,
+            "dust": 0.23167794884083145,
+            "ground": 0.23944168214221528
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.48505009392611154,
+            "battery:full": 0.5149499060738884,
+            "dust:clear": 0.4160137031487612,
+            "dust:haze": 0.4160137031487612,
+            "dust:storm": 0.1679725937024779,
+            "ground:firm": 0.40528040857858494,
+            "ground:sand": 0.1894391828428304,
+            "ground:soft": 0.40528040857858494,
+            "slope:flat": 0.3571428571428573,
+            "slope:steep": 0.2142857142857142,
+            "slope:tilted": 0.4285714285714284
+          }
+        }
+      }
+    },
+    "C": {
+      "people": 4,
+      "cues": {
+        "battery:dead": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "battery:dead": 1,
+            "ground:soft": 1,
+            "dust:haze": 1,
+            "slope:steep": 1
+          },
+          "historical_cases": 10965,
+          "target_vote_shares": {
+            "battery": 0.2796579330422125,
+            "slope": 0.16625727802037846,
+            "dust": 0.2758824599708879,
+            "ground": 0.2782023289665211
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.22735978112175104,
+            "battery:full": 0.7726402188782481,
+            "dust:clear": 0.3915673246042602,
+            "dust:haze": 0.3915673246042602,
+            "dust:storm": 0.2168653507914794,
+            "ground:firm": 0.38742394632271504,
+            "ground:sand": 0.2251521073545697,
+            "ground:soft": 0.38742394632271504,
+            "slope:flat": 0.3571428571428571,
+            "slope:steep": 0.2142857142857143,
+            "slope:tilted": 0.42857142857142827
+          }
+        },
+        "battery:full": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "battery:dead": 1,
+            "slope:tilted": 1,
+            "dust:storm": 1,
+            "ground:firm": 1
+          },
+          "historical_cases": 19035,
+          "target_vote_shares": {
+            "battery": 0.36176966086383283,
+            "slope": 0.15491857313768098,
+            "dust": 0.24010547647532776,
+            "ground": 0.24320628952315843
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.44507486209613867,
+            "battery:full": 0.5549251379038606,
+            "dust:clear": 0.4092831813576494,
+            "dust:haze": 0.4092831813576494,
+            "dust:storm": 0.18143363728470105,
+            "ground:firm": 0.4048061840969643,
+            "ground:sand": 0.19038763180607152,
+            "ground:soft": 0.4048061840969643,
+            "slope:flat": 0.3571428571428574,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.42857142857142827
+          }
+        },
+        "dust:clear": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "slope:tilted": 1,
+            "battery:full": 1,
+            "ground:soft": 1,
+            "dust:clear": 1
+          },
+          "historical_cases": 12006,
+          "target_vote_shares": {
+            "battery": 0.3124702068834016,
+            "slope": 0.19077128420249787,
+            "dust": 0.19077128420249787,
+            "ground": 0.3059872247116026
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.21264367816091956,
+            "battery:full": 0.7873563218390809,
+            "dust:clear": 0.5,
+            "dust:haze": 0.5,
+            "ground:firm": 0.3999500249875062,
+            "ground:sand": 0.20009995002498754,
+            "ground:soft": 0.3999500249875062,
+            "slope:flat": 0.3571428571428571,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.4285714285714286
+          }
+        },
+        "dust:haze": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "ground:firm": 1,
+            "slope:flat": 1,
+            "dust:haze": 1,
+            "battery:dead": 1
+          },
+          "historical_cases": 12095,
+          "target_vote_shares": {
+            "battery": 0.24297399977724699,
+            "slope": 0.14967762693826028,
+            "dust": 0.3686809311074536,
+            "ground": 0.2386674421770391
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.2077718065316246,
+            "battery:full": 0.7922281934683765,
+            "dust:clear": 0.2589285714285715,
+            "dust:haze": 0.2589285714285715,
+            "dust:storm": 0.48214285714285704,
+            "ground:firm": 0.3994405893816806,
+            "ground:sand": 0.20111882123663857,
+            "ground:soft": 0.3994405893816806,
+            "slope:flat": 0.35714285714285726,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.4285714285714281
+          }
+        },
+        "dust:storm": {
+          "votes": {
+            "battery": 2,
+            "slope": 1,
+            "dust": 0,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 50.0,
+            "slope": 25.0,
+            "dust": 0.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "battery:dead": 2,
+            "ground:sand": 1,
+            "slope:flat": 1
+          },
+          "historical_cases": 5899,
+          "target_vote_shares": {
+            "battery": 0.5234018011623265,
+            "slope": 0.13085045029058162,
+            "dust": 0.13085045029058162,
+            "ground": 0.21489729825651036
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.9999999999999997,
+            "dust:clear": 0.49999999999999983,
+            "dust:haze": 0.49999999999999983,
+            "ground:firm": 0.39338114208219294,
+            "ground:sand": 0.21323771583561382,
+            "ground:soft": 0.39338114208219294,
+            "slope:flat": 0.35714285714285715,
+            "slope:steep": 0.21428571428571414,
+            "slope:tilted": 0.4285714285714284
+          }
+        },
+        "ground:firm": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "slope:flat": 1,
+            "ground:firm": 1,
+            "dust:clear": 1,
+            "battery:full": 1
+          },
+          "historical_cases": 11992,
+          "target_vote_shares": {
+            "battery": 0.3095016226984994,
+            "slope": 0.1926673307413001,
+            "dust": 0.3051637158189004,
+            "ground": 0.1926673307413001
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.20213475650433624,
+            "battery:full": 0.7978652434956638,
+            "dust:clear": 0.4031251489087964,
+            "dust:haze": 0.4031251489087964,
+            "dust:storm": 0.1937497021824073,
+            "ground:firm": 0.5,
+            "ground:soft": 0.5,
+            "slope:flat": 0.3571428571428572,
+            "slope:steep": 0.21428571428571427,
+            "slope:tilted": 0.42857142857142855
+          }
+        },
+        "ground:sand": {
+          "votes": {
+            "battery": 2,
+            "slope": 1,
+            "dust": 1,
+            "ground": 0
+          },
+          "percent": {
+            "battery": 50.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 0.0
+          },
+          "printed_outcomes": {
+            "battery:dead": 2,
+            "slope:flat": 1,
+            "dust:clear": 1
+          },
+          "historical_cases": 6078,
+          "target_vote_shares": {
+            "battery": 0.5258240332208669,
+            "slope": 0.13145600830521673,
+            "dust": 0.21126395016869973,
+            "ground": 0.13145600830521673
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.9999999999999991,
+            "dust:clear": 0.4003269990128333,
+            "dust:haze": 0.4003269990128333,
+            "dust:storm": 0.19934600197433364,
+            "ground:firm": 0.5000000000000001,
+            "ground:soft": 0.5000000000000001,
+            "slope:flat": 0.35714285714285715,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.4285714285714285
+          }
+        },
+        "ground:soft": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "slope:flat": 1,
+            "dust:clear": 1,
+            "ground:sand": 1,
+            "battery:full": 1
+          },
+          "historical_cases": 11930,
+          "target_vote_shares": {
+            "battery": 0.2404505569730537,
+            "slope": 0.1484846599041633,
+            "dust": 0.23567116808762215,
+            "ground": 0.37539361503516094
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.20645431684828144,
+            "battery:full": 0.7935456831517186,
+            "dust:clear": 0.40375329301880025,
+            "dust:haze": 0.40375329301880025,
+            "dust:storm": 0.1924934139623997,
+            "ground:firm": 0.24464285714285705,
+            "ground:sand": 0.5107142857142859,
+            "ground:soft": 0.24464285714285705,
+            "slope:flat": 0.3571428571428574,
+            "slope:steep": 0.21428571428571416,
+            "slope:tilted": 0.42857142857142877
+          }
+        },
+        "slope:flat": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "battery:full": 1,
+            "dust:haze": 1,
+            "slope:flat": 1,
+            "ground:sand": 1
+          },
+          "historical_cases": 10714,
+          "target_vote_shares": {
+            "battery": 0.2907090914669694,
+            "slope": 0.16437053174189192,
+            "dust": 0.28679696848823294,
+            "ground": 0.2581234083029057
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.25620683218219154,
+            "battery:full": 0.7437931678178079,
+            "dust:clear": 0.37782174191311774,
+            "dust:haze": 0.37782174191311774,
+            "dust:storm": 0.24435651617376464,
+            "ground:firm": 0.40599882663537695,
+            "ground:sand": 0.1880023467292461,
+            "ground:soft": 0.40599882663537695,
+            "slope:flat": 0.3571428571428573,
+            "slope:steep": 0.2142857142857143,
+            "slope:tilted": 0.4285714285714284
+          }
+        },
+        "slope:steep": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "dust:clear": 1,
+            "battery:full": 1,
+            "slope:flat": 1,
+            "ground:sand": 1
+          },
+          "historical_cases": 6510,
+          "target_vote_shares": {
+            "battery": 0.3130973715651135,
+            "slope": 0.16203703703703706,
+            "dust": 0.2405913978494624,
+            "ground": 0.2842741935483871
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.31075268817204316,
+            "battery:full": 0.6892473118279574,
+            "dust:clear": 0.41801349572086927,
+            "dust:haze": 0.41801349572086927,
+            "dust:storm": 0.16397300855826197,
+            "ground:firm": 0.3726352315119599,
+            "ground:sand": 0.25472953697608075,
+            "ground:soft": 0.3726352315119599,
+            "slope:flat": 0.3571428571428575,
+            "slope:steep": 0.2142857142857143,
+            "slope:tilted": 0.4285714285714288
+          }
+        },
+        "slope:tilted": {
+          "votes": {
+            "battery": 1,
+            "slope": 1,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 25.0,
+            "slope": 25.0,
+            "dust": 25.0,
+            "ground": 25.0
+          },
+          "printed_outcomes": {
+            "slope:tilted": 1,
+            "ground:soft": 1,
+            "dust:haze": 1,
+            "battery:full": 1
+          },
+          "historical_cases": 12776,
+          "target_vote_shares": {
+            "battery": 0.37581021985263285,
+            "slope": 0.15307014916432035,
+            "dust": 0.23167794884083145,
+            "ground": 0.23944168214221528
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.48505009392611154,
+            "battery:full": 0.5149499060738884,
+            "dust:clear": 0.4160137031487612,
+            "dust:haze": 0.4160137031487612,
+            "dust:storm": 0.1679725937024779,
+            "ground:firm": 0.40528040857858494,
+            "ground:sand": 0.1894391828428304,
+            "ground:soft": 0.40528040857858494,
+            "slope:flat": 0.3571428571428573,
+            "slope:steep": 0.2142857142857142,
+            "slope:tilted": 0.4285714285714284
+          }
+        }
+      }
+    },
+    "D": {
+      "people": 3,
+      "cues": {
+        "battery:dead": {
+          "votes": {
+            "battery": 1,
+            "slope": 0,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 33.33,
+            "slope": 0.0,
+            "dust": 33.33,
+            "ground": 33.33
+          },
+          "printed_outcomes": {
+            "battery:full": 1,
+            "dust:storm": 1,
+            "ground:firm": 1
+          },
+          "historical_cases": 10965,
+          "target_vote_shares": {
+            "battery": 0.2796579330422125,
+            "slope": 0.16625727802037846,
+            "dust": 0.2758824599708879,
+            "ground": 0.2782023289665211
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.22735978112175104,
+            "battery:full": 0.7726402188782481,
+            "dust:clear": 0.3915673246042602,
+            "dust:haze": 0.3915673246042602,
+            "dust:storm": 0.2168653507914794,
+            "ground:firm": 0.38742394632271504,
+            "ground:sand": 0.2251521073545697,
+            "ground:soft": 0.38742394632271504,
+            "slope:flat": 0.3571428571428571,
+            "slope:steep": 0.2142857142857143,
+            "slope:tilted": 0.42857142857142827
+          }
+        },
+        "battery:full": {
+          "votes": {
+            "battery": 1,
+            "slope": 0,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 33.33,
+            "slope": 0.0,
+            "dust": 33.33,
+            "ground": 33.33
+          },
+          "printed_outcomes": {
+            "dust:clear": 1,
+            "battery:dead": 1,
+            "ground:soft": 1
+          },
+          "historical_cases": 19035,
+          "target_vote_shares": {
+            "battery": 0.36176966086383283,
+            "slope": 0.15491857313768098,
+            "dust": 0.24010547647532776,
+            "ground": 0.24320628952315843
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.44507486209613867,
+            "battery:full": 0.5549251379038606,
+            "dust:clear": 0.4092831813576494,
+            "dust:haze": 0.4092831813576494,
+            "dust:storm": 0.18143363728470105,
+            "ground:firm": 0.4048061840969643,
+            "ground:sand": 0.19038763180607152,
+            "ground:soft": 0.4048061840969643,
+            "slope:flat": 0.3571428571428574,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.42857142857142827
+          }
+        },
+        "dust:clear": {
+          "votes": {
+            "battery": 1,
+            "slope": 0,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 33.33,
+            "slope": 0.0,
+            "dust": 33.33,
+            "ground": 33.33
+          },
+          "printed_outcomes": {
+            "battery:full": 1,
+            "ground:firm": 1,
+            "dust:clear": 1
+          },
+          "historical_cases": 12006,
+          "target_vote_shares": {
+            "battery": 0.3124702068834016,
+            "slope": 0.19077128420249787,
+            "dust": 0.19077128420249787,
+            "ground": 0.3059872247116026
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.21264367816091956,
+            "battery:full": 0.7873563218390809,
+            "dust:clear": 0.5,
+            "dust:haze": 0.5,
+            "ground:firm": 0.3999500249875062,
+            "ground:sand": 0.20009995002498754,
+            "ground:soft": 0.3999500249875062,
+            "slope:flat": 0.3571428571428571,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.4285714285714286
+          }
+        },
+        "dust:haze": {
+          "votes": {
+            "battery": 1,
+            "slope": 0,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 33.33,
+            "slope": 0.0,
+            "dust": 33.33,
+            "ground": 33.33
+          },
+          "printed_outcomes": {
+            "ground:firm": 1,
+            "battery:full": 1,
+            "dust:storm": 1
+          },
+          "historical_cases": 12095,
+          "target_vote_shares": {
+            "battery": 0.24297399977724699,
+            "slope": 0.14967762693826028,
+            "dust": 0.3686809311074536,
+            "ground": 0.2386674421770391
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.2077718065316246,
+            "battery:full": 0.7922281934683765,
+            "dust:clear": 0.2589285714285715,
+            "dust:haze": 0.2589285714285715,
+            "dust:storm": 0.48214285714285704,
+            "ground:firm": 0.3994405893816806,
+            "ground:sand": 0.20111882123663857,
+            "ground:soft": 0.3994405893816806,
+            "slope:flat": 0.35714285714285726,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.4285714285714281
+          }
+        },
+        "dust:storm": {
+          "votes": {
+            "battery": 2,
+            "slope": 0,
+            "dust": 0,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 66.67,
+            "slope": 0.0,
+            "dust": 0.0,
+            "ground": 33.33
+          },
+          "printed_outcomes": {
+            "ground:soft": 1,
+            "battery:dead": 2
+          },
+          "historical_cases": 5899,
+          "target_vote_shares": {
+            "battery": 0.5234018011623265,
+            "slope": 0.13085045029058162,
+            "dust": 0.13085045029058162,
+            "ground": 0.21489729825651036
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.9999999999999997,
+            "dust:clear": 0.49999999999999983,
+            "dust:haze": 0.49999999999999983,
+            "ground:firm": 0.39338114208219294,
+            "ground:sand": 0.21323771583561382,
+            "ground:soft": 0.39338114208219294,
+            "slope:flat": 0.35714285714285715,
+            "slope:steep": 0.21428571428571414,
+            "slope:tilted": 0.4285714285714284
+          }
+        },
+        "ground:firm": {
+          "votes": {
+            "battery": 1,
+            "slope": 0,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 33.33,
+            "slope": 0.0,
+            "dust": 33.33,
+            "ground": 33.33
+          },
+          "printed_outcomes": {
+            "battery:full": 1,
+            "ground:soft": 1,
+            "dust:clear": 1
+          },
+          "historical_cases": 11992,
+          "target_vote_shares": {
+            "battery": 0.3095016226984994,
+            "slope": 0.1926673307413001,
+            "dust": 0.3051637158189004,
+            "ground": 0.1926673307413001
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.20213475650433624,
+            "battery:full": 0.7978652434956638,
+            "dust:clear": 0.4031251489087964,
+            "dust:haze": 0.4031251489087964,
+            "dust:storm": 0.1937497021824073,
+            "ground:firm": 0.5,
+            "ground:soft": 0.5,
+            "slope:flat": 0.3571428571428572,
+            "slope:steep": 0.21428571428571427,
+            "slope:tilted": 0.42857142857142855
+          }
+        },
+        "ground:sand": {
+          "votes": {
+            "battery": 2,
+            "slope": 0,
+            "dust": 1,
+            "ground": 0
+          },
+          "percent": {
+            "battery": 66.67,
+            "slope": 0.0,
+            "dust": 33.33,
+            "ground": 0.0
+          },
+          "printed_outcomes": {
+            "battery:dead": 2,
+            "dust:clear": 1
+          },
+          "historical_cases": 6078,
+          "target_vote_shares": {
+            "battery": 0.5258240332208669,
+            "slope": 0.13145600830521673,
+            "dust": 0.21126395016869973,
+            "ground": 0.13145600830521673
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.9999999999999991,
+            "dust:clear": 0.4003269990128333,
+            "dust:haze": 0.4003269990128333,
+            "dust:storm": 0.19934600197433364,
+            "ground:firm": 0.5000000000000001,
+            "ground:soft": 0.5000000000000001,
+            "slope:flat": 0.35714285714285715,
+            "slope:steep": 0.21428571428571425,
+            "slope:tilted": 0.4285714285714285
+          }
+        },
+        "ground:soft": {
+          "votes": {
+            "battery": 1,
+            "slope": 0,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 33.33,
+            "slope": 0.0,
+            "dust": 33.33,
+            "ground": 33.33
+          },
+          "printed_outcomes": {
+            "dust:haze": 1,
+            "ground:soft": 1,
+            "battery:full": 1
+          },
+          "historical_cases": 11930,
+          "target_vote_shares": {
+            "battery": 0.2404505569730537,
+            "slope": 0.1484846599041633,
+            "dust": 0.23567116808762215,
+            "ground": 0.37539361503516094
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.20645431684828144,
+            "battery:full": 0.7935456831517186,
+            "dust:clear": 0.40375329301880025,
+            "dust:haze": 0.40375329301880025,
+            "dust:storm": 0.1924934139623997,
+            "ground:firm": 0.24464285714285705,
+            "ground:sand": 0.5107142857142859,
+            "ground:soft": 0.24464285714285705,
+            "slope:flat": 0.3571428571428574,
+            "slope:steep": 0.21428571428571416,
+            "slope:tilted": 0.42857142857142877
+          }
+        },
+        "slope:flat": {
+          "votes": {
+            "battery": 1,
+            "slope": 0,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 33.33,
+            "slope": 0.0,
+            "dust": 33.33,
+            "ground": 33.33
+          },
+          "printed_outcomes": {
+            "battery:dead": 1,
+            "dust:haze": 1,
+            "ground:firm": 1
+          },
+          "historical_cases": 10714,
+          "target_vote_shares": {
+            "battery": 0.2907090914669694,
+            "slope": 0.16437053174189192,
+            "dust": 0.28679696848823294,
+            "ground": 0.2581234083029057
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.25620683218219154,
+            "battery:full": 0.7437931678178079,
+            "dust:clear": 0.37782174191311774,
+            "dust:haze": 0.37782174191311774,
+            "dust:storm": 0.24435651617376464,
+            "ground:firm": 0.40599882663537695,
+            "ground:sand": 0.1880023467292461,
+            "ground:soft": 0.40599882663537695,
+            "slope:flat": 0.3571428571428573,
+            "slope:steep": 0.2142857142857143,
+            "slope:tilted": 0.4285714285714284
+          }
+        },
+        "slope:steep": {
+          "votes": {
+            "battery": 1,
+            "slope": 0,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 33.33,
+            "slope": 0.0,
+            "dust": 33.33,
+            "ground": 33.33
+          },
+          "printed_outcomes": {
+            "ground:firm": 1,
+            "battery:full": 1,
+            "dust:clear": 1
+          },
+          "historical_cases": 6510,
+          "target_vote_shares": {
+            "battery": 0.3130973715651135,
+            "slope": 0.16203703703703706,
+            "dust": 0.2405913978494624,
+            "ground": 0.2842741935483871
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.31075268817204316,
+            "battery:full": 0.6892473118279574,
+            "dust:clear": 0.41801349572086927,
+            "dust:haze": 0.41801349572086927,
+            "dust:storm": 0.16397300855826197,
+            "ground:firm": 0.3726352315119599,
+            "ground:sand": 0.25472953697608075,
+            "ground:soft": 0.3726352315119599,
+            "slope:flat": 0.3571428571428575,
+            "slope:steep": 0.2142857142857143,
+            "slope:tilted": 0.4285714285714288
+          }
+        },
+        "slope:tilted": {
+          "votes": {
+            "battery": 1,
+            "slope": 0,
+            "dust": 1,
+            "ground": 1
+          },
+          "percent": {
+            "battery": 33.33,
+            "slope": 0.0,
+            "dust": 33.33,
+            "ground": 33.33
+          },
+          "printed_outcomes": {
+            "battery:full": 1,
+            "dust:clear": 1,
+            "ground:firm": 1
+          },
+          "historical_cases": 12776,
+          "target_vote_shares": {
+            "battery": 0.37581021985263285,
+            "slope": 0.15307014916432035,
+            "dust": 0.23167794884083145,
+            "ground": 0.23944168214221528
+          },
+          "conditional_next_value_probabilities": {
+            "battery:dead": 0.48505009392611154,
+            "battery:full": 0.5149499060738884,
+            "dust:clear": 0.4160137031487612,
+            "dust:haze": 0.4160137031487612,
+            "dust:storm": 0.1679725937024779,
+            "ground:firm": 0.40528040857858494,
+            "ground:sand": 0.1894391828428304,
+            "ground:soft": 0.40528040857858494,
+            "slope:flat": 0.3571428571428573,
+            "slope:steep": 0.2142857142857142,
+            "slope:tilted": 0.4285714285714284
+          }
+        }
+      }
+    }
+  },
+  "note": "Vote allocation is not hazard probability. Finite samples vary.",
+  "seed": 42,
+  "sheet_count": 15,
+  "sheets": [
+    {
+      "team": "A",
+      "member": 1,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H08791",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H11475",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H24292",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H04752",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H06857",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "dust",
+          "value": "haze",
+          "archive_id": "H04348",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H14044",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H07878",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H21539",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "ground",
+          "value": "sand",
+          "archive_id": "H20820",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H14857",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "A",
+      "member": 2,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "dust",
+          "value": "storm",
+          "archive_id": "H24872",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "slope",
+          "value": "tilted",
+          "archive_id": "H19026",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H04381",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H28909",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H07388",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H22299",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H18999",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "ground",
+          "value": "sand",
+          "archive_id": "H20833",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H29787",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "dust",
+          "value": "haze",
+          "archive_id": "H03206",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H06490",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "A",
+      "member": 3,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "slope",
+          "value": "steep",
+          "archive_id": "H24472",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H25959",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H07912",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H07986",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H28724",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H18867",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "dust",
+          "value": "storm",
+          "archive_id": "H22932",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H08240",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "slope",
+          "value": "steep",
+          "archive_id": "H01092",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H09969",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H22766",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "A",
+      "member": 4,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H08873",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H20952",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H15284",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "dust",
+          "value": "haze",
+          "archive_id": "H01031",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H07582",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H25953",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H09911",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H00392",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H06549",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H22100",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "slope",
+          "value": "tilted",
+          "archive_id": "H06274",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "B",
+      "member": 1,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "ground",
+          "value": "sand",
+          "archive_id": "H00381",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H06714",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H11563",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H08043",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "dust",
+          "value": "haze",
+          "archive_id": "H11011",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "dust",
+          "value": "haze",
+          "archive_id": "H26326",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H11850",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H01609",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H19727",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H01908",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H22035",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "B",
+      "member": 2,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H04361",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H03643",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "slope",
+          "value": "tilted",
+          "archive_id": "H20541",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H17378",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H22238",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "slope",
+          "value": "tilted",
+          "archive_id": "H02767",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "slope",
+          "value": "tilted",
+          "archive_id": "H24217",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "slope",
+          "value": "steep",
+          "archive_id": "H26784",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H15623",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "ground",
+          "value": "sand",
+          "archive_id": "H00241",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H00514",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "B",
+      "member": 3,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "dust",
+          "value": "haze",
+          "archive_id": "H12735",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "slope",
+          "value": "tilted",
+          "archive_id": "H02614",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H09477",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "slope",
+          "value": "steep",
+          "archive_id": "H12413",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H04594",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H12769",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H17894",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "ground",
+          "value": "sand",
+          "archive_id": "H22098",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H23490",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "slope",
+          "value": "steep",
+          "archive_id": "H29568",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H27629",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "B",
+      "member": 4,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H25347",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H22274",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H24083",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H15651",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "slope",
+          "value": "tilted",
+          "archive_id": "H29990",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H25154",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "dust",
+          "value": "storm",
+          "archive_id": "H25082",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H01681",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "dust",
+          "value": "haze",
+          "archive_id": "H03943",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H02591",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "dust",
+          "value": "storm",
+          "archive_id": "H18402",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "C",
+      "member": 1,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H00865",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H25186",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H21486",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "slope",
+          "value": "tilted",
+          "archive_id": "H26739",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H06227",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "slope",
+          "value": "tilted",
+          "archive_id": "H13462",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H23958",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H23874",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H26672",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H03674",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H00603",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "C",
+      "member": 2,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "slope",
+          "value": "tilted",
+          "archive_id": "H28347",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H21088",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "dust",
+          "value": "haze",
+          "archive_id": "H07397",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H27484",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H16860",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H12769",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H11582",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H15640",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H28154",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H23230",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H24096",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "C",
+      "member": 3,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "dust",
+          "value": "storm",
+          "archive_id": "H23050",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "dust",
+          "value": "haze",
+          "archive_id": "H02840",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H08904",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "dust",
+          "value": "haze",
+          "archive_id": "H02117",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H10829",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H20952",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "dust",
+          "value": "haze",
+          "archive_id": "H26555",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "ground",
+          "value": "sand",
+          "archive_id": "H24595",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H25333",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "ground",
+          "value": "sand",
+          "archive_id": "H16609",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H00962",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "C",
+      "member": 4,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H11605",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "slope",
+          "value": "steep",
+          "archive_id": "H17333",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "ground",
+          "value": "sand",
+          "archive_id": "H23088",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H16158",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "ground",
+          "value": "sand",
+          "archive_id": "H21783",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H06887",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H17107",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "slope",
+          "value": "flat",
+          "archive_id": "H11215",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H11383",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H07779",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H26067",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "D",
+      "member": 1,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H08540",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H11419",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H25099",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H12303",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H09270",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H23652",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H22649",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H25520",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H28864",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "dust",
+          "value": "haze",
+          "archive_id": "H29917",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H07051",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "D",
+      "member": 2,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H00262",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "dust",
+          "value": "storm",
+          "archive_id": "H05348",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "dust",
+          "value": "haze",
+          "archive_id": "H10763",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H23360",
+          "current": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H20217",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H12426",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H08650",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H02374",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H16623",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H11081",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H26810",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        }
+      ]
+    },
+    {
+      "team": "D",
+      "member": 3,
+      "records": [
+        {
+          "cue_category": "battery",
+          "cue_value": "full",
+          "vote": "ground",
+          "value": "soft",
+          "archive_id": "H29345",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "battery",
+          "cue_value": "dead",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H12107",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "flat",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H11727",
+          "current": {
+            "slope": "flat",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "tilted",
+          "vote": "ground",
+          "value": "firm",
+          "archive_id": "H10308",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "slope",
+          "cue_value": "steep",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H20434",
+          "current": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "clear",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H24197",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "haze",
+          "vote": "dust",
+          "value": "storm",
+          "archive_id": "H09525",
+          "current": {
+            "slope": "tilted",
+            "ground": "firm",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "dust",
+          "cue_value": "storm",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H24334",
+          "current": {
+            "slope": "steep",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "dead"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "firm",
+          "vote": "dust",
+          "value": "clear",
+          "archive_id": "H08978",
+          "current": {
+            "slope": "flat",
+            "ground": "firm",
+            "dust": "clear",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "clear",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "soft",
+          "vote": "battery",
+          "value": "full",
+          "archive_id": "H07192",
+          "current": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "haze",
+            "battery": "dead"
+          },
+          "next": {
+            "slope": "steep",
+            "ground": "firm",
+            "dust": "storm",
+            "battery": "full"
+          }
+        },
+        {
+          "cue_category": "ground",
+          "cue_value": "sand",
+          "vote": "battery",
+          "value": "dead",
+          "archive_id": "H17431",
+          "current": {
+            "slope": "flat",
+            "ground": "sand",
+            "dust": "haze",
+            "battery": "full"
+          },
+          "next": {
+            "slope": "tilted",
+            "ground": "soft",
+            "dust": "storm",
+            "battery": "dead"
+          }
+        }
+      ]
+    }
+  ],
+  "frozen_assets": {
+    "symbols.js": "c06fdbba2ca5d324dff5715fa70ed92bc945358b8b17fe4e257fb1edfbcfe4f2",
+    "style.css": "8ae5e5820953c520c765d112917428b4cddcef34c56b24e55aedb00e53c64657",
+    "map.json": "6926446ea9532f29bfcfacfc3aa483a394640cee94806a1d54e5077f9eec2a45",
+    "deck.json": "48767667777df0f0e6c6eddecc97339a819917b63480a7da4869ff3a216a338f"
+  },
+  "pdf": {
+    "pages": 15,
+    "size": "A4 portrait",
+    "verified": true
+  }
+}

@@ -1,0 +1,460 @@
+{
+  "seeds": 500,
+  "policies": {
+    "15": {
+      "paper": {
+        "survivorHistogram": {
+          "0": 165,
+          "1": 206,
+          "2": 104,
+          "3": 22,
+          "4": 3
+        },
+        "meanFinishers": 0.984,
+        "oneOrTwoFinishers": 0.62,
+        "stopsByRound": {
+          "1": 647,
+          "2": 355,
+          "3": 298,
+          "4": 700
+        }
+      },
+      "uninformed": {
+        "survivorHistogram": {
+          "0": 395,
+          "1": 96,
+          "2": 9
+        },
+        "meanFinishers": 0.228,
+        "oneOrTwoFinishers": 0.21,
+        "stopsByRound": {
+          "1": 1024,
+          "2": 496,
+          "3": 246,
+          "4": 234
+        }
+      }
+    },
+    "100": {
+      "paper": {
+        "survivorHistogram": {
+          "0": 128,
+          "1": 191,
+          "2": 143,
+          "3": 35,
+          "4": 3
+        },
+        "meanFinishers": 1.188,
+        "oneOrTwoFinishers": 0.668,
+        "stopsByRound": {
+          "1": 578,
+          "2": 345,
+          "3": 307,
+          "4": 770
+        }
+      },
+      "uninformed": {
+        "survivorHistogram": {
+          "0": 395,
+          "1": 96,
+          "2": 9
+        },
+        "meanFinishers": 0.228,
+        "oneOrTwoFinishers": 0.21,
+        "stopsByRound": {
+          "1": 1024,
+          "2": 496,
+          "3": 246,
+          "4": 234
+        }
+      }
+    },
+    "200": {
+      "paper": {
+        "survivorHistogram": {
+          "0": 151,
+          "1": 180,
+          "2": 133,
+          "3": 32,
+          "4": 4
+        },
+        "meanFinishers": 1.116,
+        "oneOrTwoFinishers": 0.626,
+        "stopsByRound": {
+          "1": 593,
+          "2": 341,
+          "3": 305,
+          "4": 761
+        }
+      },
+      "uninformed": {
+        "survivorHistogram": {
+          "0": 395,
+          "1": 96,
+          "2": 9
+        },
+        "meanFinishers": 0.228,
+        "oneOrTwoFinishers": 0.21,
+        "stopsByRound": {
+          "1": 1024,
+          "2": 496,
+          "3": 246,
+          "4": 234
+        }
+      }
+    }
+  },
+  "default": {
+    "15": [
+      {
+        "team": "A",
+        "finished": false,
+        "log": [
+          {
+            "round": 1,
+            "category": "ground",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 2,
+            "category": "dust",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 3,
+            "category": "ground",
+            "decision": "go",
+            "survived": false
+          }
+        ]
+      },
+      {
+        "team": "B",
+        "finished": true,
+        "log": [
+          {
+            "round": 1,
+            "category": "battery",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 2,
+            "category": "battery",
+            "decision": "avoid",
+            "survived": true
+          },
+          {
+            "round": 3,
+            "category": "dust",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 4,
+            "category": "ground",
+            "decision": "go",
+            "survived": true
+          }
+        ]
+      },
+      {
+        "team": "C",
+        "finished": false,
+        "log": [
+          {
+            "round": 1,
+            "category": "dust",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 2,
+            "category": "dust",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 3,
+            "category": "battery",
+            "decision": "avoid",
+            "survived": true
+          },
+          {
+            "round": 4,
+            "category": "battery",
+            "decision": "go",
+            "survived": false
+          }
+        ]
+      },
+      {
+        "team": "D",
+        "finished": true,
+        "log": [
+          {
+            "round": 1,
+            "category": "battery",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 2,
+            "category": "battery",
+            "decision": "avoid",
+            "survived": true
+          },
+          {
+            "round": 3,
+            "category": "battery",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 4,
+            "category": "battery",
+            "decision": "go",
+            "survived": true
+          }
+        ]
+      }
+    ],
+    "100": [
+      {
+        "team": "A",
+        "finished": false,
+        "log": [
+          {
+            "round": 1,
+            "category": "ground",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 2,
+            "category": "dust",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 3,
+            "category": "ground",
+            "decision": "go",
+            "survived": false
+          }
+        ]
+      },
+      {
+        "team": "B",
+        "finished": true,
+        "log": [
+          {
+            "round": 1,
+            "category": "battery",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 2,
+            "category": "battery",
+            "decision": "avoid",
+            "survived": true
+          },
+          {
+            "round": 3,
+            "category": "dust",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 4,
+            "category": "ground",
+            "decision": "go",
+            "survived": true
+          }
+        ]
+      },
+      {
+        "team": "C",
+        "finished": false,
+        "log": [
+          {
+            "round": 1,
+            "category": "dust",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 2,
+            "category": "ground",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 3,
+            "category": "battery",
+            "decision": "avoid",
+            "survived": true
+          },
+          {
+            "round": 4,
+            "category": "battery",
+            "decision": "go",
+            "survived": false
+          }
+        ]
+      },
+      {
+        "team": "D",
+        "finished": true,
+        "log": [
+          {
+            "round": 1,
+            "category": "dust",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 2,
+            "category": "battery",
+            "decision": "avoid",
+            "survived": true
+          },
+          {
+            "round": 3,
+            "category": "battery",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 4,
+            "category": "ground",
+            "decision": "go",
+            "survived": true
+          }
+        ]
+      }
+    ],
+    "200": [
+      {
+        "team": "A",
+        "finished": false,
+        "log": [
+          {
+            "round": 1,
+            "category": "ground",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 2,
+            "category": "dust",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 3,
+            "category": "ground",
+            "decision": "go",
+            "survived": false
+          }
+        ]
+      },
+      {
+        "team": "B",
+        "finished": true,
+        "log": [
+          {
+            "round": 1,
+            "category": "battery",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 2,
+            "category": "battery",
+            "decision": "avoid",
+            "survived": true
+          },
+          {
+            "round": 3,
+            "category": "dust",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 4,
+            "category": "battery",
+            "decision": "go",
+            "survived": true
+          }
+        ]
+      },
+      {
+        "team": "C",
+        "finished": false,
+        "log": [
+          {
+            "round": 1,
+            "category": "dust",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 2,
+            "category": "dust",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 3,
+            "category": "battery",
+            "decision": "avoid",
+            "survived": true
+          },
+          {
+            "round": 4,
+            "category": "battery",
+            "decision": "go",
+            "survived": false
+          }
+        ]
+      },
+      {
+        "team": "D",
+        "finished": true,
+        "log": [
+          {
+            "round": 1,
+            "category": "dust",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 2,
+            "category": "battery",
+            "decision": "avoid",
+            "survived": true
+          },
+          {
+            "round": 3,
+            "category": "battery",
+            "decision": "go",
+            "survived": true
+          },
+          {
+            "round": 4,
+            "category": "ground",
+            "decision": "go",
+            "survived": true
+          }
+        ]
+      }
+    ]
+  },
+  "participation": 1.0,
+  "demoSeed": 374,
+  "demoSeedSelectedDuringRehearsal": true
+}

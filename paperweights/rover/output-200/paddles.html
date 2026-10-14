@@ -1,0 +1,75 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Rover Run — cut-out paddles</title><style>
+@page { size: A4 portrait; margin: 10mm; }
+* { box-sizing: border-box; }
+body { margin: 0; background: white; color: #20201e; font-family: "DejaVu Sans Mono", monospace; }
+.sheet { break-after: page; }
+.sheet:last-child { break-after: auto; }
+.kicker { font-size: 8pt; letter-spacing: 1.1px; color: #62625d; }
+header { border-top: 3px solid #20201e; border-bottom: 1px solid #b8b8af; padding: 4mm 0 3mm; }
+.title-row { display: flex; align-items: center; justify-content: space-between; }
+h1 { font-size: 21pt; letter-spacing: -1px; margin: 2mm 0; line-height: 1.15; }
+.badge { font-size: 9pt; border: 1px solid #20201e; padding: 2mm; white-space: nowrap; }
+.instructions { font-family: "DejaVu Sans", sans-serif; font-size: 9pt; line-height: 1.5; margin: 3mm 0; }
+.instructions b { font-weight: bold; }
+.legend { display: flex; justify-content: space-between; margin: 3mm 0; font-size: 7pt; }
+.legend span { border-bottom: 3px solid; padding-bottom: 1mm; }
+.columns { display: flex; gap: 5mm; }
+.column { width: 92.5mm; }
+.column-label { font-size: 7pt; color: #62625d; padding: 0 1mm 2mm; }
+.pair { display: flex; align-items: center; height: 12.8mm; border: 1px solid #d9d9d2; border-radius: 1mm; margin-bottom: 1.2mm; padding: 1.3mm; break-inside: avoid; }
+.left { width: 40mm; height: 10mm; border-radius: .6mm; display: flex; flex-direction: column; justify-content: center; padding: 1mm 2mm; color: white; }
+.word { font-weight: bold; font-size: 16pt; line-height: 1.05; }
+.tag { font: bold 6.5pt "DejaVu Sans", sans-serif; line-height: 1.3; letter-spacing: .3px; }
+.arrow { width: 8mm; text-align: center; color: #62625d; font-size: 14pt; }
+.right { width: 39mm; padding: 0 1mm; }
+.right .tag { display: block; margin-top: .5mm; color: #494944; }
+footer { border-top: 1px solid #b8b8af; margin-top: 3mm; padding-top: 2mm; font-size: 7pt; line-height: 1.5; color: #62625d; }
+footer b { color: #20201e; }
+.note { border-left: 3px solid #c2a374; padding: 2mm 3mm; font: 8pt/1.5 "DejaVu Sans", sans-serif; margin-top: 3mm; }
+
+.rover-pair { height: 27mm; display: flex; align-items: center; border: 1px solid #d9d9d2; padding: 1.5mm; border-radius: 1mm; margin-bottom: 2mm; break-inside: avoid; }
+.cue, .answer { width: 38mm; text-align: center; }
+.cue { border-radius: .8mm; padding: 1mm; }
+.cue-label { color: white; font: bold 7pt "DejaVu Sans", sans-serif; padding: 0 0 1mm; }
+.tile { width: 27mm; height: 17mm; margin: auto; background: #000; color: #e6e6e1; border: 1px solid #5a5a58; border-radius: .8mm; text-align: center; padding: 1mm; }
+.tile.hazard { background: white; color: #000; border: 1px solid #20201e; }
+.tile .sym { display: block; width: 17mm; height: 10mm; margin: auto; }
+.sym { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.sym .fill { fill: currentColor; stroke: none; }
+.sym .thin { stroke-width: 1; }
+.sym .faint { stroke-opacity: .55; }
+.tile .value { font-size: 8pt; line-height: 1; }
+.answer-label { font: bold 7.5pt "DejaVu Sans", sans-serif; margin-top: 1mm; }
+.rover-arrow { width: 9mm; text-align: center; color: #62625d; font-size: 15pt; }
+.memory { height: 27mm; border: 1px dashed #b8b8af; padding: 2mm; font: 8.5pt/1.5 "DejaVu Sans", sans-serif; }
+.paddle-key { display: flex; gap: 2mm; margin: 3mm 0; }
+.paddle-key div { width: 25%; border-bottom: 3px solid; font-size: 8pt; padding: 2mm 0; }
+.route { width: 100%; height: 58mm; border: 1px solid #b8b8af; margin: 2mm 0; }
+.route path { fill: none; }
+.board { width: 100%; border-collapse: separate; border-spacing: .6mm; }
+.board th { font-size: 7pt; font-weight: normal; }
+.board .tile { width: 10.5mm; height: 15mm; padding: 1mm 0; }
+.board .tile .sym { width: 9mm; height: 8mm; }
+.board .tile .value { font-size: 4.8pt; }
+.board .row-label { width: 17mm; font-size: 6pt; text-align: left; }
+.vote-row { display: flex; align-items: center; margin: 2mm 0; font-size: 9pt; }
+.vote-row .label { width: 34mm; }
+.vote-row .track { width: 75mm; height: 4mm; border-bottom: 1px solid #d9d9d2; }
+.vote-row .bar { height: 4mm; }
+.vote-row .count { margin-left: 3mm; }
+.small { font: 8pt/1.5 "DejaVu Sans", sans-serif; }
+h2 { font-size: 13pt; margin: 4mm 0 2mm; }
+.paddle { height: 108mm; border: 1px dashed #9b9b94; padding: 6mm; margin-bottom: 5mm; text-align: center; }
+.paddle .number { font-size: 70pt; font-weight: bold; line-height: 1.1; }
+.paddle .name { font-size: 22pt; font-weight: bold; }
+.paddle .stripe { height: 18mm; margin-top: 4mm; color: white; padding: 4mm; font-size: 17pt; }
+.stage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+.stage-panel { border: 1px solid #b8b8af; padding: 4mm; }
+.stage-panel h2 { margin: 0; }
+.stage-panel .route { height: 38mm; }
+.stage-panel .vote-row { font-size: 8pt; margin: 1mm 0; }
+.stage-panel .vote-row .track { width: 48mm; }
+.stage-panel .vote-row .label { width: 28mm; }
+.stage-cards { display: flex; gap: 2mm; margin: 2mm 0; }
+.stage-cards .tile { width: 28mm; height: 15mm; font-size: 14pt; padding-top: 3mm; }
+</style></head><body><section class="sheet"><header><div class="kicker">CUT ALONG THE DOTTED EDGES</div><div class="title-row"><h1>Your four votes</h1><div class="badge">TEAM A</div></div></header><div class="columns" style="margin-top:5mm"><div class="column"><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM A</div><div class="number">1</div><div class="name">BATTERY</div><div class="stripe" style="background:#2563eb">BLUE</div><div class="small">Raise one paddle per vote</div></div><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM A</div><div class="number">2</div><div class="name">SLOPE</div><div class="stripe" style="background:#d97706">AMBER</div><div class="small">Raise one paddle per vote</div></div></div><div class="column"><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM A</div><div class="number">3</div><div class="name">DUST</div><div class="stripe" style="background:#7c3aed">PURPLE</div><div class="small">Raise one paddle per vote</div></div><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM A</div><div class="number">4</div><div class="name">GROUND</div><div class="stripe" style="background:#16a34a">GREEN</div><div class="small">Raise one paddle per vote</div></div></div></div></section><section class="sheet"><header><div class="kicker">CUT ALONG THE DOTTED EDGES</div><div class="title-row"><h1>Your four votes</h1><div class="badge">TEAM B</div></div></header><div class="columns" style="margin-top:5mm"><div class="column"><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM B</div><div class="number">1</div><div class="name">BATTERY</div><div class="stripe" style="background:#2563eb">BLUE</div><div class="small">Raise one paddle per vote</div></div><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM B</div><div class="number">2</div><div class="name">SLOPE</div><div class="stripe" style="background:#d97706">AMBER</div><div class="small">Raise one paddle per vote</div></div></div><div class="column"><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM B</div><div class="number">3</div><div class="name">DUST</div><div class="stripe" style="background:#7c3aed">PURPLE</div><div class="small">Raise one paddle per vote</div></div><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM B</div><div class="number">4</div><div class="name">GROUND</div><div class="stripe" style="background:#16a34a">GREEN</div><div class="small">Raise one paddle per vote</div></div></div></div></section><section class="sheet"><header><div class="kicker">CUT ALONG THE DOTTED EDGES</div><div class="title-row"><h1>Your four votes</h1><div class="badge">TEAM C</div></div></header><div class="columns" style="margin-top:5mm"><div class="column"><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM C</div><div class="number">1</div><div class="name">BATTERY</div><div class="stripe" style="background:#2563eb">BLUE</div><div class="small">Raise one paddle per vote</div></div><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM C</div><div class="number">2</div><div class="name">SLOPE</div><div class="stripe" style="background:#d97706">AMBER</div><div class="small">Raise one paddle per vote</div></div></div><div class="column"><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM C</div><div class="number">3</div><div class="name">DUST</div><div class="stripe" style="background:#7c3aed">PURPLE</div><div class="small">Raise one paddle per vote</div></div><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM C</div><div class="number">4</div><div class="name">GROUND</div><div class="stripe" style="background:#16a34a">GREEN</div><div class="small">Raise one paddle per vote</div></div></div></div></section><section class="sheet"><header><div class="kicker">CUT ALONG THE DOTTED EDGES</div><div class="title-row"><h1>Your four votes</h1><div class="badge">TEAM D</div></div></header><div class="columns" style="margin-top:5mm"><div class="column"><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM D</div><div class="number">1</div><div class="name">BATTERY</div><div class="stripe" style="background:#2563eb">BLUE</div><div class="small">Raise one paddle per vote</div></div><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM D</div><div class="number">2</div><div class="name">SLOPE</div><div class="stripe" style="background:#d97706">AMBER</div><div class="small">Raise one paddle per vote</div></div></div><div class="column"><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM D</div><div class="number">3</div><div class="name">DUST</div><div class="stripe" style="background:#7c3aed">PURPLE</div><div class="small">Raise one paddle per vote</div></div><div class="paddle"><div class="kicker">PAPER WEIGHTS × ROVER RUN / TEAM D</div><div class="number">4</div><div class="name">GROUND</div><div class="stripe" style="background:#16a34a">GREEN</div><div class="small">Raise one paddle per vote</div></div></div></div></section></body></html>

@@ -1,0 +1,395 @@
+{
+  "seed": 42,
+  "routes": [
+    {
+      "team": "A",
+      "seed": 100042,
+      "start": {
+        "slope": "flat",
+        "ground": "sand",
+        "dust": "haze",
+        "battery": "full"
+      },
+      "squares": [
+        {
+          "slope": "flat",
+          "ground": "firm",
+          "dust": "haze",
+          "battery": "dead"
+        },
+        {
+          "slope": "flat",
+          "ground": "firm",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "firm",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "tilted",
+          "ground": "firm",
+          "dust": "storm",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "soft",
+          "dust": "clear",
+          "battery": "dead"
+        },
+        {
+          "slope": "flat",
+          "ground": "firm",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "steep",
+          "ground": "soft",
+          "dust": "storm",
+          "battery": "full"
+        },
+        {
+          "slope": "tilted",
+          "ground": "sand",
+          "dust": "haze",
+          "battery": "dead"
+        },
+        {
+          "slope": "steep",
+          "ground": "firm",
+          "dust": "clear",
+          "battery": "dead"
+        },
+        {
+          "slope": "tilted",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "steep",
+          "ground": "soft",
+          "dust": "storm",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "soft",
+          "dust": "clear",
+          "battery": "dead"
+        },
+        {
+          "slope": "flat",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "full"
+        }
+      ]
+    },
+    {
+      "team": "B",
+      "seed": 200042,
+      "start": {
+        "slope": "flat",
+        "ground": "soft",
+        "dust": "haze",
+        "battery": "dead"
+      },
+      "squares": [
+        {
+          "slope": "steep",
+          "ground": "soft",
+          "dust": "storm",
+          "battery": "full"
+        },
+        {
+          "slope": "steep",
+          "ground": "soft",
+          "dust": "clear",
+          "battery": "dead"
+        },
+        {
+          "slope": "steep",
+          "ground": "firm",
+          "dust": "clear",
+          "battery": "full"
+        },
+        {
+          "slope": "steep",
+          "ground": "soft",
+          "dust": "clear",
+          "battery": "full"
+        },
+        {
+          "slope": "tilted",
+          "ground": "firm",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "steep",
+          "ground": "firm",
+          "dust": "storm",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "dead"
+        },
+        {
+          "slope": "tilted",
+          "ground": "sand",
+          "dust": "clear",
+          "battery": "full"
+        },
+        {
+          "slope": "tilted",
+          "ground": "soft",
+          "dust": "clear",
+          "battery": "dead"
+        },
+        {
+          "slope": "flat",
+          "ground": "sand",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "firm",
+          "dust": "clear",
+          "battery": "dead"
+        },
+        {
+          "slope": "tilted",
+          "ground": "firm",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "soft",
+          "dust": "clear",
+          "battery": "full"
+        },
+        {
+          "slope": "steep",
+          "ground": "soft",
+          "dust": "clear",
+          "battery": "full"
+        }
+      ]
+    },
+    {
+      "team": "C",
+      "seed": 300042,
+      "start": {
+        "slope": "steep",
+        "ground": "firm",
+        "dust": "haze",
+        "battery": "full"
+      },
+      "squares": [
+        {
+          "slope": "flat",
+          "ground": "firm",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "firm",
+          "dust": "clear",
+          "battery": "full"
+        },
+        {
+          "slope": "steep",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "tilted",
+          "ground": "sand",
+          "dust": "storm",
+          "battery": "full"
+        },
+        {
+          "slope": "tilted",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "dead"
+        },
+        {
+          "slope": "flat",
+          "ground": "sand",
+          "dust": "clear",
+          "battery": "full"
+        },
+        {
+          "slope": "steep",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "dead"
+        },
+        {
+          "slope": "tilted",
+          "ground": "soft",
+          "dust": "clear",
+          "battery": "full"
+        },
+        {
+          "slope": "tilted",
+          "ground": "sand",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "tilted",
+          "ground": "firm",
+          "dust": "clear",
+          "battery": "dead"
+        },
+        {
+          "slope": "flat",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "tilted",
+          "ground": "sand",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "soft",
+          "dust": "clear",
+          "battery": "dead"
+        },
+        {
+          "slope": "steep",
+          "ground": "firm",
+          "dust": "clear",
+          "battery": "full"
+        }
+      ]
+    },
+    {
+      "team": "D",
+      "seed": 400042,
+      "start": {
+        "slope": "flat",
+        "ground": "soft",
+        "dust": "haze",
+        "battery": "full"
+      },
+      "squares": [
+        {
+          "slope": "flat",
+          "ground": "soft",
+          "dust": "clear",
+          "battery": "full"
+        },
+        {
+          "slope": "steep",
+          "ground": "firm",
+          "dust": "clear",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "firm",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "firm",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "tilted",
+          "ground": "soft",
+          "dust": "storm",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "sand",
+          "dust": "haze",
+          "battery": "dead"
+        },
+        {
+          "slope": "tilted",
+          "ground": "firm",
+          "dust": "storm",
+          "battery": "dead"
+        },
+        {
+          "slope": "tilted",
+          "ground": "soft",
+          "dust": "clear",
+          "battery": "dead"
+        },
+        {
+          "slope": "flat",
+          "ground": "sand",
+          "dust": "clear",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "dead"
+        },
+        {
+          "slope": "steep",
+          "ground": "soft",
+          "dust": "clear",
+          "battery": "full"
+        },
+        {
+          "slope": "flat",
+          "ground": "soft",
+          "dust": "clear",
+          "battery": "full"
+        },
+        {
+          "slope": "steep",
+          "ground": "soft",
+          "dust": "haze",
+          "battery": "full"
+        },
+        {
+          "slope": "tilted",
+          "ground": "sand",
+          "dust": "storm",
+          "battery": "full"
+        }
+      ]
+    }
+  ],
+  "warning": "FACILITATOR ONLY: contains future outcomes",
+  "pdf": {
+    "pages": 4,
+    "size": "A4 portrait",
+    "verified": true
+  }
+}

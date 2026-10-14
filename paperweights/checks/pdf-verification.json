@@ -1,0 +1,248 @@
+[
+  {
+    "file": "printouts/PW1-374-100-95db2b2ab6/duplex.pdf",
+    "pages": 200,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/PW1-374-100-95db2b2ab6/rover.pdf",
+    "pages": 100,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/PW1-374-100-95db2b2ab6/words.pdf",
+    "pages": 100,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/PW1-374-15-8dac60b141/duplex.pdf",
+    "pages": 30,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/PW1-374-15-8dac60b141/rover.pdf",
+    "pages": 15,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/PW1-374-15-8dac60b141/words.pdf",
+    "pages": 15,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/PW1-374-200-f0f8f62022/duplex.pdf",
+    "pages": 400,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/PW1-374-200-f0f8f62022/rover.pdf",
+    "pages": 200,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/PW1-374-200-f0f8f62022/words.pdf",
+    "pages": 200,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/concepts/a-field-notes.pdf",
+    "pages": 2,
+    "text_extent_mm": 249.67,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/concepts/all-concepts.pdf",
+    "pages": 6,
+    "text_extent_mm": 262.1,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/concepts/b-signal-slips.pdf",
+    "pages": 2,
+    "text_extent_mm": 247.1,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/concepts/c-two-clues.pdf",
+    "pages": 2,
+    "text_extent_mm": 262.1,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/context/audience-60.pdf",
+    "pages": 60,
+    "text_extent_mm": 236.42,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/context/context-key.pdf",
+    "pages": 1,
+    "text_extent_mm": 203.22,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/context/sample-sheets.pdf",
+    "pages": 2,
+    "text_extent_mm": 236.42,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/context/stage-mockup.pdf",
+    "pages": 1,
+    "text_extent_mm": 212.17,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/output/facilitator-maps.pdf",
+    "pages": 4,
+    "text_extent_mm": 261.69,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/output/paddles.pdf",
+    "pages": 4,
+    "text_extent_mm": 208.58,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/output/rover-audience-15.pdf",
+    "pages": 15,
+    "text_extent_mm": 260.32,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/output/stage-mockup.pdf",
+    "pages": 1,
+    "text_extent_mm": 268.99,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/output/worked-example.pdf",
+    "pages": 1,
+    "text_extent_mm": 216.36,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/output-200/facilitator-maps.pdf",
+    "pages": 4,
+    "text_extent_mm": 261.69,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/output-200/paddles.pdf",
+    "pages": 4,
+    "text_extent_mm": 208.58,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/output-200/rover-audience-200.pdf",
+    "pages": 200,
+    "text_extent_mm": 260.32,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/output-200/stage-mockup.pdf",
+    "pages": 1,
+    "text_extent_mm": 268.99,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/output-200/worked-example.pdf",
+    "pages": 1,
+    "text_extent_mm": 216.36,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/themes/01-mission-dark.pdf",
+    "pages": 1,
+    "text_extent_mm": 200.63,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/themes/01-mission-light.pdf",
+    "pages": 1,
+    "text_extent_mm": 200.63,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/themes/01-mission-paper.pdf",
+    "pages": 1,
+    "text_extent_mm": 236.42,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/themes/02-terminal-dark.pdf",
+    "pages": 1,
+    "text_extent_mm": 200.63,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/themes/02-terminal-light.pdf",
+    "pages": 1,
+    "text_extent_mm": 200.63,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/themes/02-terminal-paper.pdf",
+    "pages": 1,
+    "text_extent_mm": 236.42,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/themes/03-dotmatrix-dark.pdf",
+    "pages": 1,
+    "text_extent_mm": 200.63,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/themes/03-dotmatrix-light.pdf",
+    "pages": 1,
+    "text_extent_mm": 200.63,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/themes/03-dotmatrix-paper.pdf",
+    "pages": 1,
+    "text_extent_mm": 236.42,
+    "no_clipped_text": true
+  },
+  {
+    "file": "rover/themes/review-all.pdf",
+    "pages": 9,
+    "text_extent_mm": 236.42,
+    "no_clipped_text": true
+  },
+  {
+    "file": "words/paper-weights-100.pdf",
+    "pages": 100,
+    "text_extent_mm": 236.65,
+    "no_clipped_text": true
+  },
+  {
+    "file": "words/paper-weights-15.pdf",
+    "pages": 15,
+    "text_extent_mm": 236.65,
+    "no_clipped_text": true
+  },
+  {
+    "file": "words/paper-weights-200.pdf",
+    "pages": 200,
+    "text_extent_mm": 236.65,
+    "no_clipped_text": true
+  },
+  {
+    "file": "words/paper-weights-clean-mockup.pdf",
+    "pages": 1,
+    "text_extent_mm": 236.65,
+    "no_clipped_text": true
+  }
+]

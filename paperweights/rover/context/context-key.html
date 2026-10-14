@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Context key</title><style>
+@page { size: A4 portrait; margin: 10mm; }
+* { box-sizing: border-box; }
+body { margin: 0; background: white; color: #20201e; font-family: "DejaVu Sans Mono", monospace; }
+.sheet { break-after: page; }
+.sheet:last-child { break-after: auto; }
+.kicker { font-size: 8pt; letter-spacing: 1.1px; color: #62625d; }
+header { border-top: 3px solid #20201e; border-bottom: 1px solid #b8b8af; padding: 4mm 0 3mm; }
+.title-row { display: flex; align-items: center; justify-content: space-between; }
+h1 { font-size: 21pt; letter-spacing: -1px; margin: 2mm 0; line-height: 1.15; }
+.badge { font-size: 9pt; border: 1px solid #20201e; padding: 2mm; white-space: nowrap; }
+.instructions { font-family: "DejaVu Sans", sans-serif; font-size: 9pt; line-height: 1.5; margin: 3mm 0; }
+.instructions b { font-weight: bold; }
+.legend { display: flex; justify-content: space-between; margin: 3mm 0; font-size: 7pt; }
+.legend span { border-bottom: 3px solid; padding-bottom: 1mm; }
+.columns { display: flex; gap: 5mm; }
+.column { width: 92.5mm; }
+.column-label { font-size: 7pt; color: #62625d; padding: 0 1mm 2mm; }
+.pair { display: flex; align-items: center; height: 12.8mm; border: 1px solid #d9d9d2; border-radius: 1mm; margin-bottom: 1.2mm; padding: 1.3mm; break-inside: avoid; }
+.left { width: 40mm; height: 10mm; border-radius: .6mm; display: flex; flex-direction: column; justify-content: center; padding: 1mm 2mm; color: white; }
+.word { font-weight: bold; font-size: 16pt; line-height: 1.05; }
+.tag { font: bold 6.5pt "DejaVu Sans", sans-serif; line-height: 1.3; letter-spacing: .3px; }
+.arrow { width: 8mm; text-align: center; color: #62625d; font-size: 14pt; }
+.right { width: 39mm; padding: 0 1mm; }
+.right .tag { display: block; margin-top: .5mm; color: #494944; }
+footer { border-top: 1px solid #b8b8af; margin-top: 3mm; padding-top: 2mm; font-size: 7pt; line-height: 1.5; color: #62625d; }
+footer b { color: #20201e; }
+.note { border-left: 3px solid #c2a374; padding: 2mm 3mm; font: 8pt/1.5 "DejaVu Sans", sans-serif; margin-top: 3mm; }
+td,th { padding:4mm 2mm; border-bottom:1px solid #ccc; text-align:left; }</style></head><body><section class="sheet"><header><h1>What the color remembers</h1></header><div class="instructions">The icon is the current reading. The color groups a selected history and terrain context.<br>These are context names, not danger levels or category colors.</div><table style="width:100%;border-collapse:collapse;font:9pt/1.5 sans-serif"><tr><th>Color</th><th>History before this square</th><th>Current slope</th></tr><tr><td style="background:#dc2626;color:white;font-weight:bold">RED</td><td>Last two dust readings: HAZE, HAZE</td><td>non-flat</td></tr><tr><td style="background:#2563eb;color:white;font-weight:bold">BLUE</td><td>Last dust: HAZE; the one before was not HAZE</td><td>non-flat</td></tr><tr><td style="background:#d97706;color:white;font-weight:bold">AMBER</td><td>Last dust reading was not HAZE</td><td>non-flat</td></tr><tr><td style="background:#16a34a;color:white;font-weight:bold">GREEN</td><td>Last two dust readings: HAZE, HAZE</td><td>flat</td></tr><tr><td style="background:#7c3aed;color:white;font-weight:bold">PURPLE</td><td>Last dust: HAZE; the one before was not HAZE</td><td>flat</td></tr><tr><td style="background:#db2777;color:white;font-weight:bold">PINK</td><td>Last dust reading was not HAZE</td><td>flat</td></tr></table><div class="instructions" style="margin-top:7mm"><b>RED HAZE</b>: haze now, haze on both earlier squares, non-flat terrain now.<br><b>GREEN HAZE</b>: the same recent haze pattern, but flat terrain now.<br><b>RED STORM / BLUE STORM</b>: the same current storm, different earlier dust history.<br><br>The left box on paper and the stage card use exactly the same context function.<br>The right-hand word names a category observed in the next historical square.<br>Its ink repeats the matched context; it does not predict the next live color.<br><br>The stage mock is paused after square 06 has been revealed/crossed. Only its four<br>cards are shown; older readings are stored. Voting selects a card in square 07.<br>The terrain used by the color is already known here. A reveal of hidden square 07<br>must not silently use its still-hidden slope to assign a new cue color.<br><br>Six colors compress selected features, not the entire map history. Different detailed<br>histories may share a bucket. This is a hand-designed context key, not transformer<br>attention or a claim about real Mars.</div></section></body></html>

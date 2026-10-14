@@ -1,0 +1,109 @@
+{
+  "kind": "Approved minimal sample",
+  "source_deck_sheets": 15,
+  "source_sheet": 1,
+  "seed": 42,
+  "pairs": [
+    [
+      "!",
+      "the"
+    ],
+    [
+      "man",
+      "sat"
+    ],
+    [
+      "said",
+      "that"
+    ],
+    [
+      "shine",
+      ","
+    ],
+    [
+      "the",
+      "cat"
+    ],
+    [
+      ",",
+      "so"
+    ],
+    [
+      "and",
+      "said"
+    ],
+    [
+      "dark",
+      "sea"
+    ],
+    [
+      "to",
+      "see"
+    ],
+    [
+      "not",
+      "shine"
+    ],
+    [
+      "?",
+      "I"
+    ],
+    [
+      "was",
+      "too"
+    ],
+    [
+      "I",
+      "am"
+    ],
+    [
+      "I",
+      "saw"
+    ],
+    [
+      "I",
+      "saw"
+    ],
+    [
+      "I",
+      "went"
+    ],
+    [
+      "flat",
+      "sea"
+    ],
+    [
+      "out",
+      ","
+    ],
+    [
+      "sun",
+      "did"
+    ],
+    [
+      "go",
+      "out"
+    ],
+    [
+      "pale",
+      "blue"
+    ],
+    [
+      "see",
+      "a"
+    ],
+    [
+      "that",
+      "I"
+    ],
+    [
+      "went",
+      "to"
+    ]
+  ],
+  "pdf": {
+    "pages": 1,
+    "size": "A4 portrait",
+    "verified": true
+  }
+}
