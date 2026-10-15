@@ -123,3 +123,25 @@ Regenerated all 15/100/200 packs. Independent PDF extraction passed for all 315 
 backs and 630 duplex pages: all ordered lookup rows match game data, team labels and
 front/back pairing agree, and the hazard strip appears on Rover backs only. Generator
 checks also passed page counts, text bounds and removal of typographic dot separators.
+
+## Brainstorm - one audience decision across difficulty modes
+
+User reports Easy works well but worries about switching from Go/Avoid voting to category
+voting in Medium. Requested ideas in both directions and a self-contained handoff.
+Created `narrative/GO_NOGO_DECISIONS.md` with the exact current UI/model/print semantics,
+card-selection alternatives, same-square and next-square binary-vote alternatives,
+tradeoffs, generation requirements and prototype acceptance checks. No gameplay or
+print artifacts changed in this checkpoint.
+
+Recommendation for discussion: retain Easy and prototype same-square Go/Avoid in Medium.
+A printed outcome would label the whole historical square, including hidden companions,
+not just the pictured card. Existing inspection-biased category samples must be rebuilt
+from the full archive; simply changing their labels would not yield valid outcome votes.
+Current colors encode older history and can support inference without revealing answers.
+
+Read current UI and generator, then counted same-square hazards directly across the
+60,000-record archive: RED haze 69.2%, BLUE haze 36.8%, AMBER soft 68.7%, GREEN soft 37.3%,
+PURPLE flat 44.7%, PINK flat 55.5%; source-square baseline 58.9%. These exploratory
+frequencies are recorded as evidence of potential, not new-game performance claims.
+The handoff separates source versus target timing, warns against selection leakage and
+averaging correlated clues, and requires fresh multi-seed playtests for any binary pack.
