@@ -1,20 +1,20 @@
 [
   {
-    "packId": "PW1-374-15-8dac60b141",
+    "packId": "PW2-15-15-fb7b11abfe",
     "sheetCount": 15,
-    "seed": 374,
-    "url": "packs/PW1-374-15-8dac60b141.json"
+    "seed": 15,
+    "url": "packs/PW2-15-15-fb7b11abfe.json"
   },
   {
-    "packId": "PW1-374-100-95db2b2ab6",
+    "packId": "PW2-15-100-1afd11f78a",
     "sheetCount": 100,
-    "seed": 374,
-    "url": "packs/PW1-374-100-95db2b2ab6.json"
+    "seed": 15,
+    "url": "packs/PW2-15-100-1afd11f78a.json"
   },
   {
-    "packId": "PW1-374-200-f0f8f62022",
+    "packId": "PW2-15-200-95d7a79806",
     "sheetCount": 200,
-    "seed": 374,
-    "url": "packs/PW1-374-200-f0f8f62022.json"
+    "seed": 15,
+    "url": "packs/PW2-15-200-95d7a79806.json"
   }
 ]

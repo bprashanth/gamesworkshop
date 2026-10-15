@@ -8,7 +8,47 @@ This is an opening module and audience-participation bridge for the broader
 [workshop sequence](EVENT.md), not a replacement for its environmental investigation
 or lunar transfer work. The Mars/Moon source-data and film projects are untouched.
 
-## Current implementation: Paper Weights competitive stage
+## Current interaction: timed flips, continuous routes
+
+15 October 2026. The competitive screen now contains four enlarged maps with four cards
+each. Removed the paper tally graphs, panel clocks, team/checkpoint headings, map labels,
+MATCH strip and Go/Avoid/Next controls. One shared control sets reveal time to 10, 20 or
+30 seconds. Dark/light mode, pack selection and reset remain. Only end states show OUT
+or FINISHED; no instructions were added to the map.
+
+An initial visible card starts each lookup chain. After it hides, the room votes from
+that observed icon/color and the rep chooses a category. The selected card appears for
+the configured duration. On expiry, a death card automatically causes avoidance; any
+other card causes movement. Missing a death card elsewhere in the row eliminates the
+rover with the original sand dissolve. Successful moves animate along the map, with
+dashed detours for avoidance. Four successful flips finish. Each new lookup is exactly
+the card just seen, not an unrelated checkpoint prompt.
+
+PW2 therefore replaces the earlier independent-checkpoint model with contiguous rows.
+The historical archive and game routes use the same physical transition kernel, retain
+storm/sand/lagged-battery constraints and cover every possible card choice. All 24
+reachable icon/color pairs appear once on every sheet. Color attention is now specific
+to the observed category and refers to history two rows back: red/blue remember haze,
+amber/green remember soft ground, purple/pink remember prior storm or sand. Purple also
+marks haze/soft observations with that hazard history. The model guide defines exact
+precedence. Hidden card backs carry no context color; a color is revealed with its icon.
+
+Plain RED/BLUE/AMBER/GREEN/PURPLE/PINK names replace the numbered labels and dot patterns
+on screen and production paper. Updated duplex packs have matching word fronts and Rover
+backs. Previous PW1 packs are archived and are not valid for this loop.
+
+People can choose any team first, then receive that team's stack. A/B/C/D map to top-left,
+top-right, bottom-left, bottom-right. Everyone can respond to every cue, but arbitrary
+mixing changes carefully balanced category counts and can swing close votes. With 200
+sheets use 50 per team; with 15 use 4/4/4/3. A small team/person mark stays on the paper.
+
+Seed 15 is the reviewed scenario: reference paper play yields 1/1/2 finishers at 15/100/200
+people, with eliminations on turn 3 and finishes on turn 4. This is not a guaranteed human
+outcome. Playwright rehearsals for 15 and 200 sheets count actual printed rows, verify the
+cue chain, timer expiry, input locking, map dissolve and responsive layout. Five model
+tests cover all 256 four-choice paths per team and 60,000 historical transitions.
+
+## Previous implementation: Paper Weights competitive stage
 
 The project and directory are now **Paper Weights**, `paperweights/`. The competitive
 game is implemented in `paperweights/web/`, with dark default, light mode, four panels,

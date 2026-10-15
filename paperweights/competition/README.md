@@ -1,39 +1,52 @@
-# Competitive Paper Weights model
+# Continuous Paper Weights model (PW2)
 
-This is an authored teaching world, not a claim about NASA hazard frequencies or the collaborative game's fixed deck. Four teams each face four surveyed route checkpoints. Each checkpoint has its own known two-reading history and source square, then one hidden target. They are spaced checkpoints, **not four contiguous squares**: the source of checkpoint two is not claimed to be the target of checkpoint one.
+The game has four consecutive decisions. A bootstrap card is shown for the reveal duration (10 seconds by default; configurable to 20 or 30), then hidden. The audience matches that exact icon and color on paper and suggests a category. The chosen card in the next square flips for the same duration. A kill card automatically avoids that square; a non-kill card automatically goes. Going into a square with any other hidden kill eliminates the team. The newly flipped card becomes the exact next lookup cue. Four successful decisions finish.
 
-## One shared distribution
+There is no separate GO/AVOID choice, and no possible false AVOID: automatic avoidance only happens on a visible kill. The former PW1 four independent checkpoints and their color meanings are obsolete. PW2 paper and maps must be regenerated together.
 
-`generate.py` is the authority for both historical observations on paper and target maps. Each of the 24 cue keys is an icon plus C01–C06. Context compresses two previous dust readings and the known source slope: persistent haze / fresh haze / other, crossed with flat / uneven. It never consults hidden target values. Every sheet has every cue exactly once, so **100% of a team's audience can vote on every call**.
+## One continuous world, 24 closed lookups
 
-A target is safe or contains one fatal battery, dust or ground reading. Uneven persistent histories favor one failure; other contexts produce close dust/battery or ground/battery splits. Two valid storm cues lead to certain lagged battery failure. The precise probabilities live in `kernel()`. Storm targets cannot have flat slopes; sand targets cannot have steep slopes. Battery is dead exactly when the source had storm or sand. Storm only follows haze; sand only follows soft ground. Source windows also obey these constraints. Flat-context storm cues and C03 storm are unreachable, so those rows use a full-battery cue instead.
+`draw_target()` is the shared transition algorithm for the historical archive and live maps. Storm follows haze and never occurs on flat terrain; sand follows soft ground and never occurs on steep terrain; battery is dead exactly after storm or sand. Storm/sand frequencies additionally depend on older readings. A square can contain multiple kill cards. Revealing any of them avoids it.
 
-Historical observations use that same target kernel. The recorded inspection focuses on a failure 80% of the time and explores uniformly 20% of the time; safe observations explore uniformly. The printed right-hand word is that historical inspection. Thus the room estimates an **inspection suggestion distribution**, not a literal probability of death. `observations` retains source, target and inspection for every row, including safe/exploratory counterexamples.
+Every sheet contains all 24 reachable icon/color pairs. Any of the four cards may be selected, and every revealed pair is present on every sheet. Tests enumerate all 256 four-choice paths for each team and check this closure. The map is a fixed physical sequence independent of paper size and card choices. Choices affect what is learned and survival, not the hidden terrain.
 
-For dependable event packs, category frequencies are stratified by largest remainder separately for each team and cue, then shuffled between participants. Each category's rounding error is below one voter. A 3–4-person test team necessarily produces coarse ties; 25–50-person teams resolve the intended distributions more accurately. Historical outcomes are sampled conditionally on each allocated inspection using Bayes' rule, so no impossible category/outcome pairs are invented.
+Color remembers a selected variable **two squares before the card's square**. Which variable matters depends on the icon, like a small authored attention mechanism:
 
-The kernel is a joint mixture of valid source/target observations conditioned on the cue, not a claim that every source variable is independently randomized. The source ground or dust readings beyond the called icon are latent to the audience; these distinguish cases sharing an icon/context. For example, haze accompanied by unshown sand can lead to a dead battery, while haze on firm/soft ground can lead to storm. Display the called source icon and context, not the complete source record. The history and lateral slope used by the color are known; no target information is used in the color.
+| Color | Remembered condition | Icons using it |
+| --- | --- | --- |
+| RED | Older dust was haze | Battery, dust |
+| BLUE | Older dust was not haze | Battery, dust |
+| AMBER | Older ground was soft | Ground |
+| GREEN | Older ground was not soft | Ground |
+| PURPLE | Older square had storm or sand | Slope; also haze and soft ground |
+| PINK | Older square had neither storm nor sand | Slope |
 
-The maps draw independently from the same kernel. Changing paper count leaves every map unchanged. The game never selects outcomes to punish a vote, force a winner or reward a specific player. The demo seed is curated, but arbitrary seeds are never filtered or retried. Every source window and target is stored in the pack before play.
+For haze and soft ground, PURPLE takes precedence over their ordinary dust/ground color. This gives battery 4 pairs, dust 7, ground 7, slope 6: exactly 24. These are not risk colors, category colors, or a claim to encode the complete history. The context uses only past readings; it never consults the current card's hidden companions or future square. Hidden card backs are neutral. Once selected, a card shows its own context color, not a shared color for the whole square.
 
-## Play and balance
+## Historical suggestions and votes
 
-One category may be inspected per checkpoint. GO on any fatal target eliminates; AVOID on a safe target also eliminates. AVOID on a fatal target or GO on a safe one advances. Four successful calls finish the route. The reference paper policy inspects the largest printed category count (ties use battery, slope, dust, ground order), avoids a revealed fatal card, otherwise goes. The uninformed comparator rotates categories independently of the clue. Neither gets hidden-target knowledge.
+A fixed 60,000-transition archive is generated by that same algorithm after a burn-in. Each observation stores two prior rows, the source, and the target. For each source icon/color, the historical inspection policy focuses on one target kill 80% of the time and explores all categories uniformly 20%; safe targets explore uniformly. Therefore the right-hand word is an **inspection suggestion**, not a direct probability of death.
 
-`simulation.json` reports 500 route seeds for each of 15, 100 and 200 sheets, including all 0- and 4-finisher outcomes. One or two finishers is an average design goal, **not a guarantee**. Seed 374 is the shipped reproducible event seed, explicitly selected during rehearsal because the reference policy yields two finishers with 15, 100 and 200 sheets and all four teams reach checkpoint three; see its complete policy logs in that report. A group may be eliminated before round three: sudden death takes effect immediately.
+For each cue and team, printed category counts approximate the archive's conditional distribution by largest-remainder stratification, then suggestions are shuffled between people. Each category's rounding error is less than one voter. Historical examples are sampled from that same cue bucket conditional on their allocated inspection category. All rows retain an archive reference for audit. These are simulated observations, not NASA data.
 
-## Regenerate / verify
+Every person can match every team cue. Nevertheless, exact planned proportions apply to the **assigned A/B/C/D group as a whole**. Swapping random subsets between teams changes those realized proportions; it does not invalidate the lookups. Pooling the whole room gives the pooled printed distribution. A 15-person test has groups of four/four/four/three, so ties are much coarser than 25–50 voters per team. Do not promise identical percentages for arbitrary hand-picked subsets.
+
+## Reproducibility and play tests
+
+`packId` hashes the complete generated pack. Always use paper and game with matching IDs. `PW2` IDs distinguish these sheets from the incompatible independent-checkpoint sheets. `initialCue`, `votesByCue`, and each target's four `targetCues` are the UI interface. After a flip, use that card's `targetCues[category]` for the next lookup; do not substitute a predetermined cue.
+
+Seed **15** is the explicitly reviewed rehearsal seed. The reference policy chooses the largest printed count, breaking ties in battery/slope/dust/ground order. It produces 1, 1 and 2 finishers for 15, 100 and 200 sheets; all teams reach decision three. This is not a guarantee for human choices. Arbitrary seeds are not filtered, rerolled or adjusted to force winners. `simulation.json` reports all outcomes for 500 unfiltered seeds, comparing the paper policy with clue-independent category rotation.
 
 ```sh
-python3 paperweights/competition/generate.py --sheets 200 --seed 374 --out paperweights/competition/pack-200.json
+python3 paperweights/competition/generate.py --sheets 200 --seed 15
 python3 -m unittest discover -s paperweights/competition -p 'test_*.py'
 python3 paperweights/competition/simulate.py
 ```
 
-`packId` hashes the complete generated pack. Print and game must have the same ID. Print production should import `make_pack(sheet_count, seed)` rather than recreate any model logic. The full pack contains hidden targets for the local static game: it is suitable for a trusted on-stage operator, not adversarial secret-server play. Do not give spectators the JSON. A later online competitive deployment would need a server to withhold future targets.
+Print production imports `make_pack(sheet_count, seed)` rather than duplicating the model. The full static pack contains hidden targets, so it is intended for a trusted stage operator, not an adversarial online contest with server-held secrets.
 
-## Actual event vote examples
+## Current measurements
 
-The 200-sheet pack has 50 voters per team. Team B checkpoint 1 is an exact leading tie: battery 19, dust 19, slope 6, ground 6. Team A checkpoint 1 is ground 20 versus dust 18, with battery 6 and slope 6. Team A checkpoint 2 is dust 22 versus battery 16, with slope 6 and ground 6. These are actual printed counts, not screen decoration. All 50 people have a matching row in each case. The smaller pack has four/four/four/three voters; percentages are correspondingly coarse.
+At 200 sheets, each team has 50 voters. RED haze gives dust 24, ground 11, battery 10, slope 5. BLUE dead battery gives ground 16, battery 15, dust 12, slope 7. BLUE clear dust gives battery 16 and ground 16, with slope and dust 9 each. These actual printed splits include both useful majorities and unresolved alternatives. Every group member has the matching row.
 
-Across 500 unfiltered seeds (0–499), the reference paper policy averages 0.984, 1.188 and 1.116 finishers at 15, 100 and 200 sheets, versus 0.228 for clue-independent inspection. One or two finishers occurs in 62.0%, 66.8% and 62.6% of runs respectively. This measures one declared policy; people can do better or worse. The 374 rehearsal seed is in that sweep, so the sweep is unfiltered rather than an entirely unseen evaluation set.
+The 500-seed sweep averages 0.988 / 1.578 / 1.690 finishers for paper-guided play at 15 / 100 / 200 sheets, compared with 0.722 for clue-independent rotation. One or two finishers occurs in 63.6% / 69.8% / 67.2% of runs. The complete histogram includes zero and four finishers. All 24 archive buckets contain at least 2,727 observations. These measurements describe the declared reference policies, not guaranteed human outcomes. Seed 15 is included in the unfiltered sweep; it is not an entirely unseen test set.

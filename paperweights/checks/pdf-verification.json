@@ -1,54 +1,108 @@
 [
   {
-    "file": "printouts/PW1-374-100-95db2b2ab6/duplex.pdf",
+    "file": "printouts/PW2-15-100-1afd11f78a/duplex.pdf",
     "pages": 200,
     "text_extent_mm": 246.59,
     "no_clipped_text": true
   },
   {
-    "file": "printouts/PW1-374-100-95db2b2ab6/rover.pdf",
+    "file": "printouts/PW2-15-100-1afd11f78a/rover.pdf",
     "pages": 100,
     "text_extent_mm": 246.59,
     "no_clipped_text": true
   },
   {
-    "file": "printouts/PW1-374-100-95db2b2ab6/words.pdf",
+    "file": "printouts/PW2-15-100-1afd11f78a/words.pdf",
     "pages": 100,
     "text_extent_mm": 246.59,
     "no_clipped_text": true
   },
   {
-    "file": "printouts/PW1-374-15-8dac60b141/duplex.pdf",
+    "file": "printouts/PW2-15-15-fb7b11abfe/duplex.pdf",
     "pages": 30,
     "text_extent_mm": 246.59,
     "no_clipped_text": true
   },
   {
-    "file": "printouts/PW1-374-15-8dac60b141/rover.pdf",
+    "file": "printouts/PW2-15-15-fb7b11abfe/rover.pdf",
     "pages": 15,
     "text_extent_mm": 246.59,
     "no_clipped_text": true
   },
   {
-    "file": "printouts/PW1-374-15-8dac60b141/words.pdf",
+    "file": "printouts/PW2-15-15-fb7b11abfe/words.pdf",
     "pages": 15,
     "text_extent_mm": 246.59,
     "no_clipped_text": true
   },
   {
-    "file": "printouts/PW1-374-200-f0f8f62022/duplex.pdf",
+    "file": "printouts/PW2-15-200-95d7a79806/duplex.pdf",
     "pages": 400,
     "text_extent_mm": 246.59,
     "no_clipped_text": true
   },
   {
-    "file": "printouts/PW1-374-200-f0f8f62022/rover.pdf",
+    "file": "printouts/PW2-15-200-95d7a79806/rover.pdf",
     "pages": 200,
     "text_extent_mm": 246.59,
     "no_clipped_text": true
   },
   {
-    "file": "printouts/PW1-374-200-f0f8f62022/words.pdf",
+    "file": "printouts/PW2-15-200-95d7a79806/words.pdf",
+    "pages": 200,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/archive/PW1-374-100-95db2b2ab6/duplex.pdf",
+    "pages": 200,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/archive/PW1-374-100-95db2b2ab6/rover.pdf",
+    "pages": 100,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/archive/PW1-374-100-95db2b2ab6/words.pdf",
+    "pages": 100,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/archive/PW1-374-15-8dac60b141/duplex.pdf",
+    "pages": 30,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/archive/PW1-374-15-8dac60b141/rover.pdf",
+    "pages": 15,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/archive/PW1-374-15-8dac60b141/words.pdf",
+    "pages": 15,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/archive/PW1-374-200-f0f8f62022/duplex.pdf",
+    "pages": 400,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/archive/PW1-374-200-f0f8f62022/rover.pdf",
+    "pages": 200,
+    "text_extent_mm": 246.59,
+    "no_clipped_text": true
+  },
+  {
+    "file": "printouts/archive/PW1-374-200-f0f8f62022/words.pdf",
     "pages": 200,
     "text_extent_mm": 246.59,
     "no_clipped_text": true

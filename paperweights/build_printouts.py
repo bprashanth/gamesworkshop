@@ -3,6 +3,7 @@
 import argparse
 import importlib.util
 import json
+import re
 from pathlib import Path
 import xml.etree.ElementTree as ET
 from html import escape
@@ -17,7 +18,6 @@ CSS=MINIMAL_CSS+'''
 .pair { border-radius:0; }
 .lookup { width:40mm; height:10mm; display:flex; border:1.5px solid; border-left-width:4px; }
 .key { width:16mm; display:flex; align-items:center; justify-content:center; gap:1mm; font-size:7pt; }
-.dotkey { width:7mm; height:5mm; }
 .face { width:24mm; display:flex; justify-content:center; align-items:center; }
 .context-icon { width:17mm; height:9mm; }
 .right .word { font-size:16pt; color:#242421; }
@@ -38,10 +38,6 @@ def icon(category,value,uid,ink):
         if 'faint' in classes:el.set('stroke-opacity','.55')
     return ET.tostring(root,encoding='unicode')
 
-def dotkey(code,color):
-    index=int(code[1:])
-    return '<svg class="dotkey" viewBox="0 0 24 16">'+''.join(f'<rect x="{2+n%3*8}" y="{2+n//3*8}" width="4" height="4" fill="{color if n<index else "none"}" stroke="{color}" stroke-width=".5"/>' for n in range(6))+'</svg>'
-
 def identity(sheet,pack_id):
     return f'<div class="identity">{pack_id} / {sheet["team"]} / {sheet["id"]}</div>'
 
@@ -52,11 +48,11 @@ def rover_page(sheet,contexts,pack_id):
     for start in (0,12):
         rows=[]
         for i,e in enumerate(entries[start:start+12]):
-            code=e['context'];color=contexts[code]['light'];hazard=e['value'] in ('dead','storm','sand')
+            code=e['context'];color=contexts[code]['light'];color_name=contexts[code]['colorName'];hazard=e['value'] in ('dead','storm','sand')
             ink='#ffffff' if hazard else '#22221f';bg='#22221f' if hazard else '#ffffff'
-            rows.append(f'<div class="pair"><div class="lookup" style="border-color:{color}"><div class="key" style="color:{color}">{dotkey(code,color)}<b>{code}</b></div><div class="face" style="background:{bg}">'+icon(e['category'],e['value'],f'{sheet["id"]}-{start+i}',ink)+f'</div></div><div class="arrow">-&gt;</div><div class="right"><span class="word">{escape(e["nextCategory"])}</span><span class="tag" style="color:{color}">{code}</span></div></div>')
+            rows.append(f'<div class="pair"><div class="lookup" style="border-color:{color}"><div class="key" style="color:{color}"><b>{color_name}</b></div><div class="face" style="background:{bg}">'+icon(e['category'],e['value'],f'{sheet["id"]}-{start+i}',ink)+f'</div></div><div class="arrow">-&gt;</div><div class="right"><span class="word">{escape(e["nextCategory"])}</span><span class="tag" style="color:{color}">({color_name})</span></div></div>')
         columns.append('<div class="column">'+''.join(rows)+'</div>')
-    return '<section class="sheet"><header><h1>Paper Weights / Rover</h1></header><div class="instructions"><b>1</b> Match the icon and context mark on screen to a box on the left.<br><b>2</b> Vote the <b>word on the right</b> within 10 seconds.<br><b>3</b> Take each new call from the screen. The rep chooses what to flip.</div><div class="columns">'+''.join(columns)+'</div>'+identity(sheet,pack_id)+'</section>'
+    return '<section class="sheet"><header><h1>Paper Weights / Rover</h1></header><div class="instructions"><b>1</b> Match the shown icon + color to a box on the left.<br><b>2</b> Vote the <b>word on the right</b>.<br><b>3</b> Use each newly flipped card for the next lookup.</div><div class="columns">'+''.join(columns)+'</div>'+identity(sheet,pack_id)+'</section>'
 
 def verify(pdf,count):
     with pymupdf.open(pdf) as doc:
@@ -65,24 +61,27 @@ def verify(pdf,count):
             text=page.get_text()
             assert 'Paper Weights' in text and 'Human Language Model' not in text
             assert '→' not in text and text.count('->')==24,(pdf,n,text.count('->'))
+            assert not re.search(r'\bC0[1-6]\b',text),(pdf,n,'obsolete context code')
             for b in page.get_text('blocks'):
                 assert b[0]>=-1 and b[1]>=-1 and b[2]<=page.rect.width+1 and b[3]<=page.rect.height+1,(pdf,n,b)
 
-def build(count,seed):
+def build(count,seed=None):
     if not 12 <= count <= 200:
         raise ValueError("Use 12–200 people for a paired competitive pack.")
     spec=importlib.util.spec_from_file_location('paperweights_competition_generator',ROOT/'competition/generate.py')
     model=importlib.util.module_from_spec(spec);spec.loader.exec_module(model)
-    pack=model.make_pack(sheet_count=count,seed=seed)
+    pack=model.make_pack(sheet_count=count,**({'seed':seed} if seed is not None else {}))
+    seed=pack['seed']
     output=ROOT/'printouts'/pack['packId'];output.mkdir(parents=True,exist_ok=True)
     (output/'manifest.json').write_text(json.dumps(pack,indent=2)+'\n')
     gamepacks=ROOT/'web/packs';gamepacks.mkdir(parents=True,exist_ok=True)
     (gamepacks/f'{pack["packId"]}.json').write_text(json.dumps(pack,separators=(',',':'))+'\n')
-    if count==15 and seed==374:
+    if count==15:
         (ROOT/'web/pack.json').write_text(json.dumps(pack,separators=(',',':'))+'\n')
     indexpath=gamepacks/'index.json'
     index=json.loads(indexpath.read_text()) if indexpath.exists() else []
-    index=[p for p in index if p['packId']!=pack['packId']]
+    version=pack['packId'].split('-')[0]+'-'
+    index=[p for p in index if p['packId']!=pack['packId'] and p['packId'].startswith(version)]
     index.append(dict(packId=pack['packId'],sheetCount=count,seed=seed,url=f'packs/{pack["packId"]}.json'))
     index.sort(key=lambda p:(p['sheetCount'],p['seed'],p['packId']))
     indexpath.write_text(json.dumps(index,indent=2)+'\n')
@@ -102,7 +101,7 @@ def build(count,seed):
         preview(output/f'{name}.pdf')
     preview(output/'duplex.pdf',1,'back-preview')
     assignments='\n'.join(f'{i+1:03} | {s["id"]} | {s["team"]}' for i,s in enumerate(pack['sheets']))
-    (output/'PRINT.md').write_text(f'# {pack["packId"]}\n\nPrint `duplex.pdf`: A4, actual size, color, double-sided, **flip on long edge**. {count} physical sheets, {count*2} PDF pages. Odd pages are words; the following even page is that person’s Rover lookup. Keep stack order when splitting into teams. Select this exact pack ID in the game's Print pack selector; do not mix packs.\n\nPhysical sheet | Person | Team\n--- | --- | ---\n'+assignments+'\n')
+    (output/'PRINT.md').write_text(f'# {pack["packId"]}\n\nPrint `duplex.pdf`: A4, actual size, color, double-sided, **flip on long edge**. {count} physical sheets, {count*2} PDF pages. Odd pages are words; the following even page is that person’s Rover lookup. People may choose any team first; then hand out that team’s stack. A = top left, B = top right, C = bottom left, D = bottom right. Keep stack order and use the assignments below. Each stack has a stratified mix; randomly mixing stacks only approximates the proportions and can swing close votes. Select this exact pack ID in the game Print pack selector; do not mix packs.\n\nPhysical sheet | Person | Team\n--- | --- | ---\n'+assignments+'\n')
     (output/'verification.json').write_text(json.dumps({'packId':pack['packId'],'people':count,'pairsPerSide':24,'pages':count*2,'pageBounds':'passed','asciiArrows':'passed','frontBackPairing':'page 2n+1 words, page 2n+2 Rover'},indent=2)+'\n')
     print(output,flush=True)
     return output
@@ -110,5 +109,5 @@ def build(count,seed):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--sheets',type=int,default=15)
-    parser.add_argument('--seed',type=int,default=374)
+    parser.add_argument('--seed',type=int,help='Defaults to the shared model rehearsal seed')
     args=parser.parse_args();build(args.sheets,args.seed)

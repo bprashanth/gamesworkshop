@@ -1,63 +1,74 @@
+import itertools
 import unittest
 from generate import *
 
 class CompetitionTests(unittest.TestCase):
-    def test_every_voter_has_every_cue_and_votes_match(self):
+    def check_physics(self,previous,current):
+        self.assertEqual(current['battery']=='dead',signal_hazard(previous))
+        if current['dust']=='storm':
+            self.assertEqual(previous['dust'],'haze');self.assertNotEqual(current['slope'],'flat')
+        if current['ground']=='sand':
+            self.assertEqual(previous['ground'],'soft');self.assertNotEqual(current['slope'],'steep')
+
+    def test_archive_reachable_keys_and_physics(self):
+        records,buckets=archive()
+        self.assertEqual(len(CUES),24)
+        self.assertEqual(set(buckets),{c['key'] for c in CUES})
+        self.assertGreater(min(sum(map(len,g.values())) for g in buckets.values()),100)
+        for r in records:
+            rows=r['history']+[r['source'],r['target']]
+            for prev,current in zip(rows,rows[1:]):self.check_physics(prev,current)
+
+    def test_every_sheet_matches_every_reachable_card(self):
         for n in (15,100,200):
             p=make_pack(n)
-            self.assertEqual(len(p['sheets']),n)
-            self.assertEqual(len({s['id'] for s in p['sheets']}),n)
-            for s in p['sheets']:
-                self.assertEqual({e['key'] for e in s['entries']},{c['key'] for c in CUES})
-            for team in p['teams']:
-                for r in team['rounds']:
-                    self.assertEqual(sum(r['votes'].values()),len(team['sheetIds']))
-                    self.assertEqual(context(r['history'],r['source']),r['cue']['context'])
-                    self.assertEqual(r['source'][r['cue']['category']],r['cue']['value'])
+            for s in p['sheets']:self.assertEqual({e['key'] for e in s['entries']},{c['key'] for c in CUES})
+            for t in p['teams']:
+                for key,counts in t['votesByCue'].items():
+                    self.assertEqual(sum(counts.values()),len(t['sheetIds']))
                     for cat in CATEGORIES:
-                        count=sum(next(e for e in s['entries'] if e['key']==r['cue']['key'])['nextCategory']==cat for s in p['sheets'] if s['team']==team['id'])
-                        self.assertEqual(count,r['votes'][cat])
-            for o in p['observations']:
-                self.assertIn(o['inspection'],CATEGORIES)
-                self.assertGreater(selection_weights(o['outcome'])[o['inspection']],0)
-    def test_paper_cannot_change_map(self):
+                        self.assertEqual(counts[cat],sum(next(e for e in s['entries'] if e['key']==key)['nextCategory']==cat for s in p['sheets'] if s['team']==t['id']))
+            lookup={o['id']:o for o in p['observations']}
+            for s in p['sheets']:
+                for e in s['entries']:
+                    o=lookup[e['historyId']]
+                    self.assertEqual(card_cue(o['history'][0],o['source'],e['category'])['key'],e['key'])
+                    self.assertEqual(o['inspection'],e['nextCategory'])
+
+    def test_all_256_choice_paths_are_closed_and_contiguous(self):
+        p=make_pack()
+        keys={c['key'] for c in CUES}
+        for t in p['teams']:
+            for r,next_r in zip(t['rounds'],t['rounds'][1:]):
+                self.assertEqual(r['target'],next_r['source'])
+                self.assertEqual([r['history'][1],r['source']],next_r['history'])
+            for choices in itertools.product(CATEGORIES,repeat=4):
+                current=t['initialCue']
+                for r,cat in zip(t['rounds'],choices):
+                    self.assertIn(current['key'],keys)
+                    self.assertIn(current['key'],t['votesByCue'])
+                    self.assertEqual(current['value'],r['source'][current['category']])
+                    current=r['targetCues'][cat]
+                    self.assertEqual(current,card_cue(r['history'][1],r['target'],cat))
+                    self.assertIn(current['key'],keys)
+
+    def test_maps_independent_of_sheets_and_choices(self):
         packs=[make_pack(n) for n in (15,100,200)]
         for p in packs[1:]:
-            for t,u in zip(packs[0]['teams'],p['teams']):
-                for a,b in zip(t['rounds'],u['rounds']):
-                    for key in ('cue','history','source','target','fatal','hazardCategories'):
-                        self.assertEqual(a[key],b[key])
+            for a,b in zip(packs[0]['teams'],p['teams']):
+                self.assertEqual(a['rounds'],b['rounds']);self.assertEqual(a['initialCue'],b['initialCue'])
         self.assertEqual(make_pack()['packId'],make_pack()['packId'])
-    def test_joint_model_and_rounding(self):
-        for cue in CUES:
-            self.assertAlmostEqual(sum(p for _,p in kernel(cue)),1)
-            self.assertAlmostEqual(sum(vote_weights(cue).values()),1)
-            for n in (3,4,25,50):
-                q=quotas(vote_weights(cue),n)
-                self.assertEqual(sum(q.values()),n)
-                for cat in CATEGORIES:self.assertLess(abs(q[cat]-vote_weights(cue)[cat]*n),1.00001)
-    def test_no_impossible_target_terrain(self):
-        rng=random.Random(1)
-        for cue in CUES:
-            for outcome,p in kernel(cue):
-                history,source,target,_=draw_observation(cue,rng,outcome)
-                self.assertEqual(context(history,source),cue['context'])
-                self.assertEqual(source[cue['category']],cue['value'])
-                for prev,current in zip(history+[source],history[1:]+[source,target]):
-                    self.assertEqual(current['battery']=='dead',prev['dust']=='storm' or prev['ground']=='sand')
-                    if current['dust']=='storm':
-                        self.assertEqual(prev['dust'],'haze')
-                        self.assertNotEqual(current['slope'],'flat')
-                    if current['ground']=='sand':
-                        self.assertEqual(prev['ground'],'soft')
-                        self.assertNotEqual(current['slope'],'steep')
-                if target['dust']=='storm':self.assertNotEqual(target['slope'],'flat')
-                if target['ground']=='sand':self.assertNotEqual(target['slope'],'steep')
-    def test_reviewed_event_pacing_at_all_sizes(self):
-        for n in (15,100,200):
-            results=play(make_pack(n))
-            self.assertEqual(sum(r['finished'] for r in results),2)
-            self.assertEqual([len(r['log']) for r in results],[3,4,4,4])
+        for r in play(packs[0]):
+            for earlier,later in zip(r['log'],r['log'][1:]):self.assertEqual(earlier['revealedCue'],later['cue'])
 
+    def test_quotas_and_reference_policy_match_production(self):
+        for n in (15,100,200):
+            self.assertEqual(play(make_pack(n)),play(simulation_pack(n)))
+        for c in CUES:
+            self.assertAlmostEqual(sum(vote_weights(c).values()),1)
+            for n in (3,4,25,50):
+                q=quotas(vote_weights(c),n)
+                self.assertEqual(sum(q.values()),n)
+                for cat in CATEGORIES:self.assertLess(abs(q[cat]-n*vote_weights(c)[cat]),1.00001)
 
 if __name__=='__main__':unittest.main()

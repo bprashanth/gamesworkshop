@@ -10,11 +10,18 @@ Open [the competitive game](http://localhost:8684/paperweights/web/). Dark is th
 default; the Light button switches theme. The stage selector links to the existing
 collaborative game. Select the print pack matching the ID on your sheets.
 
-Each team gets four checkpoints. Match the cue, vote, flip one category, then choose
-Go or Avoid. Going into a hazard or avoiding a safe checkpoint eliminates that rover.
-The 10 SEC button starts a vote timer; it does not choose on the representative's behalf.
-The on-screen PAPER bars show the tally implied by the printed pack, not a connection
-to the separate live voting app. Reset replays the same maps and sheets.
+Each rover starts with one card showing. It hides after the reveal time; the audience
+uses that icon and color to vote for the next category. The representative flips one
+of the four cards. It stays visible for the reveal time, then hides automatically.
+A revealed death card makes the rover avoid that row. Any other card makes it go;
+if another card in that row was deadly, the rover is eliminated and its map dissolves.
+Four successful flips finish the route. The last card seen is always the next lookup.
+
+The single reveal-duration control offers 10, 20 or 30 seconds. Changing it updates
+active reveals from their original start time. There are no Go, Avoid or Next buttons,
+per-team clocks, cue labels or paper-vote graphs. After a card hides, the next flip waits
+for the representative; there is no automatic category choice. Reset shows the starting
+cards again and replays the same maps. Your separate voting app remains separate.
 
 The Netlify build now copies this independent page into the existing publish folder;
 no deployment has been triggered. The original collaborative engine and styling are
@@ -24,7 +31,8 @@ unchanged. Only the selector includes are added to its page.
 
 Production packs live in [`printouts/`](printouts/). Each person receives one A4 sheet:
 word lookup on the front, Rover lookup on the back. Both sides have 24 pairs and
-three short instructions. Rover uses the approved outlined context markers,
+three short instructions. Rover uses plain color names (RED, BLUE, AMBER, GREEN,
+PURPLE, PINK) instead of numbered context codes or dot patterns,
 monochrome icons, inverted hazards and white paper.
 
 Set up once from the repository root:
@@ -37,7 +45,7 @@ paperweights/.venv/bin/python -m pip install -r paperweights/requirements.txt
 **One command generates the matching paper and game pack:**
 
 ```sh
-paperweights/.venv/bin/python paperweights/build_printouts.py --sheets 200 --seed 374
+paperweights/.venv/bin/python paperweights/build_printouts.py --sheets 200 --seed 15
 ```
 
 Use `--sheets 15` for rehearsal or `--sheets 100` for a smaller room. The supported
@@ -45,7 +53,7 @@ range is 12–200. The command prints the output directory and creates:
 
 - `duplex.pdf`: alternating word front and Rover back, one physical sheet per person.
 - `words.pdf` and `rover.pdf`: separate sides for inspection or manual duplex printing.
-- `manifest.json`: the exact paper observations and matching game checkpoints.
+- `manifest.json`: the exact paper observations and matching game routes.
 - `PRINT.md`: page-to-person/team assignments.
 - `verification.json`: page count, 24 pairs per side, arrow and page-bound checks.
 
@@ -54,13 +62,17 @@ The game selects these packs by ID; the selected ID must match the tiny ID print
 on both sides. Changing seed or attendance creates a different pack. Do not mix
 sheets from different packs. Keep the print stack in order when splitting it into
 four audience groups using `PRINT.md`; the team/person mark also identifies each
-sheet after distribution.
+sheet after distribution. People may choose any team first, then receive a sheet
+from that team’s stack: **A top left, B top right, C bottom left, D bottom right**.
+Keep each stack together: its category counts are stratified. Randomly mixing
+stacks only approximates those proportions and can swing close votes, especially
+with 15 people.
 
 | People | Duplex PDF | Rover preview | Matching game pack |
 | --- | --- | --- | --- |
-| 15 | [30 pages](printouts/PW1-374-15-8dac60b141/duplex.pdf) | [Preview](printouts/PW1-374-15-8dac60b141/rover-preview.png) | `PW1-374-15-8dac60b141` |
-| 100 | [200 pages](printouts/PW1-374-100-95db2b2ab6/duplex.pdf) | [Preview](printouts/PW1-374-100-95db2b2ab6/rover-preview.png) | `PW1-374-100-95db2b2ab6` |
-| 200 | [400 pages](printouts/PW1-374-200-f0f8f62022/duplex.pdf) | [Preview](printouts/PW1-374-200-f0f8f62022/rover-preview.png) | `PW1-374-200-f0f8f62022` |
+| 15 | [30 pages](printouts/PW2-15-15-fb7b11abfe/duplex.pdf) | [Preview](printouts/PW2-15-15-fb7b11abfe/rover-preview.png) | `PW2-15-15-fb7b11abfe` |
+| 100 | [200 pages](printouts/PW2-15-100-1afd11f78a/duplex.pdf) | [Preview](printouts/PW2-15-100-1afd11f78a/rover-preview.png) | `PW2-15-100-1afd11f78a` |
+| 200 | [400 pages](printouts/PW2-15-200-95d7a79806/duplex.pdf) | [Preview](printouts/PW2-15-200-95d7a79806/rover-preview.png) | `PW2-15-200-95d7a79806` |
 
 Print **A4, actual size, color, double-sided, flip on long edge**. Print the entire
 chosen pack. Each odd PDF page is a word front; the following even page is its Rover
@@ -72,9 +84,11 @@ next category varies across sheets. Every participant can answer every lookup fo
 their team; no live key depends on only a few people. Shared-model checks and the
 limits of these authored distributions are documented in [`competition/`](competition/).
 The word activity preserves its existing closed corpus and six token color names;
-production fronts use the same muted palette as the Rover backs. The default seed
-374 is an explicitly selected rehearsal scenario, documented with the model checks;
-it is not a promise that every choice or arbitrary seed produces two finishers.
+production fronts use the same muted palette as the Rover backs. The shared model
+default seed 15 is an explicitly selected rehearsal scenario. With the tested paper
+policy, 15/100/200-person packs yield 1/1/2 finishers; different choices can differ.
+Older numbered-code packs live in [`printouts/archive/`](printouts/archive/) and are
+incompatible with the current flip-only game.
 
 ## Earlier design reviews
 
