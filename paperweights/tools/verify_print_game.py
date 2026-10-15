@@ -22,6 +22,10 @@ for item in index:
         actual={}
         for i,sheet in enumerate(paper['sheets']):
             text=backs[i].get_text()
+            assert text.count('Avoid these:') == 1
+            assert 'Avoid these:' not in fronts[i].get_text()
+            assert f'Team {sheet["team"]}' in text
+            assert f'Team {sheet["team"]}' in fronts[i].get_text()
             rows=re.findall(color_pattern+r'\s*->\s*(battery|slope|dust|ground)\s*\('+color_pattern+r'\)',text)
             assert not re.search(r'C0[1-6]',text)
             entries=sorted(sheet['entries'],key=lambda e:(e['context'],e['category'],e['value']))

@@ -23,6 +23,10 @@ CSS=MINIMAL_CSS+'''
 .right .word { font-size:16pt; color:#242421; }
 header { display:flex; align-items:center; justify-content:space-between; }
 .sheet-team { font-size:12pt; white-space:nowrap; margin-left:3mm; }
+.hazard-strip { width:100%; border:1px solid #62625d; margin-top:2mm; padding:1mm 3mm; height:14mm; display:flex; align-items:center; justify-content:space-between; break-inside:avoid; }
+.hazard-strip > b { font-size:9pt; }
+.hazard-example { display:flex; align-items:center; gap:2mm; font-size:7pt; white-space:nowrap; }
+.hazard-example .context-icon { width:17mm; height:10mm; }
 .identity { font-size:6pt; color:#62625d; margin-top:3mm; }
 .right .tag { font-family:"DejaVu Sans Mono"; }
 '''
@@ -46,6 +50,15 @@ def team_label(html,sheet):
 def identity(sheet,pack_id):
     return f'<div class="identity">{pack_id} / {sheet["team"]} / {sheet["id"]}</div>'
 
+def hazard_strip(sheet):
+    examples=[('dust','storm','Storm'),('battery','dead','Dead battery'),('ground','sand','Sand pit')]
+    return '<div class="hazard-strip"><b>Avoid these:</b>'+''.join(
+        '<div class="hazard-example">'+icon(cat,val,f'legend-{sheet["id"]}-{cat}','#22221f')+f'<span>{label}</span></div>'
+        for cat,val,label in examples)+'</div>'
+
+def clean_separators(html):
+    return html.replace('·',' - ').replace('•',' - ')
+
 def rover_page(sheet,contexts,pack_id):
     entries=sorted(sheet['entries'],key=lambda e:(e['context'],e['category'],e['value']))
     assert len(entries)==24 and len({e['key'] for e in entries})==24
@@ -57,7 +70,7 @@ def rover_page(sheet,contexts,pack_id):
             ink='#ffffff' if hazard else '#22221f';bg='#22221f' if hazard else '#ffffff'
             rows.append(f'<div class="pair"><div class="lookup" style="border-color:{color}"><div class="key" style="color:{color}"><b>{color_name}</b></div><div class="face" style="background:{bg}">'+icon(e['category'],e['value'],f'{sheet["id"]}-{start+i}',ink)+f'</div></div><div class="arrow">-&gt;</div><div class="right"><span class="word">{escape(e["nextCategory"])}</span><span class="tag" style="color:{color}">({color_name})</span></div></div>')
         columns.append('<div class="column">'+''.join(rows)+'</div>')
-    return team_label('<section class="sheet"><header><h1>Paper Weights / Rover</h1></header><div class="instructions"><b>1</b> Match the shown icon + color to a box on the left.<br><b>2</b> Vote the <b>word on the right</b>.<br><b>3</b> Use each newly flipped card for the next lookup.</div><div class="columns">'+''.join(columns)+'</div>'+identity(sheet,pack_id)+'</section>',sheet)
+    return team_label('<section class="sheet"><header><h1>Paper Weights / Rover</h1></header><div class="instructions"><b>1</b> Match the shown icon + color to a box on the left.<br><b>2</b> Vote the <b>word on the right</b>.<br><b>3</b> Use each newly flipped card for the next lookup.</div><div class="columns">'+''.join(columns)+'</div>'+hazard_strip(sheet)+identity(sheet,pack_id)+'</section>',sheet)
 
 def verify(pdf,count):
     with pymupdf.open(pdf) as doc:
@@ -66,6 +79,9 @@ def verify(pdf,count):
             text=page.get_text()
             assert 'Paper Weights' in text and 'Human Language Model' not in text
             assert '→' not in text and text.count('->')==24,(pdf,n,text.count('->'))
+            expected_strip=pdf.stem=='rover' or (pdf.stem=='duplex' and n%2==1)
+            assert ('Avoid these:' in text)==expected_strip,(pdf,n,'hazard strip side')
+            assert '·' not in text and '•' not in text,(pdf,n,'dot separator')
             assert not re.search(r'\bC0[1-6]\b',text),(pdf,n,'obsolete context code')
             for b in page.get_text('blocks'):
                 assert b[0]>=-1 and b[1]>=-1 and b[2]<=page.rect.width+1 and b[3]<=page.rect.height+1,(pdf,n,b)
@@ -95,8 +111,8 @@ def build(count,seed=None):
     names=['RED','BLUE','AMBER','GREEN','PURPLE','PINK']
     fills={name:pack['contexts'][i]['light'] for i,name in enumerate(names)}
     colors={word:{**c,'fill':fills[c['name']]} for word,c in colors.items()}
-    write_bundle(document([team_label(render_sheet(s,colors),pack['sheets'][i]).replace('</section>',identity(pack['sheets'][i],pack['packId'])+'</section>') for i,s in enumerate(words)],'Paper Weights',CSS),output/'words.pdf',count,deck_report(words,colors,seed))
-    write_bundle(document([rover_page(s,contexts,pack['packId']) for s in pack['sheets']],'Paper Weights / Rover',CSS),output/'rover.pdf',count,{'packId':pack['packId'],'sheets':pack['sheets']})
+    write_bundle(clean_separators(document([team_label(render_sheet(s,colors),pack['sheets'][i]).replace('</section>',identity(pack['sheets'][i],pack['packId'])+'</section>') for i,s in enumerate(words)],'Paper Weights',CSS)),output/'words.pdf',count,deck_report(words,colors,seed))
+    write_bundle(clean_separators(document([rover_page(s,contexts,pack['packId']) for s in pack['sheets']],'Paper Weights / Rover',CSS)),output/'rover.pdf',count,{'packId':pack['packId'],'sheets':pack['sheets']})
     fronts=PdfReader(output/'words.pdf');backs=PdfReader(output/'rover.pdf');writer=PdfWriter()
     for a,b in zip(fronts.pages,backs.pages):writer.add_page(a);writer.add_page(b)
     writer.add_metadata({'/Title':f'Paper Weights / {pack["packId"]}'})
@@ -107,7 +123,7 @@ def build(count,seed=None):
     preview(output/'duplex.pdf',1,'back-preview')
     assignments='\n'.join(f'{i+1:03} | {s["id"]} | {s["team"]}' for i,s in enumerate(pack['sheets']))
     (output/'PRINT.md').write_text(f'# {pack["packId"]}\n\nPrint `duplex.pdf`: A4, actual size, color, double-sided, **flip on long edge**. {count} physical sheets, {count*2} PDF pages. Odd pages are words; the following even page is that person’s Rover lookup. People may choose any team first; then hand out that team’s stack. A = top left, B = top right, C = bottom left, D = bottom right. Keep stack order and use the assignments below. Each stack has a stratified mix; randomly mixing stacks only approximates the proportions and can swing close votes. Select this exact pack ID in the game Print pack selector; do not mix packs.\n\nPhysical sheet | Person | Team\n--- | --- | ---\n'+assignments+'\n')
-    (output/'verification.json').write_text(json.dumps({'packId':pack['packId'],'people':count,'pairsPerSide':24,'pages':count*2,'pageBounds':'passed','asciiArrows':'passed','frontBackPairing':'page 2n+1 words, page 2n+2 Rover'},indent=2)+'\n')
+    (output/'verification.json').write_text(json.dumps({'packId':pack['packId'],'people':count,'pairsPerSide':24,'pages':count*2,'pageBounds':'passed','asciiArrows':'passed','hazardStripOnlyRoverBacks':'passed','noDotSeparators':'passed','frontBackPairing':'page 2n+1 words, page 2n+2 Rover'},indent=2)+'\n')
     print(output,flush=True)
     return output
 

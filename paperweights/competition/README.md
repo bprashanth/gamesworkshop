@@ -1,8 +1,18 @@
 # Continuous Paper Weights model (PW2)
 
-The game has four consecutive decisions. A bootstrap card is shown for the reveal duration (10 seconds by default; configurable to 20 or 30), then hidden. The audience matches that exact icon and color on paper and suggests a category. The chosen card in the next square flips for the same duration. A kill card automatically avoids that square; a non-kill card automatically goes. Going into a square with any other hidden kill eliminates the team. The newly flipped card becomes the exact next lookup cue. Four successful decisions finish.
+In Medium, the game has four consecutive decisions. A bootstrap card is shown for the reveal duration (10 seconds by default; configurable to 20 or 30), then hidden. The audience matches that exact icon and color on paper and suggests a category. The chosen card in the next square flips for the same duration. A kill card automatically avoids that square; a non-kill card automatically goes. Going into a square with any other hidden kill eliminates the team. The newly flipped card becomes the exact next lookup cue. Four successful decisions finish.
 
-There is no separate GO/AVOID choice, and no possible false AVOID: automatic avoidance only happens on a visible kill. The former PW1 four independent checkpoints and their color meanings are obsolete. PW2 paper and maps must be regenerated together.
+In Medium there is no separate GO/AVOID choice, and no possible false AVOID: automatic avoidance only happens on a visible kill. The former PW1 four independent checkpoints and their color meanings are obsolete. PW2 paper and maps must be regenerated together.
+
+## Easy mode
+
+Easy uses the same four target rows, with all four cards face up. The audience votes
+Go or Avoid; the representative chooses. Avoid is correct if any card is storm, dead
+battery or sand pit, and Go is correct otherwise. A missed hazard or unnecessary Avoid
+eliminates the team. Four correct choices finish. Easy needs no initial lookup cue or
+reveal timer. The paper's bottom hazard strip supports this recognition exercise;
+its historical category suggestions are for Medium. The finisher statistics below
+measure Medium, not fully informed Easy play.
 
 ## One continuous world, 24 closed lookups
 

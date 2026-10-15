@@ -95,3 +95,31 @@ paper and screen. Added a small Team A/B/C/D heading above each map, preserving 
 panel footprint, and the same label in the header on both word and Rover sheet sides.
 Regenerated all three PW2 duplex packs without changing observations, IDs or assignments.
 Browser checks confirm all four labels and no overflow at 1440/1000/mobile widths.
+
+
+## Easy and Medium competitive modes
+
+Added a difficulty selector, defaulting to Medium; Hard is deferred. Easy displays
+all four current-row cards and Go/Avoid buttons. Correct actions advance immediately;
+going into a kill or avoiding a safe square eliminates the team with the existing
+sand dissolve. Four correct decisions finish. Easy has no reveal timer. Medium retains
+the initial reveal and timed single-card lookup chain. Switching modes resets all teams.
+Team labels, original glyphs, maps and dark/light themes remain. UI dot separators
+were replaced with ASCII dashes.
+
+Added a full-width “Avoid these:” strip to every production Rover back with original
+storm, dead battery and sand-pit icons. Word fronts retain their 24 pairs; Rover backs
+retain all 24 lookup pairs. Team stacks, observations, routes and pack IDs are unchanged.
+The same papers support hazard recognition in Easy and category lookups in Medium.
+
+Playwright checks passed for 15- and 200-person packs: Easy shows all cards, has no
+timed expiry, finishes all teams on correct decisions, eliminates missed hazards and
+false avoidance, and resets cleanly between modes. Existing Medium paper-driven play
+still yields one/two finishers. Both modes fit desktop/mobile layouts with no browser
+errors. Root visually reviewed the Easy screen and the new paper strip. The static
+site assembly succeeds; no deployment was performed.
+
+Regenerated all 15/100/200 packs. Independent PDF extraction passed for all 315 Rover
+backs and 630 duplex pages: all ordered lookup rows match game data, team labels and
+front/back pairing agree, and the hazard strip appears on Rover backs only. Generator
+checks also passed page counts, text bounds and removal of typographic dot separators.

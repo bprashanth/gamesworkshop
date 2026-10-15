@@ -8,7 +8,16 @@ This is an opening module and audience-participation bridge for the broader
 [workshop sequence](EVENT.md), not a replacement for its environmental investigation
 or lunar transfer work. The Mars/Moon source-data and film projects are untouched.
 
-## Current interaction: timed flips, continuous routes
+## Current interaction: Easy and Medium
+
+Easy shows all four cards and offers Go/Avoid. The audience checks the three kill icons
+in the Rover sheet's bottom “Avoid these:” strip. Go on a hazard or Avoid on a safe row
+eliminates the team; four correct choices finish. Medium remains the timed-flip flow
+below and is the default. Difficulty changes reset the routes. Hard is deferred.
+Team labels remain on both paper sides and all four screen panels. UI separators use
+dashes. Easy has no reveal timer; the shared duration control belongs to Medium.
+
+## Medium: timed flips, continuous routes
 
 Team labels were subsequently restored at the user’s request: Team A/B/C/D appears
 above each map and in the header on both sides of every production sheet.

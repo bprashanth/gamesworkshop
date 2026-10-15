@@ -10,18 +10,25 @@ Open [the competitive game](http://localhost:8684/paperweights/web/). Dark is th
 default; the Light button switches theme. The stage selector links to the existing
 collaborative game. Select the print pack matching the ID on your sheets.
 
-Each rover starts with one card showing. It hides after the reveal time; the audience
-uses that icon and color to vote for the next category. The representative flips one
-of the four cards. It stays visible for the reveal time, then hides automatically.
+Choose **Easy** or **Medium** (default). Hard is reserved for later.
+
+In **Easy**, all four cards in the current square are face up. The audience votes
+Go or Avoid using the **Avoid these:** icon strip at the bottom of the Rover sheet.
+The representative chooses Go for a safe square or Avoid if any kill card is present.
+A wrong choice eliminates the team. Each choice advances automatically; four correct
+choices finish the route. There is no reveal timer in Easy.
+
+In **Medium**, each rover starts with one card showing. It hides after the reveal time;
+the audience uses that icon and color to vote for the next category. The representative
+flips one of the four cards. It stays visible for the reveal time, then hides automatically.
 A revealed death card makes the rover avoid that row. Any other card makes it go;
 if another card in that row was deadly, the rover is eliminated and its map dissolves.
 Four successful flips finish the route. The last card seen is always the next lookup.
 
-The single reveal-duration control offers 10, 20 or 30 seconds. Changing it updates
-active reveals from their original start time. There are no Go, Avoid or Next buttons,
-per-team clocks, cue labels or paper-vote graphs. After a card hides, the next flip waits
-for the representative; there is no automatic category choice. Reset shows the starting
-cards again and replays the same maps. Your separate voting app remains separate.
+The Medium reveal-duration control offers 10, 20 or 30 seconds. Changing it updates
+active reveals from their original start time. After a card hides, the next flip waits
+for the representative. Switching difficulty resets all four teams. Reset replays the
+same maps. Your separate voting app remains separate.
 
 The Netlify build now copies this independent page into the existing publish folder;
 no deployment has been triggered. The original collaborative engine and styling are
@@ -33,7 +40,8 @@ Production packs live in [`printouts/`](printouts/). Each person receives one A4
 word lookup on the front, Rover lookup on the back. Both sides have 24 pairs and
 three short instructions. Rover uses plain color names (RED, BLUE, AMBER, GREEN,
 PURPLE, PINK) instead of numbered context codes or dot patterns,
-monochrome icons, inverted hazards and white paper.
+monochrome icons, inverted hazards and white paper. A bottom strip on the Rover side
+shows the three kill icons: storm, dead battery and sand pit.
 
 Set up once from the repository root:
 
@@ -86,10 +94,10 @@ their team; no live key depends on only a few people. Shared-model checks and th
 limits of these authored distributions are documented in [`competition/`](competition/).
 The word activity preserves its existing closed corpus and six token color names;
 production fronts use the same muted palette as the Rover backs. The shared model
-default seed 15 is an explicitly selected rehearsal scenario. With the tested paper
+default seed 15 is an explicitly selected rehearsal scenario. With the tested Medium paper
 policy, 15/100/200-person packs yield 1/1/2 finishers; different choices can differ.
 Older numbered-code packs live in [`printouts/archive/`](printouts/archive/) and are
-incompatible with the current flip-only game.
+incompatible with the current competitive game.
 
 ## Earlier design reviews
 
@@ -188,8 +196,8 @@ relevant counts. This models short-context continuation, not a full modern LLM.
 
 ## Latest experiment — context colors on paper and stage
 
-[Two Swift-shaped icon sheets](rover/context/sample-sheets.pdf) ·
-[Four-card / four-team stage mockup](rover/context/stage-mockup.pdf) ·
+[Two Swift-shaped icon sheets](rover/context/sample-sheets.pdf) -
+[Four-card / four-team stage mockup](rover/context/stage-mockup.pdf) -
 [Color meanings and mechanics](rover/context/README.md)
 
 Color now represents a shared history/terrain context, not a card category. The
