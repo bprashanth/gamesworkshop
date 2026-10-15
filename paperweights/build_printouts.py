@@ -21,6 +21,8 @@ CSS=MINIMAL_CSS+'''
 .face { width:24mm; display:flex; justify-content:center; align-items:center; }
 .context-icon { width:17mm; height:9mm; }
 .right .word { font-size:16pt; color:#242421; }
+header { display:flex; align-items:center; justify-content:space-between; }
+.sheet-team { font-size:12pt; white-space:nowrap; margin-left:3mm; }
 .identity { font-size:6pt; color:#62625d; margin-top:3mm; }
 .right .tag { font-family:"DejaVu Sans Mono"; }
 '''
@@ -38,6 +40,9 @@ def icon(category,value,uid,ink):
         if 'faint' in classes:el.set('stroke-opacity','.55')
     return ET.tostring(root,encoding='unicode')
 
+def team_label(html,sheet):
+    return html.replace('</header>',f'<span class="sheet-team">Team {sheet["team"]}</span></header>')
+
 def identity(sheet,pack_id):
     return f'<div class="identity">{pack_id} / {sheet["team"]} / {sheet["id"]}</div>'
 
@@ -52,7 +57,7 @@ def rover_page(sheet,contexts,pack_id):
             ink='#ffffff' if hazard else '#22221f';bg='#22221f' if hazard else '#ffffff'
             rows.append(f'<div class="pair"><div class="lookup" style="border-color:{color}"><div class="key" style="color:{color}"><b>{color_name}</b></div><div class="face" style="background:{bg}">'+icon(e['category'],e['value'],f'{sheet["id"]}-{start+i}',ink)+f'</div></div><div class="arrow">-&gt;</div><div class="right"><span class="word">{escape(e["nextCategory"])}</span><span class="tag" style="color:{color}">({color_name})</span></div></div>')
         columns.append('<div class="column">'+''.join(rows)+'</div>')
-    return '<section class="sheet"><header><h1>Paper Weights / Rover</h1></header><div class="instructions"><b>1</b> Match the shown icon + color to a box on the left.<br><b>2</b> Vote the <b>word on the right</b>.<br><b>3</b> Use each newly flipped card for the next lookup.</div><div class="columns">'+''.join(columns)+'</div>'+identity(sheet,pack_id)+'</section>'
+    return team_label('<section class="sheet"><header><h1>Paper Weights / Rover</h1></header><div class="instructions"><b>1</b> Match the shown icon + color to a box on the left.<br><b>2</b> Vote the <b>word on the right</b>.<br><b>3</b> Use each newly flipped card for the next lookup.</div><div class="columns">'+''.join(columns)+'</div>'+identity(sheet,pack_id)+'</section>',sheet)
 
 def verify(pdf,count):
     with pymupdf.open(pdf) as doc:
@@ -90,7 +95,7 @@ def build(count,seed=None):
     names=['RED','BLUE','AMBER','GREEN','PURPLE','PINK']
     fills={name:pack['contexts'][i]['light'] for i,name in enumerate(names)}
     colors={word:{**c,'fill':fills[c['name']]} for word,c in colors.items()}
-    write_bundle(document([render_sheet(s,colors).replace('</section>',identity(pack['sheets'][i],pack['packId'])+'</section>') for i,s in enumerate(words)],'Paper Weights',CSS),output/'words.pdf',count,deck_report(words,colors,seed))
+    write_bundle(document([team_label(render_sheet(s,colors),pack['sheets'][i]).replace('</section>',identity(pack['sheets'][i],pack['packId'])+'</section>') for i,s in enumerate(words)],'Paper Weights',CSS),output/'words.pdf',count,deck_report(words,colors,seed))
     write_bundle(document([rover_page(s,contexts,pack['packId']) for s in pack['sheets']],'Paper Weights / Rover',CSS),output/'rover.pdf',count,{'packId':pack['packId'],'sheets':pack['sheets']})
     fronts=PdfReader(output/'words.pdf');backs=PdfReader(output/'rover.pdf');writer=PdfWriter()
     for a,b in zip(fronts.pages,backs.pages):writer.add_page(a);writer.add_page(b)

@@ -8,3 +8,7 @@ button,select,.bar button{background:var(--bg);color:var(--ink);border:1px solid
 @media(max-width:1050px){main{padding:10px}.teams{gap:10px}.team{padding:9px}.cardlabel{font-size:8px}#pack-id{max-width:110px;overflow:hidden;text-overflow:ellipsis}.bar{gap:8px}}
 @media(max-width:700px){.teams{grid-template-columns:1fr}.title{font-size:17px}.controls{margin-left:0;flex-wrap:wrap;gap:6px;max-width:100%}.controls select{max-width:170px}.mapframe{height:180px}.mapcanvas{width:360px;max-width:100%}.cardlabel{font-size:9px}}
 .cardlabel{color:var(--dim)}.cardbox:has(.up) .cardlabel{color:var(--context)}
+
+.team-name{font:12px var(--mono);color:var(--ink);height:17px;line-height:17px}
+.mapframe{height:clamp(83px,calc(30vh - 17px),268px)}
+@media(max-width:700px){.mapframe{height:163px}}

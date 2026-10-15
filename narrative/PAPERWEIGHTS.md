@@ -10,6 +10,9 @@ or lunar transfer work. The Mars/Moon source-data and film projects are untouche
 
 ## Current interaction: timed flips, continuous routes
 
+Team labels were subsequently restored at the user’s request: Team A/B/C/D appears
+above each map and in the header on both sides of every production sheet.
+
 15 October 2026. The competitive screen now contains four enlarged maps with four cards
 each. Removed the paper tally graphs, panel clocks, team/checkpoint headings, map labels,
 MATCH strip and Go/Avoid/Next controls. One shared control sets reveal time to 10, 20 or

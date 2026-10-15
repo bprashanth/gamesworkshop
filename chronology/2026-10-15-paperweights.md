@@ -87,3 +87,11 @@ Swift-style `(RED)` labels, then all packs passed. Global PDF verification passe
 pages across 50 PDFs (including archived and historical artifacts); 1,260 are active
 production front/back/duplex pages. Python compilation passes. Site build assembly
 succeeds. No deployment was performed; local review remains on port 8684.
+
+## Team labels restored for distribution
+
+User confirmed keeping assigned stacks and requested matching explicit team labels on
+paper and screen. Added a small Team A/B/C/D heading above each map, preserving the
+panel footprint, and the same label in the header on both word and Rover sheet sides.
+Regenerated all three PW2 duplex packs without changing observations, IDs or assignments.
+Browser checks confirm all four labels and no overflow at 1440/1000/mobile widths.

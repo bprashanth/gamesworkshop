@@ -62,7 +62,8 @@ The game selects these packs by ID; the selected ID must match the tiny ID print
 on both sides. Changing seed or attendance creates a different pack. Do not mix
 sheets from different packs. Keep the print stack in order when splitting it into
 four audience groups using `PRINT.md`; the team/person mark also identifies each
-sheet after distribution. People may choose any team first, then receive a sheet
+sheet after distribution. A clear Team A/B/C/D label appears at the top of both
+sheet sides and on the matching screen panel. People may choose any team first, then receive a sheet
 from that team’s stack: **A top left, B top right, C bottom left, D bottom right**.
 Keep each stack together: its category counts are stratified. Randomly mixing
 stacks only approximates those proportions and can swing close votes, especially
