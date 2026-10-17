@@ -1,3 +1,7 @@
+## Poll cleanup - 18 October
+
+Red OUT now appears without the face. Unavailable flip rows are hidden. With no checks left, all matching historical examples vote GO/AVOID, so the two bars account for the whole team. Previous crossed-out suggestions and stranded inspection mass are removed.
+
 # Current: PW6 cumulative-evidence rehearsal
 
 Shared map promoted, dead markers red with an X-eyed face in the team panel, stick-figure check tokens. Audience polls combine all revealed clues and favor informative inspection under uncertainty. This changes the paper requirements: PW5 PDFs remain preserved but cannot reproduce PW6. See [EVIDENCE.md](../paperweights/competition/EVIDENCE.md) and [SUMMARY.md](../paperweights/SUMMARY.md).

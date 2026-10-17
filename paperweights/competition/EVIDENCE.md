@@ -46,8 +46,7 @@ even when earlier votes suggested otherwise. Independent team progression/reset.
 
 One shared reference map is now the main view. Four letter-labelled markers share
 the route but keep independent hazard rows. Clicking a panel selects its dotted
-column highlight. Eliminated markers turn red and their panel displays OUT plus
-an X-eyed smiling face. Team-letter leaders separate coincident positions. The
+column highlight. Eliminated markers turn red and their panel displays red OUT without a face. Team-letter leaders separate coincident positions. The
 shared-map.html link remains an alias of the promoted layout.
 
 ## Reproduction and validation
@@ -59,7 +58,7 @@ site using `python3 paperweights/build_site.py --output paperweights/out/rover-r
 Tests cover matching all historical cues, exact whole-team vote counts, exclusion
 of already revealed categories, conclusive known outcomes, and expected benefit
 from information gain. Browser tests cover cumulative polls, six turns, token
-limits, resets, death face, Easy, percentages-only UI and desktop/mobile layout.
+limits, resets, red OUT, Easy, percentages-only UI and desktop/mobile layout.
 `evidence_trials.py` compares direct decisions with a simple inspection policy over
 100 map seeds; its full logs and results are in evidence-trials.json. It is not an
 optimal-policy search or a guarantee about live audience behavior.
@@ -75,3 +74,8 @@ Default seed 15 finishes 0 versus 2 teams with 15 people, 1 versus 2 with 200.
 This inspection policy spends when the leading hidden category beats/ties either
 decision option and tokens remain; it uses updated combined evidence thereafter.
 Visible kills always Avoid. Results do not imply a universally winning strategy.
+
+When checks are exhausted, polling uses the outcome of each matching historical
+record to cast GO/AVOID votes for the whole team. It does not simply normalize the
+small decision subset or read the live hidden outcome. Unavailable and zero-vote
+FLIP rows are hidden. Existing simulation results predate this fallback adjustment.

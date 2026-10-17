@@ -5,7 +5,7 @@
 [Open the competitive game](http://localhost:8684/paperweights/web/).
 One shared map now holds four labelled rover markers, with each team's card panel
 below. Click a panel to select its dotted column highlight. Dead markers turn red;
-the panel displays an X-eyed face and OUT.
+the panel displays red OUT.
 
 Medium uses six turns and three extra checks per team across the run, represented
 by stick figures at the right of the controls. One opening card per turn is free;
@@ -171,3 +171,8 @@ colored `rover/output*` packs, white map panels and paddle templates are retaine
 previous prototypes but are **not the current proposal**. Maps/paddles are out of scope
 for this review. See [chronology](../chronology/2026-10-14-paperweights.md) and
 [session narrative](../narrative/PAPERWEIGHTS.md) for checkpoints.
+
+When checks are exhausted, polling uses the outcome of each matching historical
+record to cast GO/AVOID votes for the whole team. It does not simply normalize the
+small decision subset or read the live hidden outcome. Unavailable and zero-vote
+FLIP rows are hidden. Existing simulation results predate this fallback adjustment.

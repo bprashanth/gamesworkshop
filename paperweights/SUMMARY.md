@@ -6,7 +6,7 @@ Updated 18 October 2026. Current browser prototype: **PW6**.
 
 One shared map with four labelled rover markers and four independent card panels.
 Clicking a panel selects its dotted column highlight. Eliminated markers turn red;
-the panel shows an X-eyed smiling face beside OUT. Three stick figures represent
+the panel shows red OUT without a face. Three stick figures represent
 the team's extra checks for the entire six-turn run. One opening card per turn is
 free; additional reveals spend checks. Polls are free and show percentages only.
 
@@ -36,7 +36,7 @@ The prior final packs are indexed in printouts/README.md as historical PW5 files
 
 Thirteen model tests pass. Browser checks pass for 15 and 200 people, including
 cumulative vote counts, tokens across six turns, independent resets, elimination,
-X-eyed face, percentage-only polls, and desktop/mobile rendering.
+red OUT, percentage-only polls, and desktop/mobile rendering.
 
 Across 100 seeds, the 200-person simulation averages 0.36 finishers per four teams
 for direct GO/AVOID decisions versus 1.13 for the tested inspection policy. At 15
@@ -44,3 +44,9 @@ people: 0.26 versus 0.93. Default seed: 1 versus 2 finishers at 200, 0 versus 2 
 These are explicit policy comparisons, not optimal-play or human-play guarantees.
 
 Checkpoint: chronology/2026-10-18-rover-evidence.md. No public deployment.
+
+Poll cleanup: unavailable and zero-vote flip options are hidden, never crossed out.
+When no checks remain, every digital audience record votes GO/AVOID from its
+matching historical outcome. The resulting two bars account for the entire team.
+This uses historical data only, not the hidden live row. Earlier policy simulation
+figures above predate this exhausted-budget fallback.
