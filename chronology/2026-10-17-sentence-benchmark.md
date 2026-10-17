@@ -58,3 +58,33 @@ reproducible sampling, recorded-representative replay, timer expiry without an a
 choice, all nine comparison traces, PDF download and responsive layouts. No HTTP or JS
 errors. Final print instruction reads “Vote the right word + its color.” The server remains
 running on port 8684 for the user to try the benchmark.
+
+## Diff UI and clarification of the learning goal
+
+User found sentence editing unclear and requested red old words / green replacements,
+plain explanations of all three modes, and an assessment of the NGO-data/bias message.
+Clarified that the lookup cue is not necessarily the word being replaced. Delegated UI
+previews, persistent diffs, plain mode names and slower replay to the UI agent; kept the
+underlying graph, counts, pack IDs and printouts unchanged.
+
+Updated narrative/SENTENCE_BENCHMARK.md with simple mode explanations and the distinction
+between data coverage and deliberate selection. Current same-distribution competing groups
+show goal-directed steering, not a demonstrated effect of excluding NGO evidence or collusion.
+Proposed, but did not implement, a controlled source-withdrawal comparison holding selection
+policy constant. Suggested message concerns missing public-interest evidence in data actually
+used, with no claim that publication automatically ensures inclusion or that NGO withdrawal
+instantly changes previously trained models.
+
+Checked the primary Dodge et al. 2021 C4 paper on ACL Anthology. Its reported disproportionate
+removal of minority-related text supports the broader representation concern, not a specific
+NGO-withdrawal causal claim. Linked the source in the narrative for the subsequent experiment.
+
+
+Delivered option-level red/green previews and actual sentence-target hover/focus marks.
+Committed edits persist as struck-out old words beside green new words while model state
+and transcripts retain only the actual new sentence. No-ops are labeled honestly, and
+append mode adds green text without fake deletions. Renamed visible variants in plain
+language and slowed replay to three seconds per choice. Original pack IDs/PDFs unchanged.
+Browser checks passed for previews, persistent diffs, focus, undo/reset, no-ops, append,
+all variants, sample/replay behavior, PDF links and mobile layout. Root reviewed the
+committed-diff screenshot. Existing live Tailscale URL remains available.

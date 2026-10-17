@@ -8,6 +8,29 @@ The printed sheet supplies the observation, not the player's preferred word. Rep
 
 [Results and the full ten-sentence trace](RESULTS.md) compare continuous revision, scheduled re-cue and append-only clauses. The comparison tab contains real recorded representative, majority and sampling runs for each. Seed 17 was selected as a clear rehearsal example: all ten turns change the sentence, all five positions are visited, and the authored action checklist changes lead five times. This is not a promise about every seed or human choice.
 
+## Reading the edit preview
+
+Each suggestion shows the old word in red and the proposed replacement in green, with
+the affected phrase underneath. Hover or focus a suggestion to mark its target in the
+sentence. Clicking commits it: the old word stays crossed out beside the green new word.
+Only the new word belongs to the actual sentence. Undo restores the previous edit.
+Lookup colors remain the labels used to find paper rows; red/green edit marks have a
+separate meaning. “Already says…” means that choice would not alter the sentence.
+
+The menu uses plain names:
+
+- **Edit and follow the new word:** replace a verb; the chosen word is the next lookup (`chain`).
+- **Edit and follow a set order:** replace a verb; the game chooses the next lookup from a fixed rotation (`scheduled`).
+- **Keep adding to the sentence:** append an action; the chosen verb is the next lookup (`append`).
+
+The lookup cue is not necessarily the word being replaced. Looking up “robot” can offer
+“rescues,” changing “watches survivors” to “rescues survivors.” The previews show exactly
+where each suggestion goes. Recorded replay pauses three seconds between choices.
+
+For the proposed NGO-data lesson, see [the narrative](../../narrative/SENTENCE_BENCHMARK.md).
+The current exercise shows goal-directed selection from available evidence. Demonstrating
+source exclusion would need a separate controlled comparison of datasets.
+
 ## Print / regenerate
 
 The generated packs cover 15, 100 and 200 people with two balanced groups. Every person has all 24 lookup cues: 20 verbs and four starter words. The default starts from `robot`; `then`, `again` and `finally` are alternative starter rows, not words encountered later in that default chain. Use matching pack IDs on paper and screen; do not substitute a Rover sheet or the original Swift corpus.
