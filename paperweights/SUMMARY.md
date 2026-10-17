@@ -1,50 +1,46 @@
 # Paper Weights - current summary
 
-Updated 18 October 2026.
+Updated 18 October 2026. Current browser prototype: **PW6**.
 
 ## Working game
 
-PW5 is the current prototype. Medium has one opening card per turn, one Audience
-button, mixed GO/AVOID/FLIP votes, six turns and three extra reveals per team across
-the run. Teams progress/reset independently. Easy shows all cards with Go/Avoid.
-The default rehearsal simulates 200 people. Polls now show percentages only, with
-no voter counts. Lightning bolts sit at the far right of the action row.
+One shared map with four labelled rover markers and four independent card panels.
+Clicking a panel selects its dotted column highlight. Eliminated markers turn red;
+the panel shows an X-eyed smiling face beside OUT. Three stick figures represent
+the team's extra checks for the entire six-turn run. One opening card per turn is
+free; additional reveals spend checks. Polls are free and show percentages only.
 
-Colors encode historical context; votes count that team's actual matching records.
-The data and map share physical rules. Historical recommendations are not guarantees.
-See competition/MIXED.md for the authored coverage mixture and measured limits.
+Audience polls now combine ALL revealed icon/color pairs. Historical uncertainty
+favors inspecting a useful hidden category; new evidence updates the risk and can
+shift the decision either way. Known kills yield AVOID. Useful information reduces
+uncertainty on average, not necessarily on every individual reveal. Votes remain
+authored action recommendations, not literal displayed hazard probabilities.
 
-## Final sheets
+The shared-map.html URL remains an alias of the main layout. Per-team and global
+reset remain. Reset repeats the same route for comparing strategies. Easy still
+shows all cards and Go/Avoid.
 
-Stored in `paperweights/printouts/<pack-id>/`:
+## Data and printed sheets
 
-- PW5-15-15-92d56e90d0: 15 people, 30 duplex pages.
-- PW5-15-200-b089066934: 200 people, 400 duplex pages.
+Digital packs: PW6-15-15-457112229b and PW6-15-200-c077f594df (default).
+See competition/EVIDENCE.md for the evidence filter, information-gain policy,
+historical provenance and reproduction commands.
 
-Use `duplex.pdf`, A4, actual size, color, double-sided, long-edge flip. Word front,
-Rover back. Keep team stacks together and select the matching game pack. These
-sheets use the unchanged approved gameplay distributions and IDs.
+**Existing PDFs are PW5. They do not match PW6's cumulative polling.** They remain
+in paperweights/printouts/ with their original manifest, instructions and checks.
+No new PDFs were generated. A combined-evidence paper encoding must be agreed
+before PW6 is printed; the old 24-row single-icon sheet cannot express it directly.
+The prior final packs are indexed in printouts/README.md as historical PW5 files.
 
-[The print catalog](printouts/README.md) links the final files and regeneration
-commands. Each pack has PRINT.md (instructions/team assignments), manifest.json
-(exact data), verification.json (checks) and previews. Older packs are history.
+## Validation
 
-## Shared-map layout exploration
+Thirteen model tests pass. Browser checks pass for 15 and 200 people, including
+cumulative vote counts, tokens across six turns, independent resets, elimination,
+X-eyed face, percentage-only polls, and desktop/mobile rendering.
 
-`web/shared-map.html` is a separate interactive layout mockup: one large map with
-four labelled rover positions and four card panels underneath. The terrain is a
-shared reference; each team retains its own hazard rows. It reuses current
-controls and data; the main four-map game is unchanged. Same-position markers have
-separate letter labels connected to their actual position. Letters avoid confusing
-team identity with context colors. `web/shared-map-preview.png` shows staged team
-progress at different positions, not a recorded audience playthrough.
+Across 100 seeds, the 200-person simulation averages 0.36 finishers per four teams
+for direct GO/AVOID decisions versus 1.13 for the tested inspection policy. At 15
+people: 0.26 versus 0.93. Default seed: 1 versus 2 finishers at 200, 0 versus 2 at 15.
+These are explicit policy comparisons, not optimal-play or human-play guarantees.
 
-This is a layout preview, not an approved replacement. Shared-map selection/highlight
-and eliminated-marker treatment need design review before promotion. The main game
-retains its existing column bands and dissolution animation.
-
-Checkpoint: chronology/2026-10-18-paperweights-print-and-shared-map.md.
-
-Validation: both final PDF packs passed independent answer/tally/duplex checks;
-11 model tests and browser gameplay checks passed. Shared preview checked on
-desktop and mobile. No public deployment was performed.
+Checkpoint: chronology/2026-10-18-rover-evidence.md. No public deployment.

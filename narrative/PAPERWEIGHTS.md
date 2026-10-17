@@ -1,3 +1,7 @@
+# Current: PW6 cumulative-evidence rehearsal
+
+Shared map promoted, dead markers red with an X-eyed face in the team panel, stick-figure check tokens. Audience polls combine all revealed clues and favor informative inspection under uncertainty. This changes the paper requirements: PW5 PDFs remain preserved but cannot reproduce PW6. See [EVIDENCE.md](../paperweights/competition/EVIDENCE.md) and [SUMMARY.md](../paperweights/SUMMARY.md).
+
 # 18 October update
 
 PW5 final duplex packs are generated for 15 and 200 people in `paperweights/printouts/`; catalog, regeneration and current state are in [SUMMARY.md](../paperweights/SUMMARY.md). Polls show percentages only; tokens are right-aligned. A separate shared-map layout preview is at `paperweights/web/shared-map.html`; the working four-map layout remains.

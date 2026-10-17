@@ -1,38 +1,32 @@
 # Paper Weights
 
-## Current prototype - one Audience button (PW5)
+## Current prototype - cumulative evidence (PW6)
 
-[Open the local competitive game](http://localhost:8684/paperweights/web/).
-Medium defaults to six turns with three extra reveals per team for the entire run.
-Each turn starts with one face-up card. The controls are **Go, Avoid, Audience**
-and three lightning bolts at the far right. Poll graphs show percentages only. Clicking another hidden card spends a bolt. You may
-spend several in one turn, but they do not refill on the next turn. Polls are free.
-Each quadrant progresses and resets independently; the top Reset restarts all.
+[Open the competitive game](http://localhost:8684/paperweights/web/).
+One shared map now holds four labelled rover markers, with each team's card panel
+below. Click a panel to select its dotted column highlight. Dead markers turn red;
+the panel displays an X-eyed face and OUT.
 
-Audience shows a single distribution over GO, AVOID and FLIP categories, counting
-all that team's records matching the latest revealed icon/color. Individual data
-rows mix decisions and inspection suggestions; there are no two separate models.
-Unavailable suggestions stay in the distribution but are dimmed. New reveals clear
-old bars. Seeing a kill means Avoid regardless of later polls about another card.
+Medium uses six turns and three extra checks per team across the run, represented
+by stick figures at the right of the controls. One opening card per turn is free;
+additional reveals spend a check. Audience polls are free and use **all revealed
+icon/color pairs**. Votes now favor informative inspections while the evidence is
+uncertain, and shift toward decisions as the evidence resolves. They remain
+historical action votes, not guarantees. Teams progress and reset independently.
 
-The default simulates 200 people (50 per team); select 15 to test small-room voting.
-Final PW5 duplex PDFs are in [printouts/](printouts/README.md), for 15 and 200 people.
-Each pack contains printing instructions, team assignments, exact data and verification.
-Use the matching pack ID in the game; previous PW4 sheets are incompatible.
+**Digital test only:** PW5's one-icon printed sheets do not match cumulative PW6
+polls. The [PW5 print catalog](printouts/README.md) is retained for the previous
+version. Do not print those sheets for this experiment. A new paper encoding is
+needed if cumulative evidence is adopted.
 
 ```sh
-python3 paperweights/competition/mixed.py
+python3 paperweights/competition/evidence.py
 python3 paperweights/serve.py --rover-only
 ```
 
-If the server is already running, rebuild with
+For an already-running server, use
 `python3 paperweights/build_site.py --output paperweights/out/rover-review`.
-Generate final sheets with `paperweights/.venv/bin/python paperweights/build_printouts.py --sheets 200 --seed 15`.
-See [SUMMARY.md](SUMMARY.md) for the current state and the separate shared-map preview.
-See [the mixed model and measured limits](competition/MIXED.md).
-
-Easy remains all face-up Go/Avoid. Wrong Go or false Avoid eliminates a team.
-Reset repeats the same map so you can compare choices. Dark/light remain available.
+See [SUMMARY.md](SUMMARY.md) and [model details](competition/EVIDENCE.md).
 
 ## Sentence competition benchmark
 

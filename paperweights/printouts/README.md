@@ -1,6 +1,9 @@
-# Final Paper Weights print packs
+# PW5 Paper Weights print packs
 
-Current game: **PW5**, mixed GO/AVOID/category answers, six turns, three extra reveals.
+**The current browser experiment is PW6. These PW5 sheets are preserved for the
+previous game and do not match cumulative-evidence polling. No PW6 PDFs yet.**
+
+Printed version: **PW5**, mixed GO/AVOID/category answers, six turns, three extra reveals.
 Each person receives one A4 sheet: Swift word lookup on the front, Rover lookup on
 the back. Both sides have 24 pairs, white backgrounds, matching Team A-D labels
 and a pack/person identifier. A category answer means vote to flip that category.

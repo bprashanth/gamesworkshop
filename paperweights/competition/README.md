@@ -1,3 +1,7 @@
+# Current model: PW6
+
+See [EVIDENCE.md](EVIDENCE.md). Cumulative digital polls and information-guided inspection replace PW5 for this test. Existing PDFs remain PW5 and are not compatible.
+
 # Current model: PW5
 
 See [MIXED.md](MIXED.md): one mixed audience distribution, six turns and three extra reveals. Final PW5 sheets are indexed in [the print catalog](../printouts/README.md). Earlier versions below are history.
