@@ -2,6 +2,11 @@
 
 17 October 2026. Experimental benchmark, separate from Rover and the production word packs.
 
+**Status: paused by the user.** The edit mechanic became too complex and its connection
+to next-token generation was not convincing. Artifacts are retained; the sentence endpoint
+is offline and Rover is back at `/paperweights/web/`. No further sentence prototype work
+is planned without a new brief.
+
 ## Brief
 
 Two groups share one sentence. Group A wants it to portray a robot as good; Group B wants

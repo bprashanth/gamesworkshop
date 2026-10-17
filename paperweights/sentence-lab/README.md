@@ -1,5 +1,9 @@
 # Paper Weights sentence lab
 
+**Paused on 17 October 2026.** Preserved as a benchmark; the running server now serves
+Rover only. The last-word lookup / unrelated-word edit rule was too confusing for the
+intended lesson. See [the checkpoint](../../chronology/2026-10-17-sentence-benchmark.md).
+
 A separate experiment for two groups steering one robot sentence. Open `index.html` through the repository's HTTP server. The default page loads `pack.json`, the **15-person seed-17 pack**. It does not change Rover or the existing Swift exercise.
 
 Start with **Word-chain revision** and **Representative**. One group wants a helpful robot, the other a harmful robot. Match the current word and color on the paper, collect the suggested right-hand words, and let the representative choose a leading continuation. That exact word/color is the next lookup. It replaces the verb belonging to its part of the sentence. Ten turns give each group five decisions; use the optional 30-second window for approximately five minutes.

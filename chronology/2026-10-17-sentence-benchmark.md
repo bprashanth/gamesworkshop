@@ -100,3 +100,37 @@ Verified at a 390px mobile viewport through the Tailscale address, with unversio
 requests deliberately blocked: all three revisioned assets returned HTTP 200/no-store.
 Choosing rescues displayed watches in red and rescues in green with exact computed styles;
 no browser errors. Saved and reviewed out/cache-fix-mobile.png. Data/print packs unchanged.
+
+
+## Paused - return to Rover
+
+User questioned why the last chosen word is used as the lookup while an unrelated verb
+elsewhere is replaced. Acknowledged that this was an authored game rule chosen to create
+short, alternating revisions, not a technically grounded illustration of LLM generation.
+It preserves the paper lookup connection but combines it with a separate edit mechanic;
+calling it the exact Swift dynamic overstated the educational continuity. The user judged
+the experiment too complex and explicitly asked to pause it and resume Rover.
+
+Preserved all sentence code, printouts, traces, screenshots and findings for reference.
+Stopped the repository-wide sentence rehearsal server. Added --rover-only to the existing
+serve command and restarted port 8684 with an isolated assembled Rover site. The old
+/paperweights/sentence-lab/ endpoint now returns404. Collaborative and competitive Rover
+both load; original port8670 and frozen Rover source remain untouched. The server retains
+no-store headers to prevent mixed asset revisions on phones.
+
+Verified through the Tailscale address in Playwright: competitive PW2-15-15-fb7b11abfe,
+four teams, current Medium and Easy transitions, all Easy cards visible, collaborative
+stage navigation, and sentence endpoint404. No browser errors. Resume link:
+http://100.82.28.38:8684/paperweights/web/
+
+Current Rover implementation remains: Easy exposes all cards and asks Go/Avoid; Medium
+reveals a source cue, accepts a next-category flip, then automatically avoids a revealed
+kill or goes on a non-kill when the reveal expires. Hidden kills eliminate on Go.
+Four successful decisions finish; duration10/20/30s, dark/light, TeamA-D labels and matching
+15/100/200 sheets remain. Papers suggest categories in Medium and include an Avoid-these
+hazard strip for Easy. Colors encode selected older history, not guaranteed current safety.
+
+The later all-mode Go/Avoid proposal, colorless Medium/context lookup proposal and Hard
+partnership/open-data sharing proposals are brainstorms only. None has replaced the
+working Rover rules. Await the user's next prototype brief rather than implementing one
+of those unselected ideas automatically.

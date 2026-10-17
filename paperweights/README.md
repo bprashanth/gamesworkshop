@@ -3,7 +3,7 @@
 ## Game
 
 ```sh
-python3 paperweights/serve.py
+python3 paperweights/serve.py --rover-only
 ```
 
 Open [the competitive game](http://localhost:8684/paperweights/web/). Dark is the
@@ -101,8 +101,9 @@ incompatible with the current competitive game.
 
 ## Sentence competition benchmark
 
-[Try the separate sentence lab](http://100.82.28.38:8684/paperweights/sentence-lab/) over
-Tailscale. Two groups get five turns each to steer one robot sentence toward good or bad.
+**Paused after review.** The sentence lab is preserved in `sentence-lab/`; its review
+server is offline while we return to Rover. Two groups get five turns each to steer one
+robot sentence toward good or bad.
 It includes three mechanics, majority/sampling/representative choices, actual sheet tallies
 and a printable 15-person pack. [Results and regeneration](sentence-lab/README.md).
 This is an independent rehearsal experiment; it uses its own word sheets.
