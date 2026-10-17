@@ -55,3 +55,8 @@ Projector fit: the desktop layout uses the available viewport height, keeps four
 panels in one row, and sizes the map to the remaining space without stretching.
 No-scroll tests cover nine sizes from 800x600 to 2560x1440 with every poll open.
 The browser's fullscreen mode can reclaim additional space on event day.
+
+Teaching narrative: [rover_mode_transitions.md](../narrative/rover_mode_transitions.md)
+sets out Easy's focus on significant outcomes and Medium's focus on gathering
+useful evidence before taking risks with beneficiaries. FINISHED uses default
+text color; only elimination is red (UI fix f313828).
