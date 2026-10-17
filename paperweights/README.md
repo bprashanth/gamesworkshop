@@ -10,25 +10,26 @@ Open [the competitive game](http://localhost:8684/paperweights/web/). Dark is th
 default; the Light button switches theme. The stage selector links to the existing
 collaborative game. Select the print pack matching the ID on your sheets.
 
-Choose **Easy** or **Medium** (default). Hard is reserved for later.
+Both modes show four face-up cards and offer **Go / Avoid** for the **next column**.
+The dotted vertical boundaries identify the column whose cards are visible.
 
-In **Easy**, all four cards in the current square are face up. The audience votes
-Go or Avoid using the **Avoid these:** icon strip at the bottom of the Rover sheet.
-The representative chooses Go for a safe square or Avoid if any kill card is present.
-A wrong choice eliminates the team. Each choice advances automatically; four correct
-choices finish the route. There is no reveal timer in Easy.
+- **Easy** (default): see the next column. Its dotted band sits ahead of the rover.
+  Use the sheet's bottom **Avoid these:** strip; Avoid if any next-column card is a kill.
+- **Medium**: see the current column. Its dotted band surrounds the rover. Use the
+  colored icons to look up historical next-column GO/AVOID outcomes on the new PW3 sheets.
+  Match all four cards, count the four answers, and vote the majority. A 2–2 split means
+  abstain. The representative decides Go/Avoid even when the group is tied.
 
-In **Medium**, each rover starts with one card showing. It hides after the reveal time;
-the audience uses that icon and color to vote for the next category. The representative
-flips one of the four cards. It stays visible for the reveal time, then hides automatically.
-A revealed death card makes the rover avoid that row. Any other card makes it go;
-if another card in that row was deadly, the rover is eliminated and its map dissolves.
-Four successful flips finish the route. The last card seen is always the next lookup.
+There are no reveal timers or card-flip choices in this prototype. Go into a hazardous
+next column, or Avoid a safe next column, and the team is eliminated. Four correct decisions
+finish. Successful movement animates to the next column; controls lock during movement.
+The band is hidden during movement, then returns around the new displayed column. Mode
+changes reset all four teams. Hard remains deferred; the separate voting app is unchanged.
 
-The Medium reveal-duration control offers 10, 20 or 30 seconds. Changing it updates
-active reveals from their original start time. After a card hides, the next flip waits
-for the representative. Switching difficulty resets all four teams. Reset replays the
-same maps. Your separate voting app remains separate.
+The paper answers are uncertain historical examples, not a hidden answer key. Combining
+four separate lookups is a classroom voting heuristic, not a calibrated probability for
+the full four-card state. Small teams can have many abstentions. See
+[the prediction model](competition/PREDICTION.md) for measured outcomes and limitations.
 
 The Netlify build now copies this independent page into the existing publish folder;
 no deployment has been triggered. The original collaborative engine and styling are
@@ -37,7 +38,7 @@ unchanged. Only the selector includes are added to its page.
 ## Print and play
 
 Production packs live in [`printouts/`](printouts/). Each person receives one A4 sheet:
-word lookup on the front, Rover lookup on the back. Both sides have 24 pairs and
+word lookup on the front, next-column GO/AVOID lookup on the back. Both sides have 24 pairs and
 three short instructions. Rover uses plain color names (RED, BLUE, AMBER, GREEN,
 PURPLE, PINK) instead of numbered context codes or dot patterns,
 monochrome icons, inverted hazards and white paper. A bottom strip on the Rover side
@@ -79,9 +80,9 @@ with 15 people.
 
 | People | Duplex PDF | Rover preview | Matching game pack |
 | --- | --- | --- | --- |
-| 15 | [30 pages](printouts/PW2-15-15-fb7b11abfe/duplex.pdf) | [Preview](printouts/PW2-15-15-fb7b11abfe/rover-preview.png) | `PW2-15-15-fb7b11abfe` |
-| 100 | [200 pages](printouts/PW2-15-100-1afd11f78a/duplex.pdf) | [Preview](printouts/PW2-15-100-1afd11f78a/rover-preview.png) | `PW2-15-100-1afd11f78a` |
-| 200 | [400 pages](printouts/PW2-15-200-95d7a79806/duplex.pdf) | [Preview](printouts/PW2-15-200-95d7a79806/rover-preview.png) | `PW2-15-200-95d7a79806` |
+| 15 | [30 pages](printouts/PW3-15-15-bbec296c07/duplex.pdf) | [Preview](printouts/PW3-15-15-bbec296c07/rover-preview.png) | `PW3-15-15-bbec296c07` |
+| 100 | [200 pages](printouts/PW3-15-100-2af3cd3bc5/duplex.pdf) | [Preview](printouts/PW3-15-100-2af3cd3bc5/rover-preview.png) | `PW3-15-100-2af3cd3bc5` |
+| 200 | [400 pages](printouts/PW3-15-200-eb96e1ff19/duplex.pdf) | [Preview](printouts/PW3-15-200-eb96e1ff19/rover-preview.png) | `PW3-15-200-eb96e1ff19` |
 
 Print **A4, actual size, color, double-sided, flip on long edge**. Print the entire
 chosen pack. Each odd PDF page is a word front; the following even page is its Rover
@@ -89,15 +90,15 @@ back. Test the first two pages on one physical sheet before printing the room pa
 All paper backgrounds are white. In HTML printing, enable background graphics.
 
 Everyone has all 24 possible live icon/context keys, exactly once each. The suggested
-next category varies across sheets. Every participant can answer every lookup for
-their team; no live key depends on only a few people. Shared-model checks and the
+next-column action varies across sheets. Everyone can find all four current-card lookups;
+people with two GO and two AVOID examples abstain from the final binary vote. Shared-model checks and the
 limits of these authored distributions are documented in [`competition/`](competition/).
 The word activity preserves its existing closed corpus and six token color names;
-production fronts use the same muted palette as the Rover backs. The shared model
-default seed 15 is an explicitly selected rehearsal scenario. With the tested Medium paper
-policy, 15/100/200-person packs yield 1/1/2 finishers; different choices can differ.
-Older numbered-code packs live in [`printouts/archive/`](printouts/archive/) and are
-incompatible with the current competitive game.
+production fronts use the same muted palette as the Rover backs. Routes still use the
+reviewed seed 15, but the old category-vote win rates do not transfer to this prediction
+exercise. Use **PW3** sheets: older **PW2** category sheets remain in `printouts/` for
+reference and are incompatible with the current game. Archived PW1 packs are also obsolete.
+The active game selector contains only PW3 packs.
 
 ## Sentence competition benchmark
 

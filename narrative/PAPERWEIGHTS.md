@@ -8,7 +8,28 @@ This is an opening module and audience-participation bridge for the broader
 [workshop sequence](EVENT.md), not a replacement for its environmental investigation
 or lunar transfer work. The Mars/Moon source-data and film projects are untouched.
 
-## Current interaction: Easy and Medium
+## Current prototype: current versus next column (PW3)
+
+17 October 2026. Both difficulties show all four cards and use Go/Avoid for the next
+column. Easy shows that next column directly, with dotted boundaries ahead of the rover.
+Medium shows the current column, with dotted boundaries around the rover. There are no
+card flips or reveal timers. Successful decisions animate to the next column; wrong Go
+or wrong Avoid eliminates the team. Four decisions finish.
+
+The new PW3 sheet replaces category suggestions with GO/AVOID labels drawn from unbiased
+historical next-column outcomes for the same icon/color. Every person matches the four
+current cards and votes the majority of their four answers; a 2–2 split means abstain.
+This combines correlated marginal examples as a classroom heuristic, not a calibrated
+joint probability. The representative still chooses on ties. Easy uses the unchanged
+bottom hazard strip. Older PW2 sheets are incompatible with this prototype.
+
+The same physical routes and seed15 remain, so old flip-game success rates no longer apply.
+Small groups can have substantial abstentions or unanimous mistaken predictions. See
+[the model notes](../paperweights/competition/PREDICTION.md). No forced winners or future
+information in context colors were introduced. Four players, team stacks, original
+monochrome glyphs, dark/light appearance and independent voting app remain.
+
+## Previous interaction: Easy and Medium (PW2)
 
 Easy shows all four cards and offers Go/Avoid. The audience checks the three kill icons
 in the Rover sheet's bottom “Avoid these:” strip. Go on a hazard or Avoid on a safe row

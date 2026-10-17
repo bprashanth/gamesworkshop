@@ -12,5 +12,7 @@ button,select,.bar button{background:var(--bg);color:var(--ink);border:1px solid
 .team-name{font:12px var(--mono);color:var(--ink);height:17px;line-height:17px}
 .mapframe{height:clamp(83px,calc(30vh - 17px),268px)}
 @media(max-width:700px){.mapframe{height:163px}}
-.easy-actions{display:flex;gap:8px;margin-top:8px}.easy-actions[hidden]{display:none}.easy .mapframe{height:clamp(100px,25vh,235px)}.easy .mapcanvas{width:min(100%,48vh)}.easy .outcome{bottom:65px}
-@media(max-width:700px){.easy .mapframe{height:160px}.easy .mapcanvas{width:320px}}
+.easy-actions{display:flex;gap:8px;margin-top:8px}.easy-actions[hidden]{display:none}.mapframe{height:clamp(100px,25vh,235px)}.mapcanvas{width:min(100%,48vh)}.outcome{bottom:65px}
+@media(max-width:700px){.mapframe{height:160px}.mapcanvas{width:320px}}
+
+#view-label{font:10px var(--mono);color:var(--dim);min-width:45px}

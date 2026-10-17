@@ -1,4 +1,11 @@
-# Continuous Paper Weights model (PW2)
+# Current prototype: PW3 next-column prediction
+
+The active game now uses **PW3**: Easy shows the next column, Medium the current column,
+and both ask Go/Avoid about the next column. New sheets contain binary historical outcomes.
+See [PREDICTION.md](PREDICTION.md) for the current model and tests. The unchanged transition
+physics below is reused, but PW2 inspection votes and win rates are historical.
+
+# Previous continuous Paper Weights model (PW2)
 
 In Medium, the game has four consecutive decisions. A bootstrap card is shown for the reveal duration (10 seconds by default; configurable to 20 or 30), then hidden. The audience matches that exact icon and color on paper and suggests a category. The chosen card in the next square flips for the same duration. A kill card automatically avoids that square; a non-kill card automatically goes. Going into a square with any other hidden kill eliminates the team. The newly flipped card becomes the exact next lookup cue. Four successful decisions finish.
 

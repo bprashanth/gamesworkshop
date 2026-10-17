@@ -22,6 +22,11 @@ def build(output=None):
         if stage['id'] == 'collaborative':
             stage['href'] = '/'
     (dest / 'stages.json').write_text(json.dumps(stages, indent=2) + '\n')
+    # Make the currently selectable print packs available on the rehearsal site.
+    for item in json.loads((COMPETITIVE / 'packs' / 'index.json').read_text()):
+        source = ROOT / 'paperweights' / 'printouts' / item['packId']
+        if source.is_dir():
+            shutil.copytree(source, target / 'paperweights' / 'printouts' / item['packId'], dirs_exist_ok=True)
     print(f'Competitive stage: {dest}')
     return target
 

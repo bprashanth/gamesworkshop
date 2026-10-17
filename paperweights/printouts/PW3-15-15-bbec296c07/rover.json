@@ -1,0 +1,2980 @@
+{
+  "packId": "PW3-15-15-bbec296c07",
+  "sheets": [
+    {
+      "id": "001",
+      "team": "A",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "A-001-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "A-001-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "avoid",
+          "historyId": "A-001-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "A-001-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "A-001-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "A-001-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "A-001-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "A-001-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "A-001-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "A-001-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "A-001-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "A-001-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "A-001-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "A-001-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "A-001-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "A-001-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "A-001-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "go",
+          "historyId": "A-001-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "A-001-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "A-001-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "A-001-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "A-001-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "A-001-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "A-001-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "002",
+      "team": "A",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "A-002-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "A-002-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "A-002-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "A-002-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "A-002-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "A-002-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "A-002-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "avoid",
+          "historyId": "A-002-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "A-002-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "A-002-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "A-002-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "A-002-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "A-002-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "A-002-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "A-002-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "A-002-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "A-002-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "A-002-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "A-002-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "A-002-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "A-002-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "A-002-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "A-002-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "A-002-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "003",
+      "team": "A",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "A-003-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "A-003-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "A-003-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "A-003-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "A-003-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "go",
+          "historyId": "A-003-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "A-003-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "A-003-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "A-003-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "A-003-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "avoid",
+          "historyId": "A-003-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "A-003-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "A-003-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "A-003-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "A-003-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "A-003-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "A-003-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "A-003-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "A-003-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "A-003-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "A-003-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "A-003-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "go",
+          "historyId": "A-003-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "A-003-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "004",
+      "team": "A",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "go",
+          "historyId": "A-004-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "A-004-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "A-004-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "A-004-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "A-004-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "go",
+          "historyId": "A-004-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "A-004-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "A-004-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "A-004-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "A-004-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "A-004-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "A-004-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "A-004-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "avoid",
+          "historyId": "A-004-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "A-004-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "A-004-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "A-004-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "A-004-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "A-004-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "A-004-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "A-004-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "A-004-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "A-004-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "A-004-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "005",
+      "team": "B",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "B-005-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "B-005-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "avoid",
+          "historyId": "B-005-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "B-005-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "B-005-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "B-005-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "B-005-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "avoid",
+          "historyId": "B-005-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "B-005-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "B-005-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "B-005-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "B-005-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "B-005-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "B-005-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "B-005-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "B-005-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "B-005-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "B-005-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "B-005-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "B-005-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "B-005-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "B-005-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "B-005-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "B-005-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "006",
+      "team": "B",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "B-006-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "B-006-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "B-006-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "B-006-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "B-006-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "go",
+          "historyId": "B-006-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "B-006-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "B-006-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "B-006-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "B-006-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "B-006-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "B-006-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "B-006-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "avoid",
+          "historyId": "B-006-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "B-006-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "B-006-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "B-006-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "B-006-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "B-006-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "B-006-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "B-006-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "B-006-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "go",
+          "historyId": "B-006-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "B-006-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "007",
+      "team": "B",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "B-007-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "B-007-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "B-007-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "B-007-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "B-007-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "B-007-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "B-007-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "B-007-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "B-007-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "B-007-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "avoid",
+          "historyId": "B-007-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "B-007-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "B-007-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "B-007-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "B-007-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "B-007-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "B-007-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "go",
+          "historyId": "B-007-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "B-007-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "B-007-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "B-007-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "B-007-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "B-007-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "B-007-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "008",
+      "team": "B",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "go",
+          "historyId": "B-008-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "B-008-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "B-008-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "B-008-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "B-008-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "go",
+          "historyId": "B-008-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "B-008-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "B-008-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "B-008-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "B-008-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "B-008-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "B-008-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "B-008-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "B-008-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "B-008-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "B-008-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "B-008-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "B-008-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "B-008-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "B-008-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "B-008-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "B-008-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "B-008-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "B-008-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "009",
+      "team": "C",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "C-009-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "C-009-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "C-009-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "C-009-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "C-009-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "go",
+          "historyId": "C-009-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "C-009-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "C-009-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "C-009-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "C-009-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "C-009-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "C-009-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "C-009-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "avoid",
+          "historyId": "C-009-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "C-009-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "C-009-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "C-009-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "go",
+          "historyId": "C-009-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "C-009-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "C-009-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "C-009-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "C-009-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "C-009-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "C-009-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "010",
+      "team": "C",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "C-010-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "C-010-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "C-010-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "C-010-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "C-010-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "C-010-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "C-010-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "C-010-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "C-010-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "C-010-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "C-010-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "C-010-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "C-010-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "C-010-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "C-010-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "C-010-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "C-010-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "C-010-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "C-010-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "C-010-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "C-010-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "C-010-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "C-010-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "C-010-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "011",
+      "team": "C",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "C-011-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "C-011-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "avoid",
+          "historyId": "C-011-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "C-011-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "C-011-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "go",
+          "historyId": "C-011-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "C-011-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "C-011-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "C-011-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "C-011-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "C-011-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "C-011-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "C-011-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "C-011-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "C-011-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "C-011-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "C-011-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "C-011-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "C-011-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "C-011-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "C-011-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "C-011-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "C-011-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "C-011-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "012",
+      "team": "C",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "go",
+          "historyId": "C-012-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "C-012-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "C-012-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "C-012-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "C-012-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "C-012-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "C-012-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "avoid",
+          "historyId": "C-012-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "C-012-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "C-012-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "avoid",
+          "historyId": "C-012-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "C-012-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "C-012-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "C-012-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "C-012-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "C-012-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "C-012-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "C-012-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "C-012-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "C-012-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "C-012-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "C-012-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "go",
+          "historyId": "C-012-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "C-012-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "013",
+      "team": "D",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "D-013-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "D-013-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "D-013-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "D-013-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "D-013-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "D-013-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "go",
+          "historyId": "D-013-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "avoid",
+          "historyId": "D-013-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "D-013-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "D-013-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "D-013-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "D-013-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "D-013-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "D-013-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "D-013-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "D-013-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "D-013-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "D-013-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "D-013-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "D-013-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "D-013-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "D-013-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "D-013-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "D-013-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "014",
+      "team": "D",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "go",
+          "historyId": "D-014-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "D-014-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "avoid",
+          "historyId": "D-014-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "D-014-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "D-014-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "D-014-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "D-014-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "D-014-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "go",
+          "historyId": "D-014-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "D-014-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "avoid",
+          "historyId": "D-014-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "D-014-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "D-014-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "avoid",
+          "historyId": "D-014-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "D-014-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "D-014-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "D-014-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "D-014-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "D-014-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "D-014-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "D-014-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "avoid",
+          "historyId": "D-014-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "go",
+          "historyId": "D-014-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "D-014-C06:slope:steep"
+        }
+      ]
+    },
+    {
+      "id": "015",
+      "team": "D",
+      "entries": [
+        {
+          "key": "C01:battery:full",
+          "context": "C01",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "avoid",
+          "historyId": "D-015-C01:battery:full"
+        },
+        {
+          "key": "C01:battery:dead",
+          "context": "C01",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "D-015-C01:battery:dead"
+        },
+        {
+          "key": "C01:dust:clear",
+          "context": "C01",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "D-015-C01:dust:clear"
+        },
+        {
+          "key": "C01:dust:haze",
+          "context": "C01",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "D-015-C01:dust:haze"
+        },
+        {
+          "key": "C01:dust:storm",
+          "context": "C01",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "D-015-C01:dust:storm"
+        },
+        {
+          "key": "C02:battery:full",
+          "context": "C02",
+          "category": "battery",
+          "value": "full",
+          "nextAction": "go",
+          "historyId": "D-015-C02:battery:full"
+        },
+        {
+          "key": "C02:battery:dead",
+          "context": "C02",
+          "category": "battery",
+          "value": "dead",
+          "nextAction": "avoid",
+          "historyId": "D-015-C02:battery:dead"
+        },
+        {
+          "key": "C02:dust:clear",
+          "context": "C02",
+          "category": "dust",
+          "value": "clear",
+          "nextAction": "go",
+          "historyId": "D-015-C02:dust:clear"
+        },
+        {
+          "key": "C02:dust:haze",
+          "context": "C02",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "D-015-C02:dust:haze"
+        },
+        {
+          "key": "C02:dust:storm",
+          "context": "C02",
+          "category": "dust",
+          "value": "storm",
+          "nextAction": "avoid",
+          "historyId": "D-015-C02:dust:storm"
+        },
+        {
+          "key": "C03:ground:firm",
+          "context": "C03",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "D-015-C03:ground:firm"
+        },
+        {
+          "key": "C03:ground:soft",
+          "context": "C03",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "D-015-C03:ground:soft"
+        },
+        {
+          "key": "C03:ground:sand",
+          "context": "C03",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "D-015-C03:ground:sand"
+        },
+        {
+          "key": "C04:ground:firm",
+          "context": "C04",
+          "category": "ground",
+          "value": "firm",
+          "nextAction": "go",
+          "historyId": "D-015-C04:ground:firm"
+        },
+        {
+          "key": "C04:ground:soft",
+          "context": "C04",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "go",
+          "historyId": "D-015-C04:ground:soft"
+        },
+        {
+          "key": "C04:ground:sand",
+          "context": "C04",
+          "category": "ground",
+          "value": "sand",
+          "nextAction": "avoid",
+          "historyId": "D-015-C04:ground:sand"
+        },
+        {
+          "key": "C05:slope:flat",
+          "context": "C05",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "D-015-C05:slope:flat"
+        },
+        {
+          "key": "C05:slope:tilted",
+          "context": "C05",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "go",
+          "historyId": "D-015-C05:slope:tilted"
+        },
+        {
+          "key": "C05:slope:steep",
+          "context": "C05",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "avoid",
+          "historyId": "D-015-C05:slope:steep"
+        },
+        {
+          "key": "C05:dust:haze",
+          "context": "C05",
+          "category": "dust",
+          "value": "haze",
+          "nextAction": "avoid",
+          "historyId": "D-015-C05:dust:haze"
+        },
+        {
+          "key": "C05:ground:soft",
+          "context": "C05",
+          "category": "ground",
+          "value": "soft",
+          "nextAction": "avoid",
+          "historyId": "D-015-C05:ground:soft"
+        },
+        {
+          "key": "C06:slope:flat",
+          "context": "C06",
+          "category": "slope",
+          "value": "flat",
+          "nextAction": "go",
+          "historyId": "D-015-C06:slope:flat"
+        },
+        {
+          "key": "C06:slope:tilted",
+          "context": "C06",
+          "category": "slope",
+          "value": "tilted",
+          "nextAction": "avoid",
+          "historyId": "D-015-C06:slope:tilted"
+        },
+        {
+          "key": "C06:slope:steep",
+          "context": "C06",
+          "category": "slope",
+          "value": "steep",
+          "nextAction": "go",
+          "historyId": "D-015-C06:slope:steep"
+        }
+      ]
+    }
+  ],
+  "pdf": {
+    "pages": 15,
+    "size": "A4 portrait",
+    "verified": true
+  }
+}

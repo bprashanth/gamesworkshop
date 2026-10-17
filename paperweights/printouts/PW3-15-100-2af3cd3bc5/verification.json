@@ -1,0 +1,13 @@
+{
+  "packId": "PW3-15-100-2af3cd3bc5",
+  "people": 100,
+  "pairsPerSide": 24,
+  "pages": 200,
+  "pageBounds": "passed",
+  "asciiArrows": "passed",
+  "hazardStripOnlyRoverBacks": "passed",
+  "noDotSeparators": "passed",
+  "frontBackPairing": "page 2n+1 words, page 2n+2 Rover",
+  "roverActionRowsAndColors": "passed",
+  "roverGroupActionCounts": "passed"
+}

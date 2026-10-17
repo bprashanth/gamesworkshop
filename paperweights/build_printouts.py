@@ -4,6 +4,8 @@ import argparse
 import importlib.util
 import json
 import re
+import sys
+from collections import Counter, defaultdict
 from pathlib import Path
 import xml.etree.ElementTree as ET
 from html import escape
@@ -68,9 +70,9 @@ def rover_page(sheet,contexts,pack_id):
         for i,e in enumerate(entries[start:start+12]):
             code=e['context'];color=contexts[code]['light'];color_name=contexts[code]['colorName'];hazard=e['value'] in ('dead','storm','sand')
             ink='#ffffff' if hazard else '#22221f';bg='#22221f' if hazard else '#ffffff'
-            rows.append(f'<div class="pair"><div class="lookup" style="border-color:{color}"><div class="key" style="color:{color}"><b>{color_name}</b></div><div class="face" style="background:{bg}">'+icon(e['category'],e['value'],f'{sheet["id"]}-{start+i}',ink)+f'</div></div><div class="arrow">-&gt;</div><div class="right"><span class="word">{escape(e["nextCategory"])}</span><span class="tag" style="color:{color}">({color_name})</span></div></div>')
+            rows.append(f'<div class="pair"><div class="lookup" style="border-color:{color}"><div class="key" style="color:{color}"><b>{color_name}</b></div><div class="face" style="background:{bg}">'+icon(e['category'],e['value'],f'{sheet["id"]}-{start+i}',ink)+f'</div></div><div class="arrow">-&gt;</div><div class="right"><span class="word">{escape(e["nextAction"].upper())}</span><span class="tag" style="color:{color}">({color_name})</span></div></div>')
         columns.append('<div class="column">'+''.join(rows)+'</div>')
-    return team_label('<section class="sheet"><header><h1>Paper Weights / Rover</h1></header><div class="instructions"><b>1</b> Match the shown icon + color to a box on the left.<br><b>2</b> Vote the <b>word on the right</b>.<br><b>3</b> Use each newly flipped card for the next lookup.</div><div class="columns">'+''.join(columns)+'</div>'+hazard_strip(sheet)+identity(sheet,pack_id)+'</section>',sheet)
+    return team_label('<section class="sheet"><header><h1>Paper Weights / Rover</h1></header><div class="instructions"><b>1</b> Match the four current icons + colors.<br><b>2</b> Count <b>GO</b> and <b>AVOID</b> on the right.<br><b>3</b> Vote the majority. Tied? Abstain.</div><div class="columns">'+''.join(columns)+'</div>'+hazard_strip(sheet)+identity(sheet,pack_id)+'</section>',sheet)
 
 def verify(pdf,count):
     with pymupdf.open(pdf) as doc:
@@ -86,10 +88,37 @@ def verify(pdf,count):
             for b in page.get_text('blocks'):
                 assert b[0]>=-1 and b[1]>=-1 and b[2]<=page.rect.width+1 and b[3]<=page.rect.height+1,(pdf,n,b)
 
+def verify_rover(pdf,pack,duplex=False):
+    contexts={c['id']:c for c in pack['contexts']}
+    expected_groups=defaultdict(Counter);actual_groups=defaultdict(Counter)
+    cue_counts=defaultdict(lambda:defaultdict(Counter))
+    with pymupdf.open(pdf) as doc:
+        for i,sheet in enumerate(pack['sheets']):
+            page=doc[2*i+1 if duplex else i]
+            assert f'Team {sheet["team"]}' in page.get_text()
+            spans=[s for b in page.get_text('dict')['blocks'] if 'lines' in b for line in b['lines'] for s in line['spans'] if s['text'].strip()]
+            actions=sorted([s for s in spans if abs(s['size']-16)<.1],key=lambda s:(s['bbox'][0]>page.rect.width/2,s['bbox'][1]))
+            tags=sorted([s for s in spans if s['text'].startswith('(') and s['text'].endswith(')')],key=lambda s:(s['bbox'][0]>page.rect.width/2,s['bbox'][1]))
+            entries=sorted(sheet['entries'],key=lambda e:(e['context'],e['category'],e['value']))
+            assert len(actions)==len(tags)==len(entries)==24,(pdf,i,'row count')
+            for action,tag,e in zip(actions,tags,entries):
+                assert action['text']==e['nextAction'].upper(),(pdf,i,e,action)
+                c=contexts[e['context']]
+                assert tag['text']==f'({c["colorName"]})' and tag['color']==int(c['light'][1:],16),(pdf,i,e,tag)
+                expected_groups[sheet['team']][e['nextAction']]+=1
+                actual_groups[sheet['team']][action['text'].lower()]+=1
+                cue_counts[sheet['team']][e['key']][action['text'].lower()]+=1
+    assert actual_groups==expected_groups
+    for team in pack['teams']:
+        assert set(cue_counts[team['id']])==set(team['votesByCue'])
+        for key,counts in team['votesByCue'].items():
+            assert cue_counts[team['id']][key]==Counter(counts),(pdf,team['id'],key,'cue count mismatch')
+
 def build(count,seed=None):
     if not 12 <= count <= 200:
         raise ValueError("Use 12–200 people for a paired competitive pack.")
-    spec=importlib.util.spec_from_file_location('paperweights_competition_generator',ROOT/'competition/generate.py')
+    sys.path.insert(0,str(ROOT/'competition'))
+    spec=importlib.util.spec_from_file_location('paperweights_competition_generator',ROOT/'competition/prediction.py')
     model=importlib.util.module_from_spec(spec);spec.loader.exec_module(model)
     pack=model.make_pack(sheet_count=count,**({'seed':seed} if seed is not None else {}))
     seed=pack['seed']
@@ -117,13 +146,19 @@ def build(count,seed=None):
     for a,b in zip(fronts.pages,backs.pages):writer.add_page(a);writer.add_page(b)
     writer.add_metadata({'/Title':f'Paper Weights / {pack["packId"]}'})
     with (output/'duplex.pdf').open('wb') as f:writer.write(f)
+    return finish(output,pack)
+
+def finish(output,pack):
+    count=len(pack['sheets'])
     for name,n in [('words',count),('rover',count),('duplex',count*2)]:
         verify(output/f'{name}.pdf',n)
         preview(output/f'{name}.pdf')
+    verify_rover(output/'rover.pdf',pack)
+    verify_rover(output/'duplex.pdf',pack,duplex=True)
     preview(output/'duplex.pdf',1,'back-preview')
     assignments='\n'.join(f'{i+1:03} | {s["id"]} | {s["team"]}' for i,s in enumerate(pack['sheets']))
-    (output/'PRINT.md').write_text(f'# {pack["packId"]}\n\nPrint `duplex.pdf`: A4, actual size, color, double-sided, **flip on long edge**. {count} physical sheets, {count*2} PDF pages. Odd pages are words; the following even page is that person’s Rover lookup. People may choose any team first; then hand out that team’s stack. A = top left, B = top right, C = bottom left, D = bottom right. Keep stack order and use the assignments below. Each stack has a stratified mix; randomly mixing stacks only approximates the proportions and can swing close votes. Select this exact pack ID in the game Print pack selector; do not mix packs.\n\nPhysical sheet | Person | Team\n--- | --- | ---\n'+assignments+'\n')
-    (output/'verification.json').write_text(json.dumps({'packId':pack['packId'],'people':count,'pairsPerSide':24,'pages':count*2,'pageBounds':'passed','asciiArrows':'passed','hazardStripOnlyRoverBacks':'passed','noDotSeparators':'passed','frontBackPairing':'page 2n+1 words, page 2n+2 Rover'},indent=2)+'\n')
+    (output/'PRINT.md').write_text(f'# {pack["packId"]}\n\nPrint `duplex.pdf`: A4, actual size, color, double-sided, **flip on long edge**. {count} physical sheets, {count*2} PDF pages. Odd pages are words; the following even page is that person’s Rover lookup. People may choose any team first; then hand out that team’s stack. A = top left, B = top right, C = bottom left, D = bottom right. Keep stack order and use the assignments below. Each stack has a stratified mix; randomly mixing stacks only approximates the proportions and can swing close votes. Select this exact pack ID in the game Print pack selector; do not mix packs. PW3 sheets predict GO/AVOID; older PW2 inspection-category sheets are incompatible. For Medium, use the four current cards; count your four matching GO/AVOID entries and abstain on a tie. This is a voting heuristic, not a calibrated hazard probability.\n\nPhysical sheet | Person | Team\n--- | --- | ---\n'+assignments+'\n')
+    (output/'verification.json').write_text(json.dumps({'packId':pack['packId'],'people':count,'pairsPerSide':24,'pages':count*2,'pageBounds':'passed','asciiArrows':'passed','hazardStripOnlyRoverBacks':'passed','noDotSeparators':'passed','frontBackPairing':'page 2n+1 words, page 2n+2 Rover','roverActionRowsAndColors':'passed','roverGroupActionCounts':'passed'},indent=2)+'\n')
     print(output,flush=True)
     return output
 

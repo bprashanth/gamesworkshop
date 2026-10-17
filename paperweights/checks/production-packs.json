@@ -1,20 +1,20 @@
 [
   {
-    "packId": "PW2-15-15-fb7b11abfe",
+    "packId": "PW3-15-15-bbec296c07",
     "people": 15,
     "actualPdfRows": true,
     "duplexPairing": true,
     "gameTallies": true
   },
   {
-    "packId": "PW2-15-100-1afd11f78a",
+    "packId": "PW3-15-100-2af3cd3bc5",
     "people": 100,
     "actualPdfRows": true,
     "duplexPairing": true,
     "gameTallies": true
   },
   {
-    "packId": "PW2-15-200-95d7a79806",
+    "packId": "PW3-15-200-eb96e1ff19",
     "people": 200,
     "actualPdfRows": true,
     "duplexPairing": true,
