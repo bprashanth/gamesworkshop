@@ -14,9 +14,10 @@ for item in index:
     paper=json.loads((folder/'manifest.json').read_text())
     game=json.loads((ROOT/'web/packs'/f'{item["packId"]}.json').read_text())
     assert paper==game
-    binary=game['version']==3
+    dual=game['version']==4
+    binary=game['version']>=3
     answer_field='nextAction' if binary else 'nextCategory'
-    answers=game['actions'] if binary else game['categories']
+    answers=['go','avoid']+game['categories'] if dual else game['actions'] if binary else game['categories']
     names={c['id']:c['colorName'] for c in game['contexts']}
     color_pattern='('+'|'.join(names.values())+')'
     with pymupdf.open(folder/'rover.pdf') as backs, pymupdf.open(folder/'words.pdf') as fronts, pymupdf.open(folder/'duplex.pdf') as duplex:
@@ -30,7 +31,7 @@ for item in index:
             assert 'Avoid these:' not in fronts[i].get_text()
             assert f'Team {sheet["team"]}' in text
             assert f'Team {sheet["team"]}' in fronts[i].get_text()
-            answer_pattern='GO|AVOID' if binary else 'battery|slope|dust|ground'
+            answer_pattern='GO|AVOID|BATTERY|SLOPE|DUST|GROUND' if dual else 'GO|AVOID' if binary else 'battery|slope|dust|ground'
             rows=re.findall(color_pattern+r'\s*->\s*('+answer_pattern+r')\s*\('+color_pattern+r'\)',text)
             assert not re.search(r'C0[1-6]',text)
             entries=sorted(sheet['entries'],key=lambda e:(e['context'],e['category'],e['value']))
@@ -48,10 +49,10 @@ for item in index:
         for team in game['teams']:
             for key,votes in team['votesByCue'].items():
                 counts=actual[(team['id'],key)]
-                assert all(counts[c]==votes[c] for c in answers)
+                assert all(counts[c]==votes.get(c,0) for c in answers)
                 assert sum(counts.values())==len(team['sheetIds'])
             for r in team['rounds']:
-                if binary:
+                if binary and not dual:
                     votes=Counter()
                     for person in team['sheetIds']:
                         choices=[per_person[person][c['key']] for c in r['sourceCues'].values()]

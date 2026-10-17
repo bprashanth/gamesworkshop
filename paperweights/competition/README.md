@@ -1,3 +1,7 @@
+# Current model: PW4
+
+See [DUAL.md](DUAL.md) for the same-column, two-model audience prototype. Earlier models below are preserved as history.
+
 # Current prototype: PW3 next-column prediction
 
 The active game now uses **PW3**: Easy shows the next column, Medium the current column,

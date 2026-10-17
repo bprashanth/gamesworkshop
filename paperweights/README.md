@@ -1,104 +1,57 @@
 # Paper Weights
 
-## Game
+## Current prototype - two audience models (PW4)
+
+Run `python3 paperweights/serve.py --rover-only`, then open
+[the competitive game](http://localhost:8684/paperweights/web/). Medium is the default.
+Each team plays independently. Its own Reset starts that team again; the top Reset
+restarts all teams. Reset replays the same map and paper data for comparison.
+
+Medium starts with one face-up card. **Audience: Go/Avoid** counts that team's
+GO/AVOID sheets matching the latest revealed icon and color. **Audience: Which card?**
+counts that team's inspection sheets. Both concern the same column. Bars show
+percentages and actual counts within the relevant model, not all people in the team.
+Repeated polls are deterministic. You can reveal one more card, then must choose
+Go or Avoid. Revealing it clears the old bars; a new decision poll uses that card.
+The outlined card is the current lookup. There is no four-card lookup or timer.
+
+Easy still shows all four cards and Go/Avoid without simulated polls. A wrong Go
+or a false Avoid eliminates the team; four correct decisions finish. Medium's
+column marker surrounds the rover; Easy's marker is ahead. Revealed cards and
+Go/Avoid resolution always refer to the same row in both modes.
+
+Team sheets are split randomly but roughly equally between GO/AVOID and WHICH CARD.
+With 15 people each half has only one or two voters, so coarse percentages and ties
+are expected. Every sheet has all 24 cues. Colors encode historical context using
+the existing model, not the current hidden hazard. No guaranteed survival rate is
+claimed. See [the model description](competition/DUAL.md).
+
+Rehearsal packs:
+
+- [15-person duplex sheets](printouts/PW4-15-15-1061d94544/duplex.pdf)
+- [200-person duplex sheets](printouts/PW4-15-200-b7e1faa6ed/duplex.pdf)
+
+Choose 200 sheets in the selector to simulate 25 people per model per team without
+printing anything. The 15-person pack has only one or two per model per team.
+
+## Generate and print
 
 ```sh
-python3 paperweights/serve.py --rover-only
+paperweights/.venv/bin/python paperweights/build_printouts.py --sheets 15 --seed 15
+# Or use --sheets 200 for the larger audience.
+python3 paperweights/build_site.py --output paperweights/out/rover-review
 ```
 
-Open [the competitive game](http://localhost:8684/paperweights/web/). Dark is the
-default; the Light button switches theme. The stage selector links to the existing
-collaborative game. Select the print pack matching the ID on your sheets.
+The generator creates a matching game pack and `printouts/<pack-id>/duplex.pdf`,
+plus separate words/rover PDFs, previews, manifest, verification and PRINT.md.
+Use 12-200 people. Select the matching pack ID on screen. Print A4, actual size,
+color, double-sided, flip on long edge. Word fronts retain the Swift format;
+Rover backs identify the team and which audience question that person answers.
+Keep each team's stack together and distribute both model types. The PDF has
+alternating word front and Rover back, one sheet per person.
 
-Both modes show four face-up cards and offer **Go / Avoid** for the **next column**.
-The dotted vertical boundaries identify the column whose cards are visible.
-
-- **Easy** (default): see the next column. Its dotted band sits ahead of the rover.
-  Use the sheet's bottom **Avoid these:** strip; Avoid if any next-column card is a kill.
-- **Medium**: see the current column. Its dotted band surrounds the rover. Use the
-  colored icons to look up historical next-column GO/AVOID outcomes on the new PW3 sheets.
-  Match all four cards, count the four answers, and vote the majority. A 2–2 split means
-  abstain. The representative decides Go/Avoid even when the group is tied.
-
-There are no reveal timers or card-flip choices in this prototype. Go into a hazardous
-next column, or Avoid a safe next column, and the team is eliminated. Four correct decisions
-finish. Successful movement animates to the next column; controls lock during movement.
-The band is hidden during movement, then returns around the new displayed column. Mode
-changes reset all four teams. Hard remains deferred; the separate voting app is unchanged.
-
-The paper answers are uncertain historical examples, not a hidden answer key. Combining
-four separate lookups is a classroom voting heuristic, not a calibrated probability for
-the full four-card state. Small teams can have many abstentions. See
-[the prediction model](competition/PREDICTION.md) for measured outcomes and limitations.
-
-The Netlify build now copies this independent page into the existing publish folder;
-no deployment has been triggered. The original collaborative engine and styling are
-unchanged. Only the selector includes are added to its page.
-
-## Print and play
-
-Production packs live in [`printouts/`](printouts/). Each person receives one A4 sheet:
-word lookup on the front, next-column GO/AVOID lookup on the back. Both sides have 24 pairs and
-three short instructions. Rover uses plain color names (RED, BLUE, AMBER, GREEN,
-PURPLE, PINK) instead of numbered context codes or dot patterns,
-monochrome icons, inverted hazards and white paper. A bottom strip on the Rover side
-shows the three kill icons: storm, dead battery and sand pit.
-
-Set up once from the repository root:
-
-```sh
-python3 -m venv paperweights/.venv
-paperweights/.venv/bin/python -m pip install -r paperweights/requirements.txt
-```
-
-**One command generates the matching paper and game pack:**
-
-```sh
-paperweights/.venv/bin/python paperweights/build_printouts.py --sheets 200 --seed 15
-```
-
-Use `--sheets 15` for rehearsal or `--sheets 100` for a smaller room. The supported
-range is 12–200. The command prints the output directory and creates:
-
-- `duplex.pdf`: alternating word front and Rover back, one physical sheet per person.
-- `words.pdf` and `rover.pdf`: separate sides for inspection or manual duplex printing.
-- `manifest.json`: the exact paper observations and matching game routes.
-- `PRINT.md`: page-to-person/team assignments.
-- `verification.json`: page count, 24 pairs per side, arrow and page-bound checks.
-
-It also installs the matching game pack under `web/packs/` and updates its index.
-The game selects these packs by ID; the selected ID must match the tiny ID printed
-on both sides. Changing seed or attendance creates a different pack. Do not mix
-sheets from different packs. Keep the print stack in order when splitting it into
-four audience groups using `PRINT.md`; the team/person mark also identifies each
-sheet after distribution. A clear Team A/B/C/D label appears at the top of both
-sheet sides and on the matching screen panel. People may choose any team first, then receive a sheet
-from that team’s stack: **A top left, B top right, C bottom left, D bottom right**.
-Keep each stack together: its category counts are stratified. Randomly mixing
-stacks only approximates those proportions and can swing close votes, especially
-with 15 people.
-
-| People | Duplex PDF | Rover preview | Matching game pack |
-| --- | --- | --- | --- |
-| 15 | [30 pages](printouts/PW3-15-15-bbec296c07/duplex.pdf) | [Preview](printouts/PW3-15-15-bbec296c07/rover-preview.png) | `PW3-15-15-bbec296c07` |
-| 100 | [200 pages](printouts/PW3-15-100-2af3cd3bc5/duplex.pdf) | [Preview](printouts/PW3-15-100-2af3cd3bc5/rover-preview.png) | `PW3-15-100-2af3cd3bc5` |
-| 200 | [400 pages](printouts/PW3-15-200-eb96e1ff19/duplex.pdf) | [Preview](printouts/PW3-15-200-eb96e1ff19/rover-preview.png) | `PW3-15-200-eb96e1ff19` |
-
-Print **A4, actual size, color, double-sided, flip on long edge**. Print the entire
-chosen pack. Each odd PDF page is a word front; the following even page is its Rover
-back. Test the first two pages on one physical sheet before printing the room pack.
-All paper backgrounds are white. In HTML printing, enable background graphics.
-
-Everyone has all 24 possible live icon/context keys, exactly once each. The suggested
-next-column action varies across sheets. Everyone can find all four current-card lookups;
-people with two GO and two AVOID examples abstain from the final binary vote. Shared-model checks and the
-limits of these authored distributions are documented in [`competition/`](competition/).
-The word activity preserves its existing closed corpus and six token color names;
-production fronts use the same muted palette as the Rover backs. Routes still use the
-reviewed seed 15, but the old category-vote win rates do not transfer to this prediction
-exercise. Use **PW3** sheets: older **PW2** category sheets remain in `printouts/` for
-reference and are incompatible with the current game. Archived PW1 packs are also obsolete.
-The active game selector contains only PW3 packs.
+PW4 replaces PW3's four-lookup majority experiment. PW2 and PW3 files remain as
+history and must not be used with this version. Only PW4 packs appear in the selector.
 
 ## Sentence competition benchmark
 

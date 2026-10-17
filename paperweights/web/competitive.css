@@ -16,3 +16,7 @@ button,select,.bar button{background:var(--bg);color:var(--ink);border:1px solid
 @media(max-width:700px){.mapframe{height:160px}.mapcanvas{width:320px}}
 
 #view-label{font:10px var(--mono);color:var(--dim);min-width:45px}
+.team-name{display:flex;justify-content:space-between;height:25px}.reset-team{padding:2px 8px;font-size:10px}.audience-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}.audience-actions[hidden]{display:none}.cardbox.latest{outline:1px solid var(--ink);outline-offset:2px}.polls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:8px}.poll-title{font-size:10px;color:var(--dim);margin-bottom:5px}.poll-row{display:grid;grid-template-columns:52px 1fr 74px;align-items:center;gap:5px;font-size:9px;margin:4px 0}.track{background:var(--soft);height:5px}.track>div{background:var(--ink);height:100%}.outcome{position:static;margin-top:8px}.card{font-family:var(--mono)}
+@media(max-width:1050px){.polls{grid-template-columns:1fr}}
+@media(min-width:701px){.mapframe{height:clamp(90px,16vh,150px)}.mapcanvas{width:min(100%,31vh)}}
+@media(min-width:1051px){.mapframe{height:clamp(80px,12vh,150px)}.mapcanvas{width:min(100%,24vh)}}

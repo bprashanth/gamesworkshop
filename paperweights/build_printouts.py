@@ -72,7 +72,7 @@ def rover_page(sheet,contexts,pack_id):
             ink='#ffffff' if hazard else '#22221f';bg='#22221f' if hazard else '#ffffff'
             rows.append(f'<div class="pair"><div class="lookup" style="border-color:{color}"><div class="key" style="color:{color}"><b>{color_name}</b></div><div class="face" style="background:{bg}">'+icon(e['category'],e['value'],f'{sheet["id"]}-{start+i}',ink)+f'</div></div><div class="arrow">-&gt;</div><div class="right"><span class="word">{escape(e["nextAction"].upper())}</span><span class="tag" style="color:{color}">({color_name})</span></div></div>')
         columns.append('<div class="column">'+''.join(rows)+'</div>')
-    return team_label('<section class="sheet"><header><h1>Paper Weights / Rover</h1></header><div class="instructions"><b>1</b> Match the four current icons + colors.<br><b>2</b> Count <b>GO</b> and <b>AVOID</b> on the right.<br><b>3</b> Vote the majority. Tied? Abstain.</div><div class="columns">'+''.join(columns)+'</div>'+hazard_strip(sheet)+identity(sheet,pack_id)+'</section>',sheet)
+    return team_label('<section class="sheet"><header><h1>Paper Weights / Rover</h1><span>'+('GO / AVOID' if sheet['model']=='decision' else 'WHICH CARD?')+'</span></header><div class="instructions"><b>1</b> Match the latest revealed icon + color.<br><b>2</b> Vote the answer on the right.<br><b>3</b> Use only your team’s sheets.</div><div class="columns">'+''.join(columns)+'</div>'+hazard_strip(sheet)+identity(sheet,pack_id)+'</section>',sheet)
 
 def verify(pdf,count):
     with pymupdf.open(pdf) as doc:
@@ -96,6 +96,7 @@ def verify_rover(pdf,pack,duplex=False):
         for i,sheet in enumerate(pack['sheets']):
             page=doc[2*i+1 if duplex else i]
             assert f'Team {sheet["team"]}' in page.get_text()
+            assert ('GO / AVOID' if sheet['model']=='decision' else 'WHICH CARD?') in page.get_text()
             spans=[s for b in page.get_text('dict')['blocks'] if 'lines' in b for line in b['lines'] for s in line['spans'] if s['text'].strip()]
             actions=sorted([s for s in spans if abs(s['size']-16)<.1],key=lambda s:(s['bbox'][0]>page.rect.width/2,s['bbox'][1]))
             tags=sorted([s for s in spans if s['text'].startswith('(') and s['text'].endswith(')')],key=lambda s:(s['bbox'][0]>page.rect.width/2,s['bbox'][1]))
@@ -118,7 +119,7 @@ def build(count,seed=None):
     if not 12 <= count <= 200:
         raise ValueError("Use 12–200 people for a paired competitive pack.")
     sys.path.insert(0,str(ROOT/'competition'))
-    spec=importlib.util.spec_from_file_location('paperweights_competition_generator',ROOT/'competition/prediction.py')
+    spec=importlib.util.spec_from_file_location('paperweights_competition_generator',ROOT/'competition/dual.py')
     model=importlib.util.module_from_spec(spec);spec.loader.exec_module(model)
     pack=model.make_pack(sheet_count=count,**({'seed':seed} if seed is not None else {}))
     seed=pack['seed']
@@ -156,8 +157,8 @@ def finish(output,pack):
     verify_rover(output/'rover.pdf',pack)
     verify_rover(output/'duplex.pdf',pack,duplex=True)
     preview(output/'duplex.pdf',1,'back-preview')
-    assignments='\n'.join(f'{i+1:03} | {s["id"]} | {s["team"]}' for i,s in enumerate(pack['sheets']))
-    (output/'PRINT.md').write_text(f'# {pack["packId"]}\n\nPrint `duplex.pdf`: A4, actual size, color, double-sided, **flip on long edge**. {count} physical sheets, {count*2} PDF pages. Odd pages are words; the following even page is that person’s Rover lookup. People may choose any team first; then hand out that team’s stack. A = top left, B = top right, C = bottom left, D = bottom right. Keep stack order and use the assignments below. Each stack has a stratified mix; randomly mixing stacks only approximates the proportions and can swing close votes. Select this exact pack ID in the game Print pack selector; do not mix packs. PW3 sheets predict GO/AVOID; older PW2 inspection-category sheets are incompatible. For Medium, use the four current cards; count your four matching GO/AVOID entries and abstain on a tie. This is a voting heuristic, not a calibrated hazard probability.\n\nPhysical sheet | Person | Team\n--- | --- | ---\n'+assignments+'\n')
+    assignments='\n'.join(f'{i+1:03} | {s["id"]} | {s["team"]} | {s["model"]}' for i,s in enumerate(pack['sheets']))
+    (output/'PRINT.md').write_text(f'# {pack["packId"]}\n\nPrint `duplex.pdf`: A4, actual size, color, double-sided, **flip on long edge**. {count} physical sheets, {count*2} PDF pages. Odd pages are words; the following even page is that person’s Rover lookup. People may choose any team first; then hand out that team’s stack. A = top left, B = top right, C = bottom left, D = bottom right. Keep stack order and use the assignments below. Each stack has a stratified mix; randomly mixing stacks only approximates the proportions and can swing close votes. Select this exact pack ID in the game Print pack selector; do not mix packs. PW4 has two models per team: GO/AVOID and WHICH CARD. Match only the latest revealed icon and color. Both answers concern the same column. One additional reveal is allowed. Poll percentages are counts of that model’s sheets, not guarantees. Earlier packs are incompatible.\n\nPhysical sheet | Person | Team | Model\n--- | --- | --- | ---\n'+assignments+'\n')
     (output/'verification.json').write_text(json.dumps({'packId':pack['packId'],'people':count,'pairsPerSide':24,'pages':count*2,'pageBounds':'passed','asciiArrows':'passed','hazardStripOnlyRoverBacks':'passed','noDotSeparators':'passed','frontBackPairing':'page 2n+1 words, page 2n+2 Rover','roverActionRowsAndColors':'passed','roverGroupActionCounts':'passed'},indent=2)+'\n')
     print(output,flush=True)
     return output

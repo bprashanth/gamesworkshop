@@ -1,3 +1,7 @@
+# Current: PW4 dual audience rehearsal
+
+Medium now uses one revealed card and two team-specific sheet models: GO/AVOID and WHICH CARD. Both concern the same row. One extra reveal is allowed. Simulated poll buttons count those exact sheets; each team has an independent Reset. See [model and limits](../paperweights/competition/DUAL.md) and [current instructions](../paperweights/README.md). The PW3 notes below are historical.
+
 # Paper Weights → Rover Run: teach the reading before the reasoning
 
 14 October 2026. Printable prototype; the frozen Rover Run game is unchanged.
