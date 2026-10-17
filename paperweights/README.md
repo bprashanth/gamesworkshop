@@ -1,57 +1,36 @@
 # Paper Weights
 
-## Current prototype - two audience models (PW4)
+## Current prototype - one Audience button (PW5)
 
-Run `python3 paperweights/serve.py --rover-only`, then open
-[the competitive game](http://localhost:8684/paperweights/web/). Medium is the default.
-Each team plays independently. Its own Reset starts that team again; the top Reset
-restarts all teams. Reset replays the same map and paper data for comparison.
+[Open the local competitive game](http://localhost:8684/paperweights/web/).
+Medium defaults to six turns with three extra reveals per team for the entire run.
+Each turn starts with one face-up card. The controls are **Go, Avoid, Audience**
+and three lightning bolts. Clicking another hidden card spends a bolt. You may
+spend several in one turn, but they do not refill on the next turn. Polls are free.
+Each quadrant progresses and resets independently; the top Reset restarts all.
 
-Medium starts with one face-up card. **Audience: Go/Avoid** counts that team's
-GO/AVOID sheets matching the latest revealed icon and color. **Audience: Which card?**
-counts that team's inspection sheets. Both concern the same column. Bars show
-percentages and actual counts within the relevant model, not all people in the team.
-Repeated polls are deterministic. You can reveal one more card, then must choose
-Go or Avoid. Revealing it clears the old bars; a new decision poll uses that card.
-The outlined card is the current lookup. There is no four-card lookup or timer.
+Audience shows a single distribution over GO, AVOID and FLIP categories, counting
+all that team's records matching the latest revealed icon/color. Individual data
+rows mix decisions and inspection suggestions; there are no two separate models.
+Unavailable suggestions stay in the distribution but are dimmed. New reveals clear
+old bars. Seeing a kill means Avoid regardless of later polls about another card.
 
-Easy still shows all four cards and Go/Avoid without simulated polls. A wrong Go
-or a false Avoid eliminates the team; four correct decisions finish. Medium's
-column marker surrounds the rover; Easy's marker is ahead. Revealed cards and
-Go/Avoid resolution always refer to the same row in both modes.
-
-Team sheets are split randomly but roughly equally between GO/AVOID and WHICH CARD.
-With 15 people each half has only one or two voters, so coarse percentages and ties
-are expected. Every sheet has all 24 cues. Colors encode historical context using
-the existing model, not the current hidden hazard. No guaranteed survival rate is
-claimed. See [the model description](competition/DUAL.md).
-
-Rehearsal packs:
-
-- [15-person duplex sheets](printouts/PW4-15-15-1061d94544/duplex.pdf)
-- [200-person duplex sheets](printouts/PW4-15-200-b7e1faa6ed/duplex.pdf)
-
-Choose 200 sheets in the selector to simulate 25 people per model per team without
-printing anything. The 15-person pack has only one or two per model per team.
-
-## Generate and print
+The default simulates 200 people (50 per team); select 15 to test small-room voting.
+No PDFs have been regenerated for PW5. Existing PW4 sheets are historical and
+incompatible. Test distributions in the browser before printing a new version.
 
 ```sh
-paperweights/.venv/bin/python paperweights/build_printouts.py --sheets 15 --seed 15
-# Or use --sheets 200 for the larger audience.
-python3 paperweights/build_site.py --output paperweights/out/rover-review
+python3 paperweights/competition/mixed.py
+python3 paperweights/serve.py --rover-only
 ```
 
-The generator creates a matching game pack and `printouts/<pack-id>/duplex.pdf`,
-plus separate words/rover PDFs, previews, manifest, verification and PRINT.md.
-Use 12-200 people. Select the matching pack ID on screen. Print A4, actual size,
-color, double-sided, flip on long edge. Word fronts retain the Swift format;
-Rover backs identify the team and which audience question that person answers.
-Keep each team's stack together and distribute both model types. The PDF has
-alternating word front and Rover back, one sheet per person.
+If the server is already running, rebuild with
+`python3 paperweights/build_site.py --output paperweights/out/rover-review`.
+The existing PDF builder still targets PW4; do not run it for this experiment.
+See [the mixed model and measured limits](competition/MIXED.md).
 
-PW4 replaces PW3's four-lookup majority experiment. PW2 and PW3 files remain as
-history and must not be used with this version. Only PW4 packs appear in the selector.
+Easy remains all face-up Go/Avoid. Wrong Go or false Avoid eliminates a team.
+Reset repeats the same map so you can compare choices. Dark/light remain available.
 
 ## Sentence competition benchmark
 

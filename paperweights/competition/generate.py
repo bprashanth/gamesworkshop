@@ -83,14 +83,14 @@ def historical(c,category,rng,hid):
     r=records[rng.choice(groups[hazards])]
     return dict(**{k:v for k,v in r.items() if k!='id'},id=hid,archiveId=r['id'],inspection=category)
 
-def route(seed,team):
+def route(seed,team,round_count=4):
     rng=random.Random(f'paperweights-map-v2:{seed}:{team}')
     initial=dict(battery='full',slope='flat',dust='clear',ground='firm')
     older,previous,current=[dict(initial) for _ in range(3)]
     for _ in range(50):older,previous,current=previous,current,draw_target(older,current,rng)
     initial_categories=[cat for cat in ('dust','ground') if current[cat] in ('haze','soft')] or CATEGORIES
     initial_cue=card_cue(older,current,rng.choice(initial_categories));rounds=[]
-    for i in range(4):
+    for i in range(round_count):
         target=draw_target(older,current,rng);hazards=hazard_categories(target)
         rounds.append(dict(index=i+1,history=[older,previous],source=current,target=target,fatal=bool(hazards),hazardCategories=hazards,targetCues={cat:card_cue(previous,target,cat) for cat in CATEGORIES}))
         older,previous,current=previous,current,target

@@ -1,3 +1,7 @@
+# Current: PW5 mixed audience
+
+One Audience button counts GO/AVOID/FLIP answers from everyone in the team. Per-person lookup data mixes answer types. Six turns, three extra reveals per team for the entire run; independent progress/reset. No PDF regeneration yet. See [model and limits](../paperweights/competition/MIXED.md). Earlier notes below are historical.
+
 # Current: PW4 dual audience rehearsal
 
 Medium now uses one revealed card and two team-specific sheet models: GO/AVOID and WHICH CARD. Both concern the same row. One extra reveal is allowed. Simulated poll buttons count those exact sheets; each team has an independent Reset. See [model and limits](../paperweights/competition/DUAL.md) and [current instructions](../paperweights/README.md). The PW3 notes below are historical.

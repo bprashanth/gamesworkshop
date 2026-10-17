@@ -1,3 +1,7 @@
+# Current model: PW5
+
+See [MIXED.md](MIXED.md): one mixed audience distribution, six turns and three extra reveals. Digital rehearsal only; PDFs are deferred. Earlier versions below are history.
+
 # Current model: PW4
 
 See [DUAL.md](DUAL.md) for the same-column, two-model audience prototype. Earlier models below are preserved as history.
