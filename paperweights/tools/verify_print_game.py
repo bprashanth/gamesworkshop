@@ -14,7 +14,7 @@ for item in index:
     paper=json.loads((folder/'manifest.json').read_text())
     game=json.loads((ROOT/'web/packs'/f'{item["packId"]}.json').read_text())
     assert paper==game
-    dual=game['version']==4
+    dual=game['version']>=4
     binary=game['version']>=3
     answer_field='nextAction' if binary else 'nextCategory'
     answers=['go','avoid']+game['categories'] if dual else game['actions'] if binary else game['categories']

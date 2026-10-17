@@ -5,7 +5,7 @@
 [Open the local competitive game](http://localhost:8684/paperweights/web/).
 Medium defaults to six turns with three extra reveals per team for the entire run.
 Each turn starts with one face-up card. The controls are **Go, Avoid, Audience**
-and three lightning bolts. Clicking another hidden card spends a bolt. You may
+and three lightning bolts at the far right. Poll graphs show percentages only. Clicking another hidden card spends a bolt. You may
 spend several in one turn, but they do not refill on the next turn. Polls are free.
 Each quadrant progresses and resets independently; the top Reset restarts all.
 
@@ -16,8 +16,9 @@ Unavailable suggestions stay in the distribution but are dimmed. New reveals cle
 old bars. Seeing a kill means Avoid regardless of later polls about another card.
 
 The default simulates 200 people (50 per team); select 15 to test small-room voting.
-No PDFs have been regenerated for PW5. Existing PW4 sheets are historical and
-incompatible. Test distributions in the browser before printing a new version.
+Final PW5 duplex PDFs are in [printouts/](printouts/README.md), for 15 and 200 people.
+Each pack contains printing instructions, team assignments, exact data and verification.
+Use the matching pack ID in the game; previous PW4 sheets are incompatible.
 
 ```sh
 python3 paperweights/competition/mixed.py
@@ -26,7 +27,8 @@ python3 paperweights/serve.py --rover-only
 
 If the server is already running, rebuild with
 `python3 paperweights/build_site.py --output paperweights/out/rover-review`.
-The existing PDF builder still targets PW4; do not run it for this experiment.
+Generate final sheets with `paperweights/.venv/bin/python paperweights/build_printouts.py --sheets 200 --seed 15`.
+See [SUMMARY.md](SUMMARY.md) for the current state and the separate shared-map preview.
 See [the mixed model and measured limits](competition/MIXED.md).
 
 Easy remains all face-up Go/Avoid. Wrong Go or false Avoid eliminates a team.

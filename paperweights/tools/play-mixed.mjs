@@ -5,7 +5,7 @@ const pack=await p.evaluate(async()=>{const id=new URLSearchParams(location.sear
 const state=()=>p.evaluate(()=>paperweights.state());const untouched=JSON.stringify((await state()).teams.slice(1));
 for(let i=0;i<4;i++)await p.locator(`[data-team=${'ABCD'[i]}] [data-poll]`).click();
 for(let i=0;i<4;i++){const s=(await state()).teams[i],poll=s.polls.audience,expected=Object.fromEntries(['go','avoid',...pack.categories].map(a=>[a,0]));for(const sheet of pack.sheets.filter(x=>x.team===s.id)){expected[sheet.entries.find(e=>e.key===poll.key).nextAction]++}assert.deepEqual(poll.counts,expected);assert.equal(poll.total,pack.teams[i].sheetIds.length)}
-assert.ok(await p.evaluate(()=>document.documentElement.scrollHeight<=900));await p.screenshot({path:`paperweights/out/mixed-${pack.packId}.png`,fullPage:true});await p.locator('#reset').click();
+assert.ok(await p.evaluate(()=>document.documentElement.scrollHeight<=900));assert.ok(await p.locator('.poll-row').first().innerText().then(t=>/%/.test(t)&&!t.includes('/')));assert.equal(await p.locator('.poll-title').count(),0);const actionBox=await p.locator('[data-team=A] .easy-actions').boundingBox(),tokenBox=await p.locator('[data-team=A] .tokens').boundingBox();assert.ok(Math.abs(actionBox.x+actionBox.width-tokenBox.x-tokenBox.width)<2);await p.screenshot({path:`paperweights/out/mixed-${pack.packId}.png`,fullPage:true});await p.locator('#reset').click();
 // Spend two tokens on row one, the final token on row two. No refresh between rows.
 for(let r=0;r<6;r++){
  const before=(await state()).teams[0];assert.equal(before.round,r+1);

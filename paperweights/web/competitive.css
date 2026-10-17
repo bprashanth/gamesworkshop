@@ -21,3 +21,5 @@ button,select,.bar button{background:var(--bg);color:var(--ink);border:1px solid
 @media(min-width:701px){.mapframe{height:clamp(90px,16vh,150px)}.mapcanvas{width:min(100%,31vh)}}
 @media(min-width:1051px){.mapframe{height:clamp(80px,12vh,150px)}.mapcanvas{width:min(100%,24vh)}}
 .easy-actions{align-items:center;flex-wrap:wrap}.tokens{display:inline-flex;gap:5px;margin-left:4px}.bolt{width:12px;height:18px;fill:var(--ink)}.bolt.spent{fill:none;stroke:var(--dim);stroke-width:1}.polls{display:block}.poll-row{grid-template-columns:88px 1fr 85px;font-size:10px}.poll-row.unavailable{opacity:.45}.poll-row.unavailable>span:first-child{text-decoration:line-through}.poll-title{margin-bottom:4px}
+
+.tokens{margin-left:auto}.poll-row{grid-template-columns:88px 1fr 40px}

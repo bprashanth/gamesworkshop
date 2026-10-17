@@ -43,8 +43,8 @@ are identical between attendance sizes, enabling direct comparisons.
 `python3 paperweights/competition/mixed.py` writes only 15- and 200-person digital
 packs and selects the 200-person pack by default. It does not generate PDFs.
 `python3 paperweights/build_site.py --output paperweights/out/rover-review` refreshes
-the existing local review server. PW4 PDFs are preserved and incompatible with PW5.
-The PDF generator still targets PW4; do not run it to print this experiment yet.
+the existing local review server. PW4 PDFs are preserved and incompatible with PW5. The PDF generator now targets PW5;
+final 15- and 200-person packs are indexed in ../printouts/README.md.
 
 `test_mixed.py` checks provenance, answer labels, whole-team tallies, visible-kill
 votes, route/cue consistency and stable routes across pack sizes. `play-mixed.mjs`

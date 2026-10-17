@@ -1,3 +1,7 @@
+# 18 October update
+
+PW5 final duplex packs are generated for 15 and 200 people in `paperweights/printouts/`; catalog, regeneration and current state are in [SUMMARY.md](../paperweights/SUMMARY.md). Polls show percentages only; tokens are right-aligned. A separate shared-map layout preview is at `paperweights/web/shared-map.html`; the working four-map layout remains.
+
 # Current: PW5 mixed audience
 
 One Audience button counts GO/AVOID/FLIP answers from everyone in the team. Per-person lookup data mixes answer types. Six turns, three extra reveals per team for the entire run; independent progress/reset. No PDF regeneration yet. See [model and limits](../paperweights/competition/MIXED.md). Earlier notes below are historical.

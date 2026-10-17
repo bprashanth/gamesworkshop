@@ -27,6 +27,10 @@ def build(output=None):
         source = ROOT / 'paperweights' / 'printouts' / item['packId']
         if source.is_dir():
             shutil.copytree(source, target / 'paperweights' / 'printouts' / item['packId'], dirs_exist_ok=True)
+    catalog = ROOT / 'paperweights' / 'printouts' / 'README.md'
+    if catalog.exists():
+        (target / 'paperweights' / 'printouts').mkdir(parents=True, exist_ok=True)
+        shutil.copy2(catalog, target / 'paperweights' / 'printouts' / 'README.md')
     print(f'Competitive stage: {dest}')
     return target
 
