@@ -50,3 +50,8 @@ When no checks remain, every digital audience record votes GO/AVOID from its
 matching historical outcome. The resulting two bars account for the entire team.
 This uses historical data only, not the hidden live row. Earlier policy simulation
 figures above predate this exhausted-budget fallback.
+
+Projector fit: the desktop layout uses the available viewport height, keeps four
+panels in one row, and sizes the map to the remaining space without stretching.
+No-scroll tests cover nine sizes from 800x600 to 2560x1440 with every poll open.
+The browser's fullscreen mode can reclaim additional space on event day.

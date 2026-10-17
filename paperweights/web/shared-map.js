@@ -18,4 +18,11 @@ function draw(){
  }
  requestAnimationFrame(draw);
 }
-window.addEventListener('resize',()=>screen.resize());draw();
+function fitMap(){
+ const box=document.querySelector('.shared-map'),holder=canvas.parentElement;
+ if(innerWidth>=760){const width=Math.max(1,Math.min(box.clientWidth-4,(box.clientHeight-4)/(26*1.9/100)));holder.style.width=`${width}px`}
+ else holder.style.removeProperty('width');
+ screen.resize();
+}
+new ResizeObserver(fitMap).observe(document.querySelector('.shared-map'));
+window.addEventListener('resize',fitMap);fitMap();draw();
