@@ -1,4 +1,4 @@
-import {createState,options,choose} from './model.js';
+import {createState,options,choose} from './model.js?v=diff-20261017-2';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let pack,state,history=[],log=[],demo=null,deadline=null,rng=1,variantId,lastDiff=null,hoverKey=null;
 const color=c=>pack.colors[c]||'#535d4b';

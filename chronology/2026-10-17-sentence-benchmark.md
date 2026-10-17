@@ -88,3 +88,15 @@ language and slowed replay to three seconds per choice. Original pack IDs/PDFs u
 Browser checks passed for previews, persistent diffs, focus, undo/reset, no-ops, append,
 all variants, sample/replay behavior, PDF links and mobile layout. Root reviewed the
 committed-diff screenshot. Existing live Tailscale URL remains available.
+
+## Phone showed mixed revisions - cache fix
+
+User screenshot contained the new HTML legend but old mode labels, JavaScript behavior
+and unstyled diff elements. Added revisioned URLs for CSS, app JS and its model import;
+local rehearsal server now sends Cache-Control: no-store, max-age=0. Restarted only the
+Paper Weights server on port 8684. The fresh review link includes a revision query too.
+
+Verified at a 390px mobile viewport through the Tailscale address, with unversioned asset
+requests deliberately blocked: all three revisioned assets returned HTTP 200/no-store.
+Choosing rescues displayed watches in red and rescues in green with exact computed styles;
+no browser errors. Saved and reviewed out/cache-fix-mobile.png. Data/print packs unchanged.
