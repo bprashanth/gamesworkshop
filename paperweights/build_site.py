@@ -17,6 +17,8 @@ def build(output=None):
     dest = target / 'paperweights/web'
     dest.mkdir(parents=True, exist_ok=True)
     shutil.copytree(COMPETITIVE, dest, dirs_exist_ok=True)
+    shutil.copytree(ROOT / 'households', target / 'households', dirs_exist_ok=True,
+                    ignore=shutil.ignore_patterns('out', '__pycache__'))
     stages = json.loads((dest / 'stages.json').read_text())
     for stage in stages:
         if stage['id'] == 'collaborative':

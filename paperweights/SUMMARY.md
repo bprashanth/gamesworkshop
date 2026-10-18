@@ -1,6 +1,12 @@
 # Paper Weights - current summary
 
-Updated 18 October 2026. Current browser prototype: **PW6**.
+Updated 19 October 2026. Rover browser prototype: **PW6**.
+
+Competitive Hard now opens the isolated **HH1 Households** prototype. It keeps
+the Rover map, offers a Calendar skin, and uses six turns, three extra checks and
+two interventions. Dropout is the sole loss outcome. Existing Easy/Medium rules
+and PW6 data are unchanged. See [Household playtest](../narrative/household_hard_playtest.md).
+HH1 is digital-only; no existing PDF represents its audience model.
 
 ## Working game
 

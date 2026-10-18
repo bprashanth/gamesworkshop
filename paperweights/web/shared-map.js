@@ -1,6 +1,6 @@
 // Shared reference terrain, with independent team positions and hazard rows.
 import {Screen,contourDots,routeDots,DH} from './screen.js';
-const map=await(await fetch('map.json')).json();
+const map=await(await fetch(new URL('map.json',import.meta.url))).json();
 const canvas=document.querySelector('#shared-canvas'),screen=new Screen(canvas),contours=contourDots(map),route=routeDots(map);
 let active='A';
 document.querySelector('#teams').addEventListener('pointerdown',e=>{const team=e.target.closest('.team');if(team)active=team.dataset.team});
