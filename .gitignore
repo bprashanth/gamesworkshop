@@ -283,3 +283,19 @@ space/rover-run/src/tools/rows.json
 
 # Generated competitive stage, assembled by the Netlify build.
 /space/rover-run/src/web/paperweights/
+
+# Editor recovery files stay local (do not delete an active editor's swap file).
+*.swp
+*.swo
+*~
+.#*
+
+# Local film/audio renders and source rasters; game assets and print PDFs are intentional.
+*.mp4
+*.mov
+*.webm
+*.wav
+*.flac
+*.mp3
+*.tif
+*.tiff

@@ -1,66 +1,129 @@
 # gamesworkshop
 
-Small games that let people discover a difficult relationship by making decisions,
-not by sitting through an explanation.
+Games for learning how evidence changes decisions, and who bears the consequences
+when we act without enough of it.
 
-## Rover Run: Modeling the world 
+## Run Rover Run
 
-Run it yourself with `python3 space/rover-run/src/serve.py` (port 8670).
+From the repository root, with Python 3:
 
-The point of this game is to help NGOs see the value in data programs. A problem I've observed running programs like insight-out and doing field work is that a lot of organization bandwidth goes into collecting data - but almost all of the analysis is done at _reporting_ time. Why is this? A few explanations 
+```sh
+python3 paperweights/serve.py --rover-only
+```
 
-1. Data is not useful to them in decision making. 
+This assembles and serves both versions on port **8684**; no Python packages or
+JavaScript build are needed just to play.
 
-This is often the case when the problem is known - gender, politics, caste etc.  More than the data, what's important is resistance to the status quo. 
+- **[Competitive](http://localhost:8684/paperweights/web/)** - current PW6 prototype,
+  four independent teams on one shared map. Opens in Medium.
+- **[Collaborative](http://localhost:8684/)** - the original whole-room Rover game.
 
-This is also the case with place based actors. They view "data" as "knowledge". I am here, I will remain here, no one else is here, so why should i bother writing down these numbers? They are transmitted by word of mouth, dance and song to everyone else who will be here. 
+The stage dropdown switches between them. Each game has its own difficulty selector;
+“Medium” means different mechanics in the two versions.
 
-A case can always be _made_ for data to this group. The question is, should it be? 
+For a projector or another device on your network:
 
-2. Data is useful in decision making, but    
-    a. collecting it is expensive
-    b. analysing it requires expertise
-    c. patterns show up too slowly
+```sh
+python3 paperweights/serve.py --rover-only --bind 0.0.0.0
+```
 
-That is to say, data work is _slow_ and requires a strategic approach to yield any value.
+Use the host's LAN/Tailscale address with port 8684 and the same paths above. The
+competitive layout fits typical projector/laptop screens; browser fullscreen gives
+more room. To refresh an already-running server after edits:
 
-This game is focused on a workshop to build such a strategic approach.  
+```sh
+python3 paperweights/build_site.py --output paperweights/out/rover-review
+```
 
-We can also flip the question and ask: which type of data within an org is helpful in making decisions? 
+## Competitive - Easy and Medium
 
-1. Reporting data: these are usually lagging indicators. We record the fact that something happened. Not helpful, unless used to forecast. 
-2. Operational data: this is typically where the meat of the leading indicators lie. It describes what the org is doing day to day, which, hopefully, should give some clues on their own decisions. 
+Four teams A-D play independently. Each has six turns. A team's Reset replays its
+route without affecting the other teams; the top Reset restarts everyone. Dark is
+the default, with Light available. Select the audience pack you want to simulate
+(15 or 200 people). Clicking a team panel highlights its column on the map.
 
-This game is focused on identifying these splits in data. 
+**Easy - learn which outcomes matter.** All four cards are visible. Choose **Avoid**
+if any card shows storm, dead battery or sand pit; otherwise choose **Go**. The
+highlight is ahead of the rover. This establishes the consequential outcomes before
+introducing incomplete information.
 
-### Gameplay 
+**Medium - decide whether to act or gather more evidence.** One card starts face up.
+Click **Audience** for simulated votes: Go, Avoid, or which hidden category to flip.
+The current PW6 audience uses all icon/color pairs revealed in that turn. Click a
+hidden card to inspect it and poll again. Each team has **three extra checks across
+the entire run**, shown as stick figures. Opening cards and polls are free; extra
+reveals spend checks. The highlighted column contains the rover.
 
-The game is built to teach the core moves of data science to people who don't use the words:
+When checks run out, the audience gives only Go/Avoid votes from matching historical
+examples. Advice can be wrong. These percentages are action votes, not a guarantee
+or a literal display of the probability of death. In both modes, Go into danger or
+Avoid a safe square and that team is out. Six correct decisions finish. OUT and the
+team's map marker turn red; FINISHED uses the normal text color.
 
-1. **Find the outcome** that matters (what killed the rover).
-2. **Find its earliest indicator** (soft ground before sand, haze before a storm).
-3. **Check that it is a pattern**, not an anecdote: each hazard recurs on one fixed map.
-4. **Correlate over time** (one variable, one square ahead) and **across variables** (sand is
-   never on steep ground; storms never on flat ground).
-5. **Combine weak signals into a model**: haze alone storms 3 of 6 times; haze *and* a slope storm
-   3 of 4. Write the model as one line, then play by it.
-6. **Weigh precision against cost**: misses kill, false alarms cost turns, and attention is limited
-   (on Hard you see only 2 of the 4 cards of the square ahead; on Medium the battery is hidden
-   until you work out what it goes with). 
+- [Teaching progression: Easy to Medium](narrative/rover_mode_transitions.md)
+- [Current state and limitations](paperweights/SUMMARY.md)
+- [PW6 evidence model and validation](paperweights/competition/EVIDENCE.md)
+- [Paper Weights setup and earlier experiments](paperweights/README.md)
 
-- **[Build details](space/rover-run/src/README.md)**
-- **[Indicators](narrative/INDICATORS.md)**
-- **[Reuse it with your own data?](narrative/REUSE.md)**
-- **[Rulebook v2: current rules and state of play](space/rover-run/rulebook_v2.md)**: [design history](chronology/2026-10-04-rover-run.md), [original rulebook](space/rover-run/rulebook.md).
+## Sheets and printouts
 
-## Also in this repo
+**The existing printable packs are PW5. The current game is PW6.** PW5 sheets use
+single-icon lookups; they cannot reproduce PW6's cumulative-evidence polls. Use the
+current game with its simulated audience while the new paper encoding is reviewed.
+Do not distribute the old sheets expecting their votes to match PW6.
 
-- **[Servers](servers/README.md):** Rover Run retold for running an online service: scale up your
-  servers or spend the month on marketing? Same indicator lessons, one for one. `python3 servers/serve.py` (port 8672).
-- **[Space anchor films](space/README.md):** short Mars and Moon films that set up Rover Run's
-  narrative ([handoff](narrative/SPACE_ANCHORS.md)). The films live on the workshop machine, not in git.
-- **[Crew](crew/README.md)**, **[Fieldwork](fieldwork/README.md)**, **[Idlisseus](idlisseus/):**
-  earlier prototypes. Run `python3 play.py` to choose a terminal game.
-- **[Chronology](chronology/)** and **[Benchmarks](benchmarks/)**: decisions, playtests and
-  validation. The longer workshop method is in
-  [the previous README](chronology/2026-10-04-readme-before-anchor-films.md).
+The completed PW5 packs are stored under **`paperweights/printouts/<pack-id>/`**:
+
+| Audience | Duplex file | Physical sheets / PDF pages |
+| --- | --- | --- |
+| 15 | [PW5 duplex PDF](paperweights/printouts/PW5-15-15-92d56e90d0/duplex.pdf) | 15 / 30 |
+| 200 | [PW5 duplex PDF](paperweights/printouts/PW5-15-200-b089066934/duplex.pdf) | 200 / 400 |
+
+Each physical sheet has a Swift-style word lookup on the front and a Rover lookup
+on the back. Print **A4, actual size, color, double-sided, long-edge flip**. Keep
+Team A-D stacks separate and match the pack ID to the corresponding game version.
+Each pack includes `PRINT.md` (printing and team assignments), `manifest.json`
+(exact data), `verification.json`, separate-side PDFs and preview images.
+
+The [print catalog](paperweights/printouts/README.md) documents files and regeneration.
+The existing PDF generator targets PW5 and updates the game pack catalog; **do not
+run it as a PW6 print command**. Older PW2/PW3/PW4 packs are retained as design history.
+
+## Collaborative - the original game
+
+The public deployment address is **[rover-run.netlify.app](https://rover-run.netlify.app/)**.
+The root page is the collaborative game. As checked on 18 October 2026, the public
+competitive path is not deployed yet (404). This branch's Netlify build also assembles
+the competitive page at `/paperweights/web/`; that page reflects this version only
+after deployment. Running locally does not update the hosted site.
+
+The room drives one rover and discovers indicators across a fixed map. Go, Avoid
+and Recharge balance survival, time and score. Easy exposes the board; Medium
+hides the battery relationship; Hard limits which cards can be inspected. These
+rules differ from the competitive sudden-death game.
+
+- [Collaborative rules, controls and implementation](space/rover-run/src/README.md)
+- [Facilitation: indicators and patterns](narrative/INDICATORS.md)
+- [Rulebook](space/rover-run/rulebook_v2.md)
+- [Why this workshop focuses on data programs](narrative/ROVER_DATA_PROGRAMS.md)
+- [Adapting the game to your own data](narrative/REUSE.md)
+
+The original standalone development server is still available with
+`python3 space/rover-run/src/serve.py` on port 8670. Use the combined server above
+for the current two-stage setup.
+
+## Other projects and records
+
+- [Servers](servers/README.md) - the indicator exercise retold as running a service.
+- [Space anchor films](space/README.md) and [narrative handoff](narrative/SPACE_ANCHORS.md)
+  - film projects/media remain local.
+- [Crew](crew/README.md), [Fieldwork](fieldwork/README.md), [Idlisseus](idlisseus/)
+  - earlier games. `python3 play.py` selects a terminal game.
+- [Chronology](chronology/) - checkpoints, design decisions and validation results.
+
+## Repository contents
+
+Local credentials, environment files, dependencies, editor swaps, render output and
+large film/audio/raster assets are ignored. Printable PDFs, previews, static game
+data and public Fieldwork datasets are intentionally tracked so a checkout contains
+the reviewed artifacts. Ignore rules do not remove already-tracked files or history.
