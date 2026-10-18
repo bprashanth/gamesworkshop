@@ -22,11 +22,13 @@ def build(output=None):
         if stage['id'] == 'collaborative':
             stage['href'] = '/'
     (dest / 'stages.json').write_text(json.dumps(stages, indent=2) + '\n')
-    # Make the currently selectable print packs available on the rehearsal site.
-    for item in json.loads((COMPETITIVE / 'packs' / 'index.json').read_text()):
-        source = ROOT / 'paperweights' / 'printouts' / item['packId']
-        if source.is_dir():
-            shutil.copytree(source, target / 'paperweights' / 'printouts' / item['packId'], dirs_exist_ok=True)
+    # Publish only the reviewed snapshot, never ignored local print histories.
+    latest = ROOT / 'paperweights' / 'printouts' / 'latest'
+    if latest.is_dir():
+        dest_print = target / 'paperweights' / 'printouts' / 'latest'
+        dest_print.mkdir(parents=True, exist_ok=True)
+        for name in ('duplex.pdf', 'PRINT.md', 'verification.json'):
+            shutil.copy2(latest / name, dest_print / name)
     catalog = ROOT / 'paperweights' / 'printouts' / 'README.md'
     if catalog.exists():
         (target / 'paperweights' / 'printouts').mkdir(parents=True, exist_ok=True)

@@ -72,22 +72,19 @@ single-icon lookups; they cannot reproduce PW6's cumulative-evidence polls. Use 
 current game with its simulated audience while the new paper encoding is reviewed.
 Do not distribute the old sheets expecting their votes to match PW6.
 
-The completed PW5 packs are stored under **`paperweights/printouts/<pack-id>/`**:
+Only one reviewed print snapshot is kept in Git:
+**[paperweights/printouts/latest/duplex.pdf](paperweights/printouts/latest/duplex.pdf)**
+(currently PW5, 200 physical sheets / 400 PDF pages). Its `PRINT.md` records the
+pack ID and team assignments; `verification.json` records the output checks.
 
-| Audience | Duplex file | Physical sheets / PDF pages |
-| --- | --- | --- |
-| 15 | [PW5 duplex PDF](paperweights/printouts/PW5-15-15-92d56e90d0/duplex.pdf) | 15 / 30 |
-| 200 | [PW5 duplex PDF](paperweights/printouts/PW5-15-200-b089066934/duplex.pdf) | 200 / 400 |
+Print **A4, actual size, color, double-sided, long-edge flip**. Each sheet has a
+Swift-style word lookup on the front and Rover lookup on the back.
 
-Each physical sheet has a Swift-style word lookup on the front and a Rover lookup
-on the back. Print **A4, actual size, color, double-sided, long-edge flip**. Keep
-Team A-D stacks separate and match the pack ID to the corresponding game version.
-Each pack includes `PRINT.md` (printing and team assignments), `manifest.json`
-(exact data), `verification.json`, separate-side PDFs and preview images.
-
-The [print catalog](paperweights/printouts/README.md) documents files and regeneration.
-The existing PDF generator targets PW5 and updates the game pack catalog; **do not
-run it as a PW6 print command**. Older PW2/PW3/PW4 packs are retained as design history.
+[Print locations and regeneration](paperweights/printouts/README.md) explains how
+to regenerate any supported audience size and replace the latest snapshot. Full
+packs, separate-side PDFs and historical previews stay in ignored local folders.
+The generator does not change the current game unless `--install-game` is given.
+The current PW6 experiment still needs a compatible paper encoding.
 
 ## Collaborative - the original game
 
@@ -124,6 +121,6 @@ for the current two-stage setup.
 ## Repository contents
 
 Local credentials, environment files, dependencies, editor swaps, render output and
-large film/audio/raster assets are ignored. Printable PDFs, previews, static game
-data and public Fieldwork datasets are intentionally tracked so a checkout contains
-the reviewed artifacts. Ignore rules do not remove already-tracked files or history.
+large film/audio/raster assets are ignored. One latest print PDF, static game data and public Fieldwork datasets are
+intentionally tracked. Older print outputs and the independent `moon/claude/`
+Moon Run prototype stay local and ignored. Neither Rover stage depends on Moon Run. Ignore rules do not remove already-tracked files or history.

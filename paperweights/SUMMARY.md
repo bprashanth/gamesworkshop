@@ -60,3 +60,11 @@ Teaching narrative: [rover_mode_transitions.md](../narrative/rover_mode_transiti
 sets out Easy's focus on significant outcomes and Medium's focus on gathering
 useful evidence before taking risks with beneficiaries. FINISHED uses default
 text color; only elimination is red (UI fix f313828).
+
+Print storage cleanup: Git now retains only `printouts/latest/duplex.pdf` plus its
+PRINT.md and verification.json. The latest printed design is still PW5/200 people;
+PW6 remains digital-only. Full old packs and previews remain on disk but ignored.
+[Regeneration instructions](printouts/README.md) describe `--update-latest`.
+Printing no longer changes the active game unless `--install-game` is explicit.
+The independent `moon/claude/` Moon Run fork is also local/ignored, with no Rover
+gameplay or deployment dependency.

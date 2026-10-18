@@ -1,9 +1,0 @@
-{
-  "packId": "PW1-374-15-8dac60b141",
-  "people": 15,
-  "pairsPerSide": 24,
-  "pages": 30,
-  "pageBounds": "passed",
-  "asciiArrows": "passed",
-  "frontBackPairing": "page 2n+1 words, page 2n+2 Rover"
-}

@@ -299,3 +299,6 @@ space/rover-run/src/tools/rows.json
 *.mp3
 *.tif
 *.tiff
+
+# Independent Moon Run prototype; not used by either Rover stage.
+/moon/claude/

@@ -5,6 +5,7 @@ import importlib.util
 import json
 import re
 import sys
+import shutil
 from collections import Counter, defaultdict
 from pathlib import Path
 import xml.etree.ElementTree as ET
@@ -114,7 +115,7 @@ def verify_rover(pdf,pack,duplex=False):
         for key,counts in team['votesByCue'].items():
             assert cue_counts[team['id']][key]==Counter(counts),(pdf,team['id'],key,'cue count mismatch')
 
-def build(count,seed=None):
+def build(count,seed=None,install_game=False,update_latest=False):
     if not 12 <= count <= 200:
         raise ValueError("Use 12–200 people for a paired competitive pack.")
     sys.path.insert(0,str(ROOT/'competition'))
@@ -124,17 +125,18 @@ def build(count,seed=None):
     seed=pack['seed']
     output=ROOT/'printouts'/pack['packId'];output.mkdir(parents=True,exist_ok=True)
     (output/'manifest.json').write_text(json.dumps(pack,indent=2)+'\n')
-    gamepacks=ROOT/'web/packs';gamepacks.mkdir(parents=True,exist_ok=True)
-    (gamepacks/f'{pack["packId"]}.json').write_text(json.dumps(pack,separators=(',',':'))+'\n')
-    if count==200:
-        (ROOT/'web/pack.json').write_text(json.dumps(pack,separators=(',',':'))+'\n')
-    indexpath=gamepacks/'index.json'
-    index=json.loads(indexpath.read_text()) if indexpath.exists() else []
-    version=pack['packId'].split('-')[0]+'-'
-    index=[p for p in index if p['packId']!=pack['packId'] and p['packId'].startswith(version)]
-    index.append(dict(packId=pack['packId'],sheetCount=count,seed=seed,url=f'packs/{pack["packId"]}.json'))
-    index.sort(key=lambda p:(p['sheetCount'],p['seed'],p['packId']))
-    indexpath.write_text(json.dumps(index,indent=2)+'\n')
+    if install_game:
+        gamepacks=ROOT/'web/packs';gamepacks.mkdir(parents=True,exist_ok=True)
+        (gamepacks/f'{pack["packId"]}.json').write_text(json.dumps(pack,separators=(',',':'))+'\n')
+        if count==200:
+            (ROOT/'web/pack.json').write_text(json.dumps(pack,separators=(',',':'))+'\n')
+        indexpath=gamepacks/'index.json'
+        index=json.loads(indexpath.read_text()) if indexpath.exists() else []
+        version=pack['packId'].split('-')[0]+'-'
+        index=[p for p in index if p['packId']!=pack['packId'] and p['packId'].startswith(version)]
+        index.append(dict(packId=pack['packId'],sheetCount=count,seed=seed,url=f'packs/{pack["packId"]}.json'))
+        index.sort(key=lambda p:(p['sheetCount'],p['seed'],p['packId']))
+        indexpath.write_text(json.dumps(index,indent=2)+'\n')
     words,colors=build_deck(count,seed=seed)
     contexts={c['id']:c for c in pack['contexts']}
     names=['RED','BLUE','AMBER','GREEN','PURPLE','PINK']
@@ -146,7 +148,16 @@ def build(count,seed=None):
     for a,b in zip(fronts.pages,backs.pages):writer.add_page(a);writer.add_page(b)
     writer.add_metadata({'/Title':f'Paper Weights / {pack["packId"]}'})
     with (output/'duplex.pdf').open('wb') as f:writer.write(f)
-    return finish(output,pack)
+    finish(output,pack)
+    if update_latest: publish_latest(output)
+    return output
+
+def publish_latest(output):
+    """Replace the one reviewed tracked snapshot, leaving full generated packs local."""
+    latest=ROOT/'printouts/latest';latest.mkdir(parents=True,exist_ok=True)
+    for name in ('duplex.pdf','PRINT.md','verification.json'):
+        shutil.copy2(output/name,latest/name)
+    return latest
 
 def finish(output,pack):
     count=len(pack['sheets'])
@@ -166,4 +177,6 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--sheets',type=int,default=15)
     parser.add_argument('--seed',type=int,help='Defaults to the shared model rehearsal seed')
-    args=parser.parse_args();build(args.sheets,args.seed)
+    parser.add_argument('--update-latest',action='store_true',help='Replace the tracked latest PDF and its two companion records')
+    parser.add_argument('--install-game',action='store_true',help='Explicitly install the PW5 pack in the game (replaces the current pack catalog)')
+    args=parser.parse_args();build(args.sheets,args.seed,args.install_game,args.update_latest)
