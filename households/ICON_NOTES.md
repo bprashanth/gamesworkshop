@@ -7,3 +7,7 @@ Cash: full jar, low jar, jar with outgoing transfer, following the supplied card
 Attendance: approved school doorway drawings, labelled Regular, Irregular and Dropout. Weather: unchanged Sun, Rain and Storm.
 
 Dropout is now the single turn-level adverse outcome. No sustained-absence rule. Harvest, cash and weather observations are not automatic loss cards.
+
+HH2: Regular/Irregular are observable attendance states. The approved empty
+doorway labelled Dropout is shown at loss resolution, not offered as a hidden
+outcome oracle. Calendar mode has been removed.

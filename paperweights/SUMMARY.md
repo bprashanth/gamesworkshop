@@ -2,11 +2,13 @@
 
 Updated 19 October 2026. Rover browser prototype: **PW6**.
 
-Competitive Hard now opens the isolated **HH1 Households** prototype. It keeps
-the Rover map, offers a Calendar skin, and uses six turns, three extra checks and
-two interventions. Dropout is the sole loss outcome. Existing Easy/Medium rules
-and PW6 data are unchanged. See [Household playtest](../narrative/household_hard_playtest.md).
-HH1 is digital-only; no existing PDF represents its audience model.
+Competitive Hard now opens the isolated **HH2 Households** prototype. It keeps
+the Rover map, draws action-dependent routes, and uses six turns, three extra checks and
+two interventions. Dropout is a one-shot outcome influenced by Harvest/Cash together. Attendance
+is an observation, not a direct outcome reveal. Intervention protects the current
+turn and reduces next-turn pressure through context. Existing Easy/Medium rules
+and PW6 data are unchanged. See [Household playtest](../narrative/household_one_shot_routes.md).
+HH2 is digital-only; no existing PDF represents its audience model.
 
 ## Working game
 

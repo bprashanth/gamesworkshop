@@ -1,66 +1,73 @@
-# HH1 digital model
+# HH2 digital model
 
-## What runs
+## Outcomes and evidence
 
-`model.js` exports `createPack(seed=15, count=200)`, `poll(pack, round, revealed,
-tokens)` and the four categories. The game uses 200 simulated voters, split equally
-among four teams. Each team has six rows, three extra reveals and two interventions.
+The observable categories are Harvest, Cash, Attendance and Weather. Dropout is a
+separate one-shot event resolved when the team acts. Attendance is Regular or
+Irregular and does not reveal whether that event will occur. The empty doorway
+Dropout symbol appears after a loss. No sustained-absence rule exists.
 
-Live rows and archive rows call the same `drawRow` function with independent random
-streams. Each team's archive contains 3,600 synthetic survey snapshots stratified
-across six contexts. They are not empirical household data or a printed pack.
+The synthetic risk function has a substantial interaction between loan and failed
+harvest, plus smaller contributions from other conditions and context. Neither
+loan nor failed harvest guarantees dropout. Regular attendance can coexist with
+sudden dropout. Attendance is currently an intentionally weak observation rather
+than a necessary precursor. These are teaching parameters, not empirical rates.
 
-A current context is determined before drawing the row. After the first seeded
-baseline context, it summarizes the previous row's harvest, cash and weather.
-Context pressure uses a non-monotonic mapping over the six familiar color names.
-It is not a social-group label and is never assigned from current dropout truth.
-This compact history summary is intentionally lossy; it is not a general attention model.
+## Actions and context
 
-Harvest and cash share an unobserved pressure variable. Weather is sampled, with
-rain less risky than storm in this synthetic scenario. Dropout is sampled from
-these predictors plus context. A loan or failed harvest can occur without dropout,
-and dropout can occur without any extreme predictor. Attendance has three states:
-Regular, Irregular, Dropout. Only Dropout is fatal when the player skips.
+`currentRound(pack, teamIndex, actions)` generates the active row from the actual
+action history. `teams[].rounds` is an all-Skip reference trajectory used for model
+checks; it is not the active board after intervention.
 
-Intervention protects this turn but does not rewrite later generated needs. This
-keeps repeat runs comparable. HH1 is not a causal model of long-term policy effects.
+Context encodes one of three previous-survey patterns, with or without recent
+support. Each pair has a lower-pressure supported variant. Intervention protects
+the current turn and selects that supported context for the next turn. It does
+not buy permanent immunity. Current dropout truth never determines the color.
+The first context is a seeded baseline before the displayed six months.
 
-## Audience
+Each team/month uses the same random draws across counterfactual action histories.
+Actions change context, not the random seed to hunt for an advantageous roll.
+A replay of identical actions produces identical cards and outcomes.
 
-Polling matches context and all revealed values against the archive. It does not
-read `round.fatal` or hidden values. For a rare unmatched combination, deterministic
-conditional simulation supplies matching samples from the same sampler instead
-of silently using a different color or ignoring evidence.
+## Historical audience
 
-The matched dropout frequency, with light smoothing, supplies decision weights.
-Expected information gain supplies inspection weights for every unrevealed category,
-including Attendance. The action/inspection balance varies with uncertainty.
-Largest-remainder rounding maps the weights to the team's audience size.
+Live rows and the 3,600 archive samples per team use the same `drawRow` sampler.
+Independent random streams keep archive examples separate from live outcomes.
+The archive is stratified over the six contexts, including supported variants.
 
-Those counts are authored action recommendations estimated from the archive,
-not literally one fixed printed row per voter. Counts sum to the team size;
-percentages are rounded independently. The 15-person API option splits 4/4/4/3
-and uses the same live boards, but is not exposed as a validated print pack.
+Polling conditions on context and all revealed values. It never reads hidden
+current cards or the current fatal flag. Rare archive gaps use deterministic
+conditional simulation, not mismatched-context fallback.
 
-After Attendance is revealed, the outcome is directly known. With no checks left,
-all votes become Skip/Intervene recommendations. If intervention is exhausted,
-Intervene is disabled; audience risk advice is still shown rather than rewritten
-as an apparently safe Skip recommendation.
+Decision weights follow the matching historical dropout frequency. Inspection
+weights use expected information gain, with a small gain floor to avoid promoting
+sampling noise. There is no special ban on Attendance, nor a hard-coded Harvest
+or Cash recommendation. More of the vote goes to checking in uncertain situations.
+Largest-remainder rounding produces the team's vote count; the screen shows only
+percentages. Unrevealed outcomes remain uncertain even after all four clues.
 
-## Limits found in play
+These are digital action weights, not counts from fixed printed rows. Existing
+PDFs and the illustrative paper study are not an HH2 print pack.
 
-Attendance reveals the single outcome, so it dominates inspection. Scarcity across
-six turns makes timing relevant, but HH1 has less category-choice variety than Rover.
-Do not claim that multiple household variables create several independent ways to
-lose, or hide Attendance from inspection advice to manufacture variety.
+## Routes
 
-A paper implementation still needs a bounded cumulative lookup encoding and
-per-sheet historical assignments. `paper.html` is only the visual reference.
+The familiar contour map remains. `routes.js` bends completed route segments
+according to Skip/Intervene, and the marker animates along the chosen branch.
+The map keeps six shared month bands. A decision changes the vertical trail, not
+the number of months needed to finish. Teams can converge again and all use the
+same deadline.
 
-## Validation
+The contour geometry is the original Rover terrain used as a visual metaphor.
+Its elevations are not a numeric risk surface or a forecast of hidden events.
+The model context changes with actions independently of this drawing geometry.
+Calendar mode is removed. Rover Easy/Medium rendering and logic are unchanged.
 
-`node households/test-model.mjs` covers 120 seeds / 480 teams, deterministic
-replay, hidden-clue invariance, vote totals, 15/200 board parity, exhausted checks,
-direct observation, counterexamples and several policies. These are authored
-policies, not human engagement measurements. Full browser sessions and the
-comparison with Medium are recorded in `narrative/household_hard_playtest.md`.
+## Tests
+
+`node households/test-model.mjs` covers 120 seeds / 480 teams, hidden-outcome
+invariance, deterministic branches, exact vote totals, 15/200 board parity,
+regular-attendance dropout counterexamples and inspection categories.
+`node households/test-routes.mjs` checks geometry, equal month progress, action
+separation, independent resets and reproducible route branches in the browser.
+`node households/playtest.mjs` plays four complete four-team runs and checks
+projector sizes, resources and difficulty navigation.

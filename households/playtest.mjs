@@ -27,7 +27,7 @@ for(const seed of [15,16,17,18]){
  }
  assert.ok(await page.evaluate(()=>document.documentElement.scrollHeight<=innerHeight));
  const final=await state();runs.push({seed,finished:final.teams.filter(t=>t.status==='finished').length,teams:final.teams.map(t=>({id:t.id,status:t.status,round:t.round})),log});
- if(seed===15){await page.selectOption('#skin','calendar');await page.screenshot({path:'households/out/hard-calendar-ended.png'});await page.locator('#reset').click();await page.locator('[data-team=A] [data-poll]').click();await page.screenshot({path:'households/out/hard-calendar.png'});await page.selectOption('#skin','rover');await page.locator('#theme').click();await page.screenshot({path:'households/out/hard-light.png'})}
+ if(seed===15){await page.screenshot({path:'households/out/hard-ended.png'});await page.locator('#reset').click();await page.locator('[data-team=A] [data-poll]').click();await page.locator('#theme').click();await page.screenshot({path:'households/out/hard-light.png'})}
 }
 // Resource and independent-team checks.
 await page.locator('#reset').click();const before=(await state()).teams.slice(1);const t=(await state()).teams[0];

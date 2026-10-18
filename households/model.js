@@ -4,7 +4,7 @@ const visibleCategories = Object.freeze(['harvest', 'cash', 'weather']);
 const stateSets = Object.freeze({
   harvest: ['good', 'weak', 'failed'],
   cash: ['enough', 'low', 'loan'],
-  attendance: ['regular', 'irregular', 'dropout'],
+  attendance: ['regular', 'irregular'],
   weather: ['sun', 'rain', 'storm'],
 });
 
@@ -81,28 +81,46 @@ function makeCue(teamId, roundIndex, category, value, contextId) {
 // Archive and live rows call this exact sampler with independent random seeds.
 function drawRow(rng, teamId, index, contextIndex) {
   const context = contexts[contextIndex];
-  const pressure = [-.12, .24, -.28, .10, -.05, .32][contextIndex];
+  // Three previous-survey contexts, each with/without recent support.
+  const pressure = [.10, -.16, .28, .02, .22, -.04][contextIndex];
   const latent = pressure + (rng() - .5) * 1.5;
   const harvest = grade(latent + (rng() - .5) * .7, [.48, -.08], ['failed','weak','good']);
   const cash = grade(latent * .8 + (rng() - .5) * .85, [.40, -.15], ['loan','low','enough']);
   const w = rng();
   const weather = w < .45 ? 'rain' : w < .80 ? 'sun' : 'storm';
   // Synthetic association, not a claim of empirical dropout rates.
-  const risk = clamp(.045 + (harvest==='failed'?.24:harvest==='weak'?.09:0)
-    + (cash==='loan'?.24:cash==='low'?.07:0) + (weather==='storm'?.12:weather==='sun'?.025:0)
-    + pressure*.08, .025, .80);
-  const attendance = rng() < risk ? 'dropout' : rng() < .35 ? 'irregular' : 'regular';
+  const badHarvest=harvest==='failed', weakHarvest=harvest==='weak', loan=cash==='loan';
+  const risk = clamp(.025 + (badHarvest?.10:weakHarvest?.06:0)
+    + (loan?.10:cash==='low'?.04:0)
+    + (loan&&badHarvest?.42:loan&&weakHarvest?.22:badHarvest&&cash==='low'?.20:0)
+    + (weather==='storm'?.06:0) + pressure*.08, .02, .88);
+  // Attendance is a survey observation, NOT the hidden outcome in disguise.
+  // A child with regular attendance can experience a sudden dropout event.
+  const attendance = rng() < .25 ? 'irregular' : 'regular';
+  const fatal = rng() < risk;
   const values = {harvest,cash,attendance,weather};
   return {id:`${teamId}${index+1}`,teamId,roundIndex:index,contextId:context.id,
     initialCategory:pick(rng,visibleCategories),
     targetCues:Object.fromEntries(categories.map(c=>[c,makeCue(teamId,index,c,values[c],context.id)])),
-    fatal:attendance==='dropout'};
+    fatal};
 }
-function updateContext(previous) {
+function updateContext(previous,action='go') {
   const c=previous.targetCues;
-  // A compact summary of the previous survey, not the hidden current outcome.
-  return (stateSets.harvest.indexOf(c.harvest.value)*2
-    + stateSets.cash.indexOf(c.cash.value) + stateSets.weather.indexOf(c.weather.value))%6;
+  const survey=c.harvest.value==='failed'||(c.harvest.value==='weak'&&c.cash.value==='loan')?1
+    :c.cash.value!=='enough'?2:0;
+  return survey*2+(action==='avoid'?1:0);
+}
+
+// Same monthly random draws for counterfactual action paths. Only known context changes.
+export function currentRound(pack,teamIndex,actions=[]) {
+  const teamId=teamIds[teamIndex];
+  let contextIndex=(pack.seed%6+6+teamIndex)%6,row;
+  for(let i=0;i<=actions.length;i++){
+    const rng=makeRng(hashSeed(pack.seed,'live',teamId,i));
+    row=drawRow(rng,teamId,i,contextIndex);
+    if(i<actions.length)contextIndex=updateContext(row,actions[i]);
+  }
+  return row;
 }
 
 function entropy(probability) {
@@ -184,7 +202,8 @@ function inspectionWeights(pool, round, revealedSet) {
         const p = posteriorFatal(group);
         conditionalEntropy += (group.length / total) * entropy(p);
       }
-      const gain = Math.max(0, currentEntropy - conditionalEntropy);
+      const rawGain = currentEntropy - conditionalEntropy;
+      const gain = rawGain > .005 ? rawGain : 0;
       return { label: category, weight: gain };
     });
   return choices;
@@ -193,20 +212,16 @@ function inspectionWeights(pool, round, revealedSet) {
 export function createPack(seed = 15, count = 200) {
   const normalizedSeed = Number.isFinite(seed) ? Math.trunc(seed) : 15;
   const sheetCount = Number.isFinite(count) ? Math.max(1, Math.trunc(count)) : 200;
-  const packId = `HH1-${normalizedSeed}-${sheetCount}`;
+  const packId = `HH2-${normalizedSeed}-${sheetCount}`;
   const historiesByTeam = {};
   const teams = teamIds.map((teamId, teamIndex) => {
-    const rng=makeRng(hashSeed(normalizedSeed,'live',teamId)),rounds=[];
-    let contextIndex=(normalizedSeed%6+6+teamIndex)%6;
-    for(let i=0;i<6;i++){
-      const r=drawRow(rng,teamId,i,contextIndex);rounds.push(r);contextIndex=updateContext(r);
-    }
+    const rounds=Array.from({length:6},(_,i)=>currentRound({seed:normalizedSeed},teamIndex,Array(i).fill('go')));
     const archiveRng=makeRng(hashSeed(normalizedSeed,'archive',teamId));
     historiesByTeam[teamId]=Array.from({length:3600},(_,i)=>drawRow(archiveRng,teamId,i,i%6));
     return {id:teamId,rounds,audienceCount:Math.floor(sheetCount/4)+(teamIndex<sheetCount%4?1:0)};
   });
   return {
-    version: 'HH1',
+    version: 'HH2',
     packId,
     seed: normalizedSeed,
     sheetCount,
@@ -226,31 +241,13 @@ export function poll(pack, round, revealed = [], tokens = 0) {
   const fatalRate = posteriorFatal(pool);
   const actionWeights = [];
 
-  if (revealedSet.has('attendance')) {
-    const attendance = round.targetCues.attendance.value;
-    const go = attendance === 'dropout' ? 0 : total;
-    const avoid = total - go;
-    return {
-      counts: {
-        go,
-        avoid,
-        harvest: 0,
-        cash: 0,
-        attendance: 0,
-        weather: 0,
-      },
-      total,
-      matched: pool.length,
-    };
-  }
-
   if (tokens <= 0) {
     const avoidRatio = clamp(fatalRate, 0.02, 0.98);
     actionWeights.push({ label: 'go', weight: 1 - avoidRatio });
     actionWeights.push({ label: 'avoid', weight: avoidRatio });
   } else {
     const certainty = 1 - 4 * fatalRate * (1 - fatalRate);
-    const actionShare = clamp(0.42 + 0.5 * certainty, 0.42, 0.92);
+    const actionShare = clamp(0.28 + 0.6 * certainty, 0.28, 0.88);
     const goWeight = 1 - fatalRate;
     const avoidWeight = fatalRate;
     actionWeights.push({ label: 'go', weight: actionShare * goWeight });
@@ -260,9 +257,10 @@ export function poll(pack, round, revealed = [], tokens = 0) {
   const inspectionShare = tokens > 0 ? 1 - actionWeights.reduce((sum, entry) => sum + entry.weight, 0) : 0;
   const inspections = inspectionWeights(pool, round, revealedSet);
   const inspectionTotal = inspections.reduce((sum, entry) => sum + entry.weight, 0);
+  if(inspectionTotal===0){actionWeights[0].weight=1-fatalRate;actionWeights[1].weight=fatalRate;}
   const adjustedInspections = inspections.map((entry) => ({
     label: entry.label,
-    weight: inspectionTotal > 0 ? entry.weight * (inspectionShare / inspectionTotal) : inspectionShare / Math.max(1, inspections.length),
+    weight: inspectionTotal > 0 ? entry.weight * (inspectionShare / inspectionTotal) : 0,
   }));
 
   const weighted = topologicalCounts([...actionWeights, ...adjustedInspections], total);

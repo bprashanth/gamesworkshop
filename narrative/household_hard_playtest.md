@@ -1,4 +1,7 @@
-# Households Hard - playable prototype and findings
+# Households Hard - HH1 playtest archive
+
+Superseded by [HH2 one-shot outcomes and branching routes](household_one_shot_routes.md).
+The Calendar skin and direct Attendance outcome reveal described below are retired.
 
 19 October 2026
 

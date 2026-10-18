@@ -38,17 +38,17 @@ python3 paperweights/build_site.py --output paperweights/out/rover-review
 ## Competitive - Household Hard prototype
 
 Select **Hard** in the competitive difficulty dropdown, or open
-[Households](http://localhost:8684/households/game.html). It reuses the Rover map
-and movement, with an optional Calendar skin. Easy/Medium remain Rover.
+[Households](http://localhost:8684/households/game.html). It uses the Rover contours with routes that branch after Skip/Intervene.
+Easy/Medium remain Rover.
 
 Each team has six turns, three extra card checks and two interventions. Audience
 uses revealed evidence to recommend Skip, Intervene or another card. Skip on a
-dropout turn loses; Intervene protects that turn. Unnecessary intervention spends
+dropout event loses; Intervene protects that turn and changes the next context. Unnecessary intervention spends
 support without eliminating the team. Reset replays; New run changes the seed.
 
 This is a digital rehearsal model, not an event-ready printed pack.
 [Household instructions and tests](households/README.md) -
-[Playthrough findings and teaching choices](narrative/household_hard_playtest.md).
+[Playthrough findings and teaching choices](narrative/household_one_shot_routes.md).
 
 ## Competitive - Easy and Medium
 
