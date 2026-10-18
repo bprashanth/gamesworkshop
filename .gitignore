@@ -280,3 +280,25 @@ space/rover-run/src/mocks/
 space/rover-run/src/media/
 space/rover-run/src/tools/*2.mjs
 space/rover-run/src/tools/rows.json
+
+# Generated competitive stage, assembled by the Netlify build.
+/space/rover-run/src/web/paperweights/
+
+# Editor recovery files stay local (do not delete an active editor's swap file).
+*.swp
+*.swo
+*~
+.#*
+
+# Local film/audio renders and source rasters; game assets and print PDFs are intentional.
+*.mp4
+*.mov
+*.webm
+*.wav
+*.flac
+*.mp3
+*.tif
+*.tiff
+
+# Independent Moon Run prototype; not used by either Rover stage.
+/moon/claude/

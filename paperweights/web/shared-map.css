@@ -1,0 +1,19 @@
+main{max-width:1700px}.shared-map{border:1px solid var(--line);margin-bottom:16px;position:relative}.shared-label{position:absolute;top:12px;left:12px;font-size:10px;color:var(--dim)}.shared-canvas{width:min(850px,90vw);margin:auto}.teams{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.team .mapframe{position:absolute;visibility:hidden;width:100px;height:60px;pointer-events:none}.team .cards{margin-top:12px;gap:4px}.team .cardlabel{font-size:7px;flex-wrap:wrap}.team .card .sym{width:45px}.team .card{height:58px}.team .card i{font-size:8px}.team .easy-actions{gap:5px}.team .easy-actions button{padding:5px 7px;font-size:11px}.team .tokens{gap:2px}.team .poll-row{grid-template-columns:76px 1fr 30px;font-size:9px}.team .team-name{height:24px}@media(max-width:1050px){.teams{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.teams{grid-template-columns:1fr}.shared-label{font-size:8px}.shared-canvas{padding-top:24px}}
+/* Projector layout: reserve room for all four panels, give the map the rest. */
+@media(min-width:760px){
+ main{width:100%;max-width:none;height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:10px;padding:10px 12px}
+ .bar{margin:0;padding-bottom:8px;gap:8px}.controls{flex-wrap:wrap;gap:6px}
+ .shared-map{min-height:0;margin:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+ .shared-canvas{width:0;margin:0;flex:none}
+ .teams{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;align-items:stretch}
+ .team{padding:8px}.team .cards{margin-top:8px}.team .team-name{height:23px}
+ #error:empty{display:none}#error:not(:empty){position:fixed;bottom:0;background:var(--bg)}
+}
+@media(min-width:760px) and (max-width:1100px){
+ .title{font-size:16px}#pack-id{max-width:100px;overflow:hidden;text-overflow:ellipsis}
+ .bar button,.bar select{font-size:10px;padding:4px 6px}.controls{gap:4px}
+ .team{padding:6px}.team .cardlabel{font-size:6px;padding:3px 2px}.team .card .sym{width:36px}
+ .team .easy-actions{gap:3px}.team .easy-actions button{padding:5px 4px;font-size:10px}
+ .team .tokens{gap:0}.team .bolt{width:10px}.team .poll-row{font-size:8px;grid-template-columns:65px 1fr 26px;gap:3px}
+}
+@media(min-width:760px) and (max-width:1100px){.team .cardlabel{font-size:7px}.team .poll-row{font-size:10px;grid-template-columns:78px 1fr 30px}}

@@ -1,0 +1,4349 @@
+{
+  "rehearsalSeed": 17,
+  "rehearsalSeedCurated": true,
+  "scoringDisclaimer": "Authored action checklist, not natural-language sentiment or a human meaning judgment.",
+  "packs": [
+    {
+      "sheetCount": 15,
+      "id": "SL1-17-15-aef34c5694"
+    },
+    {
+      "sheetCount": 100,
+      "id": "SL1-17-100-6e46151c43"
+    },
+    {
+      "sheetCount": 200,
+      "id": "SL1-17-200-d3f2f6bc36"
+    }
+  ],
+  "traces": [
+    {
+      "variant": "chain",
+      "policy": "representative",
+      "choiceRule": "leaders",
+      "startGoal": "A",
+      "trace": [
+        {
+          "turn": 1,
+          "group": "A",
+          "cueKey": "PURPLE:robot",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:rescues",
+          "sentence": "The robot observes the crew, counts supplies, inspects the shelter, rescues survivors and maps routes.",
+          "score": 1,
+          "nextCueKey": "GREEN:rescues"
+        },
+        {
+          "turn": 2,
+          "group": "B",
+          "cueKey": "GREEN:rescues",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, counts supplies, inspects the shelter, rescues survivors and maps routes.",
+          "score": 0,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 3,
+          "group": "A",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "AMBER:repairs",
+          "sentence": "The robot attacks the crew, counts supplies, repairs the shelter, rescues survivors and maps routes.",
+          "score": 1,
+          "nextCueKey": "AMBER:repairs"
+        },
+        {
+          "turn": 4,
+          "group": "B",
+          "cueKey": "AMBER:repairs",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot attacks the crew, counts supplies, repairs the shelter, rescues survivors and blocks routes.",
+          "score": 0,
+          "nextCueKey": "PINK:blocks"
+        },
+        {
+          "turn": 5,
+          "group": "A",
+          "cueKey": "PINK:blocks",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "BLUE:shares",
+          "sentence": "The robot attacks the crew, shares supplies, repairs the shelter, rescues survivors and blocks routes.",
+          "score": 1,
+          "nextCueKey": "BLUE:shares"
+        },
+        {
+          "turn": 6,
+          "group": "B",
+          "cueKey": "BLUE:shares",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:abandons",
+          "sentence": "The robot attacks the crew, shares supplies, repairs the shelter, abandons survivors and blocks routes.",
+          "score": -1,
+          "nextCueKey": "GREEN:abandons"
+        },
+        {
+          "turn": 7,
+          "group": "A",
+          "cueKey": "GREEN:abandons",
+          "options": [
+            {
+              "toKey": "RED:guards",
+              "word": "guards",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:guards",
+          "sentence": "The robot guards the crew, shares supplies, repairs the shelter, abandons survivors and blocks routes.",
+          "score": 1,
+          "nextCueKey": "RED:guards"
+        },
+        {
+          "turn": 8,
+          "group": "B",
+          "cueKey": "RED:guards",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:destroys",
+              "word": "destroys",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "AMBER:destroys",
+          "sentence": "The robot guards the crew, shares supplies, destroys the shelter, abandons survivors and blocks routes.",
+          "score": -1,
+          "nextCueKey": "AMBER:destroys"
+        },
+        {
+          "turn": 9,
+          "group": "A",
+          "cueKey": "AMBER:destroys",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:rescues",
+          "sentence": "The robot guards the crew, shares supplies, destroys the shelter, rescues survivors and blocks routes.",
+          "score": 1,
+          "nextCueKey": "GREEN:rescues"
+        },
+        {
+          "turn": 10,
+          "group": "B",
+          "cueKey": "GREEN:rescues",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, shares supplies, destroys the shelter, rescues survivors and blocks routes.",
+          "score": -1,
+          "nextCueKey": "RED:attacks"
+        }
+      ],
+      "finalSentence": "The robot attacks the crew, shares supplies, destroys the shelter, rescues survivors and blocks routes.",
+      "score": -1,
+      "winner": "harmful",
+      "reversals": 5,
+      "words": 15,
+      "unchangedTurns": 0,
+      "zeroChoiceTurns": 0,
+      "slotsVisited": 5
+    },
+    {
+      "variant": "chain",
+      "policy": "modal",
+      "choiceRule": "leaders",
+      "startGoal": "A",
+      "trace": [
+        {
+          "turn": 1,
+          "group": "A",
+          "cueKey": "PURPLE:robot",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:rescues",
+          "sentence": "The robot observes the crew, counts supplies, inspects the shelter, rescues survivors and maps routes.",
+          "score": 1,
+          "nextCueKey": "GREEN:rescues"
+        },
+        {
+          "turn": 2,
+          "group": "B",
+          "cueKey": "GREEN:rescues",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, counts supplies, inspects the shelter, rescues survivors and maps routes.",
+          "score": 0,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 3,
+          "group": "A",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "BLUE:hoards",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, rescues survivors and maps routes.",
+          "score": -1,
+          "nextCueKey": "BLUE:hoards"
+        },
+        {
+          "turn": 4,
+          "group": "B",
+          "cueKey": "BLUE:hoards",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:abandons",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and maps routes.",
+          "score": -3,
+          "nextCueKey": "GREEN:abandons"
+        },
+        {
+          "turn": 5,
+          "group": "A",
+          "cueKey": "GREEN:abandons",
+          "options": [
+            {
+              "toKey": "RED:guards",
+              "word": "guards",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -4,
+          "nextCueKey": "PINK:blocks"
+        },
+        {
+          "turn": 6,
+          "group": "B",
+          "cueKey": "PINK:blocks",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -4,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 7,
+          "group": "A",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "BLUE:hoards",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -4,
+          "nextCueKey": "BLUE:hoards"
+        },
+        {
+          "turn": 8,
+          "group": "B",
+          "cueKey": "BLUE:hoards",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:abandons",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -4,
+          "nextCueKey": "GREEN:abandons"
+        },
+        {
+          "turn": 9,
+          "group": "A",
+          "cueKey": "GREEN:abandons",
+          "options": [
+            {
+              "toKey": "RED:guards",
+              "word": "guards",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -4,
+          "nextCueKey": "PINK:blocks"
+        },
+        {
+          "turn": 10,
+          "group": "B",
+          "cueKey": "PINK:blocks",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -4,
+          "nextCueKey": "RED:attacks"
+        }
+      ],
+      "finalSentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+      "score": -4,
+      "winner": "harmful",
+      "reversals": 1,
+      "words": 15,
+      "unchangedTurns": 5,
+      "zeroChoiceTurns": 0,
+      "slotsVisited": 4
+    },
+    {
+      "variant": "chain",
+      "policy": "sample",
+      "choiceRule": "leaders",
+      "startGoal": "A",
+      "trace": [
+        {
+          "turn": 1,
+          "group": "A",
+          "cueKey": "PURPLE:robot",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:observes",
+          "sentence": "The robot observes the crew, counts supplies, inspects the shelter, watches survivors and maps routes.",
+          "score": 0,
+          "nextCueKey": "RED:observes"
+        },
+        {
+          "turn": 2,
+          "group": "B",
+          "cueKey": "RED:observes",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:watches",
+          "sentence": "The robot observes the crew, counts supplies, inspects the shelter, watches survivors and maps routes.",
+          "score": 0,
+          "nextCueKey": "GREEN:watches"
+        },
+        {
+          "turn": 3,
+          "group": "A",
+          "cueKey": "GREEN:watches",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, counts supplies, inspects the shelter, watches survivors and maps routes.",
+          "score": -1,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 4,
+          "group": "B",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "AMBER:repairs",
+          "sentence": "The robot attacks the crew, counts supplies, repairs the shelter, watches survivors and maps routes.",
+          "score": 0,
+          "nextCueKey": "AMBER:repairs"
+        },
+        {
+          "turn": 5,
+          "group": "A",
+          "cueKey": "AMBER:repairs",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot attacks the crew, counts supplies, repairs the shelter, watches survivors and blocks routes.",
+          "score": -1,
+          "nextCueKey": "PINK:blocks"
+        },
+        {
+          "turn": 6,
+          "group": "B",
+          "cueKey": "PINK:blocks",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, counts supplies, repairs the shelter, watches survivors and blocks routes.",
+          "score": -1,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 7,
+          "group": "A",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:watches",
+          "sentence": "The robot attacks the crew, counts supplies, repairs the shelter, watches survivors and blocks routes.",
+          "score": -1,
+          "nextCueKey": "GREEN:watches"
+        },
+        {
+          "turn": 8,
+          "group": "B",
+          "cueKey": "GREEN:watches",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, counts supplies, repairs the shelter, watches survivors and blocks routes.",
+          "score": -1,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 9,
+          "group": "A",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "BLUE:hoards",
+          "sentence": "The robot attacks the crew, hoards supplies, repairs the shelter, watches survivors and blocks routes.",
+          "score": -2,
+          "nextCueKey": "BLUE:hoards"
+        },
+        {
+          "turn": 10,
+          "group": "B",
+          "cueKey": "BLUE:hoards",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:abandons",
+          "sentence": "The robot attacks the crew, hoards supplies, repairs the shelter, abandons survivors and blocks routes.",
+          "score": -3,
+          "nextCueKey": "GREEN:abandons"
+        }
+      ],
+      "finalSentence": "The robot attacks the crew, hoards supplies, repairs the shelter, abandons survivors and blocks routes.",
+      "score": -3,
+      "winner": "harmful",
+      "reversals": 0,
+      "words": 15,
+      "unchangedTurns": 5,
+      "zeroChoiceTurns": 0,
+      "slotsVisited": 5
+    },
+    {
+      "variant": "scheduled",
+      "policy": "representative",
+      "choiceRule": "leaders",
+      "startGoal": "A",
+      "trace": [
+        {
+          "turn": 1,
+          "group": "A",
+          "cueKey": "RED:observes",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "AMBER:repairs",
+          "sentence": "The robot observes the crew, counts supplies, repairs the shelter, watches survivors and maps routes.",
+          "score": 1,
+          "nextCueKey": "BLUE:counts"
+        },
+        {
+          "turn": 2,
+          "group": "B",
+          "cueKey": "BLUE:counts",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:abandons",
+          "sentence": "The robot observes the crew, counts supplies, repairs the shelter, abandons survivors and maps routes.",
+          "score": 0,
+          "nextCueKey": "AMBER:repairs"
+        },
+        {
+          "turn": 3,
+          "group": "A",
+          "cueKey": "AMBER:repairs",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:rescues",
+          "sentence": "The robot observes the crew, counts supplies, repairs the shelter, rescues survivors and maps routes.",
+          "score": 2,
+          "nextCueKey": "GREEN:rescues"
+        },
+        {
+          "turn": 4,
+          "group": "B",
+          "cueKey": "GREEN:rescues",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, counts supplies, repairs the shelter, rescues survivors and maps routes.",
+          "score": 1,
+          "nextCueKey": "PINK:maps"
+        },
+        {
+          "turn": 5,
+          "group": "A",
+          "cueKey": "PINK:maps",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "BLUE:shares",
+          "sentence": "The robot attacks the crew, shares supplies, repairs the shelter, rescues survivors and maps routes.",
+          "score": 2,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 6,
+          "group": "B",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "BLUE:hoards",
+          "sentence": "The robot attacks the crew, hoards supplies, repairs the shelter, rescues survivors and maps routes.",
+          "score": 0,
+          "nextCueKey": "BLUE:hoards"
+        },
+        {
+          "turn": 7,
+          "group": "A",
+          "cueKey": "BLUE:hoards",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "AMBER:repairs",
+          "sentence": "The robot attacks the crew, hoards supplies, repairs the shelter, rescues survivors and maps routes.",
+          "score": 0,
+          "nextCueKey": "AMBER:repairs"
+        },
+        {
+          "turn": 8,
+          "group": "B",
+          "cueKey": "AMBER:repairs",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot attacks the crew, hoards supplies, repairs the shelter, rescues survivors and blocks routes.",
+          "score": -1,
+          "nextCueKey": "GREEN:rescues"
+        },
+        {
+          "turn": 9,
+          "group": "A",
+          "cueKey": "GREEN:rescues",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:clears",
+          "sentence": "The robot attacks the crew, hoards supplies, repairs the shelter, rescues survivors and clears routes.",
+          "score": 1,
+          "nextCueKey": "PINK:clears"
+        },
+        {
+          "turn": 10,
+          "group": "B",
+          "cueKey": "PINK:clears",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, hoards supplies, repairs the shelter, rescues survivors and clears routes.",
+          "score": 1,
+          "nextCueKey": "RED:attacks"
+        }
+      ],
+      "finalSentence": "The robot attacks the crew, hoards supplies, repairs the shelter, rescues survivors and clears routes.",
+      "score": 1,
+      "winner": "helpful",
+      "reversals": 2,
+      "words": 15,
+      "unchangedTurns": 2,
+      "zeroChoiceTurns": 0,
+      "slotsVisited": 5
+    },
+    {
+      "variant": "scheduled",
+      "policy": "modal",
+      "choiceRule": "leaders",
+      "startGoal": "A",
+      "trace": [
+        {
+          "turn": 1,
+          "group": "A",
+          "cueKey": "RED:observes",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "BLUE:hoards",
+          "sentence": "The robot observes the crew, hoards supplies, inspects the shelter, watches survivors and maps routes.",
+          "score": -1,
+          "nextCueKey": "BLUE:hoards"
+        },
+        {
+          "turn": 2,
+          "group": "B",
+          "cueKey": "BLUE:hoards",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:abandons",
+          "sentence": "The robot observes the crew, hoards supplies, inspects the shelter, abandons survivors and maps routes.",
+          "score": -2,
+          "nextCueKey": "AMBER:inspects"
+        },
+        {
+          "turn": 3,
+          "group": "A",
+          "cueKey": "AMBER:inspects",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot observes the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -3,
+          "nextCueKey": "GREEN:abandons"
+        },
+        {
+          "turn": 4,
+          "group": "B",
+          "cueKey": "GREEN:abandons",
+          "options": [
+            {
+              "toKey": "RED:guards",
+              "word": "guards",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot observes the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -3,
+          "nextCueKey": "PINK:blocks"
+        },
+        {
+          "turn": 5,
+          "group": "A",
+          "cueKey": "PINK:blocks",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -4,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 6,
+          "group": "B",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "BLUE:hoards",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -4,
+          "nextCueKey": "BLUE:hoards"
+        },
+        {
+          "turn": 7,
+          "group": "A",
+          "cueKey": "BLUE:hoards",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:abandons",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -4,
+          "nextCueKey": "AMBER:inspects"
+        },
+        {
+          "turn": 8,
+          "group": "B",
+          "cueKey": "AMBER:inspects",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -4,
+          "nextCueKey": "GREEN:abandons"
+        },
+        {
+          "turn": 9,
+          "group": "A",
+          "cueKey": "GREEN:abandons",
+          "options": [
+            {
+              "toKey": "RED:guards",
+              "word": "guards",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -4,
+          "nextCueKey": "PINK:blocks"
+        },
+        {
+          "turn": 10,
+          "group": "B",
+          "cueKey": "PINK:blocks",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+          "score": -4,
+          "nextCueKey": "RED:attacks"
+        }
+      ],
+      "finalSentence": "The robot attacks the crew, hoards supplies, inspects the shelter, abandons survivors and blocks routes.",
+      "score": -4,
+      "winner": "harmful",
+      "reversals": 0,
+      "words": 15,
+      "unchangedTurns": 6,
+      "zeroChoiceTurns": 0,
+      "slotsVisited": 4
+    },
+    {
+      "variant": "scheduled",
+      "policy": "sample",
+      "choiceRule": "leaders",
+      "startGoal": "A",
+      "trace": [
+        {
+          "turn": 1,
+          "group": "A",
+          "cueKey": "RED:observes",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:watches",
+          "sentence": "The robot observes the crew, counts supplies, inspects the shelter, watches survivors and maps routes.",
+          "score": 0,
+          "nextCueKey": "BLUE:counts"
+        },
+        {
+          "turn": 2,
+          "group": "B",
+          "cueKey": "BLUE:counts",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:maps",
+          "sentence": "The robot observes the crew, counts supplies, inspects the shelter, watches survivors and maps routes.",
+          "score": 0,
+          "nextCueKey": "AMBER:inspects"
+        },
+        {
+          "turn": 3,
+          "group": "A",
+          "cueKey": "AMBER:inspects",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot observes the crew, counts supplies, inspects the shelter, watches survivors and blocks routes.",
+          "score": -1,
+          "nextCueKey": "GREEN:watches"
+        },
+        {
+          "turn": 4,
+          "group": "B",
+          "cueKey": "GREEN:watches",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:clears",
+          "sentence": "The robot observes the crew, counts supplies, inspects the shelter, watches survivors and clears routes.",
+          "score": 1,
+          "nextCueKey": "PINK:clears"
+        },
+        {
+          "turn": 5,
+          "group": "A",
+          "cueKey": "PINK:clears",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, counts supplies, inspects the shelter, watches survivors and clears routes.",
+          "score": 0,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 6,
+          "group": "B",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "BLUE:hoards",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, watches survivors and clears routes.",
+          "score": -1,
+          "nextCueKey": "BLUE:hoards"
+        },
+        {
+          "turn": 7,
+          "group": "A",
+          "cueKey": "BLUE:hoards",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:maps",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, watches survivors and maps routes.",
+          "score": -2,
+          "nextCueKey": "AMBER:inspects"
+        },
+        {
+          "turn": 8,
+          "group": "B",
+          "cueKey": "AMBER:inspects",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, watches survivors and blocks routes.",
+          "score": -3,
+          "nextCueKey": "GREEN:watches"
+        },
+        {
+          "turn": 9,
+          "group": "A",
+          "cueKey": "GREEN:watches",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, watches survivors and blocks routes.",
+          "score": -3,
+          "nextCueKey": "PINK:blocks"
+        },
+        {
+          "turn": 10,
+          "group": "B",
+          "cueKey": "PINK:blocks",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot attacks the crew, hoards supplies, inspects the shelter, watches survivors and blocks routes.",
+          "score": -3,
+          "nextCueKey": "RED:attacks"
+        }
+      ],
+      "finalSentence": "The robot attacks the crew, hoards supplies, inspects the shelter, watches survivors and blocks routes.",
+      "score": -3,
+      "winner": "harmful",
+      "reversals": 2,
+      "words": 15,
+      "unchangedTurns": 4,
+      "zeroChoiceTurns": 0,
+      "slotsVisited": 4
+    },
+    {
+      "variant": "append",
+      "policy": "representative",
+      "choiceRule": "leaders",
+      "startGoal": "A",
+      "trace": [
+        {
+          "turn": 1,
+          "group": "A",
+          "cueKey": "PURPLE:robot",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:rescues",
+          "sentence": "The robot rescues survivors.",
+          "score": 1,
+          "nextCueKey": "GREEN:rescues"
+        },
+        {
+          "turn": 2,
+          "group": "B",
+          "cueKey": "GREEN:rescues",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot rescues survivors; then attacks the crew.",
+          "score": 0,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 3,
+          "group": "A",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "AMBER:repairs",
+          "sentence": "The robot rescues survivors; then attacks the crew; then repairs the shelter.",
+          "score": 1,
+          "nextCueKey": "AMBER:repairs"
+        },
+        {
+          "turn": 4,
+          "group": "B",
+          "cueKey": "AMBER:repairs",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot rescues survivors; then attacks the crew; then repairs the shelter; then blocks routes.",
+          "score": 0,
+          "nextCueKey": "PINK:blocks"
+        },
+        {
+          "turn": 5,
+          "group": "A",
+          "cueKey": "PINK:blocks",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "BLUE:shares",
+          "sentence": "The robot rescues survivors; then attacks the crew; then repairs the shelter; then blocks routes; then shares supplies.",
+          "score": 1,
+          "nextCueKey": "BLUE:shares"
+        },
+        {
+          "turn": 6,
+          "group": "B",
+          "cueKey": "BLUE:shares",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:abandons",
+          "sentence": "The robot rescues survivors; then attacks the crew; then repairs the shelter; then blocks routes; then shares supplies; then abandons survivors.",
+          "score": 0,
+          "nextCueKey": "GREEN:abandons"
+        },
+        {
+          "turn": 7,
+          "group": "A",
+          "cueKey": "GREEN:abandons",
+          "options": [
+            {
+              "toKey": "RED:guards",
+              "word": "guards",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:guards",
+          "sentence": "The robot rescues survivors; then attacks the crew; then repairs the shelter; then blocks routes; then shares supplies; then abandons survivors; then guards the crew.",
+          "score": 1,
+          "nextCueKey": "RED:guards"
+        },
+        {
+          "turn": 8,
+          "group": "B",
+          "cueKey": "RED:guards",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:destroys",
+              "word": "destroys",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "AMBER:destroys",
+          "sentence": "The robot rescues survivors; then attacks the crew; then repairs the shelter; then blocks routes; then shares supplies; then abandons survivors; then guards the crew; then destroys the shelter.",
+          "score": 0,
+          "nextCueKey": "AMBER:destroys"
+        },
+        {
+          "turn": 9,
+          "group": "A",
+          "cueKey": "AMBER:destroys",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:rescues",
+          "sentence": "The robot rescues survivors; then attacks the crew; then repairs the shelter; then blocks routes; then shares supplies; then abandons survivors; then guards the crew; then destroys the shelter; then rescues survivors.",
+          "score": 1,
+          "nextCueKey": "GREEN:rescues"
+        },
+        {
+          "turn": 10,
+          "group": "B",
+          "cueKey": "GREEN:rescues",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot rescues survivors; then attacks the crew; then repairs the shelter; then blocks routes; then shares supplies; then abandons survivors; then guards the crew; then destroys the shelter; then rescues survivors; then attacks the crew.",
+          "score": 0,
+          "nextCueKey": "RED:attacks"
+        }
+      ],
+      "finalSentence": "The robot rescues survivors; then attacks the crew; then repairs the shelter; then blocks routes; then shares supplies; then abandons survivors; then guards the crew; then destroys the shelter; then rescues survivors; then attacks the crew.",
+      "score": 0,
+      "winner": "tie",
+      "reversals": 0,
+      "words": 36,
+      "unchangedTurns": 0,
+      "zeroChoiceTurns": 0,
+      "slotsVisited": 5
+    },
+    {
+      "variant": "append",
+      "policy": "modal",
+      "choiceRule": "leaders",
+      "startGoal": "A",
+      "trace": [
+        {
+          "turn": 1,
+          "group": "A",
+          "cueKey": "PURPLE:robot",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:rescues",
+          "sentence": "The robot rescues survivors.",
+          "score": 1,
+          "nextCueKey": "GREEN:rescues"
+        },
+        {
+          "turn": 2,
+          "group": "B",
+          "cueKey": "GREEN:rescues",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot rescues survivors; then attacks the crew.",
+          "score": 0,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 3,
+          "group": "A",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "BLUE:hoards",
+          "sentence": "The robot rescues survivors; then attacks the crew; then hoards supplies.",
+          "score": -1,
+          "nextCueKey": "BLUE:hoards"
+        },
+        {
+          "turn": 4,
+          "group": "B",
+          "cueKey": "BLUE:hoards",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:abandons",
+          "sentence": "The robot rescues survivors; then attacks the crew; then hoards supplies; then abandons survivors.",
+          "score": -2,
+          "nextCueKey": "GREEN:abandons"
+        },
+        {
+          "turn": 5,
+          "group": "A",
+          "cueKey": "GREEN:abandons",
+          "options": [
+            {
+              "toKey": "RED:guards",
+              "word": "guards",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot rescues survivors; then attacks the crew; then hoards supplies; then abandons survivors; then blocks routes.",
+          "score": -3,
+          "nextCueKey": "PINK:blocks"
+        },
+        {
+          "turn": 6,
+          "group": "B",
+          "cueKey": "PINK:blocks",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot rescues survivors; then attacks the crew; then hoards supplies; then abandons survivors; then blocks routes; then attacks the crew.",
+          "score": -4,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 7,
+          "group": "A",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "BLUE:hoards",
+          "sentence": "The robot rescues survivors; then attacks the crew; then hoards supplies; then abandons survivors; then blocks routes; then attacks the crew; then hoards supplies.",
+          "score": -5,
+          "nextCueKey": "BLUE:hoards"
+        },
+        {
+          "turn": 8,
+          "group": "B",
+          "cueKey": "BLUE:hoards",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:abandons",
+          "sentence": "The robot rescues survivors; then attacks the crew; then hoards supplies; then abandons survivors; then blocks routes; then attacks the crew; then hoards supplies; then abandons survivors.",
+          "score": -6,
+          "nextCueKey": "GREEN:abandons"
+        },
+        {
+          "turn": 9,
+          "group": "A",
+          "cueKey": "GREEN:abandons",
+          "options": [
+            {
+              "toKey": "RED:guards",
+              "word": "guards",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot rescues survivors; then attacks the crew; then hoards supplies; then abandons survivors; then blocks routes; then attacks the crew; then hoards supplies; then abandons survivors; then blocks routes.",
+          "score": -7,
+          "nextCueKey": "PINK:blocks"
+        },
+        {
+          "turn": 10,
+          "group": "B",
+          "cueKey": "PINK:blocks",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot rescues survivors; then attacks the crew; then hoards supplies; then abandons survivors; then blocks routes; then attacks the crew; then hoards supplies; then abandons survivors; then blocks routes; then attacks the crew.",
+          "score": -8,
+          "nextCueKey": "RED:attacks"
+        }
+      ],
+      "finalSentence": "The robot rescues survivors; then attacks the crew; then hoards supplies; then abandons survivors; then blocks routes; then attacks the crew; then hoards supplies; then abandons survivors; then blocks routes; then attacks the crew.",
+      "score": -8,
+      "winner": "harmful",
+      "reversals": 1,
+      "words": 34,
+      "unchangedTurns": 0,
+      "zeroChoiceTurns": 0,
+      "slotsVisited": 4
+    },
+    {
+      "variant": "append",
+      "policy": "sample",
+      "choiceRule": "leaders",
+      "startGoal": "A",
+      "trace": [
+        {
+          "turn": 1,
+          "group": "A",
+          "cueKey": "PURPLE:robot",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:observes",
+          "sentence": "The robot observes the crew.",
+          "score": 0,
+          "nextCueKey": "RED:observes"
+        },
+        {
+          "turn": 2,
+          "group": "B",
+          "cueKey": "RED:observes",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:watches",
+          "sentence": "The robot observes the crew; then watches survivors.",
+          "score": 0,
+          "nextCueKey": "GREEN:watches"
+        },
+        {
+          "turn": 3,
+          "group": "A",
+          "cueKey": "GREEN:watches",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot observes the crew; then watches survivors; then attacks the crew.",
+          "score": -1,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 4,
+          "group": "B",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "AMBER:repairs",
+          "sentence": "The robot observes the crew; then watches survivors; then attacks the crew; then repairs the shelter.",
+          "score": 0,
+          "nextCueKey": "AMBER:repairs"
+        },
+        {
+          "turn": 5,
+          "group": "A",
+          "cueKey": "AMBER:repairs",
+          "options": [
+            {
+              "toKey": "GREEN:rescues",
+              "word": "rescues",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:blocks",
+              "word": "blocks",
+              "color": "PINK",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:observes",
+              "word": "observes",
+              "color": "RED",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:moves",
+              "word": "moves",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "PINK:blocks",
+          "sentence": "The robot observes the crew; then watches survivors; then attacks the crew; then repairs the shelter; then blocks routes.",
+          "score": -1,
+          "nextCueKey": "PINK:blocks"
+        },
+        {
+          "turn": 6,
+          "group": "B",
+          "cueKey": "PINK:blocks",
+          "options": [
+            {
+              "toKey": "BLUE:shares",
+              "word": "shares",
+              "color": "BLUE",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "AMBER:inspects",
+              "word": "inspects",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "GREEN:tracks",
+              "word": "tracks",
+              "color": "GREEN",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot observes the crew; then watches survivors; then attacks the crew; then repairs the shelter; then blocks routes; then attacks the crew.",
+          "score": -2,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 7,
+          "group": "A",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:watches",
+          "sentence": "The robot observes the crew; then watches survivors; then attacks the crew; then repairs the shelter; then blocks routes; then attacks the crew; then watches survivors.",
+          "score": -2,
+          "nextCueKey": "GREEN:watches"
+        },
+        {
+          "turn": 8,
+          "group": "B",
+          "cueKey": "GREEN:watches",
+          "options": [
+            {
+              "toKey": "PINK:clears",
+              "word": "clears",
+              "color": "PINK",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "RED:attacks",
+              "word": "attacks",
+              "color": "RED",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:counts",
+              "word": "counts",
+              "color": "BLUE",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "AMBER:visits",
+              "word": "visits",
+              "color": "AMBER",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "RED:attacks",
+          "sentence": "The robot observes the crew; then watches survivors; then attacks the crew; then repairs the shelter; then blocks routes; then attacks the crew; then watches survivors; then attacks the crew.",
+          "score": -3,
+          "nextCueKey": "RED:attacks"
+        },
+        {
+          "turn": 9,
+          "group": "A",
+          "cueKey": "RED:attacks",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "BLUE:hoards",
+              "word": "hoards",
+              "color": "BLUE",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:watches",
+              "word": "watches",
+              "color": "GREEN",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:surveys",
+              "word": "surveys",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "BLUE:hoards",
+          "sentence": "The robot observes the crew; then watches survivors; then attacks the crew; then repairs the shelter; then blocks routes; then attacks the crew; then watches survivors; then attacks the crew; then hoards supplies.",
+          "score": -4,
+          "nextCueKey": "BLUE:hoards"
+        },
+        {
+          "turn": 10,
+          "group": "B",
+          "cueKey": "BLUE:hoards",
+          "options": [
+            {
+              "toKey": "AMBER:repairs",
+              "word": "repairs",
+              "color": "AMBER",
+              "count": 2,
+              "isLeader": true
+            },
+            {
+              "toKey": "GREEN:abandons",
+              "word": "abandons",
+              "color": "GREEN",
+              "count": 3,
+              "isLeader": true
+            },
+            {
+              "toKey": "PINK:maps",
+              "word": "maps",
+              "color": "PINK",
+              "count": 1,
+              "isLeader": false
+            },
+            {
+              "toKey": "RED:follows",
+              "word": "follows",
+              "color": "RED",
+              "count": 1,
+              "isLeader": false
+            }
+          ],
+          "chosen": "GREEN:abandons",
+          "sentence": "The robot observes the crew; then watches survivors; then attacks the crew; then repairs the shelter; then blocks routes; then attacks the crew; then watches survivors; then attacks the crew; then hoards supplies; then abandons survivors.",
+          "score": -5,
+          "nextCueKey": "GREEN:abandons"
+        }
+      ],
+      "finalSentence": "The robot observes the crew; then watches survivors; then attacks the crew; then repairs the shelter; then blocks routes; then attacks the crew; then watches survivors; then attacks the crew; then hoards supplies; then abandons survivors.",
+      "score": -5,
+      "winner": "harmful",
+      "reversals": 0,
+      "words": 36,
+      "unchangedTurns": 0,
+      "zeroChoiceTurns": 0,
+      "slotsVisited": 5
+    }
+  ],
+  "comparisons": [
+    {
+      "sheetCount": 15,
+      "variant": "chain",
+      "policy": "representative",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 97,
+        "tie": 55,
+        "helpful": 48
+      },
+      "meanReversals": 2.03,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 1.74,
+      "meanSlotsVisited": 4.725,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.485,
+      "lastMoverWinsGoalsSwapped": 0.455
+    },
+    {
+      "sheetCount": 15,
+      "variant": "chain",
+      "policy": "representative",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 103,
+        "tie": 74,
+        "helpful": 23
+      },
+      "meanReversals": 2.03,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 0.675,
+      "meanSlotsVisited": 4.735,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.515,
+      "lastMoverWinsGoalsSwapped": 0.56
+    },
+    {
+      "sheetCount": 15,
+      "variant": "chain",
+      "policy": "modal",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 92,
+        "harmful": 80,
+        "tie": 28
+      },
+      "meanReversals": 0.645,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 4.99,
+      "meanSlotsVisited": 4.05,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.4,
+      "lastMoverWinsGoalsSwapped": 0.46
+    },
+    {
+      "sheetCount": 15,
+      "variant": "chain",
+      "policy": "sample",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 85,
+        "helpful": 65,
+        "tie": 50
+      },
+      "meanReversals": 0.94,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 2.43,
+      "meanSlotsVisited": 4.77,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.425,
+      "lastMoverWinsGoalsSwapped": 0.325
+    },
+    {
+      "sheetCount": 15,
+      "variant": "scheduled",
+      "policy": "representative",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 70,
+        "harmful": 108,
+        "tie": 22
+      },
+      "meanReversals": 1.315,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 1.185,
+      "meanSlotsVisited": 4.87,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.54,
+      "lastMoverWinsGoalsSwapped": 0.52
+    },
+    {
+      "sheetCount": 15,
+      "variant": "scheduled",
+      "policy": "representative",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 45,
+        "harmful": 113,
+        "tie": 42
+      },
+      "meanReversals": 1.07,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 0.245,
+      "meanSlotsVisited": 4.87,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.565,
+      "lastMoverWinsGoalsSwapped": 0.54
+    },
+    {
+      "sheetCount": 15,
+      "variant": "scheduled",
+      "policy": "modal",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 95,
+        "harmful": 68,
+        "tie": 37
+      },
+      "meanReversals": 0.875,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 3.895,
+      "meanSlotsVisited": 4.155,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.34,
+      "lastMoverWinsGoalsSwapped": 0.475
+    },
+    {
+      "sheetCount": 15,
+      "variant": "scheduled",
+      "policy": "sample",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 82,
+        "helpful": 77,
+        "tie": 41
+      },
+      "meanReversals": 1.065,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 2.15,
+      "meanSlotsVisited": 4.55,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.41,
+      "lastMoverWinsGoalsSwapped": 0.385
+    },
+    {
+      "sheetCount": 15,
+      "variant": "append",
+      "policy": "representative",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "tie": 200
+      },
+      "meanReversals": 0.0,
+      "meanWords": 35.05,
+      "meanUnchangedTurns": 0.0,
+      "meanSlotsVisited": 4.435,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.0,
+      "lastMoverWinsGoalsSwapped": 0.0
+    },
+    {
+      "sheetCount": 15,
+      "variant": "append",
+      "policy": "representative",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "tie": 200
+      },
+      "meanReversals": 0.0,
+      "meanWords": 35.05,
+      "meanUnchangedTurns": 0.0,
+      "meanSlotsVisited": 4.435,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.0,
+      "lastMoverWinsGoalsSwapped": 0.0
+    },
+    {
+      "sheetCount": 15,
+      "variant": "append",
+      "policy": "modal",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 91,
+        "harmful": 78,
+        "tie": 31
+      },
+      "meanReversals": 0.695,
+      "meanWords": 35.065,
+      "meanUnchangedTurns": 0.0,
+      "meanSlotsVisited": 4.05,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.39,
+      "lastMoverWinsGoalsSwapped": 0.455
+    },
+    {
+      "sheetCount": 15,
+      "variant": "append",
+      "policy": "sample",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 94,
+        "helpful": 76,
+        "tie": 30
+      },
+      "meanReversals": 0.535,
+      "meanWords": 35.075,
+      "meanUnchangedTurns": 0.0,
+      "meanSlotsVisited": 4.77,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.47,
+      "lastMoverWinsGoalsSwapped": 0.38
+    },
+    {
+      "sheetCount": 100,
+      "variant": "chain",
+      "policy": "representative",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 105,
+        "tie": 35,
+        "helpful": 60
+      },
+      "meanReversals": 1.895,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 2.76,
+      "meanSlotsVisited": 4.73,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.525,
+      "lastMoverWinsGoalsSwapped": 0.555
+    },
+    {
+      "sheetCount": 100,
+      "variant": "chain",
+      "policy": "representative",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 103,
+        "tie": 74,
+        "helpful": 23
+      },
+      "meanReversals": 2.03,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 0.675,
+      "meanSlotsVisited": 4.735,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.515,
+      "lastMoverWinsGoalsSwapped": 0.56
+    },
+    {
+      "sheetCount": 100,
+      "variant": "chain",
+      "policy": "modal",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 92,
+        "harmful": 80,
+        "tie": 28
+      },
+      "meanReversals": 0.645,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 4.99,
+      "meanSlotsVisited": 4.05,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.4,
+      "lastMoverWinsGoalsSwapped": 0.46
+    },
+    {
+      "sheetCount": 100,
+      "variant": "chain",
+      "policy": "sample",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 73,
+        "helpful": 74,
+        "tie": 53
+      },
+      "meanReversals": 1.025,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 2.37,
+      "meanSlotsVisited": 4.78,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.365,
+      "lastMoverWinsGoalsSwapped": 0.37
+    },
+    {
+      "sheetCount": 100,
+      "variant": "scheduled",
+      "policy": "representative",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 70,
+        "harmful": 117,
+        "tie": 13
+      },
+      "meanReversals": 1.26,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 2.07,
+      "meanSlotsVisited": 4.875,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.585,
+      "lastMoverWinsGoalsSwapped": 0.585
+    },
+    {
+      "sheetCount": 100,
+      "variant": "scheduled",
+      "policy": "representative",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 45,
+        "harmful": 113,
+        "tie": 42
+      },
+      "meanReversals": 1.07,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 0.245,
+      "meanSlotsVisited": 4.87,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.565,
+      "lastMoverWinsGoalsSwapped": 0.54
+    },
+    {
+      "sheetCount": 100,
+      "variant": "scheduled",
+      "policy": "modal",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 95,
+        "harmful": 68,
+        "tie": 37
+      },
+      "meanReversals": 0.875,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 3.895,
+      "meanSlotsVisited": 4.155,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.34,
+      "lastMoverWinsGoalsSwapped": 0.475
+    },
+    {
+      "sheetCount": 100,
+      "variant": "scheduled",
+      "policy": "sample",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 88,
+        "tie": 42,
+        "helpful": 70
+      },
+      "meanReversals": 1.005,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 2.335,
+      "meanSlotsVisited": 4.565,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.44,
+      "lastMoverWinsGoalsSwapped": 0.35
+    },
+    {
+      "sheetCount": 100,
+      "variant": "append",
+      "policy": "representative",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "tie": 200
+      },
+      "meanReversals": 0.0,
+      "meanWords": 35.05,
+      "meanUnchangedTurns": 0.0,
+      "meanSlotsVisited": 4.435,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.0,
+      "lastMoverWinsGoalsSwapped": 0.0
+    },
+    {
+      "sheetCount": 100,
+      "variant": "append",
+      "policy": "representative",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "tie": 200
+      },
+      "meanReversals": 0.0,
+      "meanWords": 35.05,
+      "meanUnchangedTurns": 0.0,
+      "meanSlotsVisited": 4.435,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.0,
+      "lastMoverWinsGoalsSwapped": 0.0
+    },
+    {
+      "sheetCount": 100,
+      "variant": "append",
+      "policy": "modal",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 91,
+        "harmful": 78,
+        "tie": 31
+      },
+      "meanReversals": 0.695,
+      "meanWords": 35.065,
+      "meanUnchangedTurns": 0.0,
+      "meanSlotsVisited": 4.05,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.39,
+      "lastMoverWinsGoalsSwapped": 0.455
+    },
+    {
+      "sheetCount": 100,
+      "variant": "append",
+      "policy": "sample",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 91,
+        "helpful": 86,
+        "tie": 23
+      },
+      "meanReversals": 0.48,
+      "meanWords": 35.02,
+      "meanUnchangedTurns": 0.0,
+      "meanSlotsVisited": 4.78,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.455,
+      "lastMoverWinsGoalsSwapped": 0.43
+    },
+    {
+      "sheetCount": 200,
+      "variant": "chain",
+      "policy": "representative",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 105,
+        "tie": 35,
+        "helpful": 60
+      },
+      "meanReversals": 1.895,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 2.76,
+      "meanSlotsVisited": 4.73,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.525,
+      "lastMoverWinsGoalsSwapped": 0.555
+    },
+    {
+      "sheetCount": 200,
+      "variant": "chain",
+      "policy": "representative",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 103,
+        "tie": 74,
+        "helpful": 23
+      },
+      "meanReversals": 2.03,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 0.675,
+      "meanSlotsVisited": 4.735,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.515,
+      "lastMoverWinsGoalsSwapped": 0.56
+    },
+    {
+      "sheetCount": 200,
+      "variant": "chain",
+      "policy": "modal",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 92,
+        "harmful": 80,
+        "tie": 28
+      },
+      "meanReversals": 0.645,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 4.99,
+      "meanSlotsVisited": 4.05,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.4,
+      "lastMoverWinsGoalsSwapped": 0.46
+    },
+    {
+      "sheetCount": 200,
+      "variant": "chain",
+      "policy": "sample",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 73,
+        "helpful": 74,
+        "tie": 53
+      },
+      "meanReversals": 1.025,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 2.37,
+      "meanSlotsVisited": 4.78,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.365,
+      "lastMoverWinsGoalsSwapped": 0.37
+    },
+    {
+      "sheetCount": 200,
+      "variant": "scheduled",
+      "policy": "representative",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 70,
+        "harmful": 117,
+        "tie": 13
+      },
+      "meanReversals": 1.26,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 2.07,
+      "meanSlotsVisited": 4.875,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.585,
+      "lastMoverWinsGoalsSwapped": 0.585
+    },
+    {
+      "sheetCount": 200,
+      "variant": "scheduled",
+      "policy": "representative",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 45,
+        "harmful": 113,
+        "tie": 42
+      },
+      "meanReversals": 1.07,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 0.245,
+      "meanSlotsVisited": 4.87,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.565,
+      "lastMoverWinsGoalsSwapped": 0.54
+    },
+    {
+      "sheetCount": 200,
+      "variant": "scheduled",
+      "policy": "modal",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 95,
+        "harmful": 68,
+        "tie": 37
+      },
+      "meanReversals": 0.875,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 3.895,
+      "meanSlotsVisited": 4.155,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.34,
+      "lastMoverWinsGoalsSwapped": 0.475
+    },
+    {
+      "sheetCount": 200,
+      "variant": "scheduled",
+      "policy": "sample",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 88,
+        "tie": 42,
+        "helpful": 70
+      },
+      "meanReversals": 1.005,
+      "meanWords": 15.0,
+      "meanUnchangedTurns": 2.335,
+      "meanSlotsVisited": 4.565,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.44,
+      "lastMoverWinsGoalsSwapped": 0.35
+    },
+    {
+      "sheetCount": 200,
+      "variant": "append",
+      "policy": "representative",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "tie": 200
+      },
+      "meanReversals": 0.0,
+      "meanWords": 35.05,
+      "meanUnchangedTurns": 0.0,
+      "meanSlotsVisited": 4.435,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.0,
+      "lastMoverWinsGoalsSwapped": 0.0
+    },
+    {
+      "sheetCount": 200,
+      "variant": "append",
+      "policy": "representative",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "tie": 200
+      },
+      "meanReversals": 0.0,
+      "meanWords": 35.05,
+      "meanUnchangedTurns": 0.0,
+      "meanSlotsVisited": 4.435,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.0,
+      "lastMoverWinsGoalsSwapped": 0.0
+    },
+    {
+      "sheetCount": 200,
+      "variant": "append",
+      "policy": "modal",
+      "choiceRule": "leaders",
+      "seeds": 200,
+      "outcomes": {
+        "helpful": 91,
+        "harmful": 78,
+        "tie": 31
+      },
+      "meanReversals": 0.695,
+      "meanWords": 35.065,
+      "meanUnchangedTurns": 0.0,
+      "meanSlotsVisited": 4.05,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.39,
+      "lastMoverWinsGoalsSwapped": 0.455
+    },
+    {
+      "sheetCount": 200,
+      "variant": "append",
+      "policy": "sample",
+      "choiceRule": "all",
+      "seeds": 200,
+      "outcomes": {
+        "harmful": 91,
+        "helpful": 86,
+        "tie": 23
+      },
+      "meanReversals": 0.48,
+      "meanWords": 35.02,
+      "meanUnchangedTurns": 0.0,
+      "meanSlotsVisited": 4.78,
+      "zeroChoiceTurns": 0,
+      "lastMoverWins": 0.455,
+      "lastMoverWinsGoalsSwapped": 0.43
+    }
+  ]
+}

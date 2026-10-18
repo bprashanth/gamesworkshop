@@ -1,0 +1,859 @@
+{
+  "version": 3,
+  "seeds": 200,
+  "seedRange": [
+    0,
+    199
+  ],
+  "defaultSeed": 15,
+  "default": {
+    "15": {
+      "packId": "PW3-15-15-bbec296c07",
+      "tieGo": [
+        {
+          "team": "A",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 0,
+                "avoid": 2,
+                "abstain": 2
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "B",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "go",
+              "survived": false,
+              "votes": {
+                "go": 1,
+                "avoid": 1,
+                "abstain": 2
+              },
+              "tied": true
+            }
+          ]
+        },
+        {
+          "team": "C",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "go",
+              "survived": true,
+              "votes": {
+                "go": 1,
+                "avoid": 0,
+                "abstain": 3
+              },
+              "tied": false
+            },
+            {
+              "round": 2,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 1,
+                "avoid": 2,
+                "abstain": 1
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "D",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 0,
+                "avoid": 1,
+                "abstain": 2
+              },
+              "tied": false
+            }
+          ]
+        }
+      ],
+      "tieAvoid": [
+        {
+          "team": "A",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 0,
+                "avoid": 2,
+                "abstain": 2
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "B",
+          "finished": true,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 1,
+                "avoid": 1,
+                "abstain": 2
+              },
+              "tied": true
+            },
+            {
+              "round": 2,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 1,
+                "avoid": 2,
+                "abstain": 1
+              },
+              "tied": false
+            },
+            {
+              "round": 3,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 2,
+                "avoid": 2,
+                "abstain": 0
+              },
+              "tied": true
+            },
+            {
+              "round": 4,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 0,
+                "avoid": 3,
+                "abstain": 1
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "C",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "go",
+              "survived": true,
+              "votes": {
+                "go": 1,
+                "avoid": 0,
+                "abstain": 3
+              },
+              "tied": false
+            },
+            {
+              "round": 2,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 1,
+                "avoid": 2,
+                "abstain": 1
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "D",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 0,
+                "avoid": 1,
+                "abstain": 2
+              },
+              "tied": false
+            }
+          ]
+        }
+      ]
+    },
+    "100": {
+      "packId": "PW3-15-100-2af3cd3bc5",
+      "tieGo": [
+        {
+          "team": "A",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 2,
+                "avoid": 12,
+                "abstain": 11
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "B",
+          "finished": true,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 6,
+                "avoid": 9,
+                "abstain": 10
+              },
+              "tied": false
+            },
+            {
+              "round": 2,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 2,
+                "avoid": 15,
+                "abstain": 8
+              },
+              "tied": false
+            },
+            {
+              "round": 3,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 5,
+                "avoid": 12,
+                "abstain": 8
+              },
+              "tied": false
+            },
+            {
+              "round": 4,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 3,
+                "avoid": 16,
+                "abstain": 6
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "C",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "go",
+              "survived": true,
+              "votes": {
+                "go": 11,
+                "avoid": 9,
+                "abstain": 5
+              },
+              "tied": false
+            },
+            {
+              "round": 2,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 6,
+                "avoid": 11,
+                "abstain": 8
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "D",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 4,
+                "avoid": 11,
+                "abstain": 10
+              },
+              "tied": false
+            }
+          ]
+        }
+      ],
+      "tieAvoid": [
+        {
+          "team": "A",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 2,
+                "avoid": 12,
+                "abstain": 11
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "B",
+          "finished": true,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 6,
+                "avoid": 9,
+                "abstain": 10
+              },
+              "tied": false
+            },
+            {
+              "round": 2,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 2,
+                "avoid": 15,
+                "abstain": 8
+              },
+              "tied": false
+            },
+            {
+              "round": 3,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 5,
+                "avoid": 12,
+                "abstain": 8
+              },
+              "tied": false
+            },
+            {
+              "round": 4,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 3,
+                "avoid": 16,
+                "abstain": 6
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "C",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "go",
+              "survived": true,
+              "votes": {
+                "go": 11,
+                "avoid": 9,
+                "abstain": 5
+              },
+              "tied": false
+            },
+            {
+              "round": 2,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 6,
+                "avoid": 11,
+                "abstain": 8
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "D",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 4,
+                "avoid": 11,
+                "abstain": 10
+              },
+              "tied": false
+            }
+          ]
+        }
+      ]
+    },
+    "200": {
+      "packId": "PW3-15-200-eb96e1ff19",
+      "tieGo": [
+        {
+          "team": "A",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 4,
+                "avoid": 29,
+                "abstain": 17
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "B",
+          "finished": true,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 10,
+                "avoid": 16,
+                "abstain": 24
+              },
+              "tied": false
+            },
+            {
+              "round": 2,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 5,
+                "avoid": 29,
+                "abstain": 16
+              },
+              "tied": false
+            },
+            {
+              "round": 3,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 13,
+                "avoid": 20,
+                "abstain": 17
+              },
+              "tied": false
+            },
+            {
+              "round": 4,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 1,
+                "avoid": 34,
+                "abstain": 15
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "C",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "go",
+              "survived": true,
+              "votes": {
+                "go": 16,
+                "avoid": 7,
+                "abstain": 27
+              },
+              "tied": false
+            },
+            {
+              "round": 2,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 13,
+                "avoid": 21,
+                "abstain": 16
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "D",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 6,
+                "avoid": 17,
+                "abstain": 27
+              },
+              "tied": false
+            }
+          ]
+        }
+      ],
+      "tieAvoid": [
+        {
+          "team": "A",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 4,
+                "avoid": 29,
+                "abstain": 17
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "B",
+          "finished": true,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 10,
+                "avoid": 16,
+                "abstain": 24
+              },
+              "tied": false
+            },
+            {
+              "round": 2,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 5,
+                "avoid": 29,
+                "abstain": 16
+              },
+              "tied": false
+            },
+            {
+              "round": 3,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 13,
+                "avoid": 20,
+                "abstain": 17
+              },
+              "tied": false
+            },
+            {
+              "round": 4,
+              "action": "avoid",
+              "survived": true,
+              "votes": {
+                "go": 1,
+                "avoid": 34,
+                "abstain": 15
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "C",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "go",
+              "survived": true,
+              "votes": {
+                "go": 16,
+                "avoid": 7,
+                "abstain": 27
+              },
+              "tied": false
+            },
+            {
+              "round": 2,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 13,
+                "avoid": 21,
+                "abstain": 16
+              },
+              "tied": false
+            }
+          ]
+        },
+        {
+          "team": "D",
+          "finished": false,
+          "log": [
+            {
+              "round": 1,
+              "action": "avoid",
+              "survived": false,
+              "votes": {
+                "go": 6,
+                "avoid": 17,
+                "abstain": 27
+              },
+              "tied": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "sizes": {
+    "15": {
+      "survivors": {
+        "paper-tie-go": {
+          "histogram": {
+            "0": 33,
+            "1": 84,
+            "2": 61,
+            "3": 21,
+            "4": 1
+          },
+          "mean": 1.365
+        },
+        "paper-tie-avoid": {
+          "histogram": {
+            "0": 39,
+            "1": 87,
+            "2": 59,
+            "3": 15
+          },
+          "mean": 1.25
+        },
+        "always-go": {
+          "histogram": {
+            "0": 129,
+            "1": 64,
+            "2": 6,
+            "3": 1
+          },
+          "mean": 0.395
+        },
+        "always-avoid": {
+          "histogram": {
+            "0": 78,
+            "1": 81,
+            "2": 40,
+            "3": 1
+          },
+          "mean": 0.82
+        },
+        "coin": {
+          "histogram": {
+            "0": 164,
+            "1": 35,
+            "3": 1
+          },
+          "mean": 0.19
+        },
+        "easy": {
+          "histogram": {
+            "4": 200
+          },
+          "mean": 4.0
+        }
+      },
+      "individualAbstentionRate": 0.3465,
+      "groupTieRate": 0.2165625,
+      "allRoundAccuracy": {
+        "go": 0.764375,
+        "avoid": 0.7171875
+      }
+    },
+    "100": {
+      "survivors": {
+        "paper-tie-go": {
+          "histogram": {
+            "0": 26,
+            "1": 74,
+            "2": 76,
+            "3": 23,
+            "4": 1
+          },
+          "mean": 1.495
+        },
+        "paper-tie-avoid": {
+          "histogram": {
+            "0": 32,
+            "1": 81,
+            "2": 73,
+            "3": 13,
+            "4": 1
+          },
+          "mean": 1.35
+        },
+        "always-go": {
+          "histogram": {
+            "0": 129,
+            "1": 64,
+            "2": 6,
+            "3": 1
+          },
+          "mean": 0.395
+        },
+        "always-avoid": {
+          "histogram": {
+            "0": 78,
+            "1": 81,
+            "2": 40,
+            "3": 1
+          },
+          "mean": 0.82
+        },
+        "coin": {
+          "histogram": {
+            "0": 164,
+            "1": 35,
+            "3": 1
+          },
+          "mean": 0.19
+        },
+        "easy": {
+          "histogram": {
+            "4": 200
+          },
+          "mean": 4.0
+        }
+      },
+      "individualAbstentionRate": 0.3472,
+      "groupTieRate": 0.0353125,
+      "allRoundAccuracy": {
+        "go": 0.76,
+        "avoid": 0.7365625
+      }
+    },
+    "200": {
+      "survivors": {
+        "paper-tie-go": {
+          "histogram": {
+            "0": 28,
+            "1": 72,
+            "2": 75,
+            "3": 23,
+            "4": 2
+          },
+          "mean": 1.495
+        },
+        "paper-tie-avoid": {
+          "histogram": {
+            "0": 31,
+            "1": 73,
+            "2": 78,
+            "3": 17,
+            "4": 1
+          },
+          "mean": 1.42
+        },
+        "always-go": {
+          "histogram": {
+            "0": 129,
+            "1": 64,
+            "2": 6,
+            "3": 1
+          },
+          "mean": 0.395
+        },
+        "always-avoid": {
+          "histogram": {
+            "0": 78,
+            "1": 81,
+            "2": 40,
+            "3": 1
+          },
+          "mean": 0.82
+        },
+        "coin": {
+          "histogram": {
+            "0": 164,
+            "1": 35,
+            "3": 1
+          },
+          "mean": 0.19
+        },
+        "easy": {
+          "histogram": {
+            "4": 200
+          },
+          "mean": 4.0
+        }
+      },
+      "individualAbstentionRate": 0.34920625,
+      "groupTieRate": 0.01625,
+      "allRoundAccuracy": {
+        "go": 0.7596875,
+        "avoid": 0.7465625
+      }
+    }
+  },
+  "warning": "Four marginal cue observations are correlated. Majority-of-four is a heuristic, not a posterior hazard probability."
+}

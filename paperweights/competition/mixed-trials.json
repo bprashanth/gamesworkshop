@@ -1,0 +1,684 @@
+{
+  "note": "Decision ties choose Go; inspection ties favor spending. Visible kills always Avoid. Authored policies, not human results.",
+  "rehearsal": {
+    "15": {
+      "decision": [
+        {
+          "team": "A",
+          "finished": false,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 2,
+              "revealed": [
+                "battery"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 3,
+              "revealed": [
+                "ground"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 4,
+              "revealed": [
+                "slope"
+              ],
+              "action": "go",
+              "survived": false,
+              "tokens": 3
+            }
+          ]
+        },
+        {
+          "team": "B",
+          "finished": false,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "battery"
+              ],
+              "action": "go",
+              "survived": false,
+              "tokens": 3
+            }
+          ]
+        },
+        {
+          "team": "C",
+          "finished": false,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 2,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 3,
+              "revealed": [
+                "slope"
+              ],
+              "action": "go",
+              "survived": false,
+              "tokens": 3
+            }
+          ]
+        },
+        {
+          "team": "D",
+          "finished": true,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "ground"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 2,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 3,
+              "revealed": [
+                "battery"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 4,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 5,
+              "revealed": [
+                "slope"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 6,
+              "revealed": [
+                "dust"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 3
+            }
+          ]
+        }
+      ],
+      "inspect": [
+        {
+          "team": "A",
+          "finished": false,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "dust",
+                "battery",
+                "ground"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 1
+            },
+            {
+              "turn": 2,
+              "revealed": [
+                "battery",
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 0
+            },
+            {
+              "turn": 3,
+              "revealed": [
+                "ground"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 0
+            },
+            {
+              "turn": 4,
+              "revealed": [
+                "slope"
+              ],
+              "action": "go",
+              "survived": false,
+              "tokens": 0
+            }
+          ]
+        },
+        {
+          "team": "B",
+          "finished": true,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "battery",
+                "dust",
+                "ground"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 1
+            },
+            {
+              "turn": 2,
+              "revealed": [
+                "battery"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 1
+            },
+            {
+              "turn": 3,
+              "revealed": [
+                "ground"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 1
+            },
+            {
+              "turn": 4,
+              "revealed": [
+                "dust"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 1
+            },
+            {
+              "turn": 5,
+              "revealed": [
+                "ground"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 1
+            },
+            {
+              "turn": 6,
+              "revealed": [
+                "dust"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 1
+            }
+          ]
+        },
+        {
+          "team": "C",
+          "finished": false,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "dust",
+                "battery",
+                "ground"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 1
+            },
+            {
+              "turn": 2,
+              "revealed": [
+                "dust",
+                "battery"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 0
+            },
+            {
+              "turn": 3,
+              "revealed": [
+                "slope"
+              ],
+              "action": "go",
+              "survived": false,
+              "tokens": 0
+            }
+          ]
+        },
+        {
+          "team": "D",
+          "finished": true,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "ground",
+                "battery",
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 1
+            },
+            {
+              "turn": 2,
+              "revealed": [
+                "dust",
+                "battery"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 0
+            },
+            {
+              "turn": 3,
+              "revealed": [
+                "battery"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 0
+            },
+            {
+              "turn": 4,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 0
+            },
+            {
+              "turn": 5,
+              "revealed": [
+                "slope"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 0
+            },
+            {
+              "turn": 6,
+              "revealed": [
+                "dust"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 0
+            }
+          ]
+        }
+      ]
+    },
+    "200": {
+      "decision": [
+        {
+          "team": "A",
+          "finished": false,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 2,
+              "revealed": [
+                "battery"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 3,
+              "revealed": [
+                "ground"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 4,
+              "revealed": [
+                "slope"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 5,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": false,
+              "tokens": 3
+            }
+          ]
+        },
+        {
+          "team": "B",
+          "finished": false,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "battery"
+              ],
+              "action": "go",
+              "survived": false,
+              "tokens": 3
+            }
+          ]
+        },
+        {
+          "team": "C",
+          "finished": true,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 2,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 3,
+              "revealed": [
+                "slope"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 4,
+              "revealed": [
+                "battery"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 5,
+              "revealed": [
+                "battery"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 6,
+              "revealed": [
+                "ground"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            }
+          ]
+        },
+        {
+          "team": "D",
+          "finished": false,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "ground"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 2,
+              "revealed": [
+                "dust"
+              ],
+              "action": "avoid",
+              "survived": false,
+              "tokens": 3
+            }
+          ]
+        }
+      ],
+      "inspect": [
+        {
+          "team": "A",
+          "finished": false,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 2,
+              "revealed": [
+                "battery"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 3,
+              "revealed": [
+                "ground"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 4,
+              "revealed": [
+                "slope"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 5,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": false,
+              "tokens": 3
+            }
+          ]
+        },
+        {
+          "team": "B",
+          "finished": false,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "battery"
+              ],
+              "action": "go",
+              "survived": false,
+              "tokens": 3
+            }
+          ]
+        },
+        {
+          "team": "C",
+          "finished": true,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 2,
+              "revealed": [
+                "dust"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 3,
+              "revealed": [
+                "slope"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 4,
+              "revealed": [
+                "battery"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 5,
+              "revealed": [
+                "battery"
+              ],
+              "action": "avoid",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 6,
+              "revealed": [
+                "ground"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            }
+          ]
+        },
+        {
+          "team": "D",
+          "finished": false,
+          "log": [
+            {
+              "turn": 1,
+              "revealed": [
+                "ground"
+              ],
+              "action": "go",
+              "survived": true,
+              "tokens": 3
+            },
+            {
+              "turn": 2,
+              "revealed": [
+                "dust"
+              ],
+              "action": "avoid",
+              "survived": false,
+              "tokens": 3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "seeds": 100,
+  "meanFinishers": {
+    "15": {
+      "decision": 0.27,
+      "inspect": 0.95
+    },
+    "200": {
+      "decision": 0.38,
+      "inspect": 0.45
+    }
+  }
+}

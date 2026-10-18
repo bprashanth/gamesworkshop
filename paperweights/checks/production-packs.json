@@ -1,0 +1,16 @@
+[
+  {
+    "packId": "PW5-15-15-92d56e90d0",
+    "people": 15,
+    "actualPdfRows": true,
+    "duplexPairing": true,
+    "gameTallies": true
+  },
+  {
+    "packId": "PW5-15-200-b089066934",
+    "people": 200,
+    "actualPdfRows": true,
+    "duplexPairing": true,
+    "gameTallies": true
+  }
+]

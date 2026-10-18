@@ -1,9 +1,9 @@
 # Netlify serves Rover Run, the main game. web/ is static and self-contained (ES modules,
-# map.json, deck.json), so there is no build step.
+# map.json, deck.json). Build copies the independent competitive stage alongside it.
 [build]
   base = "."
   publish = "space/rover-run/src/web"
-  command = "echo 'Rover Run: static, no build'"
+  command = "python3 paperweights/build_site.py"
 
 # Only main deploys the live site. Other branches are a no-op, so a push can't touch it.
 [context.branch-deploy]

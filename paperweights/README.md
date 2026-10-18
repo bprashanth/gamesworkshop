@@ -1,0 +1,178 @@
+# Paper Weights
+
+## Current prototype - cumulative evidence (PW6)
+
+[Open the competitive game](http://localhost:8684/paperweights/web/).
+One shared map now holds four labelled rover markers, with each team's card panel
+below. Click a panel to select its dotted column highlight. Dead markers turn red;
+the panel displays red OUT.
+
+Medium uses six turns and three extra checks per team across the run, represented
+by stick figures at the right of the controls. One opening card per turn is free;
+additional reveals spend a check. Audience polls are free and use **all revealed
+icon/color pairs**. Votes now favor informative inspections while the evidence is
+uncertain, and shift toward decisions as the evidence resolves. They remain
+historical action votes, not guarantees. Teams progress and reset independently.
+
+**Digital test only:** PW5's one-icon printed sheets do not match cumulative PW6
+polls. The [PW5 print catalog](printouts/README.md) is retained for the previous
+version. Do not print those sheets for this experiment. A new paper encoding is
+needed if cumulative evidence is adopted.
+
+```sh
+python3 paperweights/competition/evidence.py
+python3 paperweights/serve.py --rover-only
+```
+
+For an already-running server, use
+`python3 paperweights/build_site.py --output paperweights/out/rover-review`.
+See [SUMMARY.md](SUMMARY.md) and [model details](competition/EVIDENCE.md).
+
+## Sentence competition benchmark
+
+**Paused after review.** The sentence lab is preserved in `sentence-lab/`; its review
+server is offline while we return to Rover. Two groups get five turns each to steer one
+robot sentence toward good or bad.
+It includes three mechanics, majority/sampling/representative choices, actual sheet tallies
+and a printable 15-person pack. [Results and regeneration](sentence-lab/README.md).
+This is an independent rehearsal experiment; it uses its own word sheets.
+
+## Earlier design reviews
+
+The sections below document the earlier standalone word packs and visual prototypes.
+For a live competitive game, print the matching duplex pack above; these earlier
+Rover studies are design history, not compatible live-game packs.
+
+## Word handouts — approved minimal format
+
+**All word printouts are in [`words/`](words/).** Every page contains only the title,
+three basic instructions and 24 token pairs. The approved color labels inside each
+pair remain; the extra legend, page badge, headings, notes and footer are gone.
+
+| Pack | Print-ready PDF | First-page preview |
+| --- | --- | --- |
+| Tabletop / 15 people | [15 sheets](words/paper-weights-15.pdf) | [Preview](words/paper-weights-15-preview.png) |
+| Room / 100 people | [100 sheets](words/paper-weights-100.pdf) | [Preview](words/paper-weights-100-preview.png) |
+| Room / 200 people | [200 sheets](words/paper-weights-200.pdf) | [Preview](words/paper-weights-200-preview.png) |
+| Approved single-page sample | [Sample](words/paper-weights-clean-mockup.pdf) | [Preview](words/paper-weights-clean-mockup-preview.png) |
+
+Print single-sided, **A4, actual size, in color**. Each page goes to one person.
+The PDFs include the colored boxes. For HTML printing, enable background graphics.
+Print the whole selected pack: closure is guaranteed across that pack, not an arbitrary
+subset. The single-page sample is for reviewing appearance, not playing alone.
+
+The 15/100/200 packs retain their original token assignments; only the layout changed.
+Old copies in `output/` and `mockups/` were removed to avoid printing the wrong version.
+No page numbers or seed metadata are printed. Use the PDF page order and JSON manifest
+when you need to identify a sheet during testing.
+
+## Regenerate, or print for a larger audience
+
+Run from the repository root. Python 3.12 is tested; WeasyPrint requires system
+Pango/font libraries. Setup once:
+
+```sh
+python3 -m venv paperweights/.venv
+paperweights/.venv/bin/pip install -r paperweights/requirements.txt
+```
+
+Generate exactly one page per participant, using the same minimal format:
+
+```sh
+paperweights/.venv/bin/python paperweights/generator.py --sheets 15
+paperweights/.venv/bin/python paperweights/generator.py --sheets 100
+paperweights/.venv/bin/python paperweights/generator.py --sheets 150
+paperweights/.venv/bin/python paperweights/generator.py --sheets 200
+```
+
+The generator supports every count from **10 to 200**. For example, `--sheets 150`
+creates `paperweights/words/paper-weights-150.pdf` plus its HTML, JSON and preview PNG.
+Re-running the same count/seed reproduces the dealt pairs and replaces those files.
+To make another reproducible deal without replacing the original:
+
+```sh
+paperweights/.venv/bin/python paperweights/generator.py --sheets 150 --seed 7 --output paperweights/words/paper-weights-150-seed7.pdf
+```
+
+Checks:
+
+```sh
+paperweights/.venv/bin/python paperweights/test_generation.py
+paperweights/.venv/bin/python paperweights/verify_outputs.py
+```
+
+The first checks graph closure and the existing probability model. The second checks
+all delivered PDFs for page count and clipped text, verifies every Paper Weights word and its
+colors, and checks that removed decorations have not returned. Results go in `checks/`.
+
+## What the word game guarantees
+
+The generator preserves complete copies of the exact supplied corpus, then pads with
+closed cycles made only from observed transitions. Every token on the right has at
+least two left occurrences, held by at least two different people. Every page has
+24 pairs, sorted by left color down column 1 and then column 2. Token colors are stable
+across seeds and deck sizes, with matching left fill / right font colors.
+
+The source text has **176 tokens and 51 distinct tokens**. Twenty tokens have only one
+distinct successor (`old -> man`, for example); the other 31 branch. Repetition does
+not imply distinct continuations. This is documented in the JSON manifests rather
+than changing the requested text or claiming every token branches.
+
+## Facilitate the word game
+
+Start with **“the, RED.”** People find RED-filled `the` boxes and raise their hands.
+Choose a hand at random; that person reads the right word and color. That becomes
+the next call. If a person has several matching entries, they choose one at random.
+Punctuation is a token too; explain that on stage.
+
+A random person is not a random printed occurrence when people hold different numbers
+of matches. The manifest records exact `random_hand_probability` values for the simple
+version. To demonstrate raw pair frequencies exactly, weight each person's chance of
+being chosen by their number of matching entries, then choose one of their entries
+uniformly. The finite printed deck's counts, including closed-cycle padding, are the
+relevant counts. This models short-context continuation, not a full modern LLM.
+
+## Latest experiment — context colors on paper and stage
+
+[Two Swift-shaped icon sheets](rover/context/sample-sheets.pdf) -
+[Four-card / four-team stage mockup](rover/context/stage-mockup.pdf) -
+[Color meanings and mechanics](rover/context/README.md)
+
+Color now represents a shared history/terrain context, not a card category. The
+left is a colored icon, the right a historical next-category word. These mocks keep
+the approved Paper Weights rectangles, 24-pair grid and six-color palette. A matching 60-person
+pack supplies the stage's actual vote counts. This is a new context-sensitive
+simulation and a proposed stage appearance, not a change to the deployed game.
+
+All existing word and data PDFs/previews now use ASCII `->` separators.
+
+## Earlier alternatives — three color-free brainstorming mocks
+
+**[Open all six sample pages](rover/concepts/all-concepts.pdf)**: two participants for
+each of three approaches. These reuse the frozen Rover glyphs, keep white paper,
+and add no category colors. The deployed black game screen and existing voting app
+remain the intended stage experience.
+
+| Concept | What the participant does | PDF |
+| --- | --- | --- |
+| A — Field notes | Reads two short historical traverses and chooses a useful next category | [Two sample sheets](rover/concepts/a-field-notes.pdf) |
+| B — Signal slips | Matches one icon and follows a Swift-style pair to a suggested category | [Two sample sheets](rover/concepts/b-signal-slips.pdf) |
+| C — Two clues | Matches the previous warning and revealed next slope before following the pair | [Two sample sheets](rover/concepts/c-two-clues.pdf) |
+
+[Concept comparison and rehearsal](rover/concepts/README.md) explains their different
+probability meanings, edge cases and 10-second turn loops. Regenerate the mocks with:
+
+```sh
+paperweights/.venv/bin/python paperweights/rover/concepts/render.py
+```
+
+These are alternatives for discussion, not a selected full-room design. The earlier
+colored `rover/output*` packs, white map panels and paddle templates are retained as
+previous prototypes but are **not the current proposal**. Maps/paddles are out of scope
+for this review. See [chronology](../chronology/2026-10-14-paperweights.md) and
+[session narrative](../narrative/PAPERWEIGHTS.md) for checkpoints.
+
+When checks are exhausted, polling uses the outcome of each matching historical
+record to cast GO/AVOID votes for the whole team. It does not simply normalize the
+small decision subset or read the live hidden outcome. Unavailable and zero-vote
+FLIP rows are hidden. Existing simulation results predate this fallback adjustment.
