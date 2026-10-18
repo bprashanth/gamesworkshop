@@ -60,3 +60,10 @@ node households/compare-medium.mjs
 The browser scripts use the repository's installed Playwright. Local screenshots,
 logs and detailed runs are in ignored `households/out/`, overwritten on each run.
 The narrative report records the reviewed findings without checking in screenshot archives.
+
+## Evidence study
+
+[Real-data contour study](http://100.82.28.38:8684/households/evidence.html) -
+[Sources, interpretation and route design](../narrative/household_evidence_landscape.md).
+This separate study uses government attendance tables. HH2 game probabilities
+remain synthetic; the study does not calibrate intervention effects.
