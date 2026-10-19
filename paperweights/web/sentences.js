@@ -9,7 +9,7 @@ function render(){
  document.documentElement.dataset.theme=theme;$('#theme').textContent=theme==='dark'?'Light':'Dark';
  if(!pack)return;
  const cue=split(current()),ink=palette[cue.color][theme==='dark'?1:0];
- $('#sentence').replaceChildren();words.forEach((key,i)=>{const v=split(key),span=document.createElement('span');span.textContent=(i&&!/^[.,!?]$/.test(v.word)?' ':'')+(i===0||/^[.!?]$/.test(split(words[i-1]).word)?v.word[0].toUpperCase()+v.word.slice(1):v.word);if(i===words.length-1){span.className='last-word';span.style.setProperty('--word-color',ink)}$('#sentence').append(span)});
+ $('#sentence').replaceChildren();words.forEach((key,i)=>{const v=split(key),span=document.createElement('span');span.textContent=(i&&!/^[.,!?]$/.test(v.word)?' ':'')+(i===0||/^[.!?]$/.test(split(words[i-1]).word)?v.word[0].toUpperCase()+v.word.slice(1):v.word);if(v.word==='i')span.textContent=span.textContent.replace(/i$/, 'I');if(i===words.length-1){span.className='last-word';span.style.setProperty('--word-color',ink)}$('#sentence').append(span)});
  $('.lookup').style.setProperty('--cue',ink);$('#cue-color').textContent=cue.color;$('#cue-word').textContent=cue.word;
  $('#next').disabled=$('#majority').disabled=pending;$('#people').disabled=$('#opening').disabled=pending;
  const last=trace.at(-1),eligible=matchingSheets(pack,current()).length;
@@ -17,8 +17,8 @@ function render(){
  $('#audit-body').replaceChildren();
  if(last){const heading=document.createElement('p');heading.textContent=`${last.from} -> ${last.chosen} - ${last.kind==='random'?'random sheet':'most votes'}${last.tie?' - tied leaders use alphabetical order':''}`;$('#audit-body').append(heading);
  for(const [key,n] of Object.entries(last.counts).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]))){const row=document.createElement('p');row.textContent=`${key} - ${n} / ${last.total}`;$('#audit-body').append(row)}
- const people=document.createElement('p');people.textContent=`Sheet IDs: ${last.voterIds.join(', ')}`;$('#audit-body').append(people);
- }else $('#audit-body').textContent='Next word samples one matching sheet. Majority word samples up to the voter limit without counting anyone twice. Leave Voters empty to use all matching sheets.';
+ const people=document.createElement('p');people.textContent=`Sheet IDs: ${last.voterIds.join(', ')}`;$('#audit-body').append(people);for(const ballot of last.ballots){const row=document.createElement('p');row.textContent=`Sheet ${ballot.id} - match ${ballot.matchIndex+1} - ${ballot.next}`;$('#audit-body').append(row)}
+ }else $('#audit-body').textContent='Each matching person picks one matching row at random. Next word chooses one person; Majority word counts one vote per person. Leave Voters empty to use everyone matching.';
 }
 function reset(){if(!pack)return;words=[$('#opening').value||pack.start];trace=[];$('#error').textContent='';render()}
 function step(kind){if(!pack||pending)return false;

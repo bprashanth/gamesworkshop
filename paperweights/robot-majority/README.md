@@ -1,50 +1,34 @@
-# Robot majority experiment
+# Robot sentence experiments
 
-The live browser now uses [RM3 open word chains](BRANCHING.md). The RM1 experiment described below is retained as a baseline, not the current browser corpus.
-
-Pre-print experiment. No PDFs generated. A Sentences rehearsal is now available
-in the competitive scenario switch; Rover/Household rules remain unchanged.
-See [the narrative and decision](../../narrative/ROBOT_MAJORITY.md).
-
-```sh
-python3 paperweights/robot-majority/baseline.py
-python3 paperweights/robot-majority/experiment.py
-```
-
-The scripts use the Python standard library. `baseline.py` reads the existing
-word generator without importing its PDF dependencies. `experiment.py` writes
-600 original synthetic corpus sentences, actual 24-row deals at 15/100/200,
-full vote traces and sensitivity results to ignored `out/`. It also updates
-[sample-sheet.md](sample-sheet.md), one real sheet's rows in readable form.
-This is not the final print layout; use the existing Swift rectangles later.
-
-The full corpus and decks are reproducible local artifacts, not extra committed
-print histories. `out/report.json` records exact votes and the reweighted corpus
-comparison. No external literary work or source dataset is required.
-
-One left word/color cue occurs at most once on a sheet. Every chosen right cue
-has left-side coverage elsewhere. Each sheet has 24 rows and the graph 35 cues.
-The dot is a punctuation token, not a UI separator: stop on it rather than taking
-its printed reset edge back to `one`.
-
-The guarantee comes from an explicitly authored grammar and contextual colors,
-not inferred English syntax. The model chooses actual next words, appending each
-one, without the old sentence-lab's unrelated-slot edits. The final free-text
-pivot is a separate, clearly announced human editing step.
-
-## Browser rehearsal
-
-Run `python3 paperweights/serve.py --rover-only --bind 0.0.0.0` and select
-Sentences, or open `/paperweights/web/sentences.html`. The build uses the RM3 `branching.py` corpus and shared deal function to populate `sentence-packs/{15,100,200}.json` inside
-the assembled site. It does not create PDFs. Source UI lives in
-`paperweights/web/sentences.html`, `sentences.js` and `sentence-model.js`.
-
-Next word samples one real matching sheet. Majority word samples distinct matching
-people up to the Voters limit; empty means all. Requests above the available
-matches use all matches. Ties use alphabetical cue order. Reset clears the chain
-and next click draws afresh. This simulates voting, not a live ballot collector.
+The live rehearsal uses [RM4 mixed corpus](MIXED.md): 116 word/punctuation cues,
+24 rows per sheet, repeated matching cues and one vote per person. The corpus
+is in [mixed-corpus.txt](mixed-corpus.txt); its explicit weights favor neutral
+robot passages while random sampling wanders through the surrounding text.
 
 ```sh
+python3 paperweights/robot-majority/mixed.py
+python3 paperweights/build_site.py --output paperweights/out/rover-review
 node paperweights/tools/test-sentence-model.mjs
 node paperweights/tools/play-sentence-words.mjs
 ```
+
+Select Sentences in the Rover/Households switch, or open
+`/paperweights/web/sentences.html`. Choose any starting cue. Next word samples
+one matching person and one of their matching rows. Majority word counts one
+randomly selected row per person, up to the Voters limit; blank means everyone
+matching. Reset retains the starting cue. Punctuation also chains normally.
+
+Reports and generated packs remain local, reproducible artifacts. The build
+writes `sentence-packs/{15,100,200}.json` in the assembled site. No PDFs are made.
+Existing printouts are not the new corpus. Rover/Households rules are unchanged.
+
+## Archived experiments
+
+- `baseline.py`: majority behavior of the older literary blend.
+- `experiment.py`: RM1 constrained grammar with 600 generated sentences.
+- `branching.py`: RM3 manually authored open graph; [archived design](BRANCHING.md).
+- [Original feasibility narrative](../../narrative/ROBOT_MAJORITY.md).
+
+The old `sample-sheet.md` belongs to RM1, not the live mixed corpus. Scripts use
+only the Python standard library. The browser uses actual dealt rows, not an
+external model or a live audience ballot collector.

@@ -1,6 +1,8 @@
 # Majority words -> robot sentence -> audience pivot
 
-Current rehearsal: [RM3 open word chains](../paperweights/robot-majority/BRANCHING.md) supersede the constrained RM1 corpus described below. All sheet cues can now start a chain, including punctuation. Random chains loop and cross narratives; the three suggested openings retain neutral majority paths.
+Current live rehearsal: [RM4 mixed corpus and measured results](../paperweights/robot-majority/MIXED.md). It supersedes the earlier phase-colored prototypes below. Random hands wander through a broader corpus; full-room voting favors the weighted neutral passages.
+
+The material below records the archived RM1 feasibility study. Use the RM4 link above for current behavior and results.
 
 19 October 2026. Pre-print feasibility test. Household rules and the existing print snapshot are unchanged. No new PDFs have
 been generated. The later Sentences rehearsal is described below.

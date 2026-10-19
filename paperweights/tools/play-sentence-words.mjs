@@ -28,31 +28,28 @@ await p.locator('#voters').fill('5');
 for(let i=0;i<30;i++)await p.locator('#majority').click();
 s=await p.evaluate(()=>sentenceWords.state());
 for(const t of s.trace){
-  assert.equal(t.total,5);assert.equal(new Set(t.voterIds).size,5);const counts={};
-  for(const id of t.voterIds){const pair=pack.sheets[id-1].find(([from])=>from===t.from);assert.ok(pair);counts[pair[1]]=(counts[pair[1]]||0)+1}
+  assert.equal(t.total,Math.min(5,t.eligible));assert.equal(new Set(t.voterIds).size,t.total);const counts={};
+  for(const ballot of t.ballots){const pair=pack.sheets[ballot.id-1].filter(([from])=>from===t.from)[ballot.matchIndex];assert.ok(pair);assert.equal(pair[1],ballot.next);counts[pair[1]]=(counts[pair[1]]||0)+1}
   assert.deepEqual(t.counts,counts);assert.equal(t.counts[t.chosen],Math.max(...Object.values(counts)));
 }
 await p.locator('#voters').fill('');
-const expected=[
- 'One night the old man found his robot checking every boat by the harbour.',
- 'Each morning a young nurse watched her robot sorting every file inside our clinic.',
- 'That evening a quiet farmer saw his robot counting each seed beside his barn.'
-];
+const expected=pack.expectedRoutes.map(route=>{const words=route.map(k=>k.split(':')[1]);return (words[0][0].toUpperCase()+words[0].slice(1)+' '+words.slice(1).join(' ')).replace(/ ([.,!?])/g,'$1')});
 for(let i=0;i<pack.starts.length;i++){
  await p.selectOption('#opening',pack.starts[i]);await p.locator('#reset').click();
- for(let j=0;j<14;j++)await p.locator('#majority').click();
+ for(let j=0;j<pack.expectedRoutes[i].length-1;j++)await p.locator('#majority').click();
  assert.equal(await p.locator('#sentence').innerText(),expected[i]);
  assert.ok(await p.locator('#next').isEnabled());await p.locator('#majority').click();
- assert.equal((await p.evaluate(()=>sentenceWords.state())).words.at(-1),pack.start);
+ assert.equal((await p.evaluate(()=>sentenceWords.state())).words.length,pack.expectedRoutes[i].length+1);
 }
-await p.selectOption('#opening','BLUE:,');await p.locator('#majority').click();
-assert.equal(await p.locator('#sentence').innerText(),', one');
+await p.screenshot({path:'paperweights/robot-majority/out/mixed-majority.png'});
+const comma=cues.find(c=>c.endsWith(':,'));await p.selectOption('#opening',comma);await p.locator('#majority').click();
+assert.ok((await p.locator('#sentence').innerText()).startsWith(', '));
 await p.locator('#reset').click();assert.equal(await p.locator('#sentence').innerText(),',');
 await p.selectOption('#opening',cues.find(c=>c.endsWith(':robot')));
 await p.selectOption('#people','15');await p.waitForFunction(()=>sentenceWords.state().size===15);
 assert.equal((await p.evaluate(()=>sentenceWords.state())).words[0].split(':')[1],'robot');
 await p.locator('#voters').fill('200');await p.locator('#majority').click();s=await p.evaluate(()=>sentenceWords.state());
-assert.equal(s.trace[0].total,s.trace[0].eligible);assert.ok(s.trace[0].total<15);
+assert.equal(s.trace[0].total,s.trace[0].eligible);assert.ok(s.trace[0].total<=15);
 await p.locator('#theme').click();await p.setViewportSize({width:680,height:900});
 await p.screenshot({path:'paperweights/robot-majority/out/words-half-light.png'});
 assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));

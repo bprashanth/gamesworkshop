@@ -117,3 +117,7 @@ The rehearsal now uses branching sheet data with three openings, neutral majorit
 ## 2026-10-20 - Any starting cue and punctuation
 
 Sentences now uses RM3: all 46 sheet cues are selectable as the first token, including `. , ! ?`. Chaining continues after punctuation; minority links can loop and go backwards. Full-room majority retains the three neutral robot routes. See [design](robot-majority/BRANCHING.md). No PDFs changed.
+
+## 2026-10-20 - Swift-style mixed corpus
+
+Sentences now uses RM4: 116 cues from weighted passages, repeated left cues per sheet, one randomly selected matching row per voter. Full-room neutral routes and random chains were compared at 15/100/200 sheets. See [model and results](robot-majority/MIXED.md). Existing printouts unchanged.

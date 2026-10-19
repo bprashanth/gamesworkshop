@@ -1,5 +1,7 @@
 # RM3 - Open word chains
 
+Archived RM3 design. The live rehearsal now uses [RM4](MIXED.md).
+
 The live Sentences rehearsal uses `branching.py`. The old `experiment.py` is an
 RM1 baseline. RM2 added minority branches but still forced forward-only progress
 and stopped at a full stop. RM3 removes both restrictions.

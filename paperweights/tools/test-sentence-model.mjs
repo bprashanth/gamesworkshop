@@ -17,14 +17,17 @@ assert.equal(chooseWord(fixture, 'RED:the', 'random', null, () => .99).chosen, '
 assert.equal(chooseWord(fixture, 'RED:the', 'random', 4).total, 1);
 assert.equal(chooseWord(fixture, 'RED:the', 'majority', 200).total, 4);
 assert.deepEqual(chooseWord(fixture, 'AMBER:absent', 'majority'), {
-  chosen: null, counts: {}, voterIds: [], eligible: 0, total: 0, tie: false,
+  chosen: null, counts: {}, voterIds: [], ballots: [], eligible: 0, total: 0, tie: false,
 });
 for (const bad of [0, -1, .5, NaN, '2', Infinity]) {
   assert.throws(() => chooseWord(fixture, 'RED:the', 'majority', bad), RangeError);
 }
 assert.throws(() => chooseWord(fixture, 'RED:the', 'bad'), RangeError);
 assert.throws(() => chooseWord(fixture, 'RED:the', 'random', null, () => 1), RangeError);
-assert.throws(() => matchingSheets({sheets: [[['RED:x', 'BLUE:y'], ['RED:x', 'BLUE:z']]]}, 'RED:x'), /repeats/);
+const repeated = {sheets: [[['RED:x','BLUE:y'],['RED:x','BLUE:z']], [['RED:x','BLUE:z']]]};
+assert.equal(chooseWord(repeated,'RED:x','majority',null,()=>.99).counts['BLUE:z'],2);
+assert.equal(chooseWord(repeated,'RED:x','majority',null,()=>0).total,2);
+assert.equal(chooseWord({sheets:[Array.from({length:100},()=>['RED:x','BLUE:y']),[['RED:x','BLUE:z']]]},'RED:x','majority').total,2);
 
 function rng(seed) {
   return () => ((seed = Math.imul(1664525, seed) + 1013904223 >>> 0) / 4294967296);
@@ -37,18 +40,22 @@ for (const size of [15, 100, 200]) {
   const cues = [...new Set(pack.sheets.flatMap(s => s.map(([left]) => left)))];
   for (const cue of cues) {
     const full = chooseWord(pack, cue, 'majority');
+    assert.equal(full.total, matchingSheets(pack,cue).length);
     const actual = {};
-    for (const sheet of pack.sheets) for (const [left, right] of sheet) {
-      if (left === cue) actual[right] = (actual[right] || 0) + 1;
+    for(const ballot of full.ballots){
+      const rows=pack.sheets[ballot.id-1].filter(([left])=>left===cue);
+      assert.equal(rows[ballot.matchIndex][1],ballot.next);
+      actual[ballot.next]=(actual[ballot.next]||0)+1;
     }
-    assert.deepEqual(full.counts, actual);
+    assert.deepEqual(full.counts,actual);
     const sampled = chooseWord(pack, cue, 'majority', 5, rng(42));
     assert.deepEqual(sampled, chooseWord(pack, cue, 'majority', 5, rng(42)));
     assert.equal(new Set(sampled.voterIds).size, sampled.total);
     assert.equal(sampled.total, Math.min(5, full.eligible));
     const counted = {};
-    for (const id of sampled.voterIds) {
-      const right = pack.sheets[id - 1].find(([left]) => left === cue)[1];
+    for (const ballot of sampled.ballots) {
+      const right = pack.sheets[ballot.id - 1].filter(([left]) => left === cue)[ballot.matchIndex][1];
+      assert.equal(right,ballot.next);
       counted[right] = (counted[right] || 0) + 1;
     }
     assert.deepEqual(sampled.counts, counted);
@@ -59,7 +66,7 @@ for (const size of [15, 100, 200]) {
     for (let turn = 0; turn < 40; turn++) {
       const result = chooseWord(pack, cue, kind, kind === 'majority' && seed % 2 ? 5 : null, random);
       assert.ok(result.chosen);
-      assert.ok(matchingSheets(pack, cue).some(person => person.next === result.chosen));
+      assert.ok(matchingSheets(pack, cue).some(person => person.options.includes(result.chosen)));
       cue = result.chosen;
 
     }

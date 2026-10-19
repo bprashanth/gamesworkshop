@@ -77,18 +77,18 @@ the team. This remaining consequence difference is intentional in this trial.
 Choose **Sentences** in the Rover/Households scenario switch, or open
 [Sentences](http://localhost:8684/paperweights/web/sentences.html).
 
-- Select 15, 100 or 200 sheets. Starts at `RED one`.
-- **Next word** selects one random matching sheet and appends its response.
-- **Majority word** samples up to the specified number of matching voters,
-  once per person, and appends the winning word. Blank Voters means all matches.
-- Reset returns to the starting word. Each limited-voter draw samples afresh;
-  full-room majority uses the same dealt counts. Stop at the full stop.
-- Last draw reveals the exact counts and sheet IDs if you want to audit a choice.
+- Select 15, 100 or 200 sheets and any starting word/color, including punctuation.
+- **Next word** chooses one matching person, then one matching row on their sheet.
+- **Majority word** samples matching people without replacement. Each randomly
+  selects one matching row and casts one vote. Blank Voters means everyone matching.
+- Reset retains your starting cue. Both modes can continue through punctuation.
+- Last draw shows counts, sheet IDs and the matching row chosen by each voter.
 
-These are actual generated sheet rows from the authored robot corpus, not live
-votes or an external language model. The build regenerates the three deals;
-no sentence PDFs or Household reverse sides are produced by this rehearsal.
-[Experiment design and validation](narrative/ROBOT_MAJORITY.md).
+These are actual generated rows from a weighted mixed corpus. Three suggested
+openings favor neutral robot sentences under full-room voting; random hands can
+wander and loop. Small rooms and limited turnout are less reliable. The build
+regenerates the deals; no PDFs or Household reverse sides are produced here.
+[Corpus, regeneration and measured results](paperweights/robot-majority/MIXED.md).
 
 ## Sheets and printouts
 

@@ -6,8 +6,7 @@ export function matchingSheets(pack, cue) {
   if (!pack || !Array.isArray(pack.sheets)) throw new TypeError('Missing sheet deal');
   return pack.sheets.flatMap((sheet, index) => {
     const rows = sheet.filter(([left]) => left === cue);
-    if (rows.length > 1) throw new Error(`Sheet ${index + 1} repeats cue ${cue}`);
-    return rows.length ? [{id: index + 1, next: rows[0][1]}] : [];
+    return rows.length ? [{id: index + 1, options: rows.map(row => row[1])}] : [];
   });
 }
 
@@ -15,7 +14,8 @@ export function matchingSheets(pack, cue) {
  * people uniformly without replacement; null means everyone eligible.
  * counts keys are complete next cues. total is votes cast, eligible is matching
  * people. Ties use ascending cue order, without inventing an unseen edge.
- * No matches returns chosen:null and empty counts. Caller stops at punctuation.
+ * Each person randomly selects one matching row, including repeated rows.
+ * No matches returns chosen:null and empty counts. Punctuation chains normally.
  * rng must return a number in [0,1); inject it for reproducible rehearsals.
  */
 export function chooseWord(pack, cue, kind, limit = null, rng = Math.random) {
@@ -35,13 +35,24 @@ export function chooseWord(pack, cue, kind, limit = null, rng = Math.random) {
     [people[i], people[j]] = [people[j], people[i]];
   }
   const voters = people.slice(0, total);
-  const counts = {};
-  for (const person of voters) counts[person.next] = (counts[person.next] || 0) + 1;
+  const counts = {}, ballots = [];
+  for (const person of voters) {
+    let matchIndex = 0;
+    if (person.options.length > 1) {
+      const draw = rng();
+      if (!Number.isFinite(draw) || draw < 0 || draw >= 1) throw new RangeError('Invalid random draw');
+      matchIndex = Math.floor(draw * person.options.length);
+    }
+    const next = person.options[matchIndex];
+    ballots.push({id: person.id, next, matchIndex});
+    counts[next] = (counts[next] || 0) + 1;
+  }
   const ranked = Object.keys(counts).sort((a, b) => counts[b] - counts[a] || (a < b ? -1 : a > b ? 1 : 0));
   return {
     chosen: ranked[0] ?? null,
     counts,
     voterIds: voters.map(person => person.id),
+    ballots,
     eligible,
     total,
     tie: ranked.length > 1 && counts[ranked[0]] === counts[ranked[1]],
