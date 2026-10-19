@@ -22,17 +22,14 @@ def build(output=None):
     shutil.copytree(ROOT / 'households', target / 'households', dirs_exist_ok=True,
                     ignore=shutil.ignore_patterns('out', '__pycache__'))
     # Reproduce actual sentence-sheet deals from the reviewed corpus. No PDFs.
-    spec = importlib.util.spec_from_file_location('robot_majority', ROOT / 'paperweights/robot-majority/experiment.py')
+    spec = importlib.util.spec_from_file_location('robot_majority', ROOT / 'paperweights/robot-majority/branching.py')
     sentence_model = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(sentence_model)
-    edges = sentence_model.graph(sentence_model.corpus())
-    sentence_model.audit(edges)
     sentence_dest = dest / 'sentence-packs'
     sentence_dest.mkdir(exist_ok=True)
     for size in (15, 100, 200):
-        data = dict(size=size, seed=42, sheets=sentence_model.deal(edges, size, 42),
-                    start='RED:one', source='Original authored robot corpus - 600 examples')
-        data['id'] = 'RM1-' + str(size) + '-' + hashlib.sha256(json.dumps(data, sort_keys=True).encode()).hexdigest()[:10]
+        data = sentence_model.pack(size)
+        data['id'] = 'RM2-' + str(size) + '-' + hashlib.sha256(json.dumps(data, sort_keys=True).encode()).hexdigest()[:10]
         (sentence_dest / f'{size}.json').write_text(json.dumps(data, separators=(',', ':')) + '\n')
     stages = json.loads((dest / 'stages.json').read_text())
     for stage in stages:

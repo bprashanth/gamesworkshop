@@ -20,7 +20,7 @@ function render(){
  const people=document.createElement('p');people.textContent=`Sheet IDs: ${last.voterIds.join(', ')}`;$('#audit-body').append(people);
  }else $('#audit-body').textContent='Next word samples one matching sheet. Majority word samples up to the voter limit without counting anyone twice. Leave Voters empty to use all matching sheets.';
 }
-function reset(){if(!pack)return;words=[pack.start];trace=[];$('#error').textContent='';render()}
+function reset(){if(!pack)return;words=[$('#opening').value||pack.start];trace=[];$('#error').textContent='';render()}
 function step(kind){if(!pack||pending||finished())return false;
  const input=$('#voters');let limit=null;
  if(kind==='majority'){if(!input.reportValidity())return false;if(input.value!=='')limit=Number(input.value)}
@@ -28,9 +28,9 @@ function step(kind){if(!pack||pending||finished())return false;
  if(!result.chosen){$('#error').textContent='No matching sheet for this cue';return false}
  trace.push({...result,from,kind});words.push(result.chosen);$('#error').textContent='';render();return result;
 }
-async function load(){const id=++loadId;pending=true;if(pack)render();try{const size=Number($('#people').value);const r=await fetch(`sentence-packs/${size}.json`);if(!r.ok)throw Error('Unable to load sheet pack');const data=await r.json();if(id!==loadId)return;pack=data;const u=new URL(location.href);u.searchParams.set('scenario','sentences');u.searchParams.set('sheets',size);history.replaceState(null,'',u);pending=false;reset()}catch(e){if(id===loadId){pending=false;$('#people').disabled=false;$('#next').disabled=$('#majority').disabled=true;$('#error').textContent=e.message;}}}
+async function load(){const id=++loadId;pending=true;if(pack)render();try{const size=Number($('#people').value);const r=await fetch(`sentence-packs/${size}.json`);if(!r.ok)throw Error('Unable to load sheet pack');const data=await r.json();if(id!==loadId)return;pack=data;const previous=$('#opening').value;$('#opening').replaceChildren(...(pack.starts||[pack.start]).map(key=>{const option=document.createElement('option');option.value=key;option.textContent=`Start: ${split(key).word}`;return option}));if(pack.starts?.includes(previous))$('#opening').value=previous;const u=new URL(location.href);u.searchParams.set('scenario','sentences');u.searchParams.set('sheets',size);history.replaceState(null,'',u);pending=false;reset()}catch(e){if(id===loadId){pending=false;$('#people').disabled=false;$('#next').disabled=$('#majority').disabled=true;$('#error').textContent=e.message;}}}
 $('#people').value=['15','100','200'].includes(params.get('sheets'))?params.get('sheets'):'200';
-$('#people').onchange=load;$('#next').onclick=()=>step('random');$('#majority').onclick=()=>step('majority');$('#reset').onclick=reset;
+$('#opening').onchange=reset;$('#people').onchange=load;$('#next').onclick=()=>step('random');$('#majority').onclick=()=>step('majority');$('#reset').onclick=reset;
 $('#theme').onclick=()=>{theme=theme==='dark'?'light':'dark';try{localStorage.setItem('paperweights.theme.v1',theme)}catch{}render()};
 $('#scenario').onchange=e=>{const u=new URL('./',location.href);u.search=location.search;u.searchParams.set('scenario',e.target.value);location.assign(u)};
 window.sentenceWords={state:()=>({packId:pack?.id,words:[...words],trace:structuredClone(trace),size:pack?.size}),step,reset};

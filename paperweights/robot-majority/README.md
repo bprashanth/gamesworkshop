@@ -1,5 +1,7 @@
 # Robot majority experiment
 
+The live browser now uses [RM2 branching sheets](BRANCHING.md). The RM1 experiment described below is retained as a baseline, not the current browser corpus.
+
 Pre-print experiment. No PDFs generated. A Sentences rehearsal is now available
 in the competitive scenario switch; Rover/Household rules remain unchanged.
 See [the narrative and decision](../../narrative/ROBOT_MAJORITY.md).
@@ -33,8 +35,7 @@ pivot is a separate, clearly announced human editing step.
 ## Browser rehearsal
 
 Run `python3 paperweights/serve.py --rover-only --bind 0.0.0.0` and select
-Sentences, or open `/paperweights/web/sentences.html`. The build uses this exact
-corpus and deal function to populate `sentence-packs/{15,100,200}.json` inside
+Sentences, or open `/paperweights/web/sentences.html`. The build uses the RM2 `branching.py` corpus and shared deal function to populate `sentence-packs/{15,100,200}.json` inside
 the assembled site. It does not create PDFs. Source UI lives in
 `paperweights/web/sentences.html`, `sentences.js` and `sentence-model.js`.
 

@@ -109,3 +109,7 @@ three grains, two grains, and one drooping grain.
 See [trial design](../narrative/automation_handoff_trial.md). Rollback baseline:
 `trial-before-ai-handoff-2026-10-19` (`3f7c3b4`). Existing PDFs are not regenerated
 for this trial.
+
+## 2026-10-20 - Sentences RM2
+
+The rehearsal now uses branching sheet data with three openings, neutral majority paths and noisy random chains. See [design and verification](robot-majority/BRANCHING.md). No PDFs regenerated.

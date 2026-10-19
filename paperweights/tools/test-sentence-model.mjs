@@ -54,14 +54,15 @@ for (const size of [15, 100, 200]) {
     assert.deepEqual(sampled.counts, counted);
   }
   for (const kind of ['random', 'majority']) for (let seed = 0; seed < 100; seed++) {
-    let cue = 'RED:one';
+    let cue = pack.starts[seed % pack.starts.length];
     const random = rng(seed);
     for (let turn = 0; turn < 14; turn++) {
       const result = chooseWord(pack, cue, kind, kind === 'majority' && seed % 2 ? 5 : null, random);
       assert.ok(result.chosen);
       assert.ok(matchingSheets(pack, cue).some(person => person.next === result.chosen));
       cue = result.chosen;
-      assert.equal(cue.endsWith(':.'), turn === 13, `Unexpected stop at turn ${turn}`);
+      if(cue.endsWith(':.')) break;
+      assert.ok(turn < 13, 'Every chain must terminate by 14 transitions');
     }
   }
   assert.equal(JSON.stringify(pack), before, 'Voting must not mutate sheets');
