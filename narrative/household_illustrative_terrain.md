@@ -19,3 +19,11 @@ The complement of net attendance is not dropout probability: some children atten
 ## Validation
 
 Playwright checked 1440 x 900, sector selection, zoom and route toggle without browser errors. Screenshots are local under `households/out/landscape-wide.png` and `households/out/landscape-region.png`. Rebuild the review site with `python3 paperweights/build_site.py --output paperweights/out/rover-review`.
+
+## Hard map integration
+
+Hard now uses this rural relief as its contour background. The study and game
+share `households/terrain.js` so their relief transformation stays identical.
+The existing route, action-dependent branches, month boundaries and outcomes
+remain unchanged. This is a visual replacement, not a new risk model. Medium
+and collaborative maps retain the original Mars terrain.

@@ -1,27 +1,12 @@
 // Measured values control height only. Spatial arrangement and routes are illustration.
 const data=await(await fetch('./research/attendance.json')).json();
 const canvas=document.querySelector('#terrain'),ctx=canvas.getContext('2d');
-const W=1600,H=900,NX=321,NY=181;
+import {reliefField,W,H,NX,NY} from './terrain.js';
 let zoom=1,showRoutes=true,field,paths;
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 function build(){
  const values=data[document.querySelector('#sector').value],relief=+document.querySelector('#relief').value;
- const peaks=[];
- for(let stage=0;stage<4;stage++)for(let quintile=0;quintile<5;quintile++){
-  const i=stage*5+quintile;
-  peaks.push({x:190+quintile*286+Math.sin(stage*2.1+quintile)*80,y:135+stage*205+Math.cos(quintile*1.4+stage)*68,
-   amplitude:Math.pow((100-values[stage][quintile])/75,relief),sx:100+(i%3)*20,sy:74+(i%4)*10});
- }
- field=new Float32Array(NX*NY);
- for(let j=0;j<NY;j++)for(let i=0;i<NX;i++){
-  const x=i*5,y=j*5;
-  // Fixed folds add texture without pretending to add measured observations.
-  const u=x+35*Math.sin(y/88)+20*Math.sin((x+y)/61),v=y+29*Math.sin(x/106)+12*Math.cos((x-y)/43);
-  let z=0;
-  for(const p of peaks){const dx=(u-p.x)/p.sx,dy=(v-p.y)/p.sy;z+=p.amplitude*Math.exp(-.5*(dx*dx+dy*dy));}
-  const grain=1+.07*Math.sin(x/17+y/29)+.035*Math.cos(y/11-x/23);
-  field[j*NX+i]=z*grain;
- }
+ field=reliefField(values,relief);
  // Terrain-aware illustrative traverses. Their cost is designed, not inferred.
  paths=Array.from({length:4},(_,team)=>{
   const cols=151,rows=81,cost=Array.from({length:cols},()=>new Float64Array(rows).fill(Infinity)),back=Array.from({length:cols},()=>new Int16Array(rows));

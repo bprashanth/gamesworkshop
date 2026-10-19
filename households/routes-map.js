@@ -1,14 +1,15 @@
+import {reliefDots} from './terrain.js';
 // Shared reference terrain, with independent team positions and hazard rows.
-import {Screen,contourDots,routeDots,DH} from '../paperweights/web/screen.js';
+import {Screen,routeDots,DW,DH} from '../paperweights/web/screen.js';
 const map=await(await fetch(new URL('../paperweights/web/map.json',import.meta.url))).json();
-const canvas=document.querySelector('#shared-canvas'),screen=new Screen(canvas),contours=contourDots(map),route=routeDots(map);
+const canvas=document.querySelector('#shared-canvas'),screen=new Screen(canvas),contours=reliefDots((await(await fetch(new URL('research/attendance.json',import.meta.url))).json()).rural,DW,DH),route=routeDots(map);
 let active='A';
 document.querySelector('#teams').addEventListener('pointerdown',e=>{const team=e.target.closest('.team');if(team)active=team.dataset.team});
 function draw(){
  if(window.paperweights){
   const state=paperweights.state(),list=[],selected=state.teams.find(t=>t.id===active),band=selected?.activeBand;
   document.querySelectorAll('.team').forEach(el=>el.classList.toggle('map-focus',el.dataset.team===active));
-  for(const d of contours){const[x,y]=screen.px(d.dx,d.dy);list.push({x,y,c:d.c,a:.6})}
+  for(const d of contours){const[x,y]=screen.px(d.dx,d.dy);list.push({x,y,c:d.c,a:.8,s:d.s})}
   if(band)for(const dx of[band.left,band.right])for(let dy=0;dy<DH;dy+=2){const[x,y]=screen.px(dx,dy);list.push({x,y,c:'#e6e6e1',a:.65,s:1})}
   for(const d of route){const[x,y]=screen.px(d.dx,d.dy);list.push({x,y,c:'#8a8a86',a:.25,s:.8})}
   for(const t of state.teams)for(const d of t.path){const[x,y]=screen.px(d.dx,d.dy);list.push({x,y,c:t.status==='eliminated'?'#d06c58':'#e6e6e1',a:t.id===active?.9:.45,s:t.id===active?1.3:1})}
