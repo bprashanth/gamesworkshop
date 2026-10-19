@@ -1,6 +1,7 @@
 # Robot majority experiment
 
-Pre-print experiment only. No PDFs generated, and neither running game changed.
+Pre-print experiment. No PDFs generated. A Sentences rehearsal is now available
+in the competitive scenario switch; Rover/Household rules remain unchanged.
 See [the narrative and decision](../../narrative/ROBOT_MAJORITY.md).
 
 ```sh
@@ -28,3 +29,21 @@ The guarantee comes from an explicitly authored grammar and contextual colors,
 not inferred English syntax. The model chooses actual next words, appending each
 one, without the old sentence-lab's unrelated-slot edits. The final free-text
 pivot is a separate, clearly announced human editing step.
+
+## Browser rehearsal
+
+Run `python3 paperweights/serve.py --rover-only --bind 0.0.0.0` and select
+Sentences, or open `/paperweights/web/sentences.html`. The build uses this exact
+corpus and deal function to populate `sentence-packs/{15,100,200}.json` inside
+the assembled site. It does not create PDFs. Source UI lives in
+`paperweights/web/sentences.html`, `sentences.js` and `sentence-model.js`.
+
+Next word samples one real matching sheet. Majority word samples distinct matching
+people up to the Voters limit; empty means all. Requests above the available
+matches use all matches. Ties use alphabetical cue order. Reset clears the chain
+and next click draws afresh. This simulates voting, not a live ballot collector.
+
+```sh
+node paperweights/tools/test-sentence-model.mjs
+node paperweights/tools/play-sentence-words.mjs
+```

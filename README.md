@@ -72,6 +72,24 @@ the team. This remaining consequence difference is intentional in this trial.
 [PW6 evidence model](paperweights/competition/EVIDENCE.md) -
 [Current summary](paperweights/SUMMARY.md).
 
+## Sentences rehearsal
+
+Choose **Sentences** in the Rover/Households scenario switch, or open
+[Sentences](http://localhost:8684/paperweights/web/sentences.html).
+
+- Select 15, 100 or 200 sheets. Starts at `RED one`.
+- **Next word** selects one random matching sheet and appends its response.
+- **Majority word** samples up to the specified number of matching voters,
+  once per person, and appends the winning word. Blank Voters means all matches.
+- Reset returns to the starting word. Each limited-voter draw samples afresh;
+  full-room majority uses the same dealt counts. Stop at the full stop.
+- Last draw reveals the exact counts and sheet IDs if you want to audit a choice.
+
+These are actual generated sheet rows from the authored robot corpus, not live
+votes or an external language model. The build regenerates the three deals;
+no sentence PDFs or Household reverse sides are produced by this rehearsal.
+[Experiment design and validation](narrative/ROBOT_MAJORITY.md).
+
 ## Sheets and printouts
 
 **The existing printable packs are PW5. The current game is PW6.** PW5 sheets use

@@ -1,7 +1,7 @@
 # Majority words -> robot sentence -> audience pivot
 
-19 October 2026. Pre-print feasibility test. The current household game and
-existing print snapshot are untouched. No new PDFs have been generated.
+19 October 2026. Pre-print feasibility test. Household rules and the existing print snapshot are unchanged. No new PDFs have
+been generated. The later Sentences rehearsal is described below.
 
 ## Recommendation
 
@@ -150,3 +150,20 @@ word mechanic and Household lookup encoding are ready.
 Run both scripts from the lab README. Full corpus, actual deals, baseline traces,
 per-turn vote traces and sweep statistics are reproducible in the ignored
 `paperweights/robot-majority/out/` directory. No existing server was restarted.
+
+## Playable Sentences rehearsal
+
+Now available from the shared Rover/Households/Sentences selector at
+`http://100.82.28.38:8684/paperweights/web/sentences.html`. It uses the same authored
+corpus and actual 15/100/200-sheet deals tested above. No map or pivot editing is
+included in this simple chaining rehearsal.
+
+Next word picks one matching person. Majority word samples the requested number
+of matching people without replacement, capped by available matches. Leave the
+input empty for all matching people. It appends the winning next word/color,
+with alphabetical ties. Reset starts again from RED one; the full stop ends play.
+
+An optional Last draw detail exposes counts and voter sheet IDs. The normal view
+only shows the chain, current cue and controls. It uses the game's dark/light
+palette. The common site build reproduces the source deals, so no manually
+maintained large pack copies are required in Git.

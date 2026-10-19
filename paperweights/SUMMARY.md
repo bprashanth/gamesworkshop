@@ -1,5 +1,11 @@
 # Paper Weights - current summary
 
+Sentences is available in the scenario switcher for the robot word rehearsal:
+random matching-sheet picks or majority votes from a configurable number of
+matching people, at 15/100/200 sheets. See [experiment](../narrative/ROBOT_MAJORITY.md).
+This is append-only chaining; it does not revive the paused slot-editing game.
+
+
 ## Current trial - shared scenarios and stages
 
 Rover and Households now share the competitive engine, Mars map and card layout.
