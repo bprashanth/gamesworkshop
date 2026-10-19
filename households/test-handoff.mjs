@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {chromium} from '../space/rover-run/src/node_modules/playwright/index.mjs';
+const browser=await chromium.launch();const page=await browser.newPage({viewport:{width:1366,height:768}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.goto('http://localhost:8684/households/game.html?seed=15');await page.waitForFunction(()=>window.paperweights);
+const team=()=>page.evaluate(()=>paperweights.state().teams[0]);
+await page.locator('[data-team=A] [data-poll=ai]').click();const before=await team();assert.ok(before.polls.ai);
+for(let i=0;i<3;i++)await page.locator('[data-team=A] [data-judgement]').click();
+const after=await team();assert.equal(after.judgements,0);assert.equal(after.tokens,3);assert.deepEqual(after.polls,before.polls);assert.deepEqual(after.revealed,before.revealed);assert.ok(await page.locator('[data-team=A] [data-judgement]').isDisabled());
+const hidden=await page.locator('[data-team=A] .card:not(.up)').first();await hidden.click();assert.equal((await team()).tokens,2);assert.deepEqual((await team()).polls,{});
+await page.locator('[data-team=A] [data-poll=ai]').click();assert.ok((await team()).polls.ai);
+await page.screenshot({path:'households/out/ai-handoff-hard.png'});
+await page.locator('[data-team=A] .reset-team').click();assert.equal((await team()).judgements,3);assert.equal((await team()).tokens,3);assert.deepEqual(errors,[]);
+await browser.close();console.log('PASS hard AI, separate judgement budget, poll invalidation and reset');

@@ -13,10 +13,10 @@ for(const seed of [15,16,17,18]){
  for(let turn=0;turn<6;turn++)for(let i=0;i<4;i++){
   let t=(await state()).teams[i];if(t.status!=='deciding')continue;
   await click(i,'[data-poll]');t=(await state()).teams[i];
-  const first=structuredClone(t.polls.audience.counts);
+  const first=structuredClone(t.polls.ai.counts);
   const choice=Object.entries(first).sort((a,b)=>b[1]-a[1])[0][0];
   if(!['go','avoid'].includes(choice)&&t.tokens>0){await click(i,`[data-category=${choice}]`);await click(i,'[data-poll]');t=(await state()).teams[i]}
-  const counts=t.polls.audience.counts;
+  const counts=t.polls.ai.counts;
   // Moderate threshold preserves scarce support for evidence of risk.
   const risk=counts.avoid/(counts.go+counts.avoid||1);
   const action=t.support>0&&risk>=.4?'avoid':'go';

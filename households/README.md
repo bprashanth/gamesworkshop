@@ -67,3 +67,20 @@ The narrative report records the reviewed findings without checking in screensho
 [Sources, interpretation and route design](../narrative/household_evidence_landscape.md).
 This separate study uses government attendance tables. HH2 game probabilities
 remain synthetic; the study does not calibrate intervention effects.
+
+## Automation handoff trial
+
+Easy keeps human Go/Avoid decisions. Medium adds AI for Go/Avoid estimates;
+Audience supplies only card suggestions. Hard moves both estimates into AI,
+while Audience spends one of three consultations with the room and does not
+produce a machine vote. Hard retains three extra card reveals separately from
+those consultations, plus its existing two interventions. Harvest icons now
+use three grains, two grains, and one drooping grain.
+
+Rollback baseline: git tag `trial-before-ai-handoff-2026-10-19` (commit
+`3f7c3b4`). The prior game can be run from a separate worktree at that tag.
+
+[Illustrative terrain preview](http://100.82.28.38:8684/households/landscape.html)
+adds relief, zoom and four route sketches. It transforms the measured attendance
+values into terrain; it is not a historical or forecast geographic map. See
+[transformation notes](../narrative/household_illustrative_terrain.md).

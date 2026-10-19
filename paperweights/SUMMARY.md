@@ -76,3 +76,15 @@ PW6 remains digital-only. Full old packs and previews remain on disk but ignored
 Printing no longer changes the active game unless `--install-game` is explicit.
 The independent `moon/claude/` Moon Run fork is also local/ignored, with no Rover
 gameplay or deployment dependency.
+
+## Automation handoff trial - 2026-10-19
+
+Easy remains room-led Go/Avoid. Medium separates AI Go/Avoid estimates from
+Audience card-only suggestions. Hard puts mixed suggestions under AI; Audience
+spends a human consultation without generating a poll. Hard keeps its separate
+three-reveal and two-intervention budgets. Household harvest glyphs are now
+three grains, two grains, and one drooping grain.
+
+See [trial design](../narrative/automation_handoff_trial.md). Rollback baseline:
+`trial-before-ai-handoff-2026-10-19` (`3f7c3b4`). Existing PDFs are not regenerated
+for this trial.
