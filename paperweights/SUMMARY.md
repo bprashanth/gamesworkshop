@@ -121,3 +121,7 @@ Sentences now uses RM3: all 46 sheet cues are selectable as the first token, inc
 ## 2026-10-20 - Swift-style mixed corpus
 
 Sentences now uses RM4: 116 cues from weighted passages, repeated left cues per sheet, one randomly selected matching row per voter. Full-room neutral routes and random chains were compared at 15/100/200 sheets. See [model and results](robot-majority/MIXED.md). Existing printouts unchanged.
+
+## 2026-10-20 - Prior duplex comparison
+
+Sentences adds a Prior duplex deck extracted exactly from the attached PW2-15-15-fb7b11abfe PDF: 15 people, 360 word rows, 51 cues. Mixed corpus remains selectable. [Provenance and testing](robot-majority/PRIOR_DUPLEX.md). No PDF changes.

@@ -77,6 +77,7 @@ the team. This remaining consequence difference is intentional in this trial.
 Choose **Sentences** in the Rover/Households scenario switch, or open
 [Sentences](http://localhost:8684/paperweights/web/sentences.html).
 
+- Choose **Mixed corpus** for the robot experiment or **Prior duplex** for the exact 15 word sheets from the attached older PDF. [Prior deck details](paperweights/robot-majority/PRIOR_DUPLEX.md).
 - Select 15, 100 or 200 sheets and any starting word/color, including punctuation.
 - **Next word** chooses one matching person, then one matching row on their sheet.
 - **Majority word** samples matching people without replacement. Each randomly

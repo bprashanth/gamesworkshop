@@ -31,6 +31,7 @@ def build(output=None):
         data = sentence_model.pack(size)
         data['id'] = 'RM4-' + str(size) + '-' + hashlib.sha256(json.dumps(data, sort_keys=True).encode()).hexdigest()[:10]
         (sentence_dest / f'{size}.json').write_text(json.dumps(data, separators=(',', ':')) + '\n')
+    shutil.copy2(ROOT / 'paperweights/robot-majority/prior-duplex.json', sentence_dest / 'prior-duplex.json')
     stages = json.loads((dest / 'stages.json').read_text())
     for stage in stages:
         if stage['id'] == 'collaborative':

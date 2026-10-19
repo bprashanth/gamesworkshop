@@ -1,5 +1,7 @@
 # Robot sentence experiments
 
+For the attached older printout, choose **Prior duplex**. [Exact PDF import and comparison](PRIOR_DUPLEX.md).
+
 The live rehearsal uses [RM4 mixed corpus](MIXED.md): 116 word/punctuation cues,
 24 rows per sheet, repeated matching cues and one vote per person. The corpus
 is in [mixed-corpus.txt](mixed-corpus.txt); its explicit weights favor neutral
