@@ -6,7 +6,7 @@ Rover and Households now share the competitive engine, Mars map and card layout.
 Select the scenario independently of Risks, Indicators and Judgement. Indicators
 splits AI decision estimates from Audience card suggestions. Judgement combines
 model suggestions under AI and spends a separate quota for human advice.
-Household teaching stages use filled Storm or dotted Failed Harvest + Loan;
+Household Risks fills only Dropout. Indicators hides Dropout and dots Failed Harvest + Loan;
 Judgement retains uncertain dropout outcomes without styling hints.
 
 See [current rules](../narrative/shared_scenarios_stages.md) and the root README.

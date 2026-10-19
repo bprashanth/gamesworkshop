@@ -21,13 +21,13 @@ const teamIds = ['A', 'B', 'C', 'D'];
 
 export function cardKind(category, value, mode = 'hard') {
   if (mode === 'hard') return 'normal';
-  if (category === 'weather' && value === 'storm') return 'danger';
+  if (mode === 'easy') return category === 'attendance' && value === 'dropout' ? 'danger' : 'normal';
   if ((category === 'harvest' && value === 'failed') || (category === 'cash' && value === 'loan')) return 'indicator';
   return 'normal';
 }
 
 function teachingFatal(values) {
-  return values.weather === 'storm' || (values.harvest === 'failed' && values.cash === 'loan');
+  return values.harvest === 'failed' && values.cash === 'loan';
 }
 
 function clamp(value, min, max) {
@@ -94,7 +94,7 @@ function drawRow(rng, teamId, index, contextIndex, mode = 'hard') {
   const context = contexts[contextIndex];
   // Three previous-survey contexts, each with/without recent support.
   const pressure = [.10, -.16, .28, .02, .22, -.04][contextIndex];
-  const latent = pressure + (rng() - .5) * 1.5;
+  const latent = pressure + (mode === 'hard' ? 0 : .30) + (rng() - .5) * 1.5;
   const harvest = grade(latent + (rng() - .5) * .7, [.48, -.08], ['failed','weak','good']);
   const cash = grade(latent * .8 + (rng() - .5) * .85, [.40, -.15], ['loan','low','enough']);
   const w = rng();
@@ -113,6 +113,8 @@ function drawRow(rng, teamId, index, contextIndex, mode = 'hard') {
   const sampledFatal = rng() < risk;
   const values = {harvest,cash,attendance,weather};
   const fatal = mode === 'hard' ? sampledFatal : teachingFatal(values);
+  // Risks shows the outcome; Indicators keeps only the survey observations.
+  if (mode === 'easy' && fatal) values.attendance = 'dropout';
   return {id:`${teamId}${index+1}`,teamId,roundIndex:index,contextId:context.id,
     initialCategory:pick(rng,visibleCategories),
     targetCues:Object.fromEntries(categories.map(c=>[c,makeCue(teamId,index,c,values[c],context.id)])),
@@ -227,7 +229,7 @@ export function createPack(seed = 15, count = 200, mode = 'hard') {
   if (!['easy', 'medium', 'hard'].includes(mode)) throw new Error(`Unsupported household mode: ${mode}`);
   const normalizedSeed = Number.isFinite(seed) ? Math.trunc(seed) : 15;
   const sheetCount = Number.isFinite(count) ? Math.max(1, Math.trunc(count)) : 200;
-  const packId = mode === 'hard' ? `HH2-${normalizedSeed}-${sheetCount}` : `HH3-${mode}-${normalizedSeed}-${sheetCount}`;
+  const packId = mode === 'hard' ? `HH2-${normalizedSeed}-${sheetCount}` : `HH4-${mode}-${normalizedSeed}-${sheetCount}`;
   const historiesByTeam = {};
   const teams = teamIds.map((teamId, teamIndex) => {
     const rounds=Array.from({length:6},(_,i)=>currentRound({seed:normalizedSeed,mode},teamIndex,Array(i).fill('go')));
@@ -236,7 +238,7 @@ export function createPack(seed = 15, count = 200, mode = 'hard') {
     return {id:teamId,rounds,audienceCount:Math.floor(sheetCount/4)+(teamIndex<sheetCount%4?1:0)};
   });
   return {
-    version: mode === 'hard' ? 'HH2' : 'HH3',
+    version: mode === 'hard' ? 'HH2' : 'HH4',
     mode,
     packId,
     seed: normalizedSeed,

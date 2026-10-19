@@ -25,17 +25,17 @@ context and advice rather than a visible answer label.
 
 ## Household teaching rules
 
-For Risks and Indicators, the rule must be reliably legible when the relevant
-cards are revealed: a filled danger card is sufficient to require intervention;
-the two dotted indicator conditions together also require intervention. A single
-dotted indicator without a filled hazard is insufficient. Both archive examples
-and live rounds use the same rule. This deliberately simplified rule is not a
-claim that real household outcomes are deterministic.
+Risks shows the Dropout outcome directly, as the only filled death card. There
+are no dotted borders in Risks. Indicators never shows Dropout, including on
+loss: Failed Harvest and Loan have dotted borders and the pair requires
+intervention. Neither alone is fatal. Storm is not a death card.
 
-The filled hazard is Weather/Storm. The dotted pair is Harvest/Failed plus
-Cash/Loan. Across 120 seeds and 2,880 reference turns, 48.0% need intervention;
-390 turns have a safe single indicator and 381 have paired indicators without
-a storm. These frequencies describe our simulation, not real households. Household Judgement retains the existing
+Both teaching stages use the same paired-condition outcome and a shared sampler
+for live/archive rows. Across 120 seeds / 2,880 reference turns, 42.2% require
+intervention; 591 turns have a safe single indicator. These are deliberately
+simplified teaching rules, not real household outcome estimates.
+
+Household Judgement retains the existing
 probabilistic dropout model: bad harvest and loan can coincide without dropout,
 and an apparently reassuring observation is not a guarantee. Showing every
 survey card need not resolve a future outcome with certainty.
@@ -53,3 +53,6 @@ polls. This trial is for comparing both settings with simulated audience votes.
 
 Pre-change checkpoint: `trial-before-shared-stages-2026-10-19`, commit `aad8fcf`.
 Use a separate worktree at that tag for comparison without discarding later work.
+
+Action buttons sit on the left; Audience/AI sit on the right. The lightning
+quota is beside each team Reset. Quota spending rules are unchanged.

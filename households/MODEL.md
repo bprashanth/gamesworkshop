@@ -5,15 +5,19 @@ Judgement (`hard`). `createPack(seed, count, mode)` chooses the matching archive
 and live sampler. Default `hard` preserves HH2. The sections below describe HH2
 unless otherwise stated.
 
-## HH3 teaching stages
+## HH4 teaching stages
 
-Risks and Indicators use an intentionally simplified rule: Weather/Storm is a
-filled definite hazard; Harvest/Failed and Cash/Loan have dotted borders, and
-only the pair is fatal absent a storm. A single dotted card is not sufficient.
-The weather mixture is adjusted to give frequent teaching opportunities. Across
-120 seeds / 2,880 all-Skip turns, 48.0% require intervention, versus 26.7% in
-Judgement. There are 390 safe single-indicator turns and 381 paired hazards
-without a storm. These are invented teaching rules, not measured causal facts.
+Risks exposes the outcome: only Attendance/Dropout is a filled death card. It
+shows no dotted indicators. Indicators never shows a Dropout card, even after a
+loss. Failed Harvest and Loan have dotted borders; the pair determines fatality.
+Storm is never a teaching death card. A single indicator is insufficient.
+
+Both teaching stages use the same paired-condition outcome, but Risks displays
+it directly and Indicators requires inference. The teaching sampler raises
+household pressure to create sufficient practice: across 120 seeds / 2,880
+reference turns, 42.2% require intervention, with 591 safe single-indicator turns.
+Archive and live generation use the same distribution. These are invented
+teaching rules, not measured causal facts. Judgement is unchanged.
 
 Archive and live rows share the same stage-specific generator. Teaching polls
 use unsmoothed conditional frequencies so fully revealed evidence resolves to

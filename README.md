@@ -56,8 +56,9 @@ all teams. Dark is default, Light is available. The highlighted column is ahead
 of the marker in Risks and at its position in later stages.
 
 Rover hazards are dead battery, storm and sand pit. Households uses a simplified
-teaching rule in Risks/Indicators: a filled hazard or the two dotted indicators
-together requires intervention. Judgement hides hazard/indicator styling and
+teaching rule: Risks shows Dropout as the only filled death card. Indicators
+hides Dropout and marks failed harvest and loan with dotted borders; both together
+require intervention. Storm is not a death card. Judgement hides indicator styling and
 uses uncertain household dropout outcomes instead. These are synthetic teaching
 rules, not empirical household predictions.
 

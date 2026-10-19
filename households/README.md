@@ -18,8 +18,10 @@ The old `/households/game.html` link redirects to Household Judgement.
 - Judgement: AI gives both; Audience spends a human consultation, no machine poll.
 - Six turns per team, three extra card reveals across the run. Judgement adds
   three separate consultations and keeps its two protective interventions.
-- Risks/Indicators: storm is a filled hazard; failed harvest + loan form a dotted
-  pair. Either single indicator is safe without storm. Wrong actions lose.
+- Risks: only Dropout is filled and signals death. No dotted indicators.
+- Indicators: Dropout never appears; failed harvest + loan form the dotted pair.
+  Both require intervention; either alone is safe. Storm is not a death card.
+  Wrong actions lose.
 - Judgement: styling hints disappear and dropout is probabilistic. Unnecessary
   intervention spends support without eliminating the team.
 - Both scenarios share geometry, responsive layout and decision-dependent routes.

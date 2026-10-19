@@ -6,7 +6,8 @@ for(let seed=0;seed<120;seed++){
  for(const team of pack.teams)for(const row of team.rounds){
   const v=Object.fromEntries(categories.map(c=>[c,row.targetCues[c].value]));
   const pair=v.harvest==='failed'&&v.cash==='loan';
-  assert.equal(row.fatal,v.weather==='storm'||pair);
+  assert.equal(row.fatal,pair);
+  assert.notEqual(v.attendance,'dropout');
   report.rows++;report.fatal+=row.fatal;report.storm+=v.weather==='storm';report.pairWithoutStorm+=pair&&v.weather!=='storm';
   report.singleIndicatorSafe+=!row.fatal&&(v.harvest==='failed'||v.cash==='loan');
   const full=poll(pack,row,categories,3);assert.equal(full.counts[row.fatal?'avoid':'go'],50);
@@ -28,7 +29,11 @@ for(const mode of ['easy','medium','hard']){
  assert.deepEqual(a,createPack(15,15,mode));
  assert.equal(a.interventions,mode==='hard'?2:6);
 }
-assert.equal(cardKind('weather','storm','easy'),'danger');
+assert.equal(cardKind('weather','storm','easy'),'normal');
+assert.equal(cardKind('weather','storm','medium'),'normal');
+assert.equal(cardKind('attendance','dropout','easy'),'danger');
+assert.equal(cardKind('harvest','failed','easy'),'normal');
+for(const team of createPack(15,200,'easy').teams)for(const row of team.rounds)assert.equal(row.targetCues.attendance.value==='dropout',row.fatal);
 assert.equal(cardKind('harvest','failed','medium'),'indicator');
 assert.equal(cardKind('cash','loan','medium'),'indicator');
 for(const c of categories)assert.equal(cardKind(c,'failed','hard'),'normal');
