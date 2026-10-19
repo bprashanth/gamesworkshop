@@ -1,4 +1,4 @@
-"""RM2: neutral majority routes with noisy, forward-only minority transitions.
+"""RM3: neutral majority routes inside an open, punctuated word graph.
 An authored transition corpus, not a naturally occurring literary dataset.
 """
 from collections import Counter
@@ -32,61 +32,63 @@ def model():
             route.append(cue); phases[cue] = i
         routes.append(route)
     rng = random.Random(42); edges = {}
-    for r, route in enumerate(routes):
+    punctuation = ['AMBER:.', 'BLUE:,', 'GREEN:?', 'PINK:!']
+    vocabulary = sorted(set(phases) | set(punctuation))
+    for route in routes:
         for i, cue in enumerate(route[:-1]):
             main = route[i + 1]
-            # Other narratives, missing words and mismatched syntax are actual
-            # minority observations, not browser-only randomness.
-            candidates = sorted({other[j] for other in routes
-                for j in range(i + 1, min(i + 4, 15))} - {main})
-            rng.shuffle(candidates); noise = candidates[:4]
-            weights = Counter({main: 52 if noise else 100})
-            for dest, count in original.apportion(dict.fromkeys(noise, 1), 48).items() if noise else []:
-                weights[dest] += count
+            # Minority observations can jump backwards, cross narratives and
+            # include punctuation. There is no hidden grammar or stop rule.
+            candidates = [c for c in vocabulary if c not in (cue, main) and c not in punctuation]
+            rng.shuffle(candidates)
+            noise = candidates[:3] + [punctuation[i % len(punctuation)]]
+            noise = list(dict.fromkeys(c for c in noise if c != main))
+            weights = Counter({main: 52})
+            weights.update(original.apportion(dict.fromkeys(noise, 1), 48))
             edges[cue] = weights
-    edges['AMBER:.'] = Counter({routes[0][0]: 100})
-    for cue, weights in edges.items():
-        if cue == 'AMBER:.': continue
-        assert all(phases[dest] > phases[cue] for dest in weights)
+    for cue in punctuation:
+        edges[cue] = Counter({routes[0][0]: 40, routes[1][0]: 30, routes[2][0]: 30})
+    assert all(dest in edges for weights in edges.values() for dest in weights)
     return edges, routes, phases
 
 def pack(size, seed=42):
     edges, routes, _ = model()
     return dict(size=size, seed=seed, sheets=deal(edges, size, seed),
                 start=routes[0][0], starts=[r[0] for r in routes],
-                source='Authored branching robot transition corpus - RM2')
+                source='Authored open robot transition corpus - RM3')
+
+def walk(sheets, start, seed, steps=40):
+    rng = random.Random(seed); cue = start; words = [cue]
+    for _ in range(steps):
+        answers = [b for sheet in sheets for a,b in sheet if a == cue]
+        assert answers
+        cue = rng.choice(answers); words.append(cue)
+    return words
 
 def evaluate():
     edges, routes, _ = model(); report = {}
     for size in (15, 100, 200):
-        samples = []; majority = []; deviations = 0
         for seed in range(100):
             sheets = deal(edges, size, seed)
             for route, expected in zip(routes, ROUTES):
                 result = original.play(sheets, route[0])
-                assert result['status'] == 'complete'
                 assert result['sentence'] == ' '.join(expected).replace(' .', '.')
                 assert all(not t['tie'] for t in result['trace'])
-            if seed == 42:
-                majority = [original.play(sheets, r[0])['sentence'] for r in routes]
-            for route in routes:
-                result = original.play(sheets, route[0], seed, sample=True)
-                assert result['status'] == 'complete'
-                deviations += result['sentence'] not in [' '.join(w).replace(' .', '.') for w in ROUTES]
-                samples.append(result['sentence'])
-        assert len(set(samples)) > 200
-        fixed_sheets = pack(size)['sheets']
-        fixed_runs = [original.play(fixed_sheets, r[0], seed, sample=True)['sentence']
-                      for r in routes for seed in range(100)]
-        assert len(set(fixed_runs)) > 250
-        # No single participant can trace a complete intended majority sentence.
+        sheets = pack(size)['sheets']
+        runs = [walk(sheets, r[0], seed) for r in routes for seed in range(100)]
+        distinct = len({tuple(run) for run in runs})
+        assert distinct > 290
+        seen = {cue.split(':')[1] for run in runs for cue in run}
+        assert set('.,!?') <= seen
+        for cue in edges:
+            walk(sheets, cue, 42, 100)
         assert not any(all((a,b) in sheet for a,b in zip(route,route[1:]))
-                       for sheet in fixed_sheets for route in routes)
-        report[size] = dict(majority=majority,
-            fixedPackDistinct=len(set(fixed_runs)), fixedPackRuns=len(fixed_runs), randomDistinct=len(set(samples)),
-            randomOffMajority=deviations, randomRuns=300, examples=samples[:9],
-            matchingPerCue=sorted({sum(a == cue for s in pack(size)['sheets'] for a,b in s) for cue in edges}),
-            singleSheetFullRoutes=sum(original.play([s], r[0])['status'] == 'complete' for s in pack(size)['sheets'] for r in routes))
+                       for sheet in sheets for route in routes)
+        report[size] = dict(majority=[original.play(sheets,r[0])['sentence'] for r in routes],
+            distinctRandomChains=distinct, randomRuns=300, steps=40,
+            punctuationObserved=sorted(set('.,!?') & seen),
+            cues=len(edges), startsTested=len(edges),
+            examples=[' '.join(c.split(':')[1] for c in run[:20]) for run in runs[:3]])
     out = Path(__file__).with_name('out'); out.mkdir(exist_ok=True)
     (out/'branching-report.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps(report, indent=2))

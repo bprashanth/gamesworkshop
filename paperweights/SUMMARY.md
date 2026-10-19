@@ -113,3 +113,7 @@ for this trial.
 ## 2026-10-20 - Sentences RM2
 
 The rehearsal now uses branching sheet data with three openings, neutral majority paths and noisy random chains. See [design and verification](robot-majority/BRANCHING.md). No PDFs regenerated.
+
+## 2026-10-20 - Any starting cue and punctuation
+
+Sentences now uses RM3: all 46 sheet cues are selectable as the first token, including `. , ! ?`. Chaining continues after punctuation; minority links can loop and go backwards. Full-room majority retains the three neutral robot routes. See [design](robot-majority/BRANCHING.md). No PDFs changed.

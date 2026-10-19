@@ -56,16 +56,15 @@ for (const size of [15, 100, 200]) {
   for (const kind of ['random', 'majority']) for (let seed = 0; seed < 100; seed++) {
     let cue = pack.starts[seed % pack.starts.length];
     const random = rng(seed);
-    for (let turn = 0; turn < 14; turn++) {
+    for (let turn = 0; turn < 40; turn++) {
       const result = chooseWord(pack, cue, kind, kind === 'majority' && seed % 2 ? 5 : null, random);
       assert.ok(result.chosen);
       assert.ok(matchingSheets(pack, cue).some(person => person.next === result.chosen));
       cue = result.chosen;
-      if(cue.endsWith(':.')) break;
-      assert.ok(turn < 13, 'Every chain must terminate by 14 transitions');
+
     }
   }
   assert.equal(JSON.stringify(pack), before, 'Voting must not mutate sheets');
   sizes.push(size);
 }
-console.log(JSON.stringify({sizes, completeChains: sizes.length * 200, checks: 'Exact counts, distinct voters, color continuity, no invented edges, reproducible sampling, punctuation termination'}));
+console.log(JSON.stringify({sizes, chainsOf40Transitions: sizes.length * 200, checks: 'Exact counts, distinct voters, color continuity, no invented edges, reproducible sampling, continuous chains through punctuation'}));

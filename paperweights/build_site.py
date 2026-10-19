@@ -29,7 +29,7 @@ def build(output=None):
     sentence_dest.mkdir(exist_ok=True)
     for size in (15, 100, 200):
         data = sentence_model.pack(size)
-        data['id'] = 'RM2-' + str(size) + '-' + hashlib.sha256(json.dumps(data, sort_keys=True).encode()).hexdigest()[:10]
+        data['id'] = 'RM3-' + str(size) + '-' + hashlib.sha256(json.dumps(data, sort_keys=True).encode()).hexdigest()[:10]
         (sentence_dest / f'{size}.json').write_text(json.dumps(data, separators=(',', ':')) + '\n')
     stages = json.loads((dest / 'stages.json').read_text())
     for stage in stages:

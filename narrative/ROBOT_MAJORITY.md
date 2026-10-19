@@ -1,6 +1,6 @@
 # Majority words -> robot sentence -> audience pivot
 
-Current rehearsal: [RM2 branching sheets](../paperweights/robot-majority/BRANCHING.md) supersede the constrained RM1 corpus described below. Random chains now include cross-narrative and skipped-word links; three openings give three stable neutral majority paths.
+Current rehearsal: [RM3 open word chains](../paperweights/robot-majority/BRANCHING.md) supersede the constrained RM1 corpus described below. All sheet cues can now start a chain, including punctuation. Random chains loop and cross narratives; the three suggested openings retain neutral majority paths.
 
 19 October 2026. Pre-print feasibility test. Household rules and the existing print snapshot are unchanged. No new PDFs have
 been generated. The later Sentences rehearsal is described below.
