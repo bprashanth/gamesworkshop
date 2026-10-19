@@ -1,5 +1,20 @@
 # Paper Weights - current summary
 
+## Current trial - shared scenarios and stages
+
+Rover and Households now share the competitive engine, Mars map and card layout.
+Select the scenario independently of Risks, Indicators and Judgement. Indicators
+splits AI decision estimates from Audience card suggestions. Judgement combines
+model suggestions under AI and spends a separate quota for human advice.
+Household teaching stages use filled Storm or dotted Failed Harvest + Loan;
+Judgement retains uncertain dropout outcomes without styling hints.
+
+See [current rules](../narrative/shared_scenarios_stages.md) and the root README.
+Earlier records below describe prior prototypes, not the current UI. No new
+printouts generated. Rollback tag: `trial-before-shared-stages-2026-10-19`.
+
+## Previous prototype record
+
 Updated 19 October 2026. Rover browser prototype: **PW6**.
 
 Competitive Hard now opens the isolated **HH2 Households** prototype. It keeps

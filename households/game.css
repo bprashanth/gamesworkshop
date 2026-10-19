@@ -1,3 +1,1 @@
-.team .poll-row{grid-template-columns:105px 1fr 30px}.team .easy-actions{flex-wrap:wrap}.team .cardlabel{font-size:7px}.team .card i{font-size:8px}.team .easy-actions button{padding:5px;font-size:10px}#pack-id{display:none}.team .outcome{bottom:auto;top:35px}.team .cards{margin-top:12px}
-/* Keep the revealed cause readable after a loss. */
-.team.eliminated .cards{opacity:1}
+/* Households uses the shared competitive styles in paperweights/web. */

@@ -5,7 +5,7 @@ const route=Array.from({length:101},(_,dx)=>({dx,dy:75})),anchors=[0,20,40,60,80
 const skip=projectRoute(route,anchors,['go']),help=projectRoute(route,anchors,['avoid']);
 assert.equal(skip[0].dy,help[0].dy);assert.ok(skip[20].dy>help[20].dy);assert.deepEqual(projectRoute(route,anchors,['avoid']),help);assert.ok([...skip,...help].every(p=>p.dy>=5&&p.dy<=144));
 const b=await chromium.launch();const p=await b.newPage({viewport:{width:1366,height:768}}),errors=[];p.on('pageerror',e=>errors.push(e.message));
-await p.goto('http://localhost:8684/households/game.html?seed=18');await p.waitForFunction(()=>window.paperweights);assert.equal(await p.locator('#skin').count(),0);
+await p.goto('http://localhost:8684/paperweights/web/?scenario=households&mode=hard&seed=18');await p.waitForFunction(()=>window.paperweights);assert.equal(await p.locator('#skin').count(),0);
 const original=await p.evaluate(()=>paperweights.state());
 await p.locator('[data-team=A] [data-action=go]').click();await p.locator('[data-team=B] [data-action=avoid]').click();await p.waitForFunction(()=>paperweights.state().teams.every(t=>t.status!=='moving'));
 const branched=await p.evaluate(()=>paperweights.state());assert.equal(branched.teams[0].rover.column,branched.teams[1].rover.column);assert.notEqual(branched.teams[0].rover.y,branched.teams[1].rover.y);assert.equal(branched.teams[1].support,1);assert.deepEqual(branched.teams.slice(2),original.teams.slice(2));

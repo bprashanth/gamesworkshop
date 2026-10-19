@@ -10,7 +10,8 @@ function draw(){
   document.querySelectorAll('.team').forEach(el=>el.classList.toggle('map-focus',el.dataset.team===active));
   for(const d of contours){const[x,y]=screen.px(d.dx,d.dy);list.push({x,y,c:d.c,a:.6})}
   if(band)for(const dx of[band.left,band.right])for(let dy=0;dy<DH;dy+=2){const[x,y]=screen.px(dx,dy);list.push({x,y,c:'#e6e6e1',a:.65,s:1})}
-  for(const d of route){const[x,y]=screen.px(d.dx,d.dy);list.push({x,y,c:'#8a8a86',s:1})}
+  for(const d of route){const[x,y]=screen.px(d.dx,d.dy);list.push({x,y,c:'#8a8a86',a:.35,s:1})}
+  state.teams.forEach(t=>{for(const d of t.path||[]){const[x,y]=screen.px(d.dx,d.dy);list.push({x,y,c:t.status==='eliminated'?'#d06c58':'#e6e6e1',a:t.id===active?.95:.45,s:t.id===active?1.5:1})}});
   state.teams.forEach(t=>{const[x,y]=screen.px(t.rover.x,t.rover.y);list.push({x,y,c:t.status==='eliminated'?'#d06c58':'#e6e6e1',s:3})});
   screen.draw(list);
   const ctx=screen.ctx;
@@ -20,8 +21,8 @@ function draw(){
 }
 function fitMap(){
  const box=document.querySelector('.shared-map'),holder=canvas.parentElement;
- if(innerWidth>=760){const width=Math.max(1,Math.min(box.clientWidth-4,(box.clientHeight-4)/(26*1.9/100)));holder.style.width=`${width}px`}
- else holder.style.removeProperty('width');
+ {const width=Math.max(1,Math.min(box.clientWidth-4,(box.clientHeight-4)/(26*1.9/100)));holder.style.width=`${width}px`}
+
  screen.resize();
 }
 new ResizeObserver(fitMap).observe(document.querySelector('.shared-map'));

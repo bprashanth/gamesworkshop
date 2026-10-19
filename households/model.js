@@ -19,6 +19,17 @@ const contexts = Object.freeze([
 
 const teamIds = ['A', 'B', 'C', 'D'];
 
+export function cardKind(category, value, mode = 'hard') {
+  if (mode === 'hard') return 'normal';
+  if (category === 'weather' && value === 'storm') return 'danger';
+  if ((category === 'harvest' && value === 'failed') || (category === 'cash' && value === 'loan')) return 'indicator';
+  return 'normal';
+}
+
+function teachingFatal(values) {
+  return values.weather === 'storm' || (values.harvest === 'failed' && values.cash === 'loan');
+}
+
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
@@ -79,7 +90,7 @@ function makeCue(teamId, roundIndex, category, value, contextId) {
 }
 
 // Archive and live rows call this exact sampler with independent random seeds.
-function drawRow(rng, teamId, index, contextIndex) {
+function drawRow(rng, teamId, index, contextIndex, mode = 'hard') {
   const context = contexts[contextIndex];
   // Three previous-survey contexts, each with/without recent support.
   const pressure = [.10, -.16, .28, .02, .22, -.04][contextIndex];
@@ -87,7 +98,9 @@ function drawRow(rng, teamId, index, contextIndex) {
   const harvest = grade(latent + (rng() - .5) * .7, [.48, -.08], ['failed','weak','good']);
   const cash = grade(latent * .8 + (rng() - .5) * .85, [.40, -.15], ['loan','low','enough']);
   const w = rng();
-  const weather = w < .45 ? 'rain' : w < .80 ? 'sun' : 'storm';
+  const weather = mode === 'hard'
+    ? (w < .45 ? 'rain' : w < .80 ? 'sun' : 'storm')
+    : (w < .35 ? 'storm' : w < .70 ? 'rain' : 'sun');
   // Synthetic association, not a claim of empirical dropout rates.
   const badHarvest=harvest==='failed', weakHarvest=harvest==='weak', loan=cash==='loan';
   const risk = clamp(.025 + (badHarvest?.10:weakHarvest?.06:0)
@@ -97,8 +110,9 @@ function drawRow(rng, teamId, index, contextIndex) {
   // Attendance is a survey observation, NOT the hidden outcome in disguise.
   // A child with regular attendance can experience a sudden dropout event.
   const attendance = rng() < .25 ? 'irregular' : 'regular';
-  const fatal = rng() < risk;
+  const sampledFatal = rng() < risk;
   const values = {harvest,cash,attendance,weather};
+  const fatal = mode === 'hard' ? sampledFatal : teachingFatal(values);
   return {id:`${teamId}${index+1}`,teamId,roundIndex:index,contextId:context.id,
     initialCategory:pick(rng,visibleCategories),
     targetCues:Object.fromEntries(categories.map(c=>[c,makeCue(teamId,index,c,values[c],context.id)])),
@@ -117,7 +131,7 @@ export function currentRound(pack,teamIndex,actions=[]) {
   let contextIndex=(pack.seed%6+6+teamIndex)%6,row;
   for(let i=0;i<=actions.length;i++){
     const rng=makeRng(hashSeed(pack.seed,'live',teamId,i));
-    row=drawRow(rng,teamId,i,contextIndex);
+    row=drawRow(rng,teamId,i,contextIndex,pack.mode);
     if(i<actions.length)contextIndex=updateContext(row,actions[i]);
   }
   return row;
@@ -168,21 +182,21 @@ function selectPool(pack, round, revealedSet) {
     visible.sort().map(c=>c+':'+round.targetCues[c].value).join('|')));
   const ctx=contexts.findIndex(c=>c.id===round.contextId),extra=[];
   for(let n=0;n<100000&&extra.length<30;n++){
-    const sample=drawRow(rng,round.teamId,n,ctx);
+    const sample=drawRow(rng,round.teamId,n,ctx,pack.mode);
     if(visible.every(c=>sample.targetCues[c].value===round.targetCues[c].value))extra.push(sample);
   }
   if(!extra.length)throw Error('Unsupported evidence combination');
   return extra;
 }
 
-function posteriorFatal(pool) {
+function posteriorFatal(pool, mode = 'hard') {
   const fatal = pool.filter((sample) => sample.fatal).length;
-  return (fatal + 1) / (pool.length + 2);
+  return mode === 'hard' ? (fatal + 1) / (pool.length + 2) : fatal / pool.length;
 }
 
-function inspectionWeights(pool, round, revealedSet) {
+function inspectionWeights(pool, round, revealedSet, mode = 'hard') {
   const total = pool.length || 1;
-  const currentFatal = posteriorFatal(pool);
+  const currentFatal = posteriorFatal(pool, mode);
   const currentEntropy = entropy(currentFatal);
   const choices = categories
     .filter((category) => !revealedSet.has(category))
@@ -199,7 +213,7 @@ function inspectionWeights(pool, round, revealedSet) {
       }
       let conditionalEntropy = 0;
       for (const group of groups.values()) {
-        const p = posteriorFatal(group);
+        const p = posteriorFatal(group, mode);
         conditionalEntropy += (group.length / total) * entropy(p);
       }
       const rawGain = currentEntropy - conditionalEntropy;
@@ -209,25 +223,27 @@ function inspectionWeights(pool, round, revealedSet) {
   return choices;
 }
 
-export function createPack(seed = 15, count = 200) {
+export function createPack(seed = 15, count = 200, mode = 'hard') {
+  if (!['easy', 'medium', 'hard'].includes(mode)) throw new Error(`Unsupported household mode: ${mode}`);
   const normalizedSeed = Number.isFinite(seed) ? Math.trunc(seed) : 15;
   const sheetCount = Number.isFinite(count) ? Math.max(1, Math.trunc(count)) : 200;
-  const packId = `HH2-${normalizedSeed}-${sheetCount}`;
+  const packId = mode === 'hard' ? `HH2-${normalizedSeed}-${sheetCount}` : `HH3-${mode}-${normalizedSeed}-${sheetCount}`;
   const historiesByTeam = {};
   const teams = teamIds.map((teamId, teamIndex) => {
-    const rounds=Array.from({length:6},(_,i)=>currentRound({seed:normalizedSeed},teamIndex,Array(i).fill('go')));
+    const rounds=Array.from({length:6},(_,i)=>currentRound({seed:normalizedSeed,mode},teamIndex,Array(i).fill('go')));
     const archiveRng=makeRng(hashSeed(normalizedSeed,'archive',teamId));
-    historiesByTeam[teamId]=Array.from({length:3600},(_,i)=>drawRow(archiveRng,teamId,i,i%6));
+    historiesByTeam[teamId]=Array.from({length:3600},(_,i)=>drawRow(archiveRng,teamId,i,i%6,mode));
     return {id:teamId,rounds,audienceCount:Math.floor(sheetCount/4)+(teamIndex<sheetCount%4?1:0)};
   });
   return {
-    version: 'HH2',
+    version: mode === 'hard' ? 'HH2' : 'HH3',
+    mode,
     packId,
     seed: normalizedSeed,
     sheetCount,
     roundCount: 6,
     revealTokens: 3,
-    interventions: 2,
+    interventions: mode === 'hard' ? 2 : 6,
     contexts: contexts.map((context) => ({ ...context })),
     teams,
     historiesByTeam,
@@ -238,11 +254,12 @@ export function poll(pack, round, revealed = [], tokens = 0) {
   const revealedSet = new Set(revealed);
   const pool = selectPool(pack, round, revealedSet);
   const total = pack.teams.find(t=>t.id===round.teamId).audienceCount;
-  const fatalRate = posteriorFatal(pool);
+  const mode = pack.mode ?? 'hard';
+  const fatalRate = posteriorFatal(pool, mode);
   const actionWeights = [];
 
   if (tokens <= 0) {
-    const avoidRatio = clamp(fatalRate, 0.02, 0.98);
+    const avoidRatio = mode === 'hard' ? clamp(fatalRate, 0.02, 0.98) : fatalRate;
     actionWeights.push({ label: 'go', weight: 1 - avoidRatio });
     actionWeights.push({ label: 'avoid', weight: avoidRatio });
   } else {
@@ -255,7 +272,7 @@ export function poll(pack, round, revealed = [], tokens = 0) {
   }
 
   const inspectionShare = tokens > 0 ? 1 - actionWeights.reduce((sum, entry) => sum + entry.weight, 0) : 0;
-  const inspections = inspectionWeights(pool, round, revealedSet);
+  const inspections = inspectionWeights(pool, round, revealedSet, mode);
   const inspectionTotal = inspections.reduce((sum, entry) => sum + entry.weight, 0);
   if(inspectionTotal===0){actionWeights[0].weight=1-fatalRate;actionWeights[1].weight=fatalRate;}
   const adjustedInspections = inspections.map((entry) => ({

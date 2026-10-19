@@ -15,11 +15,12 @@ This assembles and serves both versions on port **8684**; no Python packages or
 JavaScript build are needed just to play.
 
 - **[Competitive](http://localhost:8684/paperweights/web/)** - current PW6 prototype,
-  four independent teams on one shared map. Opens in Medium.
+  four independent teams on one shared map. Opens in Indicators.
 - **[Collaborative](http://localhost:8684/)** - the original whole-room Rover game.
 
-The stage dropdown switches between them. Each game has its own difficulty selector;
-“Medium” means different mechanics in the two versions.
+The Competitive/Collaborative selector switches between them. Competitive has a
+separate Rover/Households selector and three learning stages. Collaborative keeps
+its original difficulty rules.
 
 For a projector or another device on your network:
 
@@ -35,50 +36,40 @@ more room. To refresh an already-running server after edits:
 python3 paperweights/build_site.py --output paperweights/out/rover-review
 ```
 
-## Competitive - Household Hard prototype
+## Competitive - Rover and Households
 
-Select **Hard** in the competitive difficulty dropdown, or open
-[Households](http://localhost:8684/households/game.html). It uses the Rover contours with routes that branch after Skip/Intervene.
-Easy/Medium remain Rover.
+Use the **Rover / Households** switch to compare both settings. Each uses the same
+Mars map, card layout, four teams and six turns. Decisions branch the routes.
+The stage selector is independent of the scenario:
 
-Each team has six turns, three extra card checks and two interventions. Audience
-uses revealed evidence to recommend Skip, Intervene or another card. Skip on a
-dropout event loses; Intervene protects that turn and changes the next context. Unnecessary intervention spends
-support without eliminating the team. Reset replays; New run changes the seed.
+| Stage | Cards | AI | Audience |
+| --- | --- | --- | --- |
+| Risks | All face up | None | Advise Go/Avoid |
+| Indicators | One free reveal | Go/Avoid estimate | Suggest which card to reveal |
+| Judgement | One free reveal | Action and reveal suggestions | Human advice, three consultations |
 
-This is a digital rehearsal model, not an event-ready printed pack.
-[Household instructions and tests](households/README.md) -
-[Playthrough findings and teaching choices](narrative/household_one_shot_routes.md).
+Indicators and Judgement allow three extra card reveals per team across the run.
+A reveal clears old estimates; press AI again to update. Lightning bolts show the
+reveal quota in Indicators and the consultation quota in Judgement. Judgement's
+extra reveals remain a separate limit. Team Reset is independent; Reset restarts
+all teams. Dark is default, Light is available. The highlighted column is ahead
+of the marker in Risks and at its position in later stages.
 
-## Competitive - Easy and Medium
+Rover hazards are dead battery, storm and sand pit. Households uses a simplified
+teaching rule in Risks/Indicators: a filled hazard or the two dotted indicators
+together requires intervention. Judgement hides hazard/indicator styling and
+uses uncertain household dropout outcomes instead. These are synthetic teaching
+rules, not empirical household predictions.
 
-Four teams A-D play independently. Each has six turns. A team's Reset replays its
-route without affecting the other teams; the top Reset restarts everyone. Dark is
-the default, with Light available. Select the audience pack you want to simulate
-(15 or 200 people). Clicking a team panel highlights its column on the map.
+Rover and household teaching stages eliminate a team for either missing a hazard
+or avoiding a safe square. Household Judgement retains two interventions: they
+protect that turn, and unnecessary intervention spends support without eliminating
+the team. This remaining consequence difference is intentional in this trial.
 
-**Easy - learn which outcomes matter.** All four cards are visible. Choose **Avoid**
-if any card shows storm, dead battery or sand pit; otherwise choose **Go**. The
-highlight is ahead of the rover. This establishes the consequential outcomes before
-introducing incomplete information.
-
-**Medium - decide whether to act or gather more evidence.** One card starts face up.
-Click **Audience** for simulated votes: Go, Avoid, or which hidden category to flip.
-The current PW6 audience uses all icon/color pairs revealed in that turn. Click a
-hidden card to inspect it and poll again. Each team has **three extra checks across
-the entire run**, shown as stick figures. Opening cards and polls are free; extra
-reveals spend checks. The highlighted column contains the rover.
-
-When checks run out, the audience gives only Go/Avoid votes from matching historical
-examples. Advice can be wrong. These percentages are action votes, not a guarantee
-or a literal display of the probability of death. In both modes, Go into danger or
-Avoid a safe square and that team is out. Six correct decisions finish. OUT and the
-team's map marker turn red; FINISHED uses the normal text color.
-
-- [Teaching progression: Easy to Medium](narrative/rover_mode_transitions.md)
-- [Current state and limitations](paperweights/SUMMARY.md)
-- [PW6 evidence model and validation](paperweights/competition/EVIDENCE.md)
-- [Paper Weights setup and earlier experiments](paperweights/README.md)
+[Current stage design](narrative/shared_scenarios_stages.md) -
+[Household model](households/MODEL.md) -
+[PW6 evidence model](paperweights/competition/EVIDENCE.md) -
+[Current summary](paperweights/SUMMARY.md).
 
 ## Sheets and printouts
 
