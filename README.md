@@ -1,5 +1,7 @@
 # gamesworkshop
 
+<img src="docs/assets/gamesworkshop-logo.png" alt="Black-and-white dominoes with a heart mark spray-painted on one tile" width="420">
+
 Games about evidence, decisions and consequences.
 
 ## Summit

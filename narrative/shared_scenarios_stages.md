@@ -1,5 +1,8 @@
 # Shared scenarios and learning stages
 
+Historical trial notes. For the current Summit experience, including live phone
+votes, see [Households - risks, indicators and judgement](HOUSEHOLDS_GAME.md).
+
 This trial makes scenario and stage independent. Rover and Households use one
 competitive shell: the original Mars contour background, four team panels,
 identical card dimensions, buttons, quotas, polls and decision-dependent routes.
