@@ -5,7 +5,7 @@
 // then the rest of the last square's cards flip, then pick 2 cards of the square you
 // just crossed. Three stacked panels: the map, a graph of everything seen, the cards.
 import { newRun, act } from './engine.js';
-import { Screen, COLS, MAP, SX, SY, DW, DH, INK, DIM, FAINT, SAND, contourDots, routeDots } from './screen.js';
+import { Screen, COLS, ROWS, MAP, SX, SY, DW, DH, INK, DIM, FAINT, SAND, contourDots, routeDots } from './screen.js';
 import * as fx from './effects.js';
 import { SYMBOLS } from './symbols.js';
 
@@ -15,16 +15,22 @@ let sol = 0, deck = sols[0];
 const params = new URLSearchParams(location.search), speed = Number(params.get('speed') || 1);
 if (params.has('film')) document.documentElement.classList.add('film');
 
-// ---------- one page: size the map so map + cards + graph fit the window ----------
+// ---------- one page: fill the width, and fit map + cards + graph in the window ----------
+// The map is 100 x 26 cells, each 1.9 times taller than wide. On a short window the cells may
+// squash to 1.3 before the page narrows, and it never narrows past where the cards' icons fit.
 const main = document.querySelector('main');
-const ROWS_RATIO = 26 * 1.9 / COLS, SIDE = 220;
+const SIDE = 220, MAXW = 1600, TALL = 1.9, SQUASH = 1.3, CARD = 56;
+let aspect = TALL;
 function fit() {
   const rest = [...document.querySelectorAll('.bar, .panel')].reduce((h, el) => h + el.getBoundingClientRect().height + 8, 0) || 330;
-  const w = Math.min(1240, innerWidth - 24 - SIDE, (innerHeight - rest - 30) / ROWS_RATIO);
+  const room = Math.max(160, innerHeight - rest - 40), mapH = k => w * ROWS * k / COLS;
+  let w = Math.min(MAXW - SIDE - 24, innerWidth - 24 - SIDE);
+  aspect = Math.max(SQUASH, Math.min(TALL, room * COLS / (ROWS * w)));
+  if (mapH(aspect) > room) w = Math.max(Math.min(w, N * CARD / 0.9), room * COLS / (ROWS * aspect));
   main.style.maxWidth = `${Math.max(320, Math.floor(w)) + SIDE + 24}px`;
 }
 fit();
-const screen = new Screen(document.getElementById('screen'));
+const screen = new Screen(document.getElementById('screen'), aspect);
 // the cards and graph sit exactly under the map's strips
 function alignStrips() {
   const b = map.strips ?? [0, 1], W = screen.canvas.getBoundingClientRect().width;
@@ -411,7 +417,7 @@ function input(k) {
 }
 addEventListener('keydown', e => { if (!e.metaKey && !e.ctrlKey) input(e.key.toLowerCase()); });
 screen.canvas.addEventListener('pointerdown', () => { if (mode === 'intro' || mode === 'over') input('p'); });
-addEventListener('resize', () => { fit(); screen.resize(); alignStrips(); paintCards(); });
+addEventListener('resize', () => { fit(); screen.aspect = aspect; screen.resize(); alignStrips(); paintCards(); });
 // Reset: flip every card face down and start the run again
 // Reset: every card face down, the board forgotten (no remembered cards), back to the start
 function resetAll() {
@@ -455,5 +461,5 @@ document.getElementById('key').innerHTML = '<tr><th></th><th>low</th><th>mid</th
 
 window.rover = { get state() { return { mode, run, memory, sol, shown, level: memory.level } }, input, deck, setLevel: m => modesEl.querySelector(`[data-mode=${m}]`).click() };
 main.style.setProperty('--n', N);                     // before measuring, or the grid wraps
-buildCards(); paintCards(); fit(); screen.resize(); alignStrips(); paintCards();
+buildCards(); paintCards(); fit(); screen.aspect = aspect; screen.resize(); alignStrips(); paintCards();
 requestAnimationFrame(ms => { introStart = ms / 1000; tick(ms); });

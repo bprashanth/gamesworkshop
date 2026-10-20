@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paper Weights</title>
+<link rel="stylesheet" href="/paperweights/web/style.css">
+<link rel="stylesheet" href="/paperweights/web/competitive.css">
+<style>
+main{max-width:860px;padding:28px 20px 60px}
+.bar{border-top:2px dashed var(--dim);padding-top:14px}
+ol{list-style:none;margin:28px 0 0;padding:0;counter-reset:n}
+li{counter-increment:n;border-bottom:1px solid var(--line)}
+li a{display:grid;grid-template-columns:44px 1fr auto;align-items:baseline;gap:10px;padding:20px 4px;color:var(--ink);text-decoration:none;font-size:clamp(18px,3vw,24px)}
+li a::before{content:counter(n,decimal-leading-zero);color:var(--dim);font-size:13px}
+li a:hover{background:var(--soft)}
+li small{color:var(--dim);font-size:12px;text-align:right}
+.more{margin-top:36px;display:flex;gap:28px;flex-wrap:wrap;font-size:14px}
+.more a{color:var(--ink)}
+.room{margin-top:40px;border:1px solid var(--line);padding:16px;display:flex;flex-wrap:wrap;gap:18px 32px;align-items:center;font-size:14px}
+.room b{font-weight:400;font-size:22px}
+.room label{display:flex;align-items:center;gap:10px;color:var(--dim)}
+.room input{width:84px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:3px;font:18px var(--mono);padding:6px 8px}
+.room .url{margin-left:auto;font-size:16px}
+.dim{color:var(--dim)}
+</style>
+</head>
+<body>
+<main>
+<header class="bar"><span class="title">PAPER WEIGHTS</span><div class="controls"><button id="theme">Light</button></div></header>
+<ol>
+  <li><a href="/paperweights/web/sentences.html?scenario=sentences&deck=mixed">Sentences<small>next word - majority word</small></a></li>
+  <li><a href="/paperweights/web/?scenario=rover&mode=easy">Rover<small>competitive - risks</small></a></li>
+  <li><a href="/index.html?collaborative" id="collab">Rover<small>collaborative - easy</small></a></li>
+  <li><a href="/paperweights/web/?scenario=households&mode=medium">Households<small>competitive - indicators</small></a></li>
+</ol>
+<div class="more"><a href="/households/">Icons</a><a href="/audience">Audience</a></div>
+<div class="room">
+  <span><b id="phones">0</b> <span class="dim">phones</span></span>
+  <label>bots <input id="bots" type="number" min="0" max="200" value="5"></label>
+  <span><b id="size">0</b> <span class="dim">sheets</span></span>
+  <span class="url" id="url"></span>
+</div>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+let theme = 'dark';
+try { theme = localStorage.getItem('paperweights.theme.v1') === 'light' ? 'light' : 'dark'; } catch {}
+const paintTheme = () => { document.documentElement.dataset.theme = theme; $('#theme').textContent = theme === 'dark' ? 'Light' : 'Dark'; };
+$('#theme').onclick = () => { theme = theme === 'dark' ? 'light' : 'dark'; try { localStorage.setItem('paperweights.theme.v1', theme); } catch {} paintTheme(); };
+paintTheme();
+$('#url').textContent = location.host + '/audience';
+// The collaborative game remembers its level; open it on Easy.
+$('#collab').onclick = () => { try { const k = 'rover-run.claude.v1.6', m = JSON.parse(localStorage.getItem(k) || '{}'); m.level = 'easy'; localStorage.setItem(k, JSON.stringify(m)); } catch {} };
+let editing = false;
+$('#bots').onfocus = () => editing = true;
+$('#bots').onblur = () => editing = false;
+$('#bots').onchange = async e => {
+  const n = Math.max(0, Math.min(200, Number(e.target.value) || 0));
+  const s = await fetch('/api/room/bots', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({n})}).then(r => r.json());
+  paint(s);
+};
+function paint(s) { $('#phones').textContent = s.phones; $('#size').textContent = s.size; if (!editing) $('#bots').value = s.bots; }
+async function poll() { try { paint(await fetch('/api/room').then(r => r.json())); } catch {} }
+poll(); setInterval(poll, 1500);
+</script>
+</body>
+</html>

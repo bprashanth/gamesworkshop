@@ -1,0 +1,596 @@
+{
+ "C01:harvest:good": {
+  "cash": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 50,
+  "occur": 128
+ },
+ "C01:harvest:weak": {
+  "cash": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 110,
+  "occur": 256
+ },
+ "C01:harvest:failed": {
+  "cash": 116,
+  "attendance": 0,
+  "weather": 1,
+  "avoid": 61,
+  "go": 22,
+  "freq": 124,
+  "occur": 288
+ },
+ "C01:cash:enough": {
+  "harvest": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 42,
+  "occur": 32
+ },
+ "C01:cash:low": {
+  "harvest": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 118,
+  "occur": 32
+ },
+ "C01:cash:loan": {
+  "harvest": 109,
+  "attendance": 0,
+  "weather": 1,
+  "avoid": 69,
+  "go": 21,
+  "freq": 136,
+  "occur": 128
+ },
+ "C01:attendance:regular": {
+  "harvest": 62,
+  "cash": 66,
+  "weather": 0,
+  "avoid": 24,
+  "go": 48,
+  "freq": 0,
+  "occur": 0
+ },
+ "C01:attendance:irregular": {
+  "harvest": 60,
+  "cash": 66,
+  "weather": 2,
+  "avoid": 23,
+  "go": 49,
+  "freq": 0,
+  "occur": 0
+ },
+ "C01:weather:sun": {
+  "harvest": 64,
+  "cash": 68,
+  "attendance": 0,
+  "avoid": 24,
+  "go": 44,
+  "freq": 87,
+  "occur": 64
+ },
+ "C01:weather:rain": {
+  "harvest": 61,
+  "cash": 66,
+  "attendance": 0,
+  "avoid": 24,
+  "go": 49,
+  "freq": 91,
+  "occur": 0
+ },
+ "C01:weather:storm": {
+  "harvest": 62,
+  "cash": 61,
+  "attendance": 1,
+  "avoid": 23,
+  "go": 53,
+  "freq": 116,
+  "occur": 0
+ },
+ "C02:harvest:good": {
+  "cash": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 23,
+  "occur": 128
+ },
+ "C02:harvest:weak": {
+  "cash": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 20,
+  "occur": 128
+ },
+ "C02:harvest:failed": {
+  "cash": 136,
+  "attendance": 0,
+  "weather": 2,
+  "avoid": 38,
+  "go": 24,
+  "freq": 20,
+  "occur": 160
+ },
+ "C02:cash:enough": {
+  "harvest": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 23,
+  "occur": 32
+ },
+ "C02:cash:low": {
+  "harvest": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 25,
+  "occur": 64
+ },
+ "C02:cash:loan": {
+  "harvest": 134,
+  "attendance": 0,
+  "weather": 1,
+  "avoid": 41,
+  "go": 24,
+  "freq": 24,
+  "occur": 32
+ },
+ "C02:attendance:regular": {
+  "harvest": 43,
+  "cash": 46,
+  "weather": 0,
+  "avoid": 19,
+  "go": 92,
+  "freq": 0,
+  "occur": 0
+ },
+ "C02:attendance:irregular": {
+  "harvest": 43,
+  "cash": 45,
+  "weather": 1,
+  "avoid": 18,
+  "go": 93,
+  "freq": 0,
+  "occur": 0
+ },
+ "C02:weather:sun": {
+  "harvest": 43,
+  "cash": 44,
+  "attendance": 0,
+  "avoid": 19,
+  "go": 94,
+  "freq": 17,
+  "occur": 64
+ },
+ "C02:weather:rain": {
+  "harvest": 44,
+  "cash": 47,
+  "attendance": 0,
+  "avoid": 19,
+  "go": 90,
+  "freq": 18,
+  "occur": 0
+ },
+ "C02:weather:storm": {
+  "harvest": 44,
+  "cash": 43,
+  "attendance": 0,
+  "avoid": 17,
+  "go": 96,
+  "freq": 30,
+  "occur": 0
+ },
+ "C03:harvest:good": {
+  "cash": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 127,
+  "occur": 0
+ },
+ "C03:harvest:weak": {
+  "cash": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 452,
+  "occur": 304
+ },
+ "C03:harvest:failed": {
+  "cash": 97,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 83,
+  "go": 20,
+  "freq": 707,
+  "occur": 256
+ },
+ "C03:cash:enough": {
+  "harvest": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 101,
+  "occur": 0
+ },
+ "C03:cash:low": {
+  "harvest": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 473,
+  "occur": 336
+ },
+ "C03:cash:loan": {
+  "harvest": 92,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 89,
+  "go": 19,
+  "freq": 719,
+  "occur": 608
+ },
+ "C03:attendance:regular": {
+  "harvest": 69,
+  "cash": 73,
+  "weather": 0,
+  "avoid": 27,
+  "go": 31,
+  "freq": 0,
+  "occur": 0
+ },
+ "C03:attendance:irregular": {
+  "harvest": 69,
+  "cash": 72,
+  "weather": 2,
+  "avoid": 28,
+  "go": 29,
+  "freq": 0,
+  "occur": 0
+ },
+ "C03:weather:sun": {
+  "harvest": 70,
+  "cash": 70,
+  "attendance": 1,
+  "avoid": 27,
+  "go": 32,
+  "freq": 370,
+  "occur": 96
+ },
+ "C03:weather:rain": {
+  "harvest": 68,
+  "cash": 75,
+  "attendance": 0,
+  "avoid": 26,
+  "go": 31,
+  "freq": 443,
+  "occur": 0
+ },
+ "C03:weather:storm": {
+  "harvest": 69,
+  "cash": 74,
+  "attendance": 0,
+  "avoid": 27,
+  "go": 30,
+  "freq": 486,
+  "occur": 128
+ },
+ "C04:harvest:good": {
+  "cash": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 18,
+  "occur": 416
+ },
+ "C04:harvest:weak": {
+  "cash": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 31,
+  "occur": 208
+ },
+ "C04:harvest:failed": {
+  "cash": 118,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 60,
+  "go": 22,
+  "freq": 35,
+  "occur": 192
+ },
+ "C04:cash:enough": {
+  "harvest": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 9,
+  "occur": 192
+ },
+ "C04:cash:low": {
+  "harvest": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 19,
+  "occur": 240
+ },
+ "C04:cash:loan": {
+  "harvest": 117,
+  "attendance": 1,
+  "weather": 0,
+  "avoid": 60,
+  "go": 22,
+  "freq": 28,
+  "occur": 576
+ },
+ "C04:attendance:regular": {
+  "harvest": 59,
+  "cash": 59,
+  "weather": 0,
+  "avoid": 22,
+  "go": 60,
+  "freq": 0,
+  "occur": 0
+ },
+ "C04:attendance:irregular": {
+  "harvest": 62,
+  "cash": 63,
+  "weather": 0,
+  "avoid": 22,
+  "go": 53,
+  "freq": 0,
+  "occur": 0
+ },
+ "C04:weather:sun": {
+  "harvest": 59,
+  "cash": 59,
+  "attendance": 0,
+  "avoid": 23,
+  "go": 59,
+  "freq": 19,
+  "occur": 96
+ },
+ "C04:weather:rain": {
+  "harvest": 62,
+  "cash": 62,
+  "attendance": 0,
+  "avoid": 24,
+  "go": 52,
+  "freq": 24,
+  "occur": 0
+ },
+ "C04:weather:storm": {
+  "harvest": 58,
+  "cash": 58,
+  "attendance": 0,
+  "avoid": 21,
+  "go": 63,
+  "freq": 17,
+  "occur": 128
+ },
+ "C05:harvest:good": {
+  "cash": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 72,
+  "occur": 192
+ },
+ "C05:harvest:weak": {
+  "cash": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 215,
+  "occur": 80
+ },
+ "C05:harvest:failed": {
+  "cash": 99,
+  "attendance": 0,
+  "weather": 1,
+  "avoid": 80,
+  "go": 20,
+  "freq": 302,
+  "occur": 128
+ },
+ "C05:cash:enough": {
+  "harvest": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 71,
+  "occur": 64
+ },
+ "C05:cash:low": {
+  "harvest": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 247,
+  "occur": 16
+ },
+ "C05:cash:loan": {
+  "harvest": 94,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 87,
+  "go": 19,
+  "freq": 320,
+  "occur": 320
+ },
+ "C05:attendance:regular": {
+  "harvest": 69,
+  "cash": 73,
+  "weather": 0,
+  "avoid": 24,
+  "go": 34,
+  "freq": 0,
+  "occur": 0
+ },
+ "C05:attendance:irregular": {
+  "harvest": 70,
+  "cash": 72,
+  "weather": 0,
+  "avoid": 25,
+  "go": 33,
+  "freq": 0,
+  "occur": 0
+ },
+ "C05:weather:sun": {
+  "harvest": 69,
+  "cash": 73,
+  "attendance": 0,
+  "avoid": 25,
+  "go": 33,
+  "freq": 208,
+  "occur": 32
+ },
+ "C05:weather:rain": {
+  "harvest": 72,
+  "cash": 71,
+  "attendance": 0,
+  "avoid": 25,
+  "go": 32,
+  "freq": 214,
+  "occur": 128
+ },
+ "C05:weather:storm": {
+  "harvest": 67,
+  "cash": 73,
+  "attendance": 0,
+  "avoid": 25,
+  "go": 35,
+  "freq": 199,
+  "occur": 0
+ },
+ "C06:harvest:good": {
+  "cash": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 20,
+  "occur": 256
+ },
+ "C06:harvest:weak": {
+  "cash": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 25,
+  "occur": 80
+ },
+ "C06:harvest:failed": {
+  "cash": 126,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 51,
+  "go": 23,
+  "freq": 29,
+  "occur": 64
+ },
+ "C06:cash:enough": {
+  "harvest": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 9,
+  "occur": 64
+ },
+ "C06:cash:low": {
+  "harvest": 0,
+  "attendance": 0,
+  "weather": 0,
+  "avoid": 0,
+  "go": 200,
+  "freq": 31,
+  "occur": 208
+ },
+ "C06:cash:loan": {
+  "harvest": 114,
+  "attendance": 0,
+  "weather": 1,
+  "avoid": 64,
+  "go": 21,
+  "freq": 16,
+  "occur": 128
+ },
+ "C06:attendance:regular": {
+  "harvest": 56,
+  "cash": 61,
+  "weather": 0,
+  "avoid": 21,
+  "go": 62,
+  "freq": 0,
+  "occur": 0
+ },
+ "C06:attendance:irregular": {
+  "harvest": 52,
+  "cash": 59,
+  "weather": 1,
+  "avoid": 21,
+  "go": 67,
+  "freq": 0,
+  "occur": 0
+ },
+ "C06:weather:sun": {
+  "harvest": 53,
+  "cash": 67,
+  "attendance": 0,
+  "avoid": 23,
+  "go": 57,
+  "freq": 22,
+  "occur": 32
+ },
+ "C06:weather:rain": {
+  "harvest": 58,
+  "cash": 59,
+  "attendance": 0,
+  "avoid": 20,
+  "go": 63,
+  "freq": 27,
+  "occur": 128
+ },
+ "C06:weather:storm": {
+  "harvest": 54,
+  "cash": 57,
+  "attendance": 0,
+  "avoid": 20,
+  "go": 69,
+  "freq": 21,
+  "occur": 0
+ }
+}

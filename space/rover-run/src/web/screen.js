@@ -11,8 +11,9 @@ export const INK = '#e6e6e1', DIM = '#8a8a86', FAINT = '#4a4a48', SAND = '#c2a37
 const LOW = [86, 116, 124], HIGH = [158, 96, 76];             // contour tint, as in the film
 
 export class Screen {
-  constructor(canvas) {
+  constructor(canvas, aspect = 1.9) {
     this.canvas = canvas;
+    this.aspect = aspect;                                        // cell height / width
     this.ctx = canvas.getContext('2d');
     this.hits = [];
     this.resize();
@@ -22,7 +23,7 @@ export class Screen {
     const box = this.canvas.parentElement.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
     this.cw = box.width / COLS;
-    this.ch = this.cw * 1.9;
+    this.ch = this.cw * this.aspect;
     this.canvas.style.height = `${this.ch * ROWS}px`;
     this.canvas.width = Math.round(box.width * dpr);
     this.canvas.height = Math.round(this.ch * ROWS * dpr);
