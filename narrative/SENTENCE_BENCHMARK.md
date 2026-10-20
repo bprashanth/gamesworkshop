@@ -1,194 +1,214 @@
-# Paper Weights - competing over one sentence
+# Good Robot / Bad Robot - experiment handoff
 
-17 October 2026. Experimental benchmark, separate from Rover and the production word packs.
+**Start here.** This is the canonical handoff for the paused Paper Weights sentence
+benchmark. It is separate from the current Rover/Households game. Read this first,
+then follow the implementation and results links below.
 
-**Status: paused by the user.** The edit mechanic became too complex and its connection
-to next-token generation was not convincing. Artifacts are retained; the sentence endpoint
-is offline and Rover is back at `/paperweights/web/`. No further sentence prototype work
-is planned without a new brief.
+**Status:** paused at the user's request on 17 October 2026. The prototype worked
+mechanically, but its lookup/edit rule was too confusing for a short workshop.
+Do not treat its former recommendation as an approved next design, or restart it
+on the current Rover server without a new request.
 
-## Brief
+## What we wanted to test
 
-Two groups share one sentence. Group A wants it to portray a robot as good; Group B wants
-it to portray the robot as bad. Each group gets five turns in roughly five minutes. People
-must use the familiar colored left token / right token-and-color lookup, with different
-continuations distributed across sheets. The test is whether successive choices can
-change the sentence's meaning while keeping it readable and giving both sides agency.
+Build a second stage after the Swift-style word lookup exercise:
 
-The original corpus cannot support this goal as printed: it lacks the robot subject and
-the necessary branching vocabulary. This experiment uses an explicitly authored small
-grammar and new transitions. It does not claim to learn grammar or meaning from a corpus.
+- Split the room into two groups. A wants a sentence portraying a good robot;
+  B wants a sentence portraying a bad robot.
+- Alternate five turns each, approximately five minutes total.
+- Retain the familiar paper format: match a left word + color, report the right
+  word + color. Different sheets contain different continuations.
+- Pool the active group's responses, then select a continuation. The sentence
+  should remain readable while its meaning swings between the two agendas.
+- Eventually explore how missing public-interest data could narrow the stories
+  a model tells. That lesson was an aspiration, not an implemented finding.
 
-## Experiment design
+The existing Swift word corpus did not support this task. The experiment therefore
+uses a new, deliberately authored vocabulary, grammar and transition graph.
 
-Compare appending clauses, revising a sentence with cues selected in a fixed order, and revising slots while
-following a continuous word/color chain. Also compare modal selection, sampling actual
-paper votes, and representative choice among supported suggestions. Use immutable dealt
-sheets rather than generating suggestions in response to a team's goal.
+## What actually exists
 
-The continuous-chain revision candidate preserves the lookup gesture exactly: the chosen
-right token and color become the next left cue. What changes is the writing operation:
-the word replaces its grammatical position in one shared sentence instead of appending
-to the end. The page must make that distinction visible. This is a proposed stage-two
-rule, not a claim that unchanged stage-one mechanics can do everything required.
+The app starts with:
 
-Paper vote counts represent the assigned audience examples. They are not a live poll or
-votes collected from remote people. A solo reviewer can play both representatives. A room
-would supply real responses from its sheets and use its existing voting method.
+> The robot observes the crew, counts supplies, inspects the shelter, watches
+> survivors and maps routes.
 
-## Stage rehearsal
+Five editable verb slots describe crew, supplies, shelter, survivors and routes.
+Each slot has one protective verb, one destructive verb and two observational
+verbs. The nouns and connecting grammar are fixed by the program.
 
-Allow about 40 seconds to show the starting sentence and demonstrate one lookup. Give each
-side five alternating turns, about 25 seconds per turn. Reserve the final 10 seconds for
-reading the sentence aloud and asking the room which portrayal prevailed. Exact timing
-requires a human rehearsal; simulations establish feasible legal sequences, not enjoyment.
+Every participant has 24 immutable lookup pairs, covering 20 verbs and four
+starter keys. The usual first key is `PURPLE:robot`. Both groups use the same
+underlying transition distribution; their assigned goals change their choices,
+not the distribution they receive. The screen simulates each group's votes by
+counting its actual dealt rows. It does not collect live audience votes.
 
-Do not turn an authored word-valence score into an objective judge of sentence meaning.
-An apparently positive verb can be bad in context. The room should judge the final meaning;
-any model score belongs in benchmark diagnostics and must identify its assumptions.
+Colors identify the authored sentence roles. They do not encode household
+history, hidden hazards or the contexts used by the later Rover experiments.
 
-## Implementation and results
+## Three variants, in plain language
 
-See [the experiment](../paperweights/sentence-lab/README.md) for the final variant comparison,
-actual ten-turn traces, paper packs, regeneration and checks. The live local page is
-`/paperweights/sentence-lab/` on the repository server, port 8684.
+| Variant / code ID | What happens after a choice | What happens next |
+| --- | --- | --- |
+| Edit and follow the new word / `chain` | Replace the verb in the chosen word's assigned sentence slot | Look up the chosen word + color |
+| Edit and follow a set order / `scheduled` | Same replacement rule | The app chooses a cue from a fixed rotation of sentence slots |
+| Keep adding to the sentence / `append` | Append another action clause, retaining earlier clauses | Look up the chosen word + color |
 
+The scheduled slot supplies the lookup cue; it is not necessarily the slot that
+gets edited. Append mode supplies its nouns and connecting text from the fixed
+frame too. Neither variant generates unrestricted language.
 
-## What the trials found
+Each variant supports three selection policies:
 
-Selected for the playable rehearsal: **word-chain revision + representative choice**.
-Each representative chooses among the two leading printed words, including ties. Every
-chosen word/color becomes the next cue, and the corresponding verb in the sentence changes.
-The starting sentence has five neutral observations. Vocabulary, object phrases and grammar
-are authored scaffolding; the sheets determine the editable verbs and their continuations.
-The same transition weights apply to both groups. Goals affect choices, not dealt evidence.
+- **Representative:** choose among the two highest-count continuations, including
+  ties. This was the preferred playable demonstration before the pause.
+- **Majority:** choose the highest-count continuation automatically.
+- **Sampling:** sample all positive-count continuations, including minority ones.
 
-The final selected deal is seed 17, pack `SL1-17-15-aef34c5694`. It was deliberately selected
-after rejecting a random graph with neutral loops and another example whose final two
-choices left the sentence unchanged. The shipped example changes all ten turns and visits
-all five positions. It is a demonstration fixture, not a random held-out performance result.
+The app also has recorded representative replay, comparison traces, undo/reset,
+a sheet viewer and an optional timer. Timer expiry does not choose a word.
 
-| Turn | Group | Chosen verb | Effect on the sentence |
-| --- | --- | --- | --- |
-| 1 | A | rescues | watches survivors becomes rescues survivors |
-| 2 | B | attacks | observes the crew becomes attacks the crew |
-| 3 | A | repairs | inspects the shelter becomes repairs the shelter |
-| 4 | B | blocks | maps routes becomes blocks routes |
-| 5 | A | shares | counts supplies becomes shares supplies |
-| 6 | B | abandons | rescues survivors becomes abandons survivors |
-| 7 | A | guards | attacks the crew becomes guards the crew |
-| 8 | B | destroys | repairs the shelter becomes destroys the shelter |
-| 9 | A | rescues | abandons survivors becomes rescues survivors |
-| 10 | B | attacks | guards the crew becomes attacks the crew |
+## The central problem - why we paused
 
-Final sentence: “The robot attacks the crew, shares supplies, destroys the shelter,
-rescues survivors and blocks routes.” Its wording changes from a reasonably benign
-inventory into a contested mix of constructive and destructive actions. The room judges
-which actions matter more; an equal-weight arithmetic tally cannot settle that question.
+A lookup cue is not necessarily the word being replaced. For example:
 
-The diagnostics assign protective actions +1, destructive actions -1, and observations 0.
-Under that limited convention the selected trace changes lead five times. Across 200 graph
-seeds with 15 sheets, representative chain revision averages 2.03 lead reversals versus
-1.315 for scheduled re-cueing, 0.645 for modal chain choices and 0.94 for sampled chain
-choices. Append-only play averages about 35 words versus 15 for revision and accumulates
-contradictory clauses; deliberate alternating helpful/harmful additions all tie under the
-simple tally. That is evidence of a weak benchmark under this rule, not a claim that humans
-would judge every such sentence neutral.
+`PURPLE robot -> GREEN rescues`
 
-Chain revision is not solved as a fair tournament: over the 200-seed diagnostic sweep,
-the second mover wins 48.5%, the first 24%, and 27.5% tie under the authored tally.
-Swap goals/order across replays before treating outcomes as team skill. Some other seeds
-still contain unchanged moves. The prototype exposes alternatives rather than claiming
-one curated demonstration proves broad reliability or enjoyment.
+This changes **watches survivors** to **rescues survivors**. It does not replace
+“robot.” The next lookup is then `GREEN rescues`, whose continuations may edit
+another part of the sentence.
 
-## Delivered and checked
+This preserved the right-word -> next-left-word chain, but added an unrelated
+slot-editing rule. It was chosen to keep one short sentence changing across
+turns. It is **not technically required by language modelling**, nor a faithful
+illustration of ordinary next-token generation. Calling it the exact Swift
+mechanic overstated the continuity.
 
-The page offers all three mechanics and three decision policies, a recorded-representative
-replay, optional 30-second reminder, undo/reset, full turn transcripts, and all nine recorded
-comparison runs. Timer expiry never chooses on behalf of a representative. The audience
-sheet viewer and downloadable 15-person PDF let a reviewer trace every option to real rows.
-There is no live multi-device vote collection; the displayed tallies come from the deal.
+The user first requested clearer red old-word / green replacement previews.
+Those were implemented, including hover/focus targets, persistent struck-out
+old words and explicit no-op notices. A phone then displayed mixed cached
+versions; cache-busting assets and no-store server headers fixed that issue.
+However, visual clarification did not resolve the conceptual confusion. The
+user asked to checkpoint the experiment and return to Rover.
 
-Verified 15/100/200-person data packs and printed the 15-person pack (8 A, 7 B). Automated
-checks cover graph closure, sheet-derived tallies, legal ten-turn trajectories and matching
-Python/JavaScript state transitions. Root independently played the selected ten turns in
-the browser through the Tailscale address, verified each count against the assigned sheets,
-checked exact next-cue continuity and confirmed that every turn changed the sentence.
-Screenshots reviewed include the stage and printed sheet. The print check verifies all
-360 actual PDF rows, both token colors, group identity and page bounds against the live pack.
+## What the recorded trials showed
 
-Local/Tailscale review: http://100.82.28.38:8684/paperweights/sentence-lab/
-A successful request through the local Tailscale interface was verified; the user's phone
-must still be connected to the same tailnet. No public hosting or Rover deployment changed.
+The selected rehearsal is seed 17, pack `SL1-17-15-aef34c5694`, split 8 A / 7 B.
+It was **curated**, not a held-out performance result: all ten choices change the
+sentence and all five slots are visited.
 
-## Clarification after the first user trial
+| Turn | Group | Edit |
+| --- | --- | --- |
+| 1 | A | watches -> rescues |
+| 2 | B | observes -> attacks |
+| 3 | A | inspects -> repairs |
+| 4 | B | maps -> blocks |
+| 5 | A | counts -> shares |
+| 6 | B | rescues -> abandons |
+| 7 | A | attacks -> guards |
+| 8 | B | repairs -> destroys |
+| 9 | A | abandons -> rescues |
+| 10 | B | guards -> attacks |
 
-The user found the edit operation confusing. The lookup word and the word being edited
-are often different. For example, looking up PURPLE robot can yield GREEN rescues. That
-choice changes “watches survivors” to “rescues survivors”; it does not replace “robot.”
-The selected verb's grammatical role determines which existing verb is replaced.
+Final sentence:
 
-Use a diff view: each option previews the old word in red and its replacement in green.
-Hover/focus identifies the actual target in the sentence; after committing, retain the
-red struck-out old word beside the green new word. The stored sentence contains only the
-new word. A no-op must say the sentence already contains that word. Appending adds green
-text and never implies a deletion. Red/green edit marks are separate from lookup colors.
+> The robot attacks the crew, shares supplies, destroys the shelter, rescues
+> survivors and blocks routes.
 
-Plain-language differences:
+A diagnostic tally assigns protective verbs +1, destructive verbs -1 and neutral
+verbs 0. Under that authored convention, the selected run changes lead five
+times. This is not an objective measure of sentence meaning; the audience should
+judge the wording.
 
-- Edit and follow the new word: replace an existing verb, then look up the word just chosen.
-- Edit and follow a set order: replace an existing verb, but let the game pick the next lookup from its fixed rotation through sentence positions.
-- Keep adding to the sentence: add another action at the end and look up the chosen verb next; earlier wording stays.
+Across 200 graph seeds with 15 sheets, representative chain revision averaged
+2.03 lead reversals and 1.74 unchanged turns. Majority chain averaged 0.645
+reversals; sampling averaged 0.94. Append play accumulated opposing clauses and
+goal-directed runs tied under the tally. The second mover won 48.5% of chain
+representative runs, the first 24%, with 27.5% ties. These results do not establish
+fairness or human enjoyment. See the [full results and sentence traces](../paperweights/sentence-lab/RESULTS.md)
+and [machine-readable comparisons](../paperweights/sentence-lab/trials.json).
 
-The first two differ in how the next lookup is selected, not in who is allowed to edit.
-The third keeps the full history, which makes opposing claims accumulate rather than
-allowing one group to undo the other. The app's fixed nouns and connecting words are
-scaffolding in all three modes, not words generated by the audience.
+## What it can teach, and what it cannot
 
-## What this teaches, and the NGO-data message
+The implemented game demonstrates selection and steering: available examples
+limit the suggestions, while a representative's agenda affects which suggestion
+is selected. Because both groups draw from the same underlying distribution,
+it does not isolate source bias or demonstrate the effect of removing NGO data.
+There is no implemented collusion mechanism. Grammar and moral labels are authored,
+not learned.
 
-The current exercise shows two distinct things: available examples constrain which
-continuations can be proposed, and a decision-maker's goal influences which supported
-continuation is chosen. Both groups have the same underlying distribution. Their competing
-goals therefore illustrate selection and steering, not an experiment demonstrating that
-NGO data was excluded. No collusion mechanism is implemented here. Paper lookup is an
-analogy; a real language model does not literally consult these rows or use our fixed
-sentence frame.
+The user's desired message was roughly: if NGOs stop contributing data, important
+perspectives can disappear from model-generated stories. A more direct follow-up
+would hold the task and selection policy fixed, compare all sources against one
+source omitted, then restore that source. First inspect how counts change for one
+cue; only then compare complete sentences. Use attributed synthetic sources with
+mixed observations, rather than defining NGO as truth and every other source as
+falsehood. For sampling, compare many paired runs.
 
-A defensible intended message is:
+**That source-withdrawal experiment is proposed, not built.** It would demonstrate
+an effect in this toy system, not prove a causal effect on real LLMs. Public data
+must actually enter a model's training, updates or retrieval to affect it; an
+already-trained model does not automatically forget old evidence when publishing
+stops. Separate data coverage from a selector's agenda when designing the next test.
 
-> If public-interest evidence is missing from the data a model actually uses, accounts
-> from better-represented sources can dominate. Keeping diverse voices in the evidence
-> matters as well as choosing how to use it.
+## Where to look
 
-This is a risk to investigate, not proof that any NGO stopping publication must make every
-model more biased. Public availability does not guarantee inclusion in training or search;
-collection, filtering and weighting also matter. Existing models do not automatically
-forget earlier training merely because a source stops publishing. The relevant experiments
-concern future training/update data, or information retrieved for a new answer.
+All implementation lives in [paperweights/sentence-lab/](../paperweights/sentence-lab/).
 
-There is evidence that dataset construction can distort representation: Dodge et al. (2021)
-found that C4's blocklist filtering disproportionately removed text from and about minority
-individuals. That supports concern about source representation; it does not establish a
-specific causal effect of NGO withdrawal on arbitrary model outputs.
-Source: [Documenting Large Webtext Corpora](https://aclanthology.org/2021.emnlp-main.98/).
+| File | Purpose |
+| --- | --- |
+| [README.md](../paperweights/sentence-lab/README.md) | Local operation, printing and known limits |
+| [model.py](../paperweights/sentence-lab/model.py) | Authored grammar/graph, immutable sheet generation, simulation and scoring |
+| [model.js](../paperweights/sentence-lab/model.js) | Browser state transitions corresponding to the Python model |
+| [app.js](../paperweights/sentence-lab/app.js) | Interaction, vote displays, diff previews, replay and comparison UI |
+| [index.html](../paperweights/sentence-lab/index.html), [style.css](../paperweights/sentence-lab/style.css) | Page and visual styling |
+| [pack.json](../paperweights/sentence-lab/pack.json) | Default 15-person rehearsal deal and nine recorded demonstrations |
+| [pack-15.json](../paperweights/sentence-lab/pack-15.json), [pack-100.json](../paperweights/sentence-lab/pack-100.json), [pack-200.json](../paperweights/sentence-lab/pack-200.json) | Generated audience-size variants |
+| [trials.py](../paperweights/sentence-lab/trials.py) | Regenerate deals, demonstrations and comparison sweep |
+| [RESULTS.md](../paperweights/sentence-lab/RESULTS.md), [trials.json](../paperweights/sentence-lab/trials.json) | Readable findings and full diagnostic output |
+| [build_sheets.py](../paperweights/sentence-lab/build_sheets.py) | Swift-style print renderer and row/color verification |
+| [test_model.py](../paperweights/sentence-lab/test_model.py) | Model invariants and Python/JavaScript parity checks |
+| [playtest.mjs](../paperweights/sentence-lab/playtest.mjs) | Browser checks for diffs, controls, variants and replay |
+| [Original chronology](../chronology/2026-10-17-sentence-benchmark.md) | Development, cache fix, user feedback and pause decision |
 
-### Proposed controlled follow-up - not implemented
+Generated PDFs belong under `paperweights/sentence-lab/printouts/<pack-id>/`;
+screenshots belong under `paperweights/sentence-lab/out/`. These local output
+folders may need regeneration. Do not substitute Rover sheets for this experiment.
 
-Use attributed synthetic observations from several sources: a robot maker, independent
-inspectors, affected communities and an NGO. Give sources overlapping and sometimes
-conflicting observations; do not equate NGO with truth or every other source with falsehood.
-Run the same task with the same selection rule, first with all sources and then with one
-source absent. For a deterministic comparison use majority selection and a declared tie
-rule; for sampling use many paired runs rather than one dramatic example. Hold other
-inputs fixed and audit the resulting per-cue counts before interpreting complete traces.
+## Inspect or reproduce without disturbing Rover
 
-Show one specific cue before and after withdrawal first. Some continuations lose support
-or disappear. Then run the whole sentence and see whether its claims change. Reintroduce
-the missing source as a third comparison. Any selected dramatic illustration must be
-labeled as such, with less dramatic results retained. This demonstrates how source omission
-can narrow the available story in the toy model, not a measured real-LLM effect.
+The current port 8684 server serves the assembled Rover/Households site and does
+not include the sentence lab. Old 8684 sentence links in historical records are
+stale. To inspect this experiment on a separate port, from the repository root:
 
-This would teach the NGO-data point more directly than asking representatives with
-opposite agendas to choose from unchanged sheets. Data inclusion and selection agenda
-should be varied separately so the audience can tell which caused the change.
+```sh
+python3 paperweights/serve.py --port 8686 --bind 0.0.0.0
+```
+
+Then visit `http://100.82.28.38:8686/paperweights/sentence-lab/` over Tailscale,
+or `http://localhost:8686/paperweights/sentence-lab/` locally. This command is
+provided for the next agent; no sentence server was started for this handoff.
+
+```sh
+# Read-only model checks
+python3 -m unittest discover -s paperweights/sentence-lab -p 'test_*.py'
+
+# Regeneration overwrites deals and comparison output
+python3 paperweights/sentence-lab/trials.py
+
+# Optional print generation after regenerating the matching pack
+paperweights/.venv/bin/python paperweights/sentence-lab/build_sheets.py --pack paperweights/sentence-lab/pack-15.json
+```
+
+The existing browser test hard-codes port 8684. Point its navigation at the
+separate sentence server before running it; do not take down Rover to satisfy
+that old test URL. Changing the seed changes the graph as well as the deal.
+
+## Brief for the next agent
+
+Investigate a simpler five-minute, two-group sentence game that preserves an
+intelligible relationship between the cue, the choice and the sentence change.
+Do not assume the paused slot-editing rule is a requirement. Treat the current
+code as a benchmark and reusable paper-distribution machinery. Distinguish
+implemented observations from proposed NGO-source experiments, and do not
+modify or restart the current Rover/Households game as part of this investigation.

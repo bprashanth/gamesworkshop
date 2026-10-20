@@ -1,0 +1,12 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Households - evidence contours</title>
+<style>
+*{box-sizing:border-box}body{background:#090a0b;color:#e5e5df;font:15px monospace;margin:0;padding:24px 4vw}header{display:flex;justify-content:space-between;align-items:center;border-top:3px dashed #aaa;border-bottom:1px solid #666;padding:18px 0}h1{font-size:24px;margin:0}select,a{background:transparent;color:inherit;font:inherit}select{padding:8px;border:1px solid #888}option{background:#111}p{color:#aaa;line-height:1.5;max-width:1000px}svg{width:100%;max-height:65vh;display:block}footer{border-top:1px solid #555;padding-top:12px;display:flex;gap:24px}table{border-collapse:collapse;width:100%;margin:16px 0}td,th{border:1px solid #444;padding:8px;text-align:right}th:first-child{text-align:left}summary{cursor:pointer}#readout{color:#bd9c4e;min-height:24px}
+</style>
+<header><h1>HOUSEHOLDS / EVIDENCE CONTOURS</h1><select id="sector" aria-label="Survey sector"><option value="rural">Rural India</option><option value="urban">Urban India</option></select></header>
+<p>Age-appropriate school attendance - NSS 2017-18 - contours every 5 percentage points</p>
+<svg id="map" viewBox="0 0 1200 520" role="img" aria-label="School attendance by education stage and household spending quintile"></svg>
+<p id="readout">Select a measured point to inspect its value</p>
+<p>Observed attendance, not dropout risk - interpolated contours, not intervention predictions</p>
+<details><summary>Source and measured values</summary><p>Contours interpolate between survey cells for display. They are not geography, monthly dropout odds or intervention effects. School stages are equally spaced here, not equal time intervals.</p><table id="values"></table><p id="source"></p></details>
+<footer><a href="game.html">Play current prototype</a><a href="research/attendance.json">Source data</a></footer>
+<script type="module" src="evidence.js"></script></html>

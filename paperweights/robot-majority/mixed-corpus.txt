@@ -1,0 +1,64 @@
+# Weight | original authored passage. Repetitions are explicit training-data weight.
+8 | one evening our robot was quietly checking boats near home .
+8 | sometimes robots spend mornings sorting letters inside libraries .
+8 | nearby machines were patiently counting seeds beside farms .
+1 | one old boat was quietly sinking beside our home .
+1 | one morning our farmer was checking letters beside the sea .
+1 | one quiet night the robot found a cat inside our boat .
+1 | evening light shone on boats near the market .
+1 | evening rain was cold and our robot said nothing .
+1 | our robot carried milk and seeds to the market .
+1 | our old farmer was sorting boats inside the library .
+1 | our cat was patiently watching the rain .
+1 | robot stories were strange , but the children wanted more !
+1 | robot eyes shone quietly inside the dark boat .
+1 | was the farmer checking seeds or counting boats ?
+1 | quietly the cat watched our farmer .
+1 | quietly singing , the robot carried a letter home .
+1 | checking the weather was the farmer's morning work .
+1 | checking seeds and sorting milk took all evening .
+1 | boats carried letters , children and milk .
+1 | boats were sleeping inside a strange story .
+1 | near the river a child found our letter .
+1 | near dawn the cat was watching boats .
+1 | home was cold , but our robot found light .
+1 | home stories made the old farmer laugh !
+1 | sometimes the robot was counting rain .
+1 | sometimes boats carried seeds to libraries .
+1 | robots watched children counting letters near home .
+1 | robots were strange and quiet .
+1 | spend one evening inside our library !
+1 | spend the morning watching boats .
+1 | mornings were cold beside the river .
+1 | mornings carried light into our home .
+1 | sorting the milk was strange work .
+1 | sorting boats made our farmer laugh .
+1 | letters carried stories of the sea .
+1 | letters were quietly sinking in the milk .
+1 | inside our boat the cat watched rain .
+1 | inside the market a farmer was singing .
+1 | libraries were full of strange stories .
+1 | libraries carried the morning light home .
+1 | nearby the child found seeds in a letter .
+1 | nearby boats were quietly sinking .
+1 | machines watched rain and carried boats .
+1 | machines made strange stories from milk .
+1 | were the seeds sleeping or singing ?
+1 | were our boats inside the library ?
+1 | patiently our farmer watched a cat .
+1 | patiently checking rain made the robot laugh .
+1 | counting the children took all morning .
+1 | counting milk was strange , said the farmer .
+1 | seeds were sleeping near our home .
+1 | seeds carried the story of rain .
+1 | beside the sea our robot found light .
+1 | beside our home boats were quietly sleeping .
+1 | farms were quiet in the evening .
+1 | farms carried stories inside seeds .
+1 | the old man sat in a boat in the cold , dark sea .
+1 | the boy saw the old man and said , why did you go out in the dark night ?
+1 | the old man said , I went out to see the flat sea and the steep wave !
+1 | I saw a pale blue eye in the dark night !
+1 | why did you say that I am mad ?
+1 | the cat in the hat sat in the cold house .
+1 | the sun did not shine , so the boy said it was too wet to go out .

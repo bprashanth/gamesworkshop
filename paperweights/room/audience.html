@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paper Weights</title>
+<link rel="stylesheet" href="/paperweights/web/style.css">
+<link rel="stylesheet" href="/paperweights/web/competitive.css">
+<style>
+main{max-width:720px;padding:0 0 60px}
+header{position:sticky;top:0;z-index:2;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 16px 0}
+.top{display:flex;justify-content:space-between;align-items:baseline}
+.top .title{font-size:17px}
+#who{color:var(--dim);font-size:12px}
+.sides{display:flex;margin-top:10px}
+.sides button{flex:1;border:0;border-bottom:2px solid transparent;border-radius:0;padding:9px;font-size:13px;color:var(--dim)}
+.sides button.on{color:var(--ink);border-bottom-color:var(--ink)}
+#ask{display:none;padding:14px 16px;border-bottom:1px solid var(--line);font-size:15px;line-height:1.45}
+#ask.on{display:block}
+#ask .cue{margin-top:10px}
+.choices{display:flex;gap:10px;margin-top:12px}
+.choices button{flex:1;font-size:18px;padding:14px}
+.choices button.on{background:var(--ink);color:var(--bg)}
+.rows{display:grid;gap:7px;padding:12px 16px}
+.row{display:grid;grid-template-columns:minmax(0,1.1fr) 22px minmax(0,1fr);align-items:center;gap:8px;border:1px solid var(--line);border-radius:3px;padding:5px;background:var(--bg);color:var(--ink);font:inherit;text-align:left;width:100%}
+.row.mine{outline:2px solid var(--ink);outline-offset:1px}
+.row.nope{animation:nope .3s}
+@keyframes nope{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.arrow{color:var(--dim);text-align:center}
+.wl{background:var(--c);color:var(--bg);border-radius:2px;padding:3px 8px}
+.wl small,.wr small{display:block;font-size:8px;letter-spacing:.06em;opacity:.8}
+.wl b{font-weight:700;font-size:19px}
+.wr b{color:var(--c);font-size:19px;font-weight:700}
+.wr small{color:var(--dim)}
+.cardbox{border:1px solid var(--context);min-width:0}
+.cardlabel{display:flex;justify-content:space-between;padding:3px 4px;font-size:8px;color:var(--context)}
+.card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:48px;color:var(--ink);font-size:9px}
+.card .sym{width:36px;height:26px}
+.card i{display:block!important;font-style:normal;font-size:8px;letter-spacing:.04em}
+.flip{font-size:15px;letter-spacing:.04em}
+h2{font-size:11px;color:var(--dim);letter-spacing:.08em;font-weight:400;margin:18px 16px 0}
+.avoid{display:flex;flex-wrap:wrap;gap:8px;padding:10px 16px}
+.avoid .cardbox{--context:var(--line);width:calc(25% - 6px);min-width:70px}
+.cue .cardbox{display:inline-block;min-width:150px}
+.cue .wl{display:inline-block;min-width:120px}
+#ask .avoid{padding:10px 0 0}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="top"><span class="title">PAPER WEIGHTS</span><span id="who"></span></div>
+  <div class="sides"><button data-side="words" class="on">WORDS</button><button data-side="data">DATA</button></div>
+</header>
+<section id="ask"></section>
+<section id="sheet"></section>
+</main>
+<script type="module">
+import {SYMBOLS} from '/paperweights/web/symbols.js';
+const $ = s => document.querySelector(s);
+const PALETTE = {RED: ['#a74638', '#d06c58'], BLUE: ['#316b8c', '#6ca4c4'], AMBER: ['#8b681d', '#bd9c4e'], GREEN: ['#39785c', '#75ae8e'], PURPLE: ['#72528e', '#ad91c4'], PINK: ['#a24b7d', '#ce83ae']};
+const CONTEXT = {C01: 'RED', C02: 'BLUE', C03: 'AMBER', C04: 'GREEN', C05: 'PURPLE', C06: 'PINK'};
+const HH = (await (await fetch('/households/assets/icons.json')).json()).primary;
+let theme = 'dark';
+try { theme = localStorage.getItem('paperweights.theme.v1') === 'light' ? 'light' : 'dark'; } catch {}
+document.documentElement.dataset.theme = theme;
+const ink = color => PALETTE[color][theme === 'dark' ? 1 : 0];
+let pid = null, me = null, sheet = null, sheetVersion = null, side = 'words', version = -1, uid = 0;
+try { pid = localStorage.getItem('paperweights.audience.pid'); } catch {}
+
+const esc = t => String(t).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+// Icons share gradient ids; give each copy its own.
+const icon = (svg) => { const n = ++uid; return svg.replace(/id="(\w+)"/g, `id="$1${n}"`).replace(/#(\w+)\)/g, `#$1${n})`); };
+const split = key => { const i = key.indexOf(':'); return {color: key.slice(0, i), word: key.slice(i + 1)}; };
+const wordLeft = key => { const w = split(key); return `<span class="wl" style="--c:${ink(w.color)}"><small>${w.color}</small><b>${esc(w.word)}</b></span>`; };
+const wordRight = key => { const w = split(key); return `<span class="wr" style="--c:${ink(w.color)}"><b>${esc(w.word)}</b><small>(${w.color})</small></span>`; };
+const hhCard = (ctx, cat, value) => { const color = CONTEXT[ctx]; return `<span class="cardbox" style="--context:${ink(color)}"><span class="cardlabel"><span>${color}</span><span>${cat.toUpperCase()}</span></span><span class="card">${icon(HH[cat][value])}<i>${value.toUpperCase()}</i></span></span>`; };
+const roverCard = (cat, value) => `<span class="cardbox"><span class="cardlabel"><span></span><span>${cat.toUpperCase()}</span></span><span class="card">${icon(SYMBOLS[cat][value])}<i>${value.toUpperCase()}</i></span></span>`;
+const post = (path, body) => fetch('/api/room' + path, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)}).then(r => r.json());
+
+async function join() {
+  pid = (await post('/join', {pid})).pid;
+  try { localStorage.setItem('paperweights.audience.pid', pid); } catch {}
+}
+function paintSheet() {
+  const vote = me.vote, mine = vote?.mine;
+  let h = '';
+  if (side === 'words') {
+    h = `<div class="rows">${sheet.words.map(([l, r]) => `<button class="row ${vote?.kind === 'word' && mine === r && vote.cue === l ? 'mine' : ''}" data-left="${esc(l)}" data-right="${esc(r)}">${wordLeft(l)}<span class="arrow">-&gt;</span>${wordRight(r)}</button>`).join('')}</div>`;
+  } else {
+    h = `<h2>ROVER - AVOID</h2><div class="avoid">${sheet.rover.map(q => roverCard(q.category, q.value)).join('')}</div>
+      <h2>HOUSEHOLDS</h2><div class="rows">${sheet.household.map(r => `<button class="row ${vote?.kind === 'household' && vote.cue === r.key && mine === r.flip ? 'mine' : ''}" data-key="${r.key}" data-flip="${r.flip}">${hhCard(r.context, r.category, r.value)}<span class="arrow">-&gt;</span><span class="flip">${r.flip.toUpperCase()}</span></button>`).join('')}</div>`;
+  }
+  $('#sheet').innerHTML = h;
+  document.querySelectorAll('.sides button').forEach(b => b.classList.toggle('on', b.dataset.side === side));
+}
+function paintAsk() {
+  const v = me.vote, el = $('#ask');
+  el.classList.toggle('on', !!v);
+  if (!v) return el.innerHTML = '';
+  if (v.status === 'no-data') return el.textContent = v.kind === 'household' ? 'No matching card suggestion' : 'No matching data';
+  if (v.kind === 'word') el.innerHTML = `Tap the word that matches, if any<div class="cue">${wordLeft(v.cue)}</div><div class="choices"><button data-choice="__no_word__" class="${v.mine === '__no_word__' ? 'on' : ''}">${v.mine === '__no_word__' ? 'No matching word - recorded' : 'No matching word'}</button></div>`;
+  if (v.kind === 'household') { const [ctx, cat, value] = v.cue.split(':'); el.innerHTML = `Tap the row that matches, if any<div class="cue">${hhCard(ctx, cat, value)}</div>`; }
+  if (v.kind === 'rover') el.innerHTML = `AVOID if one of these is on Team ${me.team}'s screen<div class="avoid">${sheet.rover.map(q => roverCard(q.category, q.value)).join('')}</div>
+    <div class="choices"><button data-choice="go" class="${v.mine === 'go' ? 'on' : ''}">GO</button><button data-choice="avoid" class="${v.mine === 'avoid' ? 'on' : ''}">AVOID</button></div>`;
+}
+async function refresh(force) {
+  try {
+    const r = await fetch(`/api/room/me?pid=${pid}`, {cache: 'no-store'});
+    if (r.status === 404) { await join(); return refresh(true); }
+    const next = await r.json();
+    if (!force && next.version === version) return;
+    const opened = next.vote && next.vote.id !== me?.vote?.id;
+    me = next; version = next.version;
+    if (!sheet || next.sheetVersion !== sheetVersion || sheet.seat !== next.seat) {
+      sheet = await fetch(`/api/room/sheet?pid=${pid}`, {cache: 'no-store'}).then(r => r.json());
+      sheetVersion = next.sheetVersion;
+    }
+    if (opened) { side = next.vote.kind === 'word' ? 'words' : 'data'; scrollTo(0, 0); }
+    $('#who').textContent = `Sheet ${String(me.seat).padStart(3, '0')} - Team ${me.team}`;
+    paintAsk(); paintSheet();
+  } catch {}
+}
+document.addEventListener('click', async e => {
+  const tab = e.target.closest('[data-side]'), row = e.target.closest('.row'), choice = e.target.closest('[data-choice]');
+  if (tab) { side = tab.dataset.side; paintSheet(); return; }
+  const v = me?.vote;
+  if (choice && (v?.kind === 'rover' || (v?.kind === 'word' && choice.dataset.choice === '__no_word__'))) { await post('/ballot', {pid, id: v.id, choice: choice.dataset.choice}); return refresh(true); }
+  if (!row || !v) return;
+  const ok = v.kind === 'word' ? row.dataset.left === v.cue : v.kind === 'household' && row.dataset.key === v.cue && !v.exclude?.includes(row.dataset.flip);
+  if (!ok) { row.classList.remove('nope'); void row.offsetWidth; row.classList.add('nope'); return; }
+  await post('/ballot', {pid, id: v.id, choice: v.kind === 'word' ? row.dataset.right : row.dataset.flip});
+  refresh(true);
+});
+await join();
+await refresh(true);
+setInterval(refresh, 1000);
+</script>
+</body>
+</html>
