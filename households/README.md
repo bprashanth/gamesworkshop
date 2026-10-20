@@ -1,5 +1,8 @@
 # Households
 
+[Current facilitator guide](../narrative/HOUSEHOLDS_GAME.md) explains the three
+stages, colors, indicators, dropout and resource budgets, including live Summit votes.
+
 Households and Rover now use the same competitive interface and original Rover
 map. Choose the scenario separately from Risks, Indicators or Judgement.
 
@@ -28,7 +31,8 @@ The old `/households/game.html` link redirects to Household Judgement.
   Reset replays a team independently; scenario switches preserve the stage.
 
 [Stage design](../narrative/shared_scenarios_stages.md) - [Model](MODEL.md).
-No new sheets are generated. Existing PDFs are incompatible with this trial.
+The original trial did not generate sheets. The later live Summit room has its
+own [sheet generator](../paperweights/room/README.md); older PW5 PDFs remain incompatible.
 Pre-trial checkpoint: `trial-before-shared-stages-2026-10-19` (`aad8fcf`).
 
 ## Verification
